@@ -2,7 +2,7 @@ import ReservationChip from "@/src/components/ReservationChip/ReservationChip";
 
 const Home = () => {
   return (
-    <main>
+    <main className="flex w-40 flex-col gap-1 p-96">
       <ReservationChip
         status="pending"
         count={4}
