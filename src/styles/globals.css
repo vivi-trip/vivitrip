@@ -1,10 +1,164 @@
+@import "./pretendardvariable.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Black */
+  --basic-black: #1b1b1b;
+  --nomad-black: #112211;
+
+  /* Gray */
+  --gray-800: #4b4b4b;
+  --gray-700: #79747e;
+  --gray-600: #a1a1a1;
+  --gray-500: #a4a1aa;
+  --gray-400: #adaeb8;
+  --gray-300: #cbc9cf;
+  --gray-200: #dddddd;
+  --gray-100: #eeeeee;
+  --gray-50: #fafafa;
+
+  /* Green */
+  --green-100: #0b3b2d;
+  --green-50: #ced8d5;
+  --light-green: #00ac07;
+
+  /* Red */
+  --red-200: #ff472e;
+  --red-100: #ffc2ba;
+  --red-50: #ffe4e0;
+
+  /* Orange */
+  --orange-100: #ff7c1d;
+  --orange-50: #fff4e8;
+
+  /* Yellow */
+  --basic-yellow: #ffc23d;
+
+  /* Blue */
+  -blue-200: #0085ff;
+  -blue-100: #2eb4ff;
+  -blue-50: #e5f3ff;
+}
+
+@layer utilities {
+  /* Text-3xl */
+  .text-32px-bold {
+    @apply text-[32px] font-bold leading-[42px];
+  }
+
+  .text-32px-semibold {
+    @apply text-[32px] font-semibold leading-[42px];
+  }
+
+  /* Text-2xl */
+  .text-24px-bold {
+    @apply text-[24px] font-bold leading-[32px];
+  }
+
+  .text-24px-semibold {
+    @apply text-[24px] font-semibold leading-[32px];
+  }
+
+  .text-24px-medium {
+    @apply text-[24px] font-medium leading-[32px];
+  }
+
+  .text-24px-regular {
+    @apply text-[24px] font-normal leading-[32px];
+  }
+
+  /* Text-xl */
+  .text-20px-bold {
+    @apply text-[20px] font-bold leading-[32px];
+  }
+
+  .text-20px-semibold {
+    @apply text-[20px] font-semibold leading-[32px];
+  }
+
+  .text-20px-medium {
+    @apply text-[20px] font-medium leading-[32px];
+  }
+
+  .text-20px-regular {
+    @apply text-[20px] font-normal leading-[32px];
+  }
+
+  /* Text-2lg */
+  .text-18px-bold {
+    @apply text-[18px] font-bold leading-[26px];
+  }
+
+  .text-18px-semibold {
+    @apply text-[18px] font-semibold leading-[26px];
+  }
+
+  .text-18px-medium {
+    @apply text-[18px] font-medium leading-[26px];
+  }
+
+  .text-18px-regular {
+    @apply text-[18px] font-normal leading-[26px];
+  }
+
+  /* Text-lg */
+  .text-16px-bold {
+    @apply text-[16px] font-bold leading-[26px];
+  }
+
+  .text-16px-semibold {
+    @apply text-[16px] font-semibold leading-[26px];
+  }
+
+  .text-16px-medium {
+    @apply text-[16px] font-medium leading-[26px];
+  }
+
+  .text-16px-regular {
+    @apply text-[16px] font-normal leading-[26px];
+  }
+
+  /* Text-md */
+  .text-14px-bold {
+    @apply text-[14px] font-bold leading-[24px];
+  }
+
+  .text-14px-semibold {
+    @apply text-[14px] font-semibold leading-[24px];
+  }
+
+  .text-14px-medium {
+    @apply text-[14px] font-medium leading-[24px];
+  }
+
+  .text-14px-regular {
+    @apply text-[14px] font-normal leading-[24px];
+  }
+
+  /* Text-sm */
+  .text-13px-semibold {
+    @apply text-[13px] font-semibold leading-[22px];
+  }
+
+  .text-13px-medium {
+    @apply text-[13px] font-medium leading-[22px];
+  }
+
+  /* Text-xs */
+  .text-12px-semibold {
+    @apply text-[12px] font-semibold leading-[18px];
+  }
+
+  .text-12px-medium {
+    @apply text-[12px] font-medium leading-[18px];
+  }
+
+  .text-12px-regular {
+    @apply text-[12px] font-normal leading-[18px];
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,9 +169,7 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Pretendard Variable", "Pretendard", sans-serif;
 }
 
 @layer utilities {
