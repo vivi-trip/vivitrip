@@ -8,7 +8,6 @@ const button = () => {
   return (
     <div className="flex flex-col gap-4 px-4 py-4">
       <p className="text-16px-semibold">🔻 로그인, 회원가입 페이지</p>
-      {/* fullWith */}
       <div className="flex flex-col gap-1">
         <Button
           type="submit"
