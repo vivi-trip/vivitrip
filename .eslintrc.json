@@ -6,7 +6,13 @@
     "es6": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier", "import", "simple-import-sort"],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "import",
+    "simple-import-sort",
+    "clsx"
+  ],
   "extends": [
     "airbnb",
     "airbnb/hooks",
