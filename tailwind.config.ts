@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss";
 
+const pxToRem = require("tailwindcss-preset-px-to-rem");
+
 const config: Config = {
+  presets: [pxToRem],
   content: ["./src/**/*.{ts,tsx,js,jsx,mdx}"],
   theme: {
     extend: {
