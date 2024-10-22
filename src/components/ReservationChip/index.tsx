@@ -9,11 +9,11 @@ import {
  * 테일윈드 색상, 폰트 사이즈 변수 적용
  */
 const RESERVATION_STATUS_CLASSNAME: Record<ReservationStatusType, string> = {
-  pending: "bg-[#0085FF] text-[#ffffff]",
-  declined: "bg-[#FFE4E0] text-[#FF472E]",
-  confirmed: "bg-[#FFF4E8] text-[#FF7C1D]",
-  completed: "bg-[#ffffff] text-[#0085FF]",
-  canceled: "bg-color text-[#4b4b4b]",
+  pending: "bg-blue-200 text-white",
+  declined: "bg-red-50 text-red-200",
+  confirmed: "bg-orange-50 text-orange-100",
+  completed: "bg-white text-blue-200",
+  canceled: "bg-color text-gray-800",
 };
 
 /**
