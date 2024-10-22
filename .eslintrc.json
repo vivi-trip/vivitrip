@@ -8,10 +8,10 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "prettier",
+    "clsx",
     "import",
-    "simple-import-sort",
-    "clsx"
+    "prettier",
+    "simple-import-sort"
   ],
   "extends": [
     "airbnb",
@@ -19,27 +19,35 @@
     "airbnb-typescript",
     "eslint:recommended",
     "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:storybook/recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
     "prettier"
   ],
   "rules": {
-    "simple-import-sort/imports": "error", // import sort
-    "simple-import-sort/exports": "error", // export sort
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
-    "react/require-default-props": "off",
-    "react/prop-types": "off",
-    "@typescript-eslint/no-explicit-any": "warn",
+    "no-console": "warn",
+    "no-unused-vars": "off",
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"
       }
     ],
-    "react/react-in-jsx-scope": "off",
     "react/function-component-definition": [
       "warn",
       {
@@ -53,19 +61,12 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
-    "@typescript-eslint/camelcase": "off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
-    "no-console": "warn",
     "react/jsx-props-no-spreading": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "warn"
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "simple-import-sort/imports": "error", // import sort
+    "simple-import-sort/exports": "error" // export sort
   },
   "parserOptions": {
     "sourceType": "module",
