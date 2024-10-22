@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 const TEST_PAGES = [
   { path: PATH_NAMES.SignIn, name: "로그인" },
   { path: PATH_NAMES.SignUp, name: "회원가입" },
+  { path: PATH_NAMES.Button, name: "버튼컴포넌트 예시" },
   { path: PATH_NAMES.Chip, name: "칩컴포넌트 예시" },
 ];
 
