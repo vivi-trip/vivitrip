@@ -4,6 +4,14 @@ const config: Config = {
   content: ["./src/**/*.{ts,tsx,js,jsx,mdx}"],
   theme: {
     extend: {
+      height: {
+        header: "var(--header-height)",
+        footer: "var(--footer-height)",
+        main: "calc(100vh - var(--header-height))",
+      },
+      minHeight: {
+        main: "calc(100vh - (var(--header-height)) - (var(--footer-height)))",
+      },
       colors: {
         /* Black */
         "basic-black": "var(--basic-black)",
