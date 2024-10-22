@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import ReservationChip from "@/src/components/ReservationChip/ReservationChip";
+import ReservationChip from "@/src/components/ReservationChip";
 
 const Home = () => {
   return (
