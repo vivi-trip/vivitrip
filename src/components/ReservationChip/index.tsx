@@ -1,5 +1,8 @@
-import { RESERVATION_STATUS } from "@/src/constants/constants";
-import { ReservationChipProps, ReservationStatusType } from "@/src/types/type";
+import RESERVATION_STATUS from "@/src/constants/reservation";
+import {
+  ReservationChipProps,
+  ReservationStatusType,
+} from "@/src/types/reservation";
 
 /**
  * @todo
@@ -10,7 +13,7 @@ const RESERVATION_STATUS_CLASSNAME: Record<ReservationStatusType, string> = {
   declined: "bg-[#FFE4E0] text-[#FF472E]",
   confirmed: "bg-[#FFF4E8] text-[#FF7C1D]",
   completed: "bg-[#ffffff] text-[#0085FF]",
-  canceled: "bg-[#dddddd] text-[#4b4b4b]",
+  canceled: "bg-color text-[#4b4b4b]",
 };
 
 /**
