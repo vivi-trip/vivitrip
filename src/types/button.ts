@@ -21,4 +21,5 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   className?: string;
 }
+
 export default ButtonProps;
