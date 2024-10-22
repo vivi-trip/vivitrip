@@ -5,4 +5,4 @@ export type PathNameType =
   | "PrivacyPolicy"
   | "FAQ";
 
-export type TestPagePathNameType = "Chip";
+export type TestPagePathNameType = "Chip" | "Button";
