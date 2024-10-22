@@ -1,6 +1,5 @@
-import "dayjs/locale/ko";
-
 import dayjs from "dayjs";
+import "dayjs/locale/ko";
 
 export const getTSBefore = (
   value: number,
