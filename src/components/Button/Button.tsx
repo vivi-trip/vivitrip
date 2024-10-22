@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
+
 import {
   BUTTON_COLOR_PRESET,
   BUTTON_TEXT_SIZE_PRESET,
@@ -25,6 +26,7 @@ const Button = ({
   useEffect(() => {
     if (fullWidth && !height && !hasWarned.current) {
       if (typeof window !== "undefined") {
+        // eslint-disable-next-line no-alert
         alert("fullWidth 속성 적용 시, height 지정은 필수입니다.");
         hasWarned.current = true;
       }
