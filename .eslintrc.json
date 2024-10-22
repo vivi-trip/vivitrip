@@ -6,13 +6,7 @@
     "es6": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "clsx",
-    "import",
-    "prettier",
-    "simple-import-sort"
-  ],
+  "plugins": ["@typescript-eslint", "clsx", "import", "prettier"],
   "extends": [
     "airbnb",
     "airbnb/hooks",
@@ -64,9 +58,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "react/require-default-props": "off",
-    "simple-import-sort/imports": "error", // import sort
-    "simple-import-sort/exports": "error" // export sort
+    "react/require-default-props": "off"
   },
   "parserOptions": {
     "sourceType": "module",
