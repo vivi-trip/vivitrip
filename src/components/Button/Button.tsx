@@ -1,11 +1,10 @@
-import clsx from "clsx";
-import { useEffect, useRef } from "react";
-
 import {
   BUTTON_COLOR_PRESET,
   BUTTON_TEXT_SIZE_PRESET,
-} from "@/src/constants/constants";
+} from "@/src/constants/button";
 import ButtonProps from "@/src/types/button";
+import clsx from "clsx";
+import { useEffect, useRef } from "react";
 
 const Button = ({
   type = "button",
