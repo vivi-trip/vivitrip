@@ -38,9 +38,15 @@
   --basic-yellow: #ffc23d;
 
   /* Blue */
-  -blue-200: #0085ff;
-  -blue-100: #2eb4ff;
-  -blue-50: #e5f3ff;
+  --blue-200: #0085ff;
+  --blue-100: #2eb4ff;
+  --blue-50: #e5f3ff;
+
+  /* header */
+  --header-height: 5rem;
+
+  /* footer */
+  --footer-height: 10rem;
 }
 
 @layer utilities {
