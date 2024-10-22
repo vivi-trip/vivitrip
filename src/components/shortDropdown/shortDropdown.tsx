@@ -23,7 +23,7 @@ const ShortDropdown = ({
   );
 };
 
-ShortDropdown.Triger = ShortDropdownTrigger;
+ShortDropdown.Trigger = ShortDropdownTrigger;
 ShortDropdown.Menu = ShortDropdownMenu;
 ShortDropdown.List = ShortDropdownList;
 
