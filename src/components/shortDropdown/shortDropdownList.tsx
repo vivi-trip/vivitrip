@@ -14,7 +14,7 @@ const ShortDropdownList = ({ children, onClick, onClose }: Props) => {
         onClick();
         onClose();
       }}
-      className="rounded-8 text-green-100 text-md cursor-pointer list-none whitespace-nowrap px-14 py-10 text-center font-normal">
+      className=" text-green-100  cursor-pointer list-none whitespace-nowrap px-14 py-10 text-center font-normal">
       {children}
     </li>
   );
