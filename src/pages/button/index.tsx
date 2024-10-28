@@ -6,9 +6,9 @@ import Button from "@/src/components/Button/Button";
 
 const button = () => {
   return (
-    <div className="flex flex-col gap-4 px-4 py-4">
+    <div className="flex flex-col gap-16 px-16 py-16">
       <p className="text-16px-semibold">🔻 로그인, 회원가입 페이지</p>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-4">
         <Button
           type="submit"
           height="48"
@@ -42,7 +42,7 @@ const button = () => {
         </Button>
       </div>
       <p className="text-16px-semibold">🔻 로그인, 회원가입 페이지_팝업</p>
-      <div className="flex gap-1">
+      <div className="flex gap-4">
         <Button
           type="button"
           width="120"
@@ -65,8 +65,8 @@ const button = () => {
         </Button>
       </div>
       <p className="text-16px-semibold">🔻 메인화면</p>
-      <div className="flex flex-col gap-1">
-        <div className="flex gap-1">
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4">
           <Button
             type="button"
             width="136"
@@ -88,7 +88,7 @@ const button = () => {
             검색하기
           </Button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-4">
           <Button
             type="button"
             width="127"
@@ -110,7 +110,7 @@ const button = () => {
             문화 · 예술
           </Button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-4">
           <Button
             type="button"
             width="55"
@@ -150,8 +150,8 @@ const button = () => {
         </div>
       </div>
       <p className="text-16px-semibold">🔻 체험 상세</p>
-      <div className="flex flex-col gap-1">
-        <div className="flex gap-1">
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4">
           <Button
             type="button"
             width="117"
@@ -173,7 +173,7 @@ const button = () => {
             15:00~16:00
           </Button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-4">
           <Button
             type="button"
             width="203"
@@ -196,7 +196,7 @@ const button = () => {
             예약하기
           </Button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-4">
           <Button
             type="button"
             height="56"
@@ -208,7 +208,7 @@ const button = () => {
             예약하기
           </Button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-4">
           <Button
             type="button"
             width="120"
@@ -232,7 +232,7 @@ const button = () => {
         </div>
       </div>
       <p className="text-16px-semibold">🔻 내 정보</p>
-      <div className="flex gap-1">
+      <div className="flex gap-4">
         <Button
           type="submit"
           width="120"
@@ -245,7 +245,7 @@ const button = () => {
         </Button>
       </div>
       <p className="text-16px-semibold">🔻 예약 내역</p>
-      <div className="flex gap-1">
+      <div className="flex gap-4">
         <Button
           type="button"
           width="144"
@@ -288,7 +288,7 @@ const button = () => {
         </Button>
       </div>
       <p className="text-16px-semibold">🔻 예약 내역</p>
-      <div className="flex gap-1">
+      <div className="flex gap-4">
         <Button
           type="button"
           height="56"
@@ -303,7 +303,7 @@ const button = () => {
       <p className="text-16px-semibold">
         🔻 체험 관리, 체험 등록, 내 체험 수정
       </p>
-      <div className="flex gap-1">
+      <div className="flex gap-4">
         <Button
           type="button"
           width="120"
@@ -336,7 +336,7 @@ const button = () => {
         </Button>
       </div>
       <p className="text-16px-semibold">🔻 예약 정보</p>
-      <div className="flex gap-1">
+      <div className="flex gap-4">
         <Button
           type="button"
           width="82"
@@ -359,7 +359,7 @@ const button = () => {
         </Button>
       </div>
       <p className="text-16px-semibold">🔻 알림</p>
-      <div className="flex gap-1">
+      <div className="flex gap-4">
         <Button type="button" width="24" height="24">
           <Close width={24} height={24} />
         </Button>
