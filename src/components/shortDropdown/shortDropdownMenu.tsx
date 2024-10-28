@@ -17,7 +17,7 @@ const ShortDropdownMenu = ({
   return (
     <div
       className={clsx(
-        "z-dropdown rounded-12 absolute space-y-8 border border-opacity-10 p-16 shadow-md",
+        "z-dropdown absolute space-y-8 rounded-12 border border-opacity-10 p-16 shadow-md",
         "bg-background-secondary dark:bg-background-secondary-dark border-background-tertiary dark:border-background-tertiary-dark",
         position,
         className,

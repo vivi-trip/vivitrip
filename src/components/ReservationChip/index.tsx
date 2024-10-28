@@ -30,7 +30,7 @@ const ReservationChip = ({
     <button
       type="button"
       onClick={onclick}
-      className={`min-h-24 w-full rounded px-4 text-nowrap text-left transition-all text-sm ${RESERVATION_STATUS_CLASSNAME[status]}`}>
+      className={`min-h-24 w-full text-nowrap rounded px-4 text-left text-sm transition-all ${RESERVATION_STATUS_CLASSNAME[status]}`}>
       {`${RESERVATION_STATUS[status]} ${count}`}
     </button>
   );
