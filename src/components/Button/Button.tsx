@@ -6,6 +6,9 @@ import ButtonProps from "@/src/types/button";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
 
+const pxToRem = (px: string | undefined) =>
+  px ? `${parseFloat(px) / 16}rem` : undefined;
+
 const Button = ({
   type = "button",
   width,
@@ -36,10 +39,10 @@ const Button = ({
     <button
       type={type === "button" ? "button" : "submit"}
       style={{
-        width: `${width}px`,
-        height: `${height}px`,
-        borderRadius: `${radius}px`,
-        gap: `${gap}px`,
+        width: pxToRem(width),
+        height: pxToRem(height),
+        borderRadius: pxToRem(radius),
+        gap: pxToRem(gap),
       }}
       className={clsx(
         fullWidth && "w-full",
