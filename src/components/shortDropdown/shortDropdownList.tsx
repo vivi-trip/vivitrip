@@ -23,7 +23,7 @@ const ShortDropdownList = ({ children, onClick, onClose }: Props) => {
           onClose();
         }
       }}
-      className="text-green-100 cursor-pointer list-none whitespace-nowrap px-14 py-10 text-center font-normal">
+      className="cursor-pointer list-none whitespace-nowrap px-14 py-10 text-center font-normal text-green-100">
       {children}
     </div>
   );

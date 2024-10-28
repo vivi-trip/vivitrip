@@ -14,10 +14,10 @@ const TestPages = () => {
 
   return (
     <Dropdown>
-      <Dropdown.Trigger className="text-16px-medium text-gray-700 text-nowrap">
+      <Dropdown.Trigger className="text-16px-medium text-nowrap text-gray-700">
         테스트 페이지 바로가기
       </Dropdown.Trigger>
-      <Dropdown.Menu className="bottom-full !top-auto mt-0 mb-4">
+      <Dropdown.Menu className="!top-auto bottom-full mb-4 mt-0">
         {TEST_PAGES.map(({ path, name }) => {
           return (
             <Dropdown.Item
