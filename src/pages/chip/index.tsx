@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import ReservationChip from "@/src/components/ReservationChip";
 
-const Home = () => {
+const Chip = () => {
   return (
-    <main className="flex w-full flex-col gap-1 p-4">
+    <main className="flex w-full flex-col gap-4 p-16">
       <ReservationChip
         status="pending"
         count={4}
@@ -33,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Chip;

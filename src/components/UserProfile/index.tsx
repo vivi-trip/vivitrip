@@ -1,5 +1,5 @@
 import Avatar from "@/src/components/Avatar";
-import Dropdown from "@/src/components/Dropdown/Dropdown";
+import Dropdown from "@/src/components/Dropdown";
 import PATH_NAMES from "@/src/constants/pathname";
 import useUserStore from "@/src/stores/userStore";
 import { useRouter } from "next/router";
