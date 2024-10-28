@@ -1,5 +1,5 @@
 import IconNotification from "@/assets/svgs/ic_notification.svg";
-import Dropdown from "@/src/components/Dropdown/Dropdown";
+import Dropdown from "@/src/components/Dropdown";
 import NotificationItem from "@/src/components/NotificationItem";
 
 const Notification = () => {
@@ -13,12 +13,12 @@ const Notification = () => {
     <Dropdown sustain>
       <Dropdown.Trigger>
         {Indicator && (
-          <i className="absolute right-0 top-0 z-10 h-2 w-2 -translate-x-0.5 -translate-y-0.5 rounded-full bg-red-200" />
+          <i className="absolute right-0 top-0 z-4 h-8 w-8 -translate-x-2 -translate-y-2 rounded-full bg-red-200 border border-white" />
         )}
-        <IconNotification viewBox="0 0 20 20" className="text-gray-600" />
+        <IconNotification className="text-gray-600" />
       </Dropdown.Trigger>
       <Dropdown.Menu className="left-auto right-0 w-fit">
-        <Dropdown.Item>X</Dropdown.Item>
+        <Dropdown.Close>X</Dropdown.Close>
         <NotificationItem />
       </Dropdown.Menu>
     </Dropdown>

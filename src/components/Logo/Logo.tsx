@@ -11,8 +11,8 @@ interface LogoProps {
 }
 
 const LOGO_SIZE: Record<LogoSizeType, ReactNode> = {
-  md: <IMG_LOGO viewBox="0 0 266 45" className="h-7" />,
-  lg: <IMG_LOGO_LG viewBox="0 0 340 192" className="h-48" />,
+  md: <IMG_LOGO className="h-28" />,
+  lg: <IMG_LOGO_LG className="h-192" />,
 };
 
 const Logo = ({ size = "md" }: LogoProps) => {

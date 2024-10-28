@@ -32,12 +32,12 @@ const SignIn = () => {
   if (user) return router.replace(PATH_NAMES.Root);
 
   return (
-    <div className="flex min-h-[50vh] flex-col items-center justify-center gap-8">
+    <div className="flex min-h-[50vh] flex-col items-center justify-center gap-32">
       <h1 className="text-center text-4xl">로그인 페이지</h1>
       <button
         type="button"
         onClick={handleSignIn}
-        className="mx-auto mt-8 block rounded border border-blue-200 bg-gray-50 px-8 py-2 text-blue-200 hover:bg-blue-50">
+        className="mx-auto block rounded border border-blue-200 bg-gray-50 px-32 py-8 text-blue-200 hover:bg-blue-50">
         임시 유저 로그인
       </button>
     </div>

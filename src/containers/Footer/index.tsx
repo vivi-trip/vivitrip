@@ -34,14 +34,14 @@ const CLASS_NAME = {
 
 const Footer = () => {
   return (
-    <footer className="h-footer -mx-8 bg-nomad-black px-8 py-8">
-      <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-start justify-between gap-8">
+    <footer className="h-footer -mx-32 bg-nomad-black px-32 py-32">
+      <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-start justify-between gap-32">
         <div className="flex items-center">
           <p className={CLASS_NAME.text}>©vivitrip - 2024</p>
-          <hr className="mx-6 h-4 border-0 border-l-[1px] border-gray-800" />
+          <hr className="mx-24 h-16 border-0 border-l-[1px] border-gray-800" />
           <TestPages />
         </div>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-32">
           <Link className={CLASS_NAME.text} href="/privacy-policy">
             Privacy Policy
           </Link>
@@ -49,7 +49,7 @@ const Footer = () => {
             FAQ
           </Link>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-16">
           {SNS_LINKS.map(({ name, icon, href }) => {
             return (
               <div key={`sns_link_${name}`}>

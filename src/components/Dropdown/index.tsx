@@ -88,7 +88,7 @@ Dropdown.Menu = ({ children, className, ...rest }: ComponentProps) => {
   return (
     <div
       className={clsx(
-        "absolute left-0 top-full z-10 mt-1 block w-fit min-w-full overflow-hidden rounded border border-gray-500 bg-gray-50",
+        "absolute left-0 top-full z-4 mt-4 block w-fit min-w-full overflow-hidden rounded border border-gray-500 bg-gray-50",
         className,
       )}
       {...rest}>
@@ -113,6 +113,29 @@ Dropdown.Item = ({
         event.stopPropagation();
         if (typeof onClick === "function") onClick();
         toggle();
+      }}
+      {...rest}>
+      {children}
+    </button>
+  );
+};
+
+Dropdown.Close = ({
+  children,
+  className,
+  onClick,
+  ...rest
+}: ClickProps & ComponentProps) => {
+  const { toggleClose } = useDropdownContext();
+
+  return (
+    <button
+      className={clsx("relative block w-full rounded-none", className)}
+      type="button"
+      onMouseDown={(event: MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        if (typeof onClick === "function") onClick();
+        toggleClose();
       }}
       {...rest}>
       {children}

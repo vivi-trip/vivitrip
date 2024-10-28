@@ -7,7 +7,7 @@ const CLASS_NAME = {
 
 const SignMenu = () => {
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-24">
       <Link href={PATH_NAMES.SignIn} className={CLASS_NAME.text}>
         로그인
       </Link>

@@ -1,4 +1,4 @@
-import Dropdown from "@/src/components/Dropdown/Dropdown";
+import Dropdown from "@/src/components/Dropdown";
 import PATH_NAMES from "@/src/constants/pathname";
 import { useRouter } from "next/router";
 
@@ -17,7 +17,7 @@ const TestPages = () => {
       <Dropdown.Trigger className="text-16px-medium text-gray-700 text-nowrap">
         테스트 페이지 바로가기
       </Dropdown.Trigger>
-      <Dropdown.Menu className="bottom-full !top-auto mt-0 mb-1">
+      <Dropdown.Menu className="bottom-full !top-auto mt-0 mb-4">
         {TEST_PAGES.map(({ path, name }) => {
           return (
             <Dropdown.Item
