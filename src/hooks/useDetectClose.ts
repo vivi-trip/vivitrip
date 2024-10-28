@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 function useDetectClose(onClick: () => void) {
   const ref = useRef<HTMLDivElement>(null);
@@ -10,10 +10,10 @@ function useDetectClose(onClick: () => void) {
       }
     };
 
-    document.addEventListener('mousedown', handleOutSideClick);
+    document.addEventListener("mousedown", handleOutSideClick);
 
     return () => {
-      document.removeEventListener('mousedown', handleOutSideClick);
+      document.removeEventListener("mousedown", handleOutSideClick);
     };
   }, [onClick]);
 

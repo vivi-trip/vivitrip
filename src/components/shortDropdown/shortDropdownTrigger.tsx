@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 
 const ShortDropdownTrigger = ({
   children,
   onClick,
 }: {
   children: ReactNode;
-  onClick: (e: any) => void;
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 }) => {
   return (
     <button type="button" onClick={onClick}>

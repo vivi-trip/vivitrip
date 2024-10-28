@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const pxToRem = require("tailwindcss-preset-px-to-rem");
 
 const config: Config = {

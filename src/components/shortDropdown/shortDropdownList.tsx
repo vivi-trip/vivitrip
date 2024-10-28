@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { KeyboardEvent, MouseEvent, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -8,15 +8,24 @@ interface Props {
 
 const ShortDropdownList = ({ children, onClick, onClose }: Props) => {
   return (
-    <li
-      onClick={(e: any) => {
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={(e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
         onClick();
         onClose();
       }}
-      className=" text-green-100  cursor-pointer list-none whitespace-nowrap px-14 py-10 text-center font-normal">
+      onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+          onClose();
+        }
+      }}
+      className="text-green-100 cursor-pointer list-none whitespace-nowrap px-14 py-10 text-center font-normal">
       {children}
-    </li>
+    </div>
   );
 };
 

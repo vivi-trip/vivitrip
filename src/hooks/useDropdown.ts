@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { KeyboardEvent, MouseEvent, useState } from "react";
 
 function useDropdown() {
   const [currentValue, setCurrentValue] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleToggleDropdown = (e: any) => {
+  const handleToggleDropdown = (e: MouseEvent | KeyboardEvent) => {
     e.stopPropagation();
     setIsOpen((prev) => !prev);
   };

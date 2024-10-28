@@ -1,6 +1,6 @@
+import AltArrowDown from "@/assets/svgs/altArrowDown.svg";
 import ShortDropdown from "@/src/components/shortDropdown/shortDropdown";
 import useDropdown from "@/src/hooks/useDropdown";
-import AltArrowDown from "@/assets/svgs/altArrowDown.svg";
 
 type ArticleOrder = "like" | "recent";
 
@@ -9,7 +9,7 @@ interface SortDropdownProps {
   onSortChange: (sortType: ArticleOrder) => void;
 }
 
-function SortDropdown({ orderBy, onSortChange }: SortDropdownProps) {
+const SortDropdown = ({ orderBy, onSortChange }: SortDropdownProps) => {
   const { isOpen, handleToggleDropdown, handleOffDropdown } = useDropdown();
 
   const handleSortChange = (sortType: ArticleOrder) => {
@@ -43,6 +43,6 @@ function SortDropdown({ orderBy, onSortChange }: SortDropdownProps) {
       </ShortDropdown>
     </div>
   );
-}
+};
 
 export default SortDropdown;
