@@ -9,11 +9,11 @@ export type ButtonColorType =
 export type ButtonTextSizeType = "s" | "m" | "l" | "xl" | "xxl" | "xxxl";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type: "button" | "submit";
+  type: "button" | "submit" | "reset";
   width?: string;
   height?: string;
   fullWidth?: boolean;
-  radius?: "4" | "6" | "8" | "9" | "15";
+  radius?: "4" | "6" | "8" | "9" | "15" | "20";
   gap?: "4" | "8" | "10";
   backgroundColor?: ButtonColorType;
   fontStyle?: ButtonTextSizeType;
