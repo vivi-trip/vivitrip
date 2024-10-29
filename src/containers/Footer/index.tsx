@@ -3,6 +3,7 @@ import IconInstagram from "@/assets/svgs/ic_sns_instagram_fill.svg";
 import IconTwitter from "@/assets/svgs/ic_sns_twitter_fill.svg";
 import IconYoutube from "@/assets/svgs/ic_sns_youtube_fill.svg";
 import TestPages from "@/src/components/TestPages";
+import PATH_NAMES from "@/src/constants/pathname";
 import Link from "next/link";
 
 const SNS_LINKS = [
@@ -42,10 +43,10 @@ const Footer = () => {
           <TestPages />
         </div>
         <div className="flex items-center gap-32">
-          <Link className={CLASS_NAME.text} href="/privacy-policy">
+          <Link className={CLASS_NAME.text} href={PATH_NAMES.PrivacyPolicy}>
             Privacy Policy
           </Link>
-          <Link className={CLASS_NAME.text} href="/faq">
+          <Link className={CLASS_NAME.text} href={PATH_NAMES.FAQ}>
             FAQ
           </Link>
         </div>
