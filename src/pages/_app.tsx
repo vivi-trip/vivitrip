@@ -11,7 +11,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <GNB />
       <main className="h-main overflow-auto bg-gray-50 px-32">
-        <div className="mx-auto min-h-main max-w-screen-xl py-16">
+        <div className="mx-auto min-h-main max-w-screen-xl">
           <Component {...pageProps} />
         </div>
         {pathname.includes("sign") ? null : <Footer />}
