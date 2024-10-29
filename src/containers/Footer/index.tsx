@@ -53,7 +53,7 @@ const Footer = () => {
           {SNS_LINKS.map(({ name, icon, href }) => {
             return (
               <div key={`sns_link_${name}`}>
-                <Link href={href} target="_blnk">
+                <Link href={href} target="_blank">
                   {icon}
                 </Link>
               </div>
