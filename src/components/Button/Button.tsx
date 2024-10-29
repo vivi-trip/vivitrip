@@ -37,7 +37,8 @@ const Button = ({
 
   return (
     <button
-      type={type === "button" ? "button" : "submit"}
+      // eslint-disable-next-line react/button-has-type
+      type={type}
       style={{
         width: pxToRem(width),
         height: pxToRem(height),
