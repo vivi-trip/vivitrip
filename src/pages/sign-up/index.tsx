@@ -24,6 +24,7 @@ const SignUp = () => {
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
 
+    // eslint-disable-next-line no-console
     console.log("🚀 ~ handleSignUp ~ data:", data);
   };
   if (user) return router.replace(PATH_NAMES.Root);
