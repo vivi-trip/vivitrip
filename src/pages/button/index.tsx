@@ -360,10 +360,23 @@ const button = () => {
       </div>
       <p className="text-16px-semibold">🔻 알림</p>
       <div className="flex gap-4">
-        <Button type="button" width="24" height="24">
-          <Close width={24} height={24} />
-        </Button>
+        <form className="flex gap-4">
+          <input type="text" className="border" />
+          <Button
+            type="reset"
+            width="82"
+            height="38"
+            radius="6"
+            gap="8"
+            backgroundColor="white_black"
+            fontStyle="m">
+            초기화
+          </Button>
+        </form>
       </div>
+      <Button type="button" width="24" height="24">
+        <Close width={24} height={24} />
+      </Button>
     </div>
   );
 };
