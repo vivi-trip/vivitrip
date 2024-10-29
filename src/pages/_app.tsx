@@ -2,8 +2,11 @@ import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import "@/src/styles/globals.css";
 import type { AppProps } from "next/app";
+import { usePathname } from "next/navigation";
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const pathname = usePathname().split("/")[1];
+
   return (
     <>
       <GNB />
@@ -11,7 +14,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <div className="mx-auto min-h-main max-w-screen-xl py-16">
           <Component {...pageProps} />
         </div>
-        <Footer />
+        {pathname.includes("sign") ? null : <Footer />}
       </main>
     </>
   );
