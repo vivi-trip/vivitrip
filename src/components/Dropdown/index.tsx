@@ -14,7 +14,7 @@ const DropdownContext = createContext<DropdownContextProps | undefined>(
   undefined,
 );
 
-export const useDropdownContext = () => {
+const useDropdownContext = () => {
   const context = useContext(DropdownContext);
   if (!context) {
     throw new Error("useContext를 Provider 안에서 사용하세요.");
@@ -25,6 +25,8 @@ export const useDropdownContext = () => {
 interface DropdownProps extends ComponentProps {
   sustain?: boolean;
 }
+
+interface DropdownButtonProps extends ComponentProps, ClickProps {}
 
 const Dropdown = ({
   children,
@@ -59,7 +61,7 @@ Dropdown.Trigger = ({
   className,
   onClick,
   ...rest
-}: ClickProps & ComponentProps) => {
+}: DropdownButtonProps) => {
   const { toggle } = useDropdownContext();
 
   return (
@@ -102,7 +104,7 @@ Dropdown.Item = ({
   className,
   onClick,
   ...rest
-}: ClickProps & ComponentProps) => {
+}: DropdownButtonProps) => {
   const { toggle } = useDropdownContext();
 
   return (
@@ -125,7 +127,7 @@ Dropdown.Close = ({
   className,
   onClick,
   ...rest
-}: ClickProps & ComponentProps) => {
+}: DropdownButtonProps) => {
   const { toggleClose } = useDropdownContext();
 
   return (
