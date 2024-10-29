@@ -1,15 +1,11 @@
 import IconGoogle from "@/assets/svgs/ic_sns_google.svg";
 import IconKakao from "@/assets/svgs/ic_sns_kakao.svg";
-import { OauthSignProps } from "@/src/components/OauthSign";
+import { OauthSignButtonProps } from "@/src/types/oauth";
 
 const OAUTH_ICONS = {
   google: <IconGoogle alt="GOOGLE Login" />,
   kakao: <IconKakao alt="KAKAO Login" />,
 };
-
-export interface OauthSignButtonProps extends OauthSignProps {
-  provider: "kakao" | "google";
-}
 
 const OauthSignButton = ({ action, provider }: OauthSignButtonProps) => {
   const handleSign = {

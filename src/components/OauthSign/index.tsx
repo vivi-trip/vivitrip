@@ -1,8 +1,5 @@
 import OauthSignButton from "@/src/components/OauthSignButton";
-
-export interface OauthSignProps {
-  action: "in" | "up";
-}
+import { OauthSignProps } from "@/src/types/oauth";
 
 const OauthSign = ({ action }: OauthSignProps) => {
   return (
