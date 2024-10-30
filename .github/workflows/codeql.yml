@@ -1,0 +1,33 @@
+name: "CodeQL Analysis"
+
+on:
+  push:
+    branches:
+      - dev
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: "CodeQL Analysis"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v2
+
+      - name: "Initialize CodeQL"
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ["javascript", "typescript"]
+
+      - name: "Build code"
+        run: |
+          # 빌드 명령어를 여기에 추가하세요
+          npm install
+          npm run build
+
+      - name: "Perform CodeQL Analysis"
+        uses: github/codeql-action/analyze@v2
