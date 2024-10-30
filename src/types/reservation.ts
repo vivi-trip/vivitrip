@@ -1,4 +1,4 @@
-import RESERVATION_STATUS from "../constants/reservation";
+import RESERVATION_STATUS from "@/src/constants/reservation";
 
 export type ReservationStatusType = keyof typeof RESERVATION_STATUS;
 

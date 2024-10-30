@@ -1,4 +1,4 @@
-import Logo from "@/src/components/Logo/Logo";
+import Logo from "@/src/components/Logo";
 import SignMenu from "@/src/components/SignMenu";
 import UserMenu from "@/src/components/UserMenu";
 import useUserStore from "@/src/stores/userStore";
