@@ -1,6 +1,6 @@
 // import { useQuery } from "@tanstack/react-query";
 
-// import api from "../services/axios";
+// import api from "@/src/services/axios";
 
 /**
  * @description
