@@ -5,9 +5,17 @@
 @tailwind utilities;
 
 :root {
+  /* brand */
+  --brand-600: #6d7d87;
+  --brand-500: #7296a4;
+  --brand-400: #9fb5c4;
+  --brand-300: #cdd9df;
+  --brand-200: #e4eced;
+  --brand-100: #ededec;
+  --brand-50: #fdfdfc;
+
   /* Black */
   --basic-black: #1b1b1b;
-  --nomad-black: #112211;
 
   /* Gray */
   --gray-800: #4b4b4b;
@@ -20,11 +28,6 @@
   --gray-100: #eeeeee;
   --gray-50: #fafafa;
 
-  /* Green */
-  --green-100: #0b3b2d;
-  --green-50: #ced8d5;
-  --light-green: #00ac07;
-
   /* Red */
   --red-200: #ff472e;
   --red-100: #ffc2ba;
@@ -35,7 +38,10 @@
   --orange-50: #fff4e8;
 
   /* Yellow */
-  --basic-yellow: #ffc23d;
+  --yellow-200: #ffc23d;
+
+  /* Green */
+  --green-200: #00ac07;
 
   /* Blue */
   --blue-200: #0085ff;
