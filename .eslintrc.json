@@ -9,7 +9,7 @@
   "plugins": ["@typescript-eslint", "clsx", "import", "prettier"],
   "extends": [
     "airbnb",
-    "airbnb/hooks",
+    // "airbnb/hooks",
     "airbnb-typescript",
     "eslint:recommended",
     "next/core-web-vitals",
