@@ -23,7 +23,7 @@ const Avatar = () => {
       <img
         src={profileImageUrl.url}
         alt={profileImageUrl.name}
-        className="h-32 w-32 rounded-full"
+        className="size-32 rounded-full"
       />
       <p className="text-16px-medium text-basic-black">{user.nickname}</p>
     </article>
