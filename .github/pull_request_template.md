@@ -1,4 +1,4 @@
-# resolved: #ISSUE_NUMBER
+# Resolved: #ISSUE_NUMBER
 
 ## 🔨 작업 내역
 
