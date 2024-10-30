@@ -1,5 +1,5 @@
-import IMG_LOGO from "@/assets/logo/logo.svg";
-import IMG_LOGO_LG from "@/assets/logo/logo_lg.svg";
+import VIVITRIP_LOGO_HORIZONTAL from "@/assets/logo/vivitrip_logo_horizontal.svg";
+import VIVITRIP_LOGO_VERTICAL from "@/assets/logo/vivitrip_logo_vertical.svg";
 import PATH_NAMES from "@/src/constants/pathname";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -11,8 +11,8 @@ interface LogoProps {
 }
 
 const LOGO_SIZE: Record<LogoSizeType, ReactNode> = {
-  md: <IMG_LOGO className="h-28" />,
-  lg: <IMG_LOGO_LG className="h-192" />,
+  md: <VIVITRIP_LOGO_HORIZONTAL className="h-28" />,
+  lg: <VIVITRIP_LOGO_VERTICAL className="h-192" />,
 };
 
 const Logo = ({ size = "md" }: LogoProps) => {
