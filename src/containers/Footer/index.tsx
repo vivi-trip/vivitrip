@@ -35,11 +35,11 @@ const CLASS_NAME = {
 
 const Footer = () => {
   return (
-    <footer className="bg-brand-500 -mx-32 h-footer px-32 py-32">
+    <footer className="bg-brand-500 -mx-32 h-footer p-32">
       <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-start justify-between gap-32">
         <div className="flex items-center">
           <p className={CLASS_NAME.text}>©vivitrip - 2024</p>
-          <hr className="mx-24 h-16 border-0 border-l-[1px] border-white opacity-50" />
+          <hr className="mx-24 h-16 border-0 border-l border-white opacity-50" />
           <TestPages />
         </div>
         <div className="flex items-center gap-32">

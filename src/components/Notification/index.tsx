@@ -13,7 +13,7 @@ const Notification = () => {
     <Dropdown sustain>
       <Dropdown.Trigger>
         {Indicator && (
-          <i className="z-4 absolute right-0 top-0 h-8 w-8 -translate-x-2 -translate-y-2 rounded-full border border-white bg-red-200" />
+          <i className="absolute right-0 top-0 z-10 size-8 -translate-x-2 -translate-y-2 rounded-full border border-white bg-red-200" />
         )}
         <IconNotification className="text-gray-600" />
       </Dropdown.Trigger>

@@ -5,7 +5,7 @@ const UserMenu = () => {
   return (
     <div className="flex items-center justify-between">
       <Notification />
-      <hr className="mx-24 h-20 border-0 border-l-[1px] border-gray-200" />
+      <hr className="mx-24 h-20 border-0 border-l border-gray-200" />
       <UserProfile />
     </div>
   );

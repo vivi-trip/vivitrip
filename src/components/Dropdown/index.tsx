@@ -90,7 +90,7 @@ Dropdown.Menu = ({ children, className, ...rest }: ComponentProps) => {
   return (
     <div
       className={clsx(
-        "z-4 absolute left-0 top-full mt-4 block w-fit min-w-full overflow-hidden rounded border border-gray-500 bg-gray-50",
+        "absolute left-0 top-full z-10 mt-4 block w-fit min-w-full overflow-hidden rounded border border-gray-500 bg-gray-50",
         className,
       )}
       {...rest}>
