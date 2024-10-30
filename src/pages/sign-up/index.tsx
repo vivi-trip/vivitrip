@@ -20,11 +20,10 @@ const SignUp = () => {
 
   const handleSignUp = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // console.log("🚀 ~ handleSignUp ~ event:", event);
+    console.log("🚀 ~ handleSignUp ~ event:", event);
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
 
-    // eslint-disable-next-line no-console
     console.log("🚀 ~ handleSignUp ~ data:", data);
   };
   if (user) return router.replace(PATH_NAMES.Root);
