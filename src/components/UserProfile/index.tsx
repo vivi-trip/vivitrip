@@ -12,11 +12,11 @@ export async function getServerSideProps() {
 }
 
 const UserProfile = () => {
-  const { setUser } = useUserStore();
+  const { clearUser } = useUserStore();
   const router = useRouter();
 
   const handleSignOut = () => {
-    setUser(null);
+    clearUser();
     router.replace(PATH_NAMES.Root);
   };
 
