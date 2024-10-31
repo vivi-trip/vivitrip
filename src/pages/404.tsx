@@ -1,3 +1,4 @@
+import ButtonProps from "../types/button";
 import lottieJson from "@/assets/json/404.json";
 import AltArrowLeft from "@/assets/svgs/AltArrowLeft.svg";
 import AltArrowRight from "@/assets/svgs/AltArrowRight.svg";
@@ -6,16 +7,25 @@ import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import Lottie from "react-lottie-player";
 
+// statusCode 반환
+export const getStaticProps = async () => {
+  return {
+    props: {
+      statusCode: 404,
+    },
+  };
+};
+
 const Custom404: NextPage<{ statusCode: number }> = () => {
   const router = useRouter();
 
-  const commonButtonProps = {
+  const commonButtonProps: ButtonProps = {
     type: "button" as "button",
     height: "45",
     fullWidth: true,
-    radius: "8" as "8",
+    radius: "8",
     gap: "4" as "4",
-    fontStyle: "l" as "l",
+    fontStyle: "l",
     className: "bg-basic-navy text-white lg:!h-48 lg:text-18px-medium",
   };
 
@@ -43,15 +53,6 @@ const Custom404: NextPage<{ statusCode: number }> = () => {
       </div>
     </div>
   );
-};
-
-// statusCode 반환
-export const getStaticProps = async () => {
-  return {
-    props: {
-      statusCode: 404,
-    },
-  };
 };
 
 export default Custom404;
