@@ -17,6 +17,9 @@
   /* Black */
   --basic-black: #1b1b1b;
 
+  /* Navy */
+  --basic-navy: #1a2e35;
+
   /* Gray */
   --gray-800: #4b4b4b;
   --gray-700: #79747e;
@@ -63,6 +66,11 @@
 
   .text-32px-semibold {
     @apply text-[32px] font-semibold leading-[42px];
+  }
+
+  /* Text-2.5xl */
+  .text-28px-bold {
+    @apply text-[28px] font-bold leading-[32px];
   }
 
   /* Text-2xl */

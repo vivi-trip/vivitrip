@@ -32,6 +32,8 @@ const config: Config = {
         basic: {
           /* Black */
           black: "var(--basic-black)",
+          /* Navy */
+          navy: "var(--basic-navy)",
         },
 
         /* Gray */
