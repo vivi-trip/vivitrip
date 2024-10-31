@@ -1,18 +1,28 @@
+import Favicon from "../components/Favicon";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import "@/src/styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [queryClient] = useState(() => new QueryClient());
+
   const pathname = usePathname().split("/")[1];
 
   // 404 page 여부 확인
   const is404Page = pageProps?.statusCode === 404;
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      <Head>
+        <title>vivitrip | for your experience</title>
+        <Favicon />
+      </Head>
       {is404Page ? null : <GNB />}
       <main
         className={clsx(
@@ -24,7 +34,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </div>
         {is404Page || pathname.includes("sign") ? null : <Footer />}
       </main>
-    </>
+    </QueryClientProvider>
   );
 };
 
