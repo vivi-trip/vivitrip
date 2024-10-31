@@ -7,14 +7,19 @@ import { usePathname } from "next/navigation";
 const App = ({ Component, pageProps }: AppProps) => {
   const pathname = usePathname().split("/")[1];
 
+  // 404 page 여부 확인
+  const is404Page = pageProps?.statusCode === 404;
+
+  const mainStyles = is404Page ? "bg-brand-50" : "bg-gray-50 h-main";
+
   return (
     <>
-      <GNB />
-      <main className="h-main overflow-auto bg-gray-50 px-32">
+      {!is404Page && <GNB />}
+      <main className={`overflow-auto px-32 ${mainStyles}`}>
         <div className="mx-auto min-h-main max-w-screen-xl">
           <Component {...pageProps} />
         </div>
-        {pathname.includes("sign") ? null : <Footer />}
+        {is404Page || pathname.includes("sign") ? null : <Footer />}
       </main>
     </>
   );
