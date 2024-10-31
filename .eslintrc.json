@@ -11,7 +11,8 @@
     "clsx",
     "import",
     "prettier",
-    "tailwindcss"
+    "tailwindcss",
+    "lottie"
   ],
   "extends": [
     "airbnb",
