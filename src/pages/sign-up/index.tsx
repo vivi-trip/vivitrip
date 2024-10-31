@@ -1,5 +1,5 @@
 import Button from "@/src/components/Button/Button";
-import Logo from "@/src/components/Logo/Logo";
+import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
 import useUserStore from "@/src/stores/userStore";
@@ -26,6 +26,7 @@ const SignUp = () => {
 
     console.log("🚀 ~ handleSignUp ~ data:", data);
   };
+
   if (user) return router.replace(PATH_NAMES.Root);
 
   return (
@@ -41,7 +42,7 @@ const SignUp = () => {
               id="signup_email"
               name="email"
               placeholder="이메일을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-green-100"
+              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
             />
           </label>
         </div>
@@ -54,7 +55,7 @@ const SignUp = () => {
               id="signup_name"
               name="nickname"
               placeholder="닉네임을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-green-100"
+              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
             />
           </label>
         </div>
@@ -67,7 +68,7 @@ const SignUp = () => {
               id="signup_pw"
               name="password"
               placeholder="비밀번호을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-green-100"
+              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
             />
           </label>
         </div>
@@ -79,7 +80,7 @@ const SignUp = () => {
               type="password"
               id="signup_pw_check"
               placeholder="비밀번호를 한번 더 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-green-100"
+              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
             />
           </label>
         </div>
@@ -90,7 +91,7 @@ const SignUp = () => {
             height="56"
             fullWidth
             radius="6"
-            backgroundColor="green"
+            backgroundColor="black"
             fontStyle="xl"
             className="disabled:bg-gray-500">
             회원가입 하기
@@ -102,7 +103,7 @@ const SignUp = () => {
         <span className="text-16px-regular text-gray-800">회원이신가요?</span>
         <Link
           href={PATH_NAMES.SignIn}
-          className="ml-8 text-green-100 underline underline-offset-2">
+          className="text-brand-500 ml-8 underline underline-offset-2">
           로그인하기
         </Link>
       </p>

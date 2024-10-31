@@ -1,5 +1,5 @@
 import Button from "@/src/components/Button/Button";
-import Logo from "@/src/components/Logo/Logo";
+import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
 import useUserStore from "@/src/stores/userStore";
@@ -47,7 +47,7 @@ const SignIn = () => {
               type="text"
               id="login_id"
               placeholder="이메일을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-green-100"
+              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
             />
           </label>
         </div>
@@ -58,7 +58,7 @@ const SignIn = () => {
               type="password"
               id="login_pw"
               placeholder="비밀번호을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-green-100"
+              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
             />
           </label>
         </div>
@@ -68,7 +68,7 @@ const SignIn = () => {
             height="56"
             fullWidth
             radius="6"
-            backgroundColor="green"
+            backgroundColor="black"
             fontStyle="xl"
             className="disabled:bg-gray-500">
             로그인 하기
@@ -82,7 +82,7 @@ const SignIn = () => {
         </span>
         <Link
           href={PATH_NAMES.SignUp}
-          className="ml-8 text-green-100 underline underline-offset-2">
+          className="text-brand-500 ml-8 underline underline-offset-2">
           회원가입하기
         </Link>
       </p>
