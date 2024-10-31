@@ -145,7 +145,11 @@ const button = () => {
             <BtnArrow48pxDefault width={44} height={44} />
           </Button>
           <Button type="button" width="44" height="44">
-            <BtnArrow48pxVariant4 width={44} height={44} />
+            <BtnArrow48pxVariant4
+              width={44}
+              height={44}
+              className="text-brand-500"
+            />
           </Button>
         </div>
       </div>
@@ -375,7 +379,7 @@ const button = () => {
         </form>
       </div>
       <Button type="button" width="24" height="24">
-        <Close width={24} height={24} />
+        <Close width={24} height={24} className="text-brand-500" />
       </Button>
     </div>
   );
