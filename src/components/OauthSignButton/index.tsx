@@ -62,7 +62,7 @@ const OauthSignButton = ({ action, provider }: OauthSignButtonProps) => {
   return (
     <button
       type="button"
-      className="text-unset flex h-72 w-72 items-center justify-center rounded-full border border-gray-100 bg-white"
+      className="flex size-72 items-center justify-center rounded-full border border-gray-100 bg-white"
       onClick={handleSign[action]}>
       {OAUTH_ICONS[provider]}
     </button>
