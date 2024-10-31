@@ -5,12 +5,12 @@
 import { ButtonColorType, ButtonTextSizeType } from "@/src/types/button";
 
 export const BUTTON_COLOR_PRESET: Record<ButtonColorType, string> = {
-  white_black: "bg-white text-nomad-black border border-nomad-black",
-  white_gray: "bg-white text-green-100 border border-gray-200",
-  white_green: "bg-white text-green-100 border border-green-100",
-  black: "bg-nomad-black text-white border-none",
+  white_black: "bg-white text-brand-500 border border-brand-500",
+  white_gray: "bg-white text-brand-400 border border-gray-200",
+  white_green: "bg-white text-brand-400 border border-brand-400",
+  black: "bg-brand-500 text-white border-none",
   gray: "bg-gray-500 text-white border-none",
-  green: "bg-green-100 text-white border-none",
+  green: "bg-brand-400 text-white border-none",
 };
 
 export const BUTTON_TEXT_SIZE_PRESET: Record<ButtonTextSizeType, string> = {
