@@ -13,7 +13,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      {!is404Page && <GNB />}
+      {is404Page ? null : <GNB />}
       <main
         className={clsx(
           "overflow-auto px-32",
