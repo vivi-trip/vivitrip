@@ -20,11 +20,11 @@ const Custom404: NextPage<{ statusCode: number }> = () => {
   const router = useRouter();
 
   const commonButtonProps: ButtonProps = {
-    type: "button" as "button",
+    type: "button",
     height: "45",
     fullWidth: true,
     radius: "8",
-    gap: "4" as "4",
+    gap: "4",
     fontStyle: "l",
     className: "bg-basic-navy text-white lg:!h-48 lg:text-18px-medium",
   };
