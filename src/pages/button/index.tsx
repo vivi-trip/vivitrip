@@ -15,9 +15,8 @@ const button = () => {
           fullWidth
           radius="6"
           gap="10"
-          backgroundColor="gray"
           fontStyle="xl"
-          disabled>
+          disabled={true}>
           로그인 하기
         </Button>
         <Button
@@ -118,8 +117,8 @@ const button = () => {
             radius="15"
             gap="10"
             backgroundColor="white_gray"
-            disabled>
-            <AltArrowLeft width={21} height={21} />
+            disabled={true}>
+            <AltArrowLeft width={21} height={21} className="text-gray" />
           </Button>
           <Button
             type="button"
@@ -141,7 +140,7 @@ const button = () => {
             fontStyle="xxl">
             2
           </Button>
-          <Button type="button" width="44" height="44">
+          <Button type="button" width="44" height="44" disabled={true}>
             <BtnArrow48pxDefault width={44} height={44} />
           </Button>
           <Button type="button" width="44" height="44">
@@ -184,9 +183,8 @@ const button = () => {
             height="56"
             radius="4"
             gap="4"
-            backgroundColor="gray"
             fontStyle="xl"
-            disabled>
+            disabled={true}>
             예약하기
           </Button>
           <Button
