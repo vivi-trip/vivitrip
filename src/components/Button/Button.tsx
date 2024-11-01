@@ -42,7 +42,9 @@ const Button = ({
   // 버튼 상태에 따른 CSS 클래스
   const stateClasses = clsx(
     disabled
-      ? `${hasText ? "bg-gray-500 text-white" : backgroundColor && BUTTON_COLOR_PRESET[backgroundColor]} cursor-not-allowed`
+      ? hasText &&
+          typeof BUTTON_STATUS_PRESET.disabled === "function" &&
+          BUTTON_STATUS_PRESET.disabled(backgroundColor)
       : [
           typeof BUTTON_STATUS_PRESET.hover === "function" &&
             BUTTON_STATUS_PRESET.hover(backgroundColor),
