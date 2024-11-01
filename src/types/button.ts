@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type ButtonColorType =
   | "white_black"
   | "white_green"
@@ -8,6 +10,8 @@ export type ButtonColorType =
 
 export type ButtonTextSizeType = "s" | "m" | "l" | "xl" | "xxl" | "xxxl";
 
+export type ButtonStatusType = "disabled" | "hover" | "focus" | "active";
+
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   type: "button" | "submit" | "reset";
   width?: string;
@@ -17,9 +21,10 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   gap?: "4" | "8" | "10";
   backgroundColor?: ButtonColorType;
   fontStyle?: ButtonTextSizeType;
-  onClick?: () => void;
-  disabled?: boolean;
   className?: string;
+  disabled?: boolean;
+  onClick?: () => void;
+  children?: ReactNode;
 }
 
 export default ButtonProps;
