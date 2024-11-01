@@ -1,5 +1,6 @@
 import {
   BUTTON_COLOR_PRESET,
+  BUTTON_STATUS_PRESET,
   BUTTON_TEXT_SIZE_PRESET,
 } from "@/src/constants/button";
 import ButtonProps from "@/src/types/button";
@@ -18,9 +19,9 @@ const Button = ({
   gap,
   backgroundColor,
   fontStyle = "xl",
-  onClick,
-  disabled = false,
   className,
+  disabled = false,
+  onClick,
   children,
 }: ButtonProps) => {
   // fullWidth 적용 시, height 미지정 경고 출력
@@ -34,6 +35,22 @@ const Button = ({
       }
     }
   }, [fullWidth, height]);
+
+  // text 여부 확인
+  const hasText = typeof children === "string";
+
+  // 버튼 상태에 따른 CSS 클래스
+  const stateClasses = clsx(
+    disabled
+      ? `${hasText ? "bg-gray-500 text-white" : backgroundColor && BUTTON_COLOR_PRESET[backgroundColor]} cursor-not-allowed`
+      : [
+          typeof BUTTON_STATUS_PRESET.hover === "function" &&
+            BUTTON_STATUS_PRESET.hover(backgroundColor),
+          typeof BUTTON_STATUS_PRESET.focus === "function" &&
+            BUTTON_STATUS_PRESET.focus(backgroundColor),
+          BUTTON_STATUS_PRESET.active,
+        ],
+  );
 
   return (
     <button
@@ -49,12 +66,12 @@ const Button = ({
         fullWidth && "w-full",
         backgroundColor && BUTTON_COLOR_PRESET[backgroundColor],
         fontStyle && BUTTON_TEXT_SIZE_PRESET[fontStyle],
-        disabled && "cursor-not-allowed",
+        stateClasses,
         className,
         "flex items-center justify-center",
       )}
-      onClick={onClick}
-      disabled={disabled}>
+      disabled={disabled}
+      onClick={onClick}>
       {children}
     </button>
   );
