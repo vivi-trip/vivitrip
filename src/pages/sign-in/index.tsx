@@ -25,7 +25,7 @@ const DUMMY_USER: User = {
 };
 
 const SignIn = () => {
-  const { user, setUser } = useUserStore();
+  const { userData, setUserData } = useUserStore();
   const router = useRouter();
 
   const handleSignIn = () => {
@@ -33,7 +33,7 @@ const SignIn = () => {
     router.replace(PATH_NAMES.Root);
   };
 
-  if (user) return router.replace(PATH_NAMES.Root);
+  if (userData) return router.replace(PATH_NAMES.Root);
 
   return (
     <div className="mx-auto flex min-h-main w-full max-w-640 flex-col items-stretch justify-center py-48">

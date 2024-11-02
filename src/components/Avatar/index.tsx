@@ -9,13 +9,13 @@ export async function getServerSideProps() {
 }
 
 const Avatar = () => {
-  const { user } = useUserStore();
+  const { userData } = useUserStore();
 
   const profileImageUrl: ProfileImageUrl = JSON.parse(
     user?.profileImageUrl ?? "",
   );
 
-  if (!user) return null;
+  if (!userData) return null;
 
   return (
     <article className="flex flex-wrap items-center justify-center gap-8">
@@ -25,7 +25,7 @@ const Avatar = () => {
         alt={profileImageUrl.name}
         className="size-32 rounded-full"
       />
-      <p className="text-16px-medium text-basic-black">{user.nickname}</p>
+      <p className="text-16px-medium text-basic-black">{userData.nickname}</p>
     </article>
   );
 };
