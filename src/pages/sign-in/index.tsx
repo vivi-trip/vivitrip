@@ -1,7 +1,9 @@
 import Button from "@/src/components/Button/Button";
+import Dropdown from "@/src/components/Dropdown";
 import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
+import TEST_USERS from "@/src/constants/testUsers";
 import { useSignIn } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/userStore";
 import { SignInProps } from "@/src/types/user";
@@ -83,6 +85,24 @@ const SignIn = () => {
       </p>
 
       <OauthSign action="in" />
+
+      <div className="flex justify-end">
+        <Dropdown sustain>
+          <Dropdown.Trigger>테스트 유저 로그인</Dropdown.Trigger>
+          <Dropdown.Menu className="bottom-full left-auto right-0 top-auto mb-4 mt-0 flex flex-col gap-4 p-4">
+            {TEST_USERS.map((item) => {
+              return (
+                <Dropdown.Item
+                  key={`test_user_item_${item.email}`}
+                  className="!rounded border border-brand-300 bg-brand-200 px-24 py-2 text-brand-500"
+                  onClick={() => signinFn(item)}>
+                  {item.nickname}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
     </div>
   );
 };
