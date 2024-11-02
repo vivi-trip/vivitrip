@@ -10,17 +10,25 @@ export async function getServerSideProps() {
 }
 
 interface UserStore {
-  user: User | null;
-  setUser: (user: User) => void;
+  userData: User | null;
+  accessToken: string | null;
+  refreshToken: string | null;
+  setUserData: (data: User) => void;
+  setTokens: (accessToken: string, refreshToken: string) => void;
   clearUser: () => void;
 }
 
 const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
-      user: null,
-      setUser: (user: User) => set({ user }),
-      clearUser: () => set({ user: null }),
+      userData: null,
+      accessToken: null,
+      refreshToken: null,
+      setUserData: (data) => set({ userData: data }),
+      setTokens: (accessToken, refreshToken) =>
+        set({ accessToken, refreshToken }),
+      clearUser: () =>
+        set({ userData: null, accessToken: null, refreshToken: null }),
     }),
     {
       name: "vivitrip-user-storage", // 저장소의 항목 이름(고유해야 함)

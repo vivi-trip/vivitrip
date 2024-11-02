@@ -19,7 +19,7 @@ export async function getServerSideProps() {
 }
 
 const SignUp = () => {
-  const { user } = useUserStore();
+  const { userData } = useUserStore();
   const router = useRouter();
   const { mutate: signup, isPending } = useSignUp();
 
@@ -55,7 +55,7 @@ const SignUp = () => {
     });
   };
 
-  if (user) return router.replace(PATH_NAMES.Root);
+  if (userData) return router.replace(PATH_NAMES.Root);
 
   return (
     <div className="mx-auto flex min-h-main w-full max-w-640 flex-col items-stretch justify-center py-48">

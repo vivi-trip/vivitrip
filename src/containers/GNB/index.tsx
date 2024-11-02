@@ -15,13 +15,13 @@ const GNB = () => {
    * @todo
    * 사용자 확인하기 - 임시
    */
-  const { user } = useUserStore();
+  const { userData } = useUserStore();
 
   return (
     <header className="h-header w-full border-b border-solid border-gray-200 px-32 py-16">
       <div className="mx-auto flex h-full max-w-screen-xl justify-between">
         <Logo />
-        {user ? <UserMenu /> : <SignMenu />}
+        {userData ? <UserMenu /> : <SignMenu />}
       </div>
     </header>
   );
