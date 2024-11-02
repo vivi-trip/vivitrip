@@ -43,6 +43,7 @@ export const useSignOut = () => {
 export const useSignIn = () => {
   const router = useRouter();
   const { setUserData, setTokens } = useUserStore();
+  const { setEmail } = useSignupLinkStore();
 
   return useMutation({
     mutationFn: signin,
@@ -55,7 +56,7 @@ export const useSignIn = () => {
 
       router.replace(PATH_NAMES.Root);
     },
-    onError(error) {
+    onError(error, variables) {
       const { response } = error as AxiosError;
       const { data, status } = response as SignInErrorResponseProps;
 
@@ -64,6 +65,7 @@ export const useSignIn = () => {
           "존재하지 않는 유저입니다.\n회원가입 페이지로 이동하시겠습니까?",
         );
         if (answer) {
+          setEmail(variables.email);
           router.push(PATH_NAMES.SignUp);
         }
       } else if (status && status >= 400 && status < 500) {
