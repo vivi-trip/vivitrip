@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import Button from "@/src/components/Button/Button";
 import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
@@ -6,46 +5,22 @@ import PATH_NAMES from "@/src/constants/pathname";
 import { useSignUp } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/userStore";
 import { SignUpProps } from "@/src/types/user";
-import { AxiosError } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect } from "react";
 
 const SignUp = () => {
-  const { userData } = useUserStore();
   const router = useRouter();
-  const { mutate: signup, isPending } = useSignUp();
+  const { userData } = useUserStore();
+  const { mutate: signupFn, isPending: isPendingSignup } = useSignUp();
 
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
     const param = Object.fromEntries(formData) as unknown as SignUpProps;
 
-    /**
-     * @todo
-     * 임시로 사용된 [ confirm, alert ]
-     * Modal 컴포넌트로 작성하기
-     */
-    signup(param, {
-      onSuccess() {
-        // eslint-disable-next-line no-restricted-globals
-        if (confirm("회원가입 성공!\n로그인 하시겠습니까?")) {
-          /**
-           * @todo
-           * 바로 로그인 함수 요청하기
-           */
-          router.push(PATH_NAMES.SignIn);
-        }
-      },
-      onError(error) {
-        const { status } = error as AxiosError;
-        if (status === 409) {
-          alert("중복된 이메일입니다.");
-        } else if (status && status >= 400 && status < 500) {
-          alert("입력한 데이터를 확인해주세요.");
-        }
-      },
-    });
+    signupFn(param);
   };
 
   if (userData) return router.replace(PATH_NAMES.Root);
