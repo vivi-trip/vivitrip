@@ -2,29 +2,25 @@ import Button from "@/src/components/Button/Button";
 import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
+import { useSignIn } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/userStore";
-import { User } from "@/src/types/user";
+import { SignInProps } from "@/src/types/user";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 
-const DUMMY_USER: User = {
-  id: 0,
-  email: "dummy@user.temp",
-  nickname: "더미 사용자",
-  profileImageUrl:
-    '{"url":"https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Albaform/user/98/1729314330709/maxresdefault.jpg","name":"profileImageUrl.name"}',
-  createdAt: "2024-10-22T13:12:34.720Z",
-  updatedAt: "2024-10-22T13:12:34.720Z",
-};
-
 const SignIn = () => {
-  const { userData, setUserData } = useUserStore();
   const router = useRouter();
+  const { userData } = useUserStore();
+  const { mutate: signinFn, isPending: isPendingSignin } = useSignIn();
 
-  const handleSignIn = () => {
-    setUser(DUMMY_USER);
-    router.replace(PATH_NAMES.Root);
+  const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const param = Object.fromEntries(formData) as unknown as SignInProps;
+
+    signinFn(param);
   };
 
   if (userData) return router.replace(PATH_NAMES.Root);
