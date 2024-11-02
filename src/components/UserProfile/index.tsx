@@ -4,13 +4,6 @@ import PATH_NAMES from "@/src/constants/pathname";
 import useUserStore from "@/src/stores/userStore";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps() {
-  const user = { name: null };
-  return {
-    props: { user }, // 페이지에 전달
-  };
-}
-
 const UserProfile = () => {
   const { clearUser } = useUserStore();
   const router = useRouter();
