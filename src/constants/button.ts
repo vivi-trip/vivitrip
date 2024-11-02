@@ -7,6 +7,7 @@ import {
   ButtonStatusType,
   ButtonTextSizeType,
 } from "@/src/types/button";
+import { ReactNode } from "react";
 
 export const BUTTON_COLOR_PRESET: Record<ButtonColorType, string> = {
   white_black: "bg-white text-brand-500 border border-brand-500",
@@ -28,12 +29,20 @@ export const BUTTON_TEXT_SIZE_PRESET: Record<ButtonTextSizeType, string> = {
 
 export const BUTTON_STATUS_PRESET: Record<
   ButtonStatusType,
-  string | ((backgroundColor: ButtonColorType | undefined) => string)
+  | string
+  | ((
+      backgroundColor: ButtonColorType | undefined,
+      children?: ReactNode,
+    ) => string)
 > = {
-  disabled: (backgroundColor: ButtonColorType | undefined) => {
-    return backgroundColor
-      ? `${BUTTON_COLOR_PRESET[backgroundColor]} cursor-not-allowed`
-      : "bg-gray-500 text-white cursor-not-allowed";
+  disabled: (
+    backgroundColor: ButtonColorType | undefined,
+    children: ReactNode,
+  ) => {
+    const hasText = typeof children === "string";
+    return hasText && !backgroundColor
+      ? `bg-gray-500 text-white cursor-not-allowed`
+      : `${BUTTON_COLOR_PRESET[backgroundColor as ButtonColorType]} cursor-not-allowed`;
   },
   hover: (backgroundColor: ButtonColorType | undefined) => {
     const hoverClassMap: Record<ButtonColorType, string> = {

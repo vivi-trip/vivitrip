@@ -36,15 +36,11 @@ const Button = ({
     }
   }, [fullWidth, height]);
 
-  // text 여부 확인
-  const hasText = typeof children === "string";
-
   // 버튼 상태에 따른 CSS 클래스
   const stateClasses = clsx(
     disabled
-      ? hasText &&
-          typeof BUTTON_STATUS_PRESET.disabled === "function" &&
-          BUTTON_STATUS_PRESET.disabled(backgroundColor)
+      ? typeof BUTTON_STATUS_PRESET.disabled === "function" &&
+          BUTTON_STATUS_PRESET.disabled(backgroundColor, children)
       : [
           typeof BUTTON_STATUS_PRESET.hover === "function" &&
             BUTTON_STATUS_PRESET.hover(backgroundColor),
