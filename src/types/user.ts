@@ -1,3 +1,5 @@
+import { AxiosHeaders } from "axios";
+
 export interface UserId {
   id: number;
 }
@@ -11,7 +13,7 @@ export interface UserNickName {
 }
 
 export interface UserPassword {
-  password: number;
+  password: string;
 }
 
 export interface ProfileImageUrl {
@@ -28,3 +30,25 @@ export interface User extends UserId, UserEmail, UserNickName {
 export interface SignUpProps extends UserEmail, UserNickName, UserPassword {}
 
 export interface SignInProps extends UserEmail, UserPassword {}
+
+export interface SignInSuccessResponseProps {
+  config: object;
+  data: {
+    accessToken: string;
+    refreshToken: string;
+    user: User;
+  };
+  headers: AxiosHeaders;
+  request: XMLHttpRequest;
+  status: number;
+  statusText: string;
+}
+
+export interface SignInErrorResponseProps {
+  config: object;
+  data: { message: string };
+  headers: AxiosHeaders;
+  request: XMLHttpRequest;
+  status: number;
+  statusText: string;
+}
