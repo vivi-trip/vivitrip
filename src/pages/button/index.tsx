@@ -118,7 +118,7 @@ const button = () => {
             gap="10"
             backgroundColor="white_gray"
             disabled={true}>
-            <AltArrowLeft width={21} height={21} className="text-gray" />
+            <AltArrowLeft width={21} height={21} />
           </Button>
           <Button
             type="button"
