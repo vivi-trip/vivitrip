@@ -9,14 +9,7 @@ import { SignUpProps } from "@/src/types/user";
 import { AxiosError } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
-
-export async function getServerSideProps() {
-  const user = { name: null };
-  return {
-    props: { user }, // 페이지에 전달
-  };
-}
+import { FormEvent, useEffect } from "react";
 
 const SignUp = () => {
   const { userData } = useUserStore();

@@ -1,13 +1,6 @@
 import useUserStore from "@/src/stores/userStore";
 import { ProfileImageUrl } from "@/src/types/user";
 
-export async function getServerSideProps() {
-  const user = { name: null };
-  return {
-    props: { user }, // 페이지에 전달
-  };
-}
-
 const Avatar = () => {
   const { userData } = useUserStore();
 

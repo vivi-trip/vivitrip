@@ -6,13 +6,7 @@ import useUserStore from "@/src/stores/userStore";
 import { User } from "@/src/types/user";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-export async function getServerSideProps() {
-  const user = { name: null };
-  return {
-    props: { user }, // 페이지에 전달
-  };
-}
+import { FormEvent } from "react";
 
 const DUMMY_USER: User = {
   id: 0,
