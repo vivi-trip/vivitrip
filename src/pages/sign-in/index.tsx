@@ -87,9 +87,9 @@ const SignIn = () => {
       <OauthSign action="in" />
 
       <div className="flex justify-end">
-        <Dropdown sustain>
+        <Dropdown>
           <Dropdown.Trigger>테스트 유저 로그인</Dropdown.Trigger>
-          <Dropdown.Menu className="bottom-full left-auto right-0 top-auto mb-4 mt-0 flex flex-col gap-4 p-4">
+          <Dropdown.Menu className="!bottom-full !left-auto !right-0 !top-auto !mb-4 !mt-0 flex flex-col gap-4 p-4">
             {TEST_USERS.map((item) => {
               return (
                 <Dropdown.Item
