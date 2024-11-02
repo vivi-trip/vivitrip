@@ -67,7 +67,8 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
-    "tailwindcss/classnames-order": "off"
+    "tailwindcss/classnames-order": "off",
+    "react/jsx-boolean-value": "off"
   },
   "parserOptions": {
     "sourceType": "module",
