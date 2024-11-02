@@ -3,6 +3,7 @@ import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
 import { useSignUp } from "@/src/queries/auth";
+import useTempEmailStore from "@/src/stores/tempEmailStore";
 import useUserStore from "@/src/stores/userStore";
 import { SignUpProps } from "@/src/types/user";
 import Link from "next/link";
@@ -13,6 +14,7 @@ const SignUp = () => {
   const router = useRouter();
   const { userData } = useUserStore();
   const { mutate: signupFn, isPending: isPendingSignup } = useSignUp();
+  const { email, clearEmail } = useTempEmailStore();
 
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,6 +24,11 @@ const SignUp = () => {
 
     signupFn(param);
   };
+
+  useEffect(() => {
+    if (email) clearEmail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (userData) return router.replace(PATH_NAMES.Root);
 
@@ -39,6 +46,7 @@ const SignUp = () => {
               id="signup_email"
               placeholder="이메일을 입력해 주세요"
               className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
+              defaultValue={email}
             />
           </label>
         </div>
