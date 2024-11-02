@@ -38,24 +38,28 @@ const SignIn = () => {
           <label htmlFor="login_id" className="flex flex-col gap-8">
             <p className="text-16px-regular text-basic-black">이메일</p>
             <input
-              type="text"
-              id="login_id"
+              type="email"
+              name="email"
+              id="login_email"
               placeholder="이메일을 입력해 주세요"
-              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
+              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
             />
           </label>
         </div>
+
         <div className="relative">
           <label htmlFor="login_pw" className="flex flex-col gap-8">
             <p className="text-16px-regular text-basic-black">비밀번호</p>
             <input
               type="password"
-              id="login_pw"
+              name="password"
+              id="login_password"
               placeholder="비밀번호을 입력해 주세요"
-              className="text-16px-regular focus:border-brand-400 min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all"
+              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
             />
           </label>
         </div>
+
         <div className="relative">
           <Button
             type="submit"
@@ -64,6 +68,7 @@ const SignIn = () => {
             radius="6"
             backgroundColor="black"
             fontStyle="xl"
+            disabled={isPendingSignin}
             className="disabled:bg-gray-500">
             로그인 하기
           </Button>
@@ -76,7 +81,7 @@ const SignIn = () => {
         </span>
         <Link
           href={PATH_NAMES.SignUp}
-          className="text-brand-500 ml-8 underline underline-offset-2">
+          className="ml-8 text-brand-500 underline underline-offset-2">
           회원가입하기
         </Link>
       </p>
