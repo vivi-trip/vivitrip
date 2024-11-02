@@ -6,7 +6,7 @@ import Button from "@/src/components/Button/Button";
 
 const button = () => {
   return (
-    <div className="flex flex-col gap-16 px-16 py-16">
+    <div className="flex flex-col gap-16 p-16">
       <p className="text-16px-semibold">🔻 로그인, 회원가입 페이지</p>
       <div className="flex flex-col gap-4">
         <Button
