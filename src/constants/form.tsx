@@ -32,12 +32,7 @@ const icons: Record<string, IconType> = {
     position: "right",
   },
   confirmPassword: {
-    icon: (isVisible?: boolean) =>
-      isVisible ? (
-        <VisibilityOn width={24} height={24} />
-      ) : (
-        <VisibilityOff width={24} height={24} />
-      ),
+    icon: (isVisible?: boolean) => icons.password.icon(isVisible),
     onClick: () => {},
     position: "right",
   },
@@ -57,19 +52,33 @@ const icons: Record<string, IconType> = {
     padding: "pl-[40px]",
     margin: "ml-[40px]",
   },
-};
+} as const;
 
 // export type IconKeys = keyof typeof icons; 이렇게 하고 싶은데 이렇게 하면 자동완성이 안됨
-export type IconKeys = "password" | "calendar" | "search";
+export type IconKeys = "password" | "confirmPassword" | "calendar" | "search";
+export type InputKeys =
+  | "password"
+  | "confirmPassword"
+  | "nickname"
+  | "email"
+  | "default"
+  | "search";
 
-export type ButtonVariant = "authPage" | "expPage" | "search";
+export type FieldKeys = "authPage" | "expPage" | "search" | "default";
+export type FormKeys = InputKeys | FieldKeys;
 
 export interface ButtonStyles {
-  style: ButtonProps;
+  style?: ButtonProps;
   tailwindStyle?: string;
+  fieldStyle?: string;
 }
 
-export const buttonStyles: Record<ButtonVariant, ButtonStyles> = {
+export const fieldPosition = {
+  default: "",
+  column: "flex flex-row items-center justify-between",
+} as const;
+
+export const variantStyles: Record<FieldKeys, ButtonStyles> = {
   authPage: {
     style: {
       type: "submit",
@@ -80,6 +89,7 @@ export const buttonStyles: Record<ButtonVariant, ButtonStyles> = {
       backgroundColor: "green",
       fontStyle: "xl",
     },
+    fieldStyle: fieldPosition.default,
   },
   expPage: {
     style: {
@@ -91,6 +101,7 @@ export const buttonStyles: Record<ButtonVariant, ButtonStyles> = {
       backgroundColor: "black",
       fontStyle: "xl",
     },
+    fieldStyle: fieldPosition.column,
   },
   search: {
     style: {
@@ -102,7 +113,15 @@ export const buttonStyles: Record<ButtonVariant, ButtonStyles> = {
       fontStyle: "xl",
     },
     tailwindStyle: "w-96 md:w-136",
+    fieldStyle: fieldPosition.column,
   },
-};
+  default: {
+    fieldStyle: "",
+  },
+} as const;
+
+export interface FieldStyles {
+  style: (typeof fieldPosition)[keyof typeof fieldPosition];
+}
 
 export default icons;

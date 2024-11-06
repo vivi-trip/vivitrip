@@ -1,16 +1,22 @@
 import Button from "@/src/components/Button/Button";
-import icons, { buttonStyles, iconPosition } from "@/src/constants/form";
+import icons, {
+  FieldKeys,
+  FormKeys,
+  InputKeys,
+  iconPosition,
+  variantStyles,
+} from "@/src/constants/form";
 import validationRules from "@/src/constants/validation";
 import {
   ErrorProps,
+  FieldProps,
   FormProps,
   IconProps,
   InputProps,
   LabelProps,
   SubmitButtonProps,
 } from "@/src/types/form";
-import clsx from "clsx";
-import { useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import {
   Controller,
   FieldError,
@@ -42,7 +48,7 @@ const Form = <T extends FieldValues>({
       <form
         onSubmit={methods.handleSubmit(handleSubmit)}
         className={twMerge(
-          "text-16px-regular relative flex flex-col gap-28 text-basic-black",
+          "font-16px-regular relative flex flex-col gap-28 text-basic-black",
           className,
         )}
         {...rest}>
@@ -52,12 +58,33 @@ const Form = <T extends FieldValues>({
   );
 };
 
-const Label = ({ children, className, htmlFor, ...rest }: LabelProps) => {
+const FieldContext = createContext<{
+  variant: FormKeys;
+  setVariant?: (variant: FormKeys) => void;
+}>({
+  variant: "default",
+});
+
+const Field = ({ children, className, variant }: FieldProps) => {
+  const contextValue = useMemo(() => ({ variant }), [variant]);
+  const fieldStyle =
+    variant in variantStyles
+      ? variantStyles[variant as FieldKeys]?.fieldStyle
+      : "";
+
   return (
-    <label
-      className={twMerge("flex flex-col gap-8", className)}
-      htmlFor={htmlFor}
-      {...rest}>
+    <FieldContext.Provider value={contextValue}>
+      <div className={twMerge("flex flex-col gap-8", fieldStyle, className)}>
+        {children}
+      </div>
+    </FieldContext.Provider>
+  );
+};
+
+const Label = ({ children, className, htmlFor, ...rest }: LabelProps) => {
+  const { variant } = useContext(FieldContext);
+  return (
+    <label className={twMerge(className)} htmlFor={variant} {...rest}>
       {children}
     </label>
   );
@@ -81,7 +108,11 @@ const Icon = ({ children, className, onClick, position }: IconProps) => {
 const Error = ({ children, className }: ErrorProps) => {
   if (!children) return null;
   return (
-    <span className={clsx("text-14px-regular m-8 text-red-500", className)}>
+    <span
+      className={twMerge(
+        "font-14px-regular m-[8px_8px_0] text-red-500",
+        className,
+      )}>
       {children}
     </span>
   );
@@ -89,7 +120,6 @@ const Error = ({ children, className }: ErrorProps) => {
 
 const Input: React.FC<InputProps> = ({
   label,
-  variant,
   as = "input",
   type = "text",
   error,
@@ -101,6 +131,7 @@ const Input: React.FC<InputProps> = ({
   value,
   ...rest
 }) => {
+  const { variant } = useContext(FieldContext);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -134,18 +165,16 @@ const Input: React.FC<InputProps> = ({
       : (errorMessage as FieldError)?.message || "";
 
   const inputStyles =
-    "text-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none focus:border-[3px] focus:border-brand-400";
-
-  const currentValue = watch(variant) || value;
+    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none focus:border-[3px] focus:border-brand-400";
 
   return (
     <div className="flex w-full flex-col">
       <span>
         <div className="relative">
           <label
-            className={clsx(
-              "text-16px-regular pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 rounded bg-white text-gray-600 transition-all",
-              (isFocused || currentValue) && "top-1 px-6",
+            className={twMerge(
+              "font-16px-regular pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 rounded bg-white text-gray-600 transition-all",
+              isFocused && "top-2 px-6",
               selectedIcon?.margin,
             )}
             htmlFor={variant}>
@@ -153,6 +182,7 @@ const Input: React.FC<InputProps> = ({
           </label>
           {readOnly ? (
             <Component
+              id={variant}
               type={inputType}
               className={twMerge(
                 inputStyles,
@@ -170,9 +200,10 @@ const Input: React.FC<InputProps> = ({
               name={variant}
               control={control}
               defaultValue={value || ""}
-              rules={validationRules(watch)[variant]}
+              rules={validationRules(watch)[variant as InputKeys]}
               render={({ field }) => (
                 <Component
+                  id={variant}
                   type={inputType}
                   className={twMerge(
                     inputStyles,
@@ -184,8 +215,9 @@ const Input: React.FC<InputProps> = ({
                   autoComplete={isPasswordVariant ? "new-password" : type}
                   onFocus={() => setIsFocused(true)}
                   onBlur={async () => {
-                    setIsFocused(false);
-                    field.onChange((field.value || "").trim());
+                    const trimmedValue = (field.value || "").trim();
+                    setIsFocused(trimmedValue !== "");
+                    field.onChange(trimmedValue);
                     await trigger(variant);
                   }}
                   onChange={async (e) => {
@@ -214,19 +246,22 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-const SubmitButton = ({
-  className,
-  children,
-  variant = "authPage",
-  ...rest
-}: SubmitButtonProps) => {
-  const { style, tailwindStyle } = buttonStyles[variant] || {};
+const SubmitButton = ({ className, children, ...rest }: SubmitButtonProps) => {
+  const { variant } = useContext(FieldContext);
+
+  const { style, tailwindStyle } =
+    variant in variantStyles ? variantStyles[variant as FieldKeys] : {};
+
   const { formState } = useFormContext();
 
   return (
     <Button
-      className={clsx(tailwindStyle, !formState.isValid ? "bg-brand-300" : "")}
+      className={twMerge(
+        tailwindStyle,
+        !formState.isValid ? "bg-brand-300" : "",
+      )}
       disabled={!formState.isValid}
+      type="submit"
       {...style}
       {...rest}>
       {children}
@@ -238,7 +273,7 @@ const Title = ({ className, children }: SubmitButtonProps) => {
   return (
     <div
       className={twMerge(
-        "text-32px-bold flex items-center justify-between",
+        "font-32px-bold flex items-center justify-between",
         className,
       )}>
       {children}
@@ -254,5 +289,6 @@ Form.Error = Error;
 Form.Input = Input;
 Form.SubmitButton = SubmitButton;
 Form.Title = Title;
+Form.Field = Field;
 
 export default Form;

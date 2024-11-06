@@ -1,4 +1,4 @@
-import { ButtonVariant, IconKeys, Position } from "@/src/constants/form";
+import { FormKeys, IconKeys, Position } from "@/src/constants/form";
 import ButtonProps from "@/src/types/button";
 import { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
 import { FieldValues } from "react-hook-form";
@@ -11,6 +11,10 @@ export interface BaseProps {
 
 export interface FormProps<T extends FieldValues> extends BaseProps {
   onSubmit: (data: T) => void;
+}
+
+export interface FieldProps extends BaseProps {
+  variant: FormKeys;
 }
 
 export interface LabelProps
@@ -26,16 +30,7 @@ export interface IconProps extends BaseProps {
 
 export interface ErrorProps extends BaseProps {}
 
-export type InputVariant =
-  | "password"
-  | "confirmPassword"
-  | "nickname"
-  | "email"
-  | "default"
-  | "search";
-
 export interface BaseInputProps extends BaseProps {
-  variant: InputVariant;
   as?: "input" | "textarea";
   error?: string;
   errorClassName?: string;
@@ -50,6 +45,5 @@ export type InputProps = BaseInputProps &
   TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export interface SubmitButtonProps extends Omit<ButtonProps, "type"> {
-  variant?: ButtonVariant;
   disabled?: boolean;
 }

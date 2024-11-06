@@ -1,4 +1,21 @@
-const validationRules = (watch: (field: string) => string) => ({
+import { InputKeys } from "@/src/constants/form";
+
+interface ValidationRule {
+  required?: string;
+  pattern?: {
+    value: RegExp;
+    message: string;
+  };
+  minLength?: {
+    value: number;
+    message: string;
+  };
+  validate?: (value: string) => boolean | string;
+}
+
+const validationRules = (
+  watch: (field: string) => string,
+): Record<InputKeys, ValidationRule> => ({
   email: {
     required: "이메일을 입력해주세요.",
     pattern: {
