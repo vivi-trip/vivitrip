@@ -7,7 +7,7 @@ import Button from "@/src/components/Button/Button";
 const button = () => {
   return (
     <div className="flex flex-col gap-16 p-16">
-      <p className="text-16px-semibold">🔻 로그인, 회원가입 페이지</p>
+      <p className="font-16px-semibold">🔻 로그인, 회원가입 페이지</p>
       <div className="flex flex-col gap-4">
         <Button
           type="submit"
@@ -40,7 +40,7 @@ const button = () => {
           로그인 하기
         </Button>
       </div>
-      <p className="text-16px-semibold">🔻 로그인, 회원가입 페이지_팝업</p>
+      <p className="font-16px-semibold">🔻 로그인, 회원가입 페이지_팝업</p>
       <div className="flex gap-4">
         <Button
           type="button"
@@ -63,7 +63,7 @@ const button = () => {
           확인
         </Button>
       </div>
-      <p className="text-16px-semibold">🔻 메인화면</p>
+      <p className="font-16px-semibold">🔻 메인화면</p>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
           <Button
@@ -152,7 +152,7 @@ const button = () => {
           </Button>
         </div>
       </div>
-      <p className="text-16px-semibold">🔻 체험 상세</p>
+      <p className="font-16px-semibold">🔻 체험 상세</p>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
           <Button
@@ -233,7 +233,7 @@ const button = () => {
           </Button>
         </div>
       </div>
-      <p className="text-16px-semibold">🔻 내 정보</p>
+      <p className="font-16px-semibold">🔻 내 정보</p>
       <div className="flex gap-4">
         <Button
           type="submit"
@@ -246,7 +246,7 @@ const button = () => {
           저장하기
         </Button>
       </div>
-      <p className="text-16px-semibold">🔻 예약 내역</p>
+      <p className="font-16px-semibold">🔻 예약 내역</p>
       <div className="flex gap-4">
         <Button
           type="button"
@@ -289,7 +289,7 @@ const button = () => {
           취소하기
         </Button>
       </div>
-      <p className="text-16px-semibold">🔻 예약 내역</p>
+      <p className="font-16px-semibold">🔻 예약 내역</p>
       <div className="flex gap-4">
         <Button
           type="button"
@@ -302,7 +302,7 @@ const button = () => {
           후기 작성
         </Button>
       </div>
-      <p className="text-16px-semibold">
+      <p className="font-16px-semibold">
         🔻 체험 관리, 체험 등록, 내 체험 수정
       </p>
       <div className="flex gap-4">
@@ -337,7 +337,7 @@ const button = () => {
           수정하기
         </Button>
       </div>
-      <p className="text-16px-semibold">🔻 예약 정보</p>
+      <p className="font-16px-semibold">🔻 예약 정보</p>
       <div className="flex gap-4">
         <Button
           type="button"
@@ -360,7 +360,7 @@ const button = () => {
           거절하기
         </Button>
       </div>
-      <p className="text-16px-semibold">🔻 알림</p>
+      <p className="font-16px-semibold">🔻 알림</p>
       <div className="flex gap-4">
         <form className="flex gap-4">
           <input type="text" className="border" />
