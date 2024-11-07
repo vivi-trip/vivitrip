@@ -26,17 +26,17 @@ const Custom404: NextPage<{ statusCode: number }> = () => {
     radius: "8",
     gap: "4",
     fontStyle: "l",
-    className: "bg-basic-navy text-white lg:!h-48 lg:text-18px-medium",
+    className: "bg-basic-navy text-white lg:!h-48 lg:font-18px-medium",
   };
 
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <div className="flex w-350 flex-col gap-24 text-center lg:w-440 lg:gap-30">
         <Lottie loop animationData={lottieJson} play />
-        <h1 className="text-24px-bold text-basic-navy lg:text-28px-bold">
+        <h1 className="font-24px-bold lg:font-28px-bold text-basic-navy">
           페이지를 찾을 수 없습니다.
         </h1>
-        <h5 className="text-16px-regular lg:text-18px-regular text-gray-800">
+        <h5 className="font-16px-regular lg:font-18px-regular text-gray-800">
           페이지가 존재하지 않거나 사용할 수 없는 페이지입니다. <br />
           입력하신 주소가 정확한지 다시 한 번 확인해주세요.
         </h5>

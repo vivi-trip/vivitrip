@@ -19,12 +19,12 @@ export const BUTTON_COLOR_PRESET: Record<ButtonColorType, string> = {
 };
 
 export const BUTTON_TEXT_SIZE_PRESET: Record<ButtonTextSizeType, string> = {
-  s: "text-14px-medium", // 14px 500 24px
-  m: "text-14px-bold", // 14px 700 24px
-  l: "text-16px-medium", // 16px 500 26px
-  xl: "text-16px-bold", // 16px 700 26px
-  xxl: "text-18px-regular", // 18px 400 26px
-  xxxl: "text-18px-medium", // 18px 500 26px
+  s: "font-14px-medium", // 14px 500 24px
+  m: "font-14px-bold", // 14px 700 24px
+  l: "font-16px-medium", // 16px 500 26px
+  xl: "font-16px-bold", // 16px 700 26px
+  xxl: "font-18px-regular", // 18px 400 26px
+  xxxl: "font-18px-medium", // 18px 500 26px
 };
 
 export const BUTTON_STATUS_PRESET: Record<
