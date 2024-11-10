@@ -59,6 +59,11 @@
 }
 
 @layer utilities {
+  /* Text-4xl */
+  .text-36px-bold {
+    @apply text-[36px] font-bold leading-[42px];
+  }
+
   /* Text-3xl */
   .font-32px-bold {
     @apply text-[32px] font-bold leading-[42px];
