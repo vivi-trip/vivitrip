@@ -1,4 +1,4 @@
-import { UserEmail, UserNickName, UserPassword } from "../types/user";
+import { UserEmail, UserNickName, UserPassword } from "@/src/types/user";
 
 interface TestUserProps extends UserNickName, UserEmail, UserPassword {}
 

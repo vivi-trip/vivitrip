@@ -109,7 +109,10 @@ Dropdown.Item = ({
 
   return (
     <button
-      className={clsx("relative block w-full rounded-none", className)}
+      className={clsx(
+        "relative block w-full text-nowrap rounded-none",
+        className,
+      )}
       type="button"
       onMouseDown={(event: MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();

@@ -1,4 +1,4 @@
-import useUserStore from "../stores/userStore";
+import useUserStore from "@/src/stores/userStore";
 import axios, { AxiosInstance } from "axios";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
