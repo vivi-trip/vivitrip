@@ -39,13 +39,13 @@ const SignUp = () => {
       <form className="mt-56 flex flex-col gap-32" onSubmit={handleSignUp}>
         <div className="relative">
           <label htmlFor="signup_email" className="flex flex-col gap-8">
-            <p className="text-16px-regular text-basic-black">이메일</p>
+            <p className="font-16px-regular text-basic-black">이메일</p>
             <input
               type="email"
               name="email"
               id="signup_email"
               placeholder="이메일을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
+              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
               defaultValue={email}
             />
           </label>
@@ -53,26 +53,26 @@ const SignUp = () => {
 
         <div className="relative">
           <label htmlFor="signup_nickname" className="flex flex-col gap-8">
-            <p className="text-16px-regular text-basic-black">닉네임</p>
+            <p className="font-16px-regular text-basic-black">닉네임</p>
             <input
               type="text"
               name="nickname"
               id="signup_nickname"
               placeholder="닉네임을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
+              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
             />
           </label>
         </div>
 
         <div className="relative">
           <label htmlFor="signup_password" className="flex flex-col gap-8">
-            <p className="text-16px-regular text-basic-black">비밀번호</p>
+            <p className="font-16px-regular text-basic-black">비밀번호</p>
             <input
               type="password"
               name="password"
               id="signup_password"
               placeholder="비밀번호을 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
+              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
             />
           </label>
         </div>
@@ -81,13 +81,13 @@ const SignUp = () => {
           <label
             htmlFor="signup_confirmPassword"
             className="flex flex-col gap-8">
-            <p className="text-16px-regular text-basic-black">비밀번호 확인</p>
+            <p className="font-16px-regular text-basic-black">비밀번호 확인</p>
             <input
               type="password"
               name="confirmPassword"
               id="signup_confirmPassword"
               placeholder="비밀번호를 한번 더 입력해 주세요"
-              className="text-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
+              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
             />
           </label>
         </div>
@@ -108,7 +108,7 @@ const SignUp = () => {
       </form>
 
       <p className="mt-32 text-center">
-        <span className="text-16px-regular text-gray-800">회원이신가요?</span>
+        <span className="font-16px-regular text-gray-800">회원이신가요?</span>
         <Link
           href={PATH_NAMES.SignIn}
           className="ml-8 text-brand-500 underline underline-offset-2">

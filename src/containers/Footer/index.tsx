@@ -30,12 +30,12 @@ const SNS_LINKS = [
 ];
 
 const CLASS_NAME = {
-  text: "text-16px-medium text-white text-nowrap",
+  text: "font-16px-medium text-white text-nowrap",
 };
 
 const Footer = () => {
   return (
-    <footer className="bg-brand-500 -mx-32 h-footer p-32">
+    <footer className="-mx-32 h-footer bg-brand-500 p-32">
       <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-start justify-between gap-32">
         <div className="flex items-center">
           <p className={CLASS_NAME.text}>©vivitrip - 2024</p>
