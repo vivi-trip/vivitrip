@@ -2,7 +2,7 @@ import PATH_NAMES from "@/src/constants/pathname";
 import Link from "next/link";
 
 const CLASS_NAME = {
-  text: "text-16px-medium text-basic-black text-nowrap",
+  text: "font-16px-medium text-basic-black text-nowrap",
 };
 
 const SignMenu = () => {

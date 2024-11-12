@@ -14,7 +14,7 @@ const TestPages = () => {
 
   return (
     <Dropdown>
-      <Dropdown.Trigger className="text-16px-medium text-nowrap text-white">
+      <Dropdown.Trigger className="font-16px-medium text-nowrap text-white">
         테스트 페이지 바로가기
       </Dropdown.Trigger>
       <Dropdown.Menu className="!top-auto bottom-full mb-4 mt-0">
