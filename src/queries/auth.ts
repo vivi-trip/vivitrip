@@ -1,22 +1,34 @@
-/* eslint-disable no-restricted-globals */
-
-/* eslint-disable no-alert */
-
 /**
  * @todo
  * 임시로 사용된 [ confirm, alert ]
  * Modal 컴포넌트로 작성하기
  */
-import useSignupLinkStore from "../stores/tempEmailStore";
+
+/* eslint-disable no-alert */
+
+/* eslint-disable no-console */
+
+/* eslint-disable no-restricted-globals */
 import PATH_NAMES from "@/src/constants/pathname";
-import { signin, signup } from "@/src/services/auth";
+import {
+  getUserInfo,
+  oauthSignin,
+  oauthSignout,
+  oauthSignup,
+  patchUserInfo,
+  signin,
+  signup,
+} from "@/src/services/auth";
+import useSignupLinkStore from "@/src/stores/tempEmailStore";
 import useUserStore from "@/src/stores/userStore";
+import { OauthTypes } from "@/src/types/oauth";
 import {
   SignInErrorResponseProps,
   SignInProps,
   SignInSuccessResponseProps,
+  User,
 } from "@/src/types/user";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
@@ -50,16 +62,13 @@ export const useSignIn = () => {
     onSuccess(data) {
       const { data: response } = data as SignInSuccessResponseProps;
       const { accessToken, refreshToken, user } = response;
-
       setUserData(user);
       setTokens(accessToken, refreshToken);
-
       router.replace(PATH_NAMES.Root);
     },
     onError(error, variables) {
       const { response } = error as AxiosError;
       const { data, status } = response as SignInErrorResponseProps;
-
       if (response?.status === 404) {
         const answer = confirm(
           "존재하지 않는 유저입니다.\n회원가입 페이지로 이동하시겠습니까?",
@@ -94,11 +103,127 @@ export const useSignUp = () => {
     onError(error) {
       const { response } = error as AxiosError;
       const { data, status } = response as SignInErrorResponseProps;
-
       if (status === 409) {
         alert("중복된 이메일입니다.");
       } else if (status && status >= 400 && status < 500) {
         alert(data.message);
+      }
+    },
+  });
+};
+
+/**
+ * @description - 내 정보 조회
+ * @returns - { mutate, isPending }
+ */
+export const useMyData = () => {
+  return useQuery({
+    queryKey: ["my-data"],
+    queryFn: getUserInfo,
+  });
+};
+
+/**
+ * @description - 내 정보 수정
+ * @returns - { mutate, isPending }
+ */
+export const useUpdateMyData = () => {
+  const { setUserData } = useUserStore();
+
+  return useMutation({
+    mutationFn: patchUserInfo,
+    onSuccess(data, variables) {
+      console.log("🚀 ~ onSuccess ~ data, variables:", data, variables);
+      const user = data.data;
+      setUserData(user as User);
+    },
+    onError(error) {
+      console.log("🚀 ~ onError ~ error:", error);
+    },
+  });
+};
+
+/**
+ * @description - SNS 로그아웃 요청 함수
+ * @returns - { mutate, isPending }
+ */
+export const useOauthSignOut = () => {
+  const router = useRouter();
+  const { clearUser } = useUserStore();
+
+  return useMutation({
+    mutationFn: oauthSignout,
+    onSuccess(data, variables) {
+      console.log("🚀 ~ onSuccess ~ data, variables:", data, variables);
+      clearUser();
+      router.replace(PATH_NAMES.Root);
+    },
+    onError(error) {
+      console.log("🚀 ~ onError ~ error:", error);
+    },
+  });
+};
+
+/**
+ * @description - SNS 로그인 요청 함수
+ * @returns - { mutate, isPending }
+ */
+export const useOauthSignIn = () => {
+  const router = useRouter();
+  const { setUserData, setUserProvider, setTokens } = useUserStore();
+
+  return useMutation({
+    mutationFn: oauthSignin,
+    onSuccess(data, variables) {
+      const { data: response } = data as SignInSuccessResponseProps;
+      const { accessToken, refreshToken, user } = response;
+      setTokens(accessToken, refreshToken);
+      setUserData(user);
+      setUserProvider(variables.provider as OauthTypes);
+      router.replace(PATH_NAMES.Root);
+    },
+    onError(error) {
+      const { response } = error as AxiosError;
+      const { data, status } = response as SignInErrorResponseProps;
+      if (response?.status === 404) {
+        const answer = confirm(
+          "존재하지 않는 유저입니다.\n회원가입 페이지로 이동하시겠습니까?",
+        );
+        if (answer) {
+          router.push(PATH_NAMES.SignUp);
+        }
+      } else if (status && status >= 400 && status < 500) {
+        alert(data.message);
+      }
+    },
+  });
+};
+
+/**
+ * @description - SNS 회원가입 요청 함수
+ * @returns - { mutate, isPending }
+ */
+export const useOauthSignUp = () => {
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: oauthSignup,
+    onSuccess(data, variables) {
+      console.log("🚀 ~ onSuccess ~ data, variables:", data, variables);
+      if (confirm("회원가입 성공!\n로그인 하시겠습니까?")) {
+        // SNS 로그인 함수 실행
+        window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-in`;
+      }
+    },
+    onError(error) {
+      const { response } = error as AxiosError;
+      const { data, status } = response as SignInErrorResponseProps;
+
+      if (data.message === "이미 등록된 사용자입니다.") {
+        alert(`${data.message}\n로그인 페이지로 이동합니다.`);
+        router.replace(PATH_NAMES.SignIn);
+      } else if (status && status >= 400 && status < 500) {
+        console.log(data.message);
       }
     },
   });
