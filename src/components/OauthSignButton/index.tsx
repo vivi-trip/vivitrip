@@ -1,6 +1,7 @@
 import IconGoogle from "@/assets/svgs/ic_sns_google.svg";
 import IconKakao from "@/assets/svgs/ic_sns_kakao.svg";
 import { OauthSignButtonProps } from "@/src/types/oauth";
+import Link from "next/link";
 
 const OAUTH_ICONS = {
   google: <IconGoogle alt="GOOGLE Login" />,
@@ -8,64 +9,17 @@ const OAUTH_ICONS = {
 };
 
 const OauthSignButton = ({ action, provider }: OauthSignButtonProps) => {
-  const handleSign = {
-    in: () => {
-      switch (provider) {
-        case "kakao":
-          /**
-           * @todo
-           * 카카오 로그인 구현
-           */
-          // eslint-disable-next-line no-alert
-          alert("Kakao 로그인 준비중입니다.");
-          break;
-
-        case "google":
-          /**
-           * @todo
-           * 구글 로그인 구현
-           */
-          // eslint-disable-next-line no-alert
-          alert("Google 로그인 준비중입니다.");
-          break;
-
-        default:
-          break;
-      }
-    },
-    up: () => {
-      switch (provider) {
-        case "kakao":
-          /**
-           * @todo
-           * 카카오 회원가입 구현
-           */
-          // eslint-disable-next-line no-alert
-          alert("Kakao 회원가입 준비중입니다.");
-          break;
-
-        case "google":
-          /**
-           * @todo
-           * 구글 회원가입 구현
-           */
-          // eslint-disable-next-line no-alert
-          alert("Google 회원가입 준비중입니다.");
-          break;
-
-        default:
-          break;
-      }
-    },
+  const OAUTH_LINK = {
+    google: "",
+    kakao: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-${action}`,
   };
 
   return (
-    <button
-      type="button"
-      className="flex size-72 items-center justify-center rounded-full border border-gray-100 bg-white"
-      onClick={handleSign[action]}>
+    <Link
+      href={OAUTH_LINK[provider]}
+      className="flex size-72 items-center justify-center rounded-full border border-gray-100 bg-white">
       {OAUTH_ICONS[provider]}
-    </button>
+    </Link>
   );
 };
 
