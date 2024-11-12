@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 
-const SignIn = () => {
+const SignInRoute = () => {
   const router = useRouter();
   const { userData } = useUserStore();
   const { mutate: signinFn, isPending: isPendingSignin } = useSignIn();
@@ -107,4 +107,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInRoute;

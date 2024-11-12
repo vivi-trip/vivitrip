@@ -1,4 +1,4 @@
-import { PathNameType, TestPagePathNameType } from "../types/pathname";
+import { PathNameType, TestPagePathNameType } from "@/src/types/pathname";
 
 const PATH_NAMES: Record<PathNameType | TestPagePathNameType, string> = {
   Root: "/",
