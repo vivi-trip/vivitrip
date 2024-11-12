@@ -12,8 +12,8 @@ const OauthSign = ({ action }: OauthSignProps) => {
         <i className="h-1 w-full bg-gray-200" />
       </div>
       <div className="mt-40 flex items-center justify-center gap-16">
+        {/* <OauthSignButton action={action} provider="google" /> */}
         <OauthSignButton action={action} provider="kakao" />
-        <OauthSignButton action={action} provider="google" />
       </div>
     </div>
   );
