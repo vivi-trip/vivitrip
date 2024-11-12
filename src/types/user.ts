@@ -1,4 +1,5 @@
 import { AxiosHeaders } from "axios";
+import { FormEvent } from "react";
 
 export interface UserId {
   id: number;
@@ -16,6 +17,10 @@ export interface UserPassword {
   password: string;
 }
 
+export interface UserNewPassword {
+  newPassword: string;
+}
+
 export interface ProfileImageUrl {
   url: string;
   name: string;
@@ -25,6 +30,15 @@ export interface User extends UserId, UserEmail, UserNickName {
   profileImageUrl: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface MyPageProps {
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  isPending: boolean;
+}
+
+export interface UserPatchProps extends UserNickName, UserNewPassword {
+  profileImageUrl: string;
 }
 
 export interface SignUpProps extends UserEmail, UserNickName, UserPassword {}
