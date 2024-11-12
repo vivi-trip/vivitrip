@@ -2,6 +2,7 @@ export type PathNameType =
   | "Root"
   | "SignIn"
   | "SignUp"
+  | "MyPage"
   | "PrivacyPolicy"
   | "FAQ";
 
