@@ -1,4 +1,5 @@
 import Favicon from "../components/Favicon";
+import Modal from "../components/modal/Modal";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import "@/src/styles/globals.css";
@@ -23,6 +24,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <title>vivitrip | for your experience</title>
         <Favicon />
       </Head>
+      <Modal />
       {is404Page ? null : <GNB />}
       <main
         className={clsx(
