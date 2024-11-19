@@ -6,6 +6,7 @@ const Document = () => {
       <Head />
       <body className="antialiased">
         <Main />
+        <div id='_modal' />
         <NextScript />
       </body>
     </Html>
