@@ -18,13 +18,14 @@ const ModalOverlay = ({ onClose }: { onClose: () => void }) => {
       tabIndex={0}
       onKeyDown={handleKeyDown}
       aria-label="Close modal"
+      className="fixed inset-0 z-40"
     />
   );
 };
 
 const ModalContainer = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="fixed left-1/2 top-1/2 max-h-[80%] max-w-[90%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-lg bg-white p-5 shadow-lg">
+    <div className="fixed left-1/2 top-1/2 max-h-[80%] max-w-[90%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-lg bg-white p-5 shadow-lg z-50">
       {children}
     </div>
   );
@@ -42,6 +43,18 @@ const ModalPotal = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
+
   if (typeof window === "undefined") return null;
   if (!mounted) return null;
   if (!isModalOpen) return null;
@@ -52,7 +65,7 @@ const ModalPotal = ({ children }: { children: ReactNode }) => {
     <>
       {createPortal(
         <>
-          <ModalOverlay onClose={setModalClose} />,
+          <ModalOverlay onClose={setModalClose} />
           <ModalContainer>{children}</ModalContainer>
         </>,
         modalElement as HTMLElement,
