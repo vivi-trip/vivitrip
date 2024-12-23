@@ -4,6 +4,7 @@ const PATH_NAMES: Record<PathNameType | TestPagePathNameType, string> = {
   Root: "/",
   SignIn: "/sign-in",
   SignUp: "/sign-up",
+  KakaoAdmin: "/oauth/kakao/admin",
   MyPage: "/my-page",
   PrivacyPolicy: "/privacy-policy",
   FAQ: "/faq",
