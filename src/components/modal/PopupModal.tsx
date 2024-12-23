@@ -2,11 +2,11 @@ import Button from "../Button/Button";
 import useModalStore from "@/src/stores/ModalStore";
 import React from "react";
 
-interface ModalPopupProps {
+interface PopupModalProps {
   title: string;
 }
 
-const ModalPopup = ({ title }: ModalPopupProps): JSX.Element => {
+const PopupModal = ({ title }: PopupModalProps): JSX.Element => {
   const { setModalClose } = useModalStore();
 
   return (
@@ -22,6 +22,7 @@ const ModalPopup = ({ title }: ModalPopupProps): JSX.Element => {
           height="48"
           backgroundColor="black"
           radius="8"
+          gap="8"
           onClick={setModalClose}>
           확인
         </Button>
@@ -30,4 +31,4 @@ const ModalPopup = ({ title }: ModalPopupProps): JSX.Element => {
   );
 };
 
-export default ModalPopup;
+export default PopupModal ;
