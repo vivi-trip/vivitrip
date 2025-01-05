@@ -6,15 +6,15 @@ import { PaginationProps } from "@/src/types/pagination";
 
 const Pagination = ({
   totalItems, // 데이터 총 개수
-  itemCountPerPage, // 페이지 당 데이터 개수
   pageCount, // 한 번에 보여줄 페이지 개수
   currentPage, // 현재 페이지
+  itemCountPerPage, // 페이지 당 데이터 개수
 }: PaginationProps) => {
   const { start, noPrev, noNext, navigateToPage, totalPages } = usePagination({
     totalItems,
-    itemCountPerPage,
     pageCount,
     currentPage,
+    itemCountPerPage,
   });
   const buttonSize = "w-40 h-40 sm:w-55 sm:h-55";
   const iconSize = "w-21 h-21";
