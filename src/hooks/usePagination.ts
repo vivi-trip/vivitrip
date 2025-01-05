@@ -32,10 +32,12 @@ const usePagination = ({
     return () => window.removeEventListener("resize", handleResize);
   }, [currentPage, totalPages, router]);
 
-  // 페이지 이동 및 강제 새로고침
+  // 페이지 이동
   const navigateToPage = (page: number) => {
-    router.push(`?page=${page}`).then(() => {
-      window.location.reload();
+    const newQuery = { ...router.query, page: String(page) };
+    router.push({
+      pathname: router.pathname,
+      query: newQuery,
     });
   };
 
