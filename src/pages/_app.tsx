@@ -1,5 +1,6 @@
 import Favicon from "../components/Favicon";
 import Modal from "../components/modal/Modal";
+import "@/src/components/calendar/calendar.css";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import "@/src/styles/globals.css";
@@ -9,6 +10,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import "react-datepicker/dist/react-datepicker.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient());
