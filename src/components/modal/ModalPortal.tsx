@@ -1,5 +1,6 @@
 import useEscapeClose from "@/src/hooks/useEscapeClose";
 import useModalStore from "@/src/stores/ModalStore";
+import clsx from "clsx";
 import { ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -23,17 +24,24 @@ const ModalOverlay = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
-const ModalContainer = ({ children }: { children: ReactNode }) => {
-  return (
-    <div className="fixed left-1/2 top-1/2 max-h-[80%] max-w-[90%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-lg bg-white p-5 shadow-lg z-50">
-      {children}
-    </div>
+interface ModalContainerProps {
+  children: ReactNode;
+  customClass?: string;
+}
+
+const ModalContainer = ({ children, customClass }: ModalContainerProps) => {
+  const modalClasses = clsx(
+    "fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 overflow-auto bg-white shadow-lg",
+    "rounded-3xl",
+    "flex justify-center",
+    customClass,
   );
+  return <div className={modalClasses}>{children}</div>;
 };
 
 const ModalPotal = ({ children }: { children: ReactNode }) => {
   const [mounted, setMounted] = useState<boolean>(false);
-  const { isModalOpen, setModalClose } = useModalStore();
+  const { isModalOpen, setModalClose, modalOptions } = useModalStore();
   useEscapeClose(setModalClose);
 
   useEffect(() => {
@@ -66,7 +74,9 @@ const ModalPotal = ({ children }: { children: ReactNode }) => {
       {createPortal(
         <>
           <ModalOverlay onClose={setModalClose} />
-          <ModalContainer>{children}</ModalContainer>
+          <ModalContainer customClass={modalOptions?.customClass}>
+            {children}
+          </ModalContainer>
         </>,
         modalElement as HTMLElement,
       )}
