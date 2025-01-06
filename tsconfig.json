@@ -22,7 +22,8 @@
     "**/*.tsx",
     "next-env.d.ts",
     "next.config.mjs",
-    "postcss.config.mjs"
+    "postcss.config.mjs",
+    "src/components/modal/ReservationModal"
   ],
   "exclude": ["node_modules"]
 }
