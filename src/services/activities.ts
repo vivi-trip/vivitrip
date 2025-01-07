@@ -1,6 +1,7 @@
 /**
  * @description API 호출 - Activites
  */
+import api from "@/src/services/axios";
 import {
   CreateActivityImageUrlProps,
   CreateActivityProps,
@@ -8,8 +9,7 @@ import {
   GetActivityAvailableScheduleProps,
   GetActivityProps,
   GetActivityReviewsProps,
-} from "../types/activities";
-import api from "./axios";
+} from "@/src/types/activities";
 
 /**
  * @description 체험 리스트 조회
