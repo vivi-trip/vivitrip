@@ -54,8 +54,8 @@ export interface GetActivityAvailableScheduleProps {
  */
 export interface GetActivityReviewsProps {
   activityId: ActivityId;
-  page: number;
-  size: number;
+  page?: number;
+  size?: number;
 }
 
 /**
