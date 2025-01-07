@@ -14,7 +14,7 @@ const useCategoryState = (categories: Category[]) => {
       const storedIndex = localStorage.getItem("currentIndex");
       return storedIndex ? parseInt(storedIndex, 10) : 0;
     }
-    return 0; // SSR에서 0으로 초기화
+    return 0;
   });
 
   const handleCategoryChange = (newCategory: string) => {

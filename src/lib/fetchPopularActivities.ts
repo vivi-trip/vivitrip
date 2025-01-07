@@ -14,7 +14,6 @@ const fetchPopularActivities = async (
 
   try {
     const response = await api.get(url);
-    // console.log("API Response:", response.data);
     return response.data;
   } catch (error) {
     // eslint-disable-next-line no-console

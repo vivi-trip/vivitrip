@@ -16,7 +16,7 @@ const useOverflowDetection = ({
 
     const checkOverflow = () => {
       if (containerRef.current && scrollRef.current) {
-        const { clientWidth, scrollLeft, scrollWidth } = scrollRef.current; // 가시적 범위
+        const { clientWidth, scrollLeft, scrollWidth } = scrollRef.current;
         scrollLeftRef.current = scrollLeft;
         const atLast = scrollLeft + clientWidth + 1;
 

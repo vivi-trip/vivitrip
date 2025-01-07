@@ -10,7 +10,6 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 
-// SSR
 export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {

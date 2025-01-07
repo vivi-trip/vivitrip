@@ -13,17 +13,17 @@ const AllActivities = ({ activities, emptyMessage }: AllActivitiesProps) => {
   const [size, setSize] = useState(8);
   const [imageSize, setImageSize] = useState({ width: 200, height: 200 });
 
-  // 화면 크기에 따라 데이터 개수 및 NotFound 이미지 사이즈즈 변경
+  // 화면 크기에 따라 데이터 개수 및 NotFound 이미지 사이즈 변경
   useEffect(() => {
     const updateSize = () => {
       if (window.innerWidth >= 1024) {
-        setSize?.(8); // lg
+        setSize?.(8);
         setImageSize({ width: 200, height: 200 });
       } else if (window.innerWidth >= 768) {
-        setSize?.(9); // mg
+        setSize?.(9);
         setImageSize({ width: 200, height: 200 });
       } else {
-        setSize?.(4); // sm
+        setSize?.(4);
         setImageSize({ width: 150, height: 150 });
       }
     };
@@ -66,7 +66,7 @@ const AllActivities = ({ activities, emptyMessage }: AllActivitiesProps) => {
       </div>
       <div className="mb-120 mt-38 flex justify-center md:mt-72 lg:mt-64">
         <Pagination
-          totalItems={activities?.length || 0} // 전체 데이터 개수
+          totalItems={activities?.length || 0}
           currentPage={page ?? 1}
           pageCount={5}
           itemCountPerPage={size || 4}
