@@ -6,16 +6,31 @@ import GNB from "@/src/containers/GNB";
 import "@/src/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";
+import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
-const App = ({ Component, pageProps }: AppProps) => {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactNode) => ReactNode;
+};
+
+const App = ({
+  Component,
+  pageProps,
+}: AppProps & {
+  Component: NextPageWithLayout;
+}) => {
   const [queryClient] = useState(() => new QueryClient());
 
+  const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
+
   const pathname = usePathname().split("/")[1];
+
+  // 메인 또는 검색페이지 여부 확인
+  const isMainOrSearchPage = pathname === "/home" || pathname === "/search";
 
   // 404 page 여부 확인
   const is404Page = pageProps?.statusCode === 404;
@@ -33,8 +48,12 @@ const App = ({ Component, pageProps }: AppProps) => {
           "overflow-auto px-32",
           is404Page ? "bg-brand-50" : "h-main bg-gray-50",
         )}>
-        <div className="mx-auto min-h-main max-w-screen-xl">
-          <Component {...pageProps} />
+        <div
+          className={clsx(
+            "mx-auto min-h-main",
+            isMainOrSearchPage ? null : "max-w-screen-xl",
+          )}>
+          {getLayout(<Component {...pageProps} />)}
         </div>
         {is404Page || pathname.includes("sign") ? null : <Footer />}
       </main>
