@@ -1,5 +1,5 @@
 /**
- * @description API 호출 - my-notifications
+ * @description API 호출 함수 - MyNotifications
  */
 import api from "@/src/services/axios";
 import {
