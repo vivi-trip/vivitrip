@@ -27,10 +27,12 @@ const App = ({
 
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
 
-  const pathname = usePathname().split("/")[1];
+  const pathname = usePathname();
 
-  // 메인 또는 검색페이지 여부 확인
-  const isMainOrSearchPage = pathname === "/home" || pathname === "/search";
+  const currentPathname =
+    pathname === "/home" || pathname === "/search"
+      ? pathname
+      : pathname.split("/")[1];
 
   // 404 page 여부 확인
   const is404Page = pageProps?.statusCode === 404;
@@ -51,7 +53,7 @@ const App = ({
         <div
           className={clsx(
             "mx-auto min-h-main",
-            isMainOrSearchPage ? null : "max-w-screen-xl",
+            currentPathname ? null : "max-w-screen-xl",
           )}>
           {getLayout(<Component {...pageProps} />)}
         </div>
