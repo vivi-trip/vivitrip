@@ -1,5 +1,5 @@
 /**
- * @description API 호출 - Activites
+ * @description API 호출 함수 - Activites
  */
 import api from "@/src/services/axios";
 import {
