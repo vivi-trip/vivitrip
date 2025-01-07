@@ -9,8 +9,8 @@ const useDragScroll = ({
   currentIndex,
 }: UseDragScrollProps) => {
   const [isDrag, setIsDrag] = useState(false);
-  const [startX, setStartX] = useState<number>(0); // 드래그 시작 시점의 마우스 x좌표 + 스크롤 위치
-  const [hasDragged, setHasDragged] = useState(false); // 드래그 여부 추적
+  const [startX, setStartX] = useState<number>(0);
+  const [hasDragged, setHasDragged] = useState(false);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return;
@@ -75,7 +75,6 @@ const useDragScroll = ({
         });
       }
     }
-    // prevHasCategoryQuery 업데이트
     prevHasCategoryQuery.current = hasCategoryQuery;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slideWidth, buttonGap, prevHasCategoryQuery, hasCategoryQuery]);
