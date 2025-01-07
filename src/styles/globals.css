@@ -59,8 +59,17 @@
 }
 
 @layer utilities {
+  /* Text-6xl */
+  .font-68px-bold {
+    @apply text-[68px] font-bold leading-[81px];
+  }
+  /* Text-5xl */
+  .font-54px-bold {
+    @apply text-[54px] font-bold leading-[64px];
+  }
+
   /* Text-4xl */
-  .text-36px-bold {
+  .font-36px-bold {
     @apply text-[36px] font-bold leading-[42px];
   }
 
@@ -71,6 +80,10 @@
 
   .font-32px-semibold {
     @apply text-[32px] font-semibold leading-[42px];
+  }
+
+  .font-32px-regular {
+    @apply text-[32px] font-normal leading-[42px];
   }
 
   /* Text-2.5xl */
@@ -201,4 +214,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* 스크롤바 없애기 */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
