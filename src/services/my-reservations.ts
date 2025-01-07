@@ -20,7 +20,7 @@ export const listMyReservations = async ({
   cursorId,
 }: ListMyReservationsProps) => {
   const context = {
-    query: cursorId || size ? "?" : "",
+    query: cursorId || status || size ? "?" : "",
     size: cursorId ? `cursorId=${cursorId}` : "",
     status: status ? `status=${status}` : "",
     cursorId: size ? `size=${size}` : "",
