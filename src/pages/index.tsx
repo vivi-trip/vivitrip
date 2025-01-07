@@ -1,9 +1,14 @@
+export const getServerSideProps = async () => {
+  return {
+    redirect: {
+      destination: "/home",
+      permanent: false,
+    },
+  };
+};
+
 const Home = () => {
-  return (
-    <div>
-      <p>홈페이지</p>
-    </div>
-  );
+  return null;
 };
 
 export default Home;
