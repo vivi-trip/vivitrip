@@ -79,6 +79,9 @@ const config: Config = {
           50: "var(--blue-50)",
         },
       },
+      boxShadow: {
+        custom: "0px 4px 16px 0px #1122110D",
+      },
     },
   },
   plugins: [],
