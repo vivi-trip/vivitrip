@@ -27,8 +27,6 @@ const App = ({
 
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
 
-  const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
-
   const pathname = usePathname();
 
   const currentPathname =
