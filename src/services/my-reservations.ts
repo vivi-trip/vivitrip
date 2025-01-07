@@ -1,12 +1,12 @@
 /**
  * @description API 호출 함수 - MyReservations
  */
+import api from "@/src/services/axios";
 import {
   CreateMyReservationReviewProps,
   ListMyReservationsProps,
   UpdateMyReservationProps,
-} from "../types/my-reservations";
-import api from "@/src/services/axios";
+} from "@/src/types/my-reservations";
 
 /**
  * @description 내 예약 리스트 조회
