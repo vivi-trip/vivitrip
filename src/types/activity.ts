@@ -1,22 +1,5 @@
-export interface Activity {
-  id: number;
-  userId: number;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  address: string;
-  bannerImageUrl: string;
-  rating: number;
-  reviewCount: number;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface ActivitiesResponse {
-  activities: Activity[];
-  totalCount: number;
-}
+import { Activity } from "@/src/types/activities";
+import { ReactNode } from "react";
 
 export interface AllActivitiesListProps {
   activities: Activity[];
@@ -25,7 +8,7 @@ export interface AllActivitiesListProps {
 
 interface BaseActivitiesProps {
   activities: Activity[];
-  emptyMessage: string;
+  emptyMessage: ReactNode;
 }
 
 export interface PopularActivitiesProps extends BaseActivitiesProps {

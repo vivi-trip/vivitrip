@@ -5,6 +5,46 @@
 export type ActivityId = number;
 
 /**
+ * @description 체험
+ * @param id - 체험 id
+ * @param userId - 체험 등록자 id
+ * @param title - 체험 제목
+ * @param description - 체험 설명
+ * @param category - 체험 종류
+ * @param price - 체험 비용
+ * @param address - 체험 주소
+ * @param bannerImageUrl - 체험 배너 이미지
+ * @param rating - 체험 별점
+ * @param rating - 리뷰 개수
+ * @param createdAt - 체험 등록일
+ * @param updatedAt - 체험 수정일
+ */
+export interface Activity {
+  id: number;
+  userId: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  address: string;
+  bannerImageUrl: string;
+  rating: number;
+  reviewCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/**
+ * @description 체험 리스트 조회
+ * @param activities - 체험 정보
+ * @param totalCount - 체험 개수
+ */
+export interface ActivitiesResponse {
+  activities: Activity[];
+  totalCount: number;
+}
+
+/**
  * @description 체험 등록
  * @param title - string, 체험 제목;
  * @param category - string, 체험 종류;
