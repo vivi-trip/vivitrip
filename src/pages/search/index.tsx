@@ -1,6 +1,6 @@
 import AllActivities from "@/src/components/Activity/AllActivities";
 import SearchableLayout from "@/src/components/SearchableLayout";
-import fetchPopularActivities from "@/src/lib/fetchPopularActivities";
+import { listPopularActivities } from "@/src/services/activities";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
@@ -9,7 +9,7 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
   const { q } = context.query;
-  const SearchedActivities = await fetchPopularActivities(10, 1, q as string);
+  const SearchedActivities = await listPopularActivities(10, 1, q as string);
 
   return {
     props: {

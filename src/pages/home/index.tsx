@@ -4,8 +4,10 @@ import PopularActivitiesList from "@/src/components/Activity/PopularActivitiesLi
 import SectionLayout from "@/src/components/Activity/SectionLayout";
 import FilterButton from "@/src/components/Button/FilterButton";
 import SearchableLayout from "@/src/components/SearchableLayout";
-import fetchAllActivities from "@/src/lib/fetchAllActivities";
-import fetchPopularActivities from "@/src/lib/fetchPopularActivities";
+import {
+  listAllActivities,
+  listPopularActivities,
+} from "@/src/services/activities";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
@@ -13,18 +15,18 @@ import { ReactNode, useEffect, useState } from "react";
 export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
-  const popularActivitiesInitialData = await fetchPopularActivities(1);
+  const popularActivitiesInitialData = await listPopularActivities(1);
   const { totalCount } = popularActivitiesInitialData;
 
   const { category, sort = "latest" } = context.query;
 
-  const allActivitiesInitialData = await fetchAllActivities(
+  const allActivitiesInitialData = await listAllActivities(
     sort as string,
     category as string,
   );
 
   const [popularActivities, allActivities] = await Promise.all([
-    fetchPopularActivities(totalCount),
+    listPopularActivities(totalCount),
     allActivitiesInitialData,
   ]);
 
