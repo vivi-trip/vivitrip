@@ -3,7 +3,7 @@ import SectionLayout from "./SectionLayout";
 import LeftArrow from "@/assets/svgs/btnArrow48pxDefault.svg";
 import RightArrow from "@/assets/svgs/btnArrow48pxVariant4.svg";
 import Button from "@/src/components/Button/Button";
-import { ActivitiesResponse } from "@/src/types/activity";
+import { ActivitiesResponse } from "@/src/types/activities";
 import clsx from "clsx";
 import { useState } from "react";
 
