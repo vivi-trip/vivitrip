@@ -3,6 +3,7 @@
  */
 import api from "@/src/services/axios";
 import {
+  ActivitiesResponse,
   CreateActivityImageUrlProps,
   CreateActivityProps,
   CreateActivityReservationProps,
@@ -12,12 +13,57 @@ import {
 } from "@/src/types/activities";
 
 /**
- * @description 체험 리스트 조회
- * @hayuri1990 - [GET] /activities 생성하신 함수로 교체해주시면 됩니다!
+ * @description 모든 체험 리스트 조회
+ * @param sort - 체험 정렬 기준
+ * @param category - 체험 종류
  */
-export const listActivities = async () => {
-  const response = await api.get("/activities");
-  return response;
+export const listAllActivities = async (
+  sort: string,
+  category?: string,
+): Promise<ActivitiesResponse> => {
+  let url;
+
+  if (category) {
+    url = `/activities?method=offset&sort=${sort}&category=${category}`;
+  } else {
+    url = `/activities?method=offset&sort=${sort}`;
+  }
+
+  try {
+    const response = await api.get(url);
+    return response.data;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return { activities: [], totalCount: 0 };
+  }
+};
+
+/**
+ * @description 인기 체험 및 검색 리스트 조회
+ * @param size - 개수
+ * @param page - 페이지 번호
+ * @param q - 검색어
+ */
+export const listPopularActivities = async (
+  size: number,
+  page?: number,
+  q?: string,
+): Promise<ActivitiesResponse> => {
+  let url = `/activities?method=offset&sort=most_reviewed&page=1&size=${size}`;
+
+  if (q) {
+    url = `/activities?method=offset&keyword=${q}&sort=latest&page=${page}&size=${size}`;
+  }
+
+  try {
+    const response = await api.get(url);
+    return response.data;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return { activities: [], totalCount: 0 };
+  }
 };
 
 /**
