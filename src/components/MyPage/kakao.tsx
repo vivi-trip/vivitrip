@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Button from "@/src/components/Button/Button";
 import Logo from "@/src/components/Logo";
 import useUserStore from "@/src/stores/userStore";
