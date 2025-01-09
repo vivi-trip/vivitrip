@@ -20,6 +20,7 @@ const MyPageKakao = () => {
 
   useEffect(() => {
     clearUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
