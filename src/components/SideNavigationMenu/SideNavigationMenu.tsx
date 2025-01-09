@@ -3,7 +3,9 @@ import CalendarCheckIcon from "@/assets/svgs/ic_calendar_check.svg";
 import SettingCheckIcon from "@/assets/svgs/ic_setting_check.svg";
 import TextboxCheckIcon from "@/assets/svgs/ic_textbox_check.svg";
 import ProfileUpload from "@/src/components/SideNavigationMenu/common/ProfileUpload";
-// import { useGetUserProfile } from "@/src/hooks/useUsers";
+import { useGetUserProfile } from "@/src/hooks/useUsers";
+import useModalStore from "@/src/stores/ModalStore";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,11 +16,13 @@ interface Props {
 }
 
 const SideNavigationMenu = ({ url }: Props) => {
+  const { setModalOpen } = useModalStore();
   const pathname = usePathname();
   const [selectedItem, setSelectedItem] = useState<null | number>(null);
 
   /**
    * @description - 프로필이미지 훅 차후 목데이터 삭제후 사용
+   * @todo  삭제 할것
    */
   // const { data } = useGetUserProfile();
 
@@ -66,13 +70,18 @@ const SideNavigationMenu = ({ url }: Props) => {
       icon: CalendarCheckIcon,
       alt: "예약현황 아이콘",
       label: "예약 현황",
-      path: "/reservation-History",
+      path: "/reservation-history",
       id: 4,
     },
   ];
 
   return (
-    <div className=":w-250 sticky top-100 hidden h-432 flex-col gap-24 rounded-xl border border-gray-200 bg-white p-24 shadow-[0px_4px_16px_0px_rgba(17,34,17,0.05)] sm:flex xl:w-385">
+    <div
+      className={clsx(
+        "max-h-432 min-h-432 w-full min-w-241 max-w-384 md:flex md:w-251 lg:w-384",
+        "sticky flex-col gap-24 rounded-xl border border-gray-200 bg-white p-24 shadow-[0px_4px_16px_0px_rgba(17,34,17,0.05)]",
+        pathname === "/my-profile" ? "flex w-344" : "hidden",
+      )}>
       <div className="relative flex justify-center">
         {pathname === "/my-profile"
           ? url && (
@@ -99,12 +108,22 @@ const SideNavigationMenu = ({ url }: Props) => {
             <Link href={item.path} passHref legacyBehavior>
               <button
                 type="button"
-                className={`font-16px-bold flex h-44 w-full cursor-pointer items-center gap-14 rounded-12 px-16 py-9 text-left ${
-                  selectedItem === item.id || isPath(item.path)
-                    ? "bg-brand-300 text-black"
-                    : "text-[#A1A1A1] hover:bg-brand-400 hover:text-black"
-                }`}
-                onClick={() => handleClick(item.id)}>
+                className={clsx(
+                  "font-16px-bold flex h-44 w-full cursor-pointer items-center gap-14 rounded-12 px-16 py-9 text-left",
+                  {
+                    "text-[#A1A1A1] hover:bg-brand-400 hover:text-black": true,
+                    "md:bg-brand-300 md:text-black":
+                      selectedItem === item.id || isPath(item.path),
+                  },
+                )}
+                onClick={() => {
+                  if (pathname === "/my-profile" && window.innerWidth < 768) {
+                    setModalOpen();
+                  } else {
+                    // 기존 동작
+                    handleClick(item.id);
+                  }
+                }}>
                 <item.icon />
                 <span className="font-16px-bold">{item.label}</span>
               </button>
