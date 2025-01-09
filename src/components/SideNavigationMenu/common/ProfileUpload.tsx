@@ -65,7 +65,7 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
       <PenIcon
         width={44}
         height={44}
-        className="absolute bottom-0 right-0 z-10"
+        className="absolute bottom-0 right-12 z-10"
       />
       <input
         id="file-input"
