@@ -40,7 +40,7 @@ const SideNavigationMenu = ({ url }: Props) => {
   /** 패스네임 유효성 검사 */
   const isPath = (path?: string) => {
     if (!path) return false;
-    const regex = new RegExp(`(^|/)${path.replace("*", ".*")}($|/)`);
+    const regex = new RegExp(`(^|/)${path.replace(/\*/g, ".*")}($|/)`);
     return regex.test(pathname);
   };
 
