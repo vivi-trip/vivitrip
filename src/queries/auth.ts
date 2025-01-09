@@ -9,6 +9,7 @@
 /* eslint-disable no-console */
 
 /* eslint-disable no-restricted-globals */
+import useOauthSignStore from "../stores/oauthSignStore";
 import PATH_NAMES from "@/src/constants/pathname";
 import {
   getUserInfo,
@@ -171,12 +172,20 @@ export const useOauthSignOut = () => {
 export const useOauthSignIn = () => {
   const router = useRouter();
   const { setUserData, setUserProvider, setTokens } = useUserStore();
+  const { profile } = useOauthSignStore();
 
   return useMutation({
     mutationFn: oauthSignin,
     onSuccess(data, variables) {
       const { data: response } = data as SignInSuccessResponseProps;
       const { accessToken, refreshToken, user } = response;
+
+      /** 카카오 프로필 적용 */
+      if (profile) {
+        user.nickname = profile.nickname;
+        user.profileImageUrl = profile.profileImageUrl;
+      }
+
       setTokens(accessToken, refreshToken);
       setUserData(user);
       setUserProvider(variables.provider as OauthTypes);
@@ -205,6 +214,7 @@ export const useOauthSignIn = () => {
  */
 export const useOauthSignUp = () => {
   const router = useRouter();
+  const { clearProfile } = useOauthSignStore();
 
   return useMutation({
     mutationFn: oauthSignup,
@@ -212,7 +222,7 @@ export const useOauthSignUp = () => {
       console.log("🚀 ~ onSuccess ~ data, variables:", data, variables);
       if (confirm("회원가입 성공!\n로그인 하시겠습니까?")) {
         // SNS 로그인 함수 실행
-        window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-in`;
+        window.location.href = PATH_NAMES.KakaoSignIn;
       }
     },
     onError(error) {
@@ -225,6 +235,9 @@ export const useOauthSignUp = () => {
       } else if (status && status >= 400 && status < 500) {
         console.log(data.message);
       }
+    },
+    onSettled() {
+      clearProfile();
     },
   });
 };

@@ -1,5 +1,10 @@
-import api from "./axios";
-import { OauthSignInProps, OauthSignUpProps } from "@/src/types/oauth";
+/* eslint-disable no-console */
+import api from "@/src/services/axios";
+import {
+  OauthActions,
+  OauthSignInProps,
+  OauthSignUpProps,
+} from "@/src/types/oauth";
 import { SignInProps, SignUpProps, UserPatchProps } from "@/src/types/user";
 import axios from "axios";
 
@@ -35,7 +40,13 @@ export const oauthSignin = async (params: OauthSignInProps) => {
   return response;
 };
 
+/**
+ * @description - 카카오 계정 로그아웃
+ */
 export const oauthSignout = async () => {
+  /**
+   * @todo - 카카오 계정 로그아웃 작업 중
+   */
   const response = await axios.get(
     `https://kauth.kakao.com/oauth/logout?client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&logout_redirect_uri=http://localhost:3000`,
   );
@@ -43,7 +54,7 @@ export const oauthSignout = async () => {
 };
 
 /**
- * @description - 카카오 계정 목록
+ * @description - 카카오 계정 목록 조회
  */
 export const listKakaoUsers = async () => {
   const response = await axios.get("https://kapi.kakao.com/v1/user/ids", {
@@ -73,5 +84,37 @@ export const deleteKakaoUser = async (user_id: number) => {
       },
     },
   );
+  return response;
+};
+
+/**
+ * @description - 카카오 토큰 요청
+ * @param action - 요청 페이지 종류 "in" | "up"
+ * @param code - 카카오 인가코드
+ */
+export const getKakaoToken = async (action: OauthActions, code: string) => {
+  const response = await axios.post(
+    `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-${action}&code=${code}`,
+    null,
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    },
+  );
+  localStorage.setItem("prevcode", code);
+  return response;
+};
+
+/**
+ * @description - 카카오 유저정보 조회
+ * @param access_token - 카카오 액세스 토큰
+ */
+export const getKakaoUserInfo = async (access_token: string) => {
+  const response = await axios.post(`https://kapi.kakao.com/v2/user/me`, null, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
   return response;
 };
