@@ -1,7 +1,7 @@
-import { GetMyActivities, MyActivities } from "../types/activities";
 import {
-  ActivityId,
   ActivityUpdateRequest,
+  GetMyActivities,
+  MyActivities,
   ReservaitionState,
   ReservaitionStateUpdateRequest,
   ReservatdeScheduleParams,
@@ -93,5 +93,3 @@ export const patchMyActivity = async (
   const response = await api.patch(`/my-activities/${activityId}`, updateData);
   return response.data;
 };
-
-
