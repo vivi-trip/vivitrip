@@ -7,8 +7,9 @@ import {
   patchMyActivity,
   patchReservaionState,
 } from "../services/myActiviesApi";
-import { GetMyActivities, MyActivities } from "../types/activities";
 import {
+  GetMyActivities,
+  MyActivities,
   PatchMyActivityParams,
   ReservaitionState,
   ReservatdeScheduleParams,
@@ -18,7 +19,12 @@ import {
   ReservationScheduleType,
   ReservationsParams,
 } from "../types/activitiesReservationType";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  infiniteQueryOptions,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+} from "@tanstack/react-query";
 
 export const useGetMyActivities = (params: GetMyActivities) => {
   const { data, isLoading, error } = useQuery<MyActivities>({
@@ -28,6 +34,31 @@ export const useGetMyActivities = (params: GetMyActivities) => {
 
   return { data, isLoading, error };
 };
+
+
+/**
+ * 
+ * @description 무한스크롤 쿼리 
+ */
+export const useGetInfiniteMyActivities = () => {
+  const { data, fetchNextPage, ...rest } = useInfiniteQuery(
+    infiniteQueryOptions<MyActivities>({
+      queryKey: ["myActivities", "ActivitiesList"],
+      queryFn: ({ pageParam }) => {
+        return getMyActivities({
+          cursorId: pageParam as number | undefined,
+          size: 5,
+        });
+      },
+      initialPageParam: undefined,
+      getNextPageParam: (lastPage) => {
+        return lastPage.cursorId ? lastPage.cursorId : undefined;
+      },
+    }),
+  );
+  return { data, fetchNextPage, ...rest };
+};
+
 
 export const useGetMyReservationDashboard = (
   params: ReservationDashboardParams,
