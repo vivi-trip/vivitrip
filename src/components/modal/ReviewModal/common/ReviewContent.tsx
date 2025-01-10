@@ -47,7 +47,6 @@ const ReviewContent = ({
             <span>{headCount} 명</span>
           </div>
           <span className="font-32px-bold mt-auto">
-            {" "}
             ₩{Intl.NumberFormat().format(totalPrice)}
           </span>
         </div>

@@ -5,7 +5,7 @@ import clsx from "clsx";
 import React, { useState } from "react";
 
 const ReviewForm = () => {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState<number | null>(null);
   const [reviewText, setReviewText] = useState("");
   // TODO: 토스트 상태 추가
   // const [showToast, setShowToast] = useState(false);
@@ -17,7 +17,7 @@ const ReviewForm = () => {
   };
 
   const handleStars = (clicked: number) => {
-    setRating(clicked);
+    setRating((prev) => (prev === clicked ? null : clicked));
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -42,7 +42,7 @@ const ReviewForm = () => {
             tabIndex={0}
             role="button"
             className="cursor-pointer">
-            {id <= rating ? (
+            {rating !== null && id <= rating ? (
               <StarOn width={56} height={56} />
             ) : (
               <StarOff width={56} height={56} />
@@ -51,7 +51,7 @@ const ReviewForm = () => {
         ))}
       </div>
       <form
-        onSubmit={rating && reviewText ? handleSubmit : undefined}
+        onSubmit={reviewText ? handleSubmit : undefined}
         className="flex w-full flex-col gap-24">
         <textarea
           placeholder="후기를 작성해주세요"
@@ -73,10 +73,10 @@ const ReviewForm = () => {
           radius="4"
           gap="4"
           fontStyle="l"
-          disabled={!rating || !reviewText}
+          disabled={!reviewText}
           className={clsx(
             "lg:w-full",
-            !rating || !reviewText
+            !reviewText
               ? "cursor-not-allowed bg-gray-500 text-gray-600"
               : "border-none bg-brand-500 text-white",
           )}>
