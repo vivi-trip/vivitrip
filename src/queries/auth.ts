@@ -40,9 +40,11 @@ import { useRouter } from "next/navigation";
 export const useSignOut = () => {
   const router = useRouter();
   const { clearUser } = useUserStore();
+  const { clearProfile } = useOauthSignStore();
 
   const handleSignOut = () => {
     clearUser();
+    clearProfile();
     router.replace(PATH_NAMES.Root);
   };
 
@@ -172,7 +174,7 @@ export const useOauthSignOut = () => {
 export const useOauthSignIn = () => {
   const router = useRouter();
   const { setUserData, setUserProvider, setTokens } = useUserStore();
-  const { profile } = useOauthSignStore();
+  const { profile, clearProfile } = useOauthSignStore();
 
   return useMutation({
     mutationFn: oauthSignin,
@@ -204,6 +206,9 @@ export const useOauthSignIn = () => {
       } else if (status && status >= 400 && status < 500) {
         alert(data.message);
       }
+    },
+    onSettled() {
+      clearProfile();
     },
   });
 };
