@@ -1,3 +1,32 @@
+export type CursorId = number;
+export type Size = number;
+
+export interface GetMyActivities {
+  cursorId?: CursorId;
+  size?: Size;
+}
+
+export interface Activity {
+  id: number;
+  userId: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  address: string;
+  bannerImageUrl: string;
+  rating: number;
+  reviewCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MyActivities {
+  cursorId: CursorId;
+  totalCount: number;
+  activities: Activity[];
+}
+
 export interface ActivityId {
   activityId: number;
 }
