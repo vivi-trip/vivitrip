@@ -31,4 +31,4 @@ const PopupModal = ({ title }: PopupModalProps): JSX.Element => {
   );
 };
 
-export default PopupModal ;
+export default PopupModal;
