@@ -1,24 +1,24 @@
 .react-datepicker {
-  width: 304px !important;
+  width: 304px;
   height: auto;
-  border:1px solid #eee !important;
-  border-radius: 8px !important;
+  border: 1px solid #eee;
+  border-radius: 8px;
   font-family: inherit;
   background-color: rgb(214, 163, 163);
   padding: 10px;
 }
-.react-datepicker__header {
-  background-color: white !important ;
-  border-bottom: none !important;
+
+.react-datepicker .react-datepicker__header {
+  background-color: white;
+  border-bottom: none;
   border-radius: 0;
   padding-bottom: 0;
 }
 
-.react-datepicker__month {
-  margin: 0 auto !important;
-  width: 250px !important;
+.react-datepicker .react-datepicker__month {
+  margin: 0 auto;
+  width: 250px;
 }
-
 
 .react-datepicker__current-month {
   font-size: 14px;
@@ -54,37 +54,41 @@
   text-align: center;
 }
 
-.react-datepicker__day--selected {
-  background: var(--brand-500) !important;
-  border-radius: 8px !important;
-  color: white !important;
-  width: 28px !important;
-  height: 28px !important;
+.react-datepicker .react-datepicker__day.react-datepicker__day--selected {
+  background: var(--brand-500);
+  border-radius: 8px;
+  color: white;
+  width: 28px;
+  height: 28px;
 }
 
-
-.react-datepicker__day--today {
+.react-datepicker .react-datepicker__day.react-datepicker__day--today {
   font-weight: 900;
-  background-color: var(--brand-400) !important;
-  color: white !important; 
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 50% !important;
+  background-color: var(--brand-300);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
 }
 
-
-.react-datepicker__day:hover {
-  background-color: var(--brand-600) !important;
-  color: white !important;
-  width: 28px !important;
-  height: 28px !important;
+.react-datepicker .react-datepicker__day.react-datepicker__day:hover {
+  background-color: var(--brand-400);
+  color: white;
+  width: 28px;
+  height: 28px;
 }
-
 
 .react-datepicker__day--keyboard-selected {
-  background-color: var(--brand-600)!important;
+  background-color: var(--brand-500);
   width: 28px !important;
   height: 28px !important;
+}
+
+.react-datepicker .react-datepicker__day.react-datepicker__day--highlighted {
+  background-color: var(--brand-600); 
+  color: white !important;
+  width: 28px;
+  height: 28px;
 }
 
 .custom-day {
