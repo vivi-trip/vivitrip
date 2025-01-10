@@ -14,6 +14,10 @@ interface CalendarState {
   onChangeSelectMonth: (month: number | null) => void;
 }
 
+/** 
+ * @todo 
+ * @param  - Activities reponse 타입으로 교체 
+ */
 export const useCalendarStore = create<CalendarState>((set) => ({
   selectDate: new Date(),
   selectSchedule: null,
