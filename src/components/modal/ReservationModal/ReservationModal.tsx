@@ -23,7 +23,7 @@ const ReservationModal = () => {
       </div>
       <Calendar />
       <TimeSelector />
-      <ParticipantCount count={1} />
+      <ParticipantCount />
       <div className="flex h-56 w-full justify-center">
         <Button
           type="button"
