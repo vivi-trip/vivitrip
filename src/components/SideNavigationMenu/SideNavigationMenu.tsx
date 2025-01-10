@@ -3,7 +3,7 @@ import CalendarCheckIcon from "@/assets/svgs/ic_calendar_check.svg";
 import SettingCheckIcon from "@/assets/svgs/ic_setting_check.svg";
 import TextboxCheckIcon from "@/assets/svgs/ic_textbox_check.svg";
 import ProfileUpload from "@/src/components/SideNavigationMenu/common/ProfileUpload";
-import { useGetUserProfile } from "@/src/hooks/useUsers";
+import { useGetUserProfile } from "@/src/queries/useUsers";
 import useModalStore from "@/src/stores/ModalStore";
 import clsx from "clsx";
 import Image from "next/image";
