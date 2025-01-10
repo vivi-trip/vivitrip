@@ -42,7 +42,7 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
       <div
         className="relative size-160 overflow-hidden rounded-full bg-gray-200"
         style={{ boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.08)" }}>
-        {profileImageUrl ||  uploadedImage ? (
+        {profileImageUrl || uploadedImage ? (
           <Image
             src={profileImageUrl || uploadedImage}
             fill
@@ -62,19 +62,22 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
           />
         )}
       </div>
-      <PenIcon
-        width={44}
-        height={44}
-        className="absolute bottom-0 right-12 z-10"
-      />
-      <input
-        id="file-input"
-        type="file"
-        ref={fileInputRef}
-        style={{ display: "none" }}
-        accept="image/*"
-        onChange={handleImageChange}
-      />
+      <label htmlFor="file-input">
+        <PenIcon
+          width={44}
+          height={44}
+          className="absolute bottom-0 right-12 z-10"
+          aria-label="이미지 업로드"
+        />
+        <input
+          id="file-input"
+          type="file"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          accept="image/*"
+          onChange={handleImageChange}
+        />
+      </label>
     </button>
   );
 };
