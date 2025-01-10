@@ -36,7 +36,7 @@ const MyPageKakao = ({ handleSubmit, isPending }: MyPageProps) => {
             <Image
               width={64}
               height={64}
-              src="http://k.kakaocdn.net/dn/T8UUe/btsyuHUMWsu/OG7UAr6XqY3V7iE8xzKfv0/img_640x640.jpg"
+              src={userData?.profileImageUrl as string}
               alt="프로필 이미지"
               className="rounded-16"
             />
@@ -46,7 +46,6 @@ const MyPageKakao = ({ handleSubmit, isPending }: MyPageProps) => {
               id="user_profileImageUrl"
               placeholder="프로필 이미지를 등록해 주세요"
               className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={userData?.profileImageUrl}
               onChange={handleProfileImage}
             />
           </label>
