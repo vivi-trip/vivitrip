@@ -1,12 +1,13 @@
-import ReservationInfo from "./common/ReservationInfo";
-import ReservationTimeSelect from "./common/ReservationTimeSelect";
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
+import ReservationInfo from "@/src/components/modal/ReservationInfoModal/common/ReservationInfo";
+import ReservationTimeSelect from "@/src/components/modal/ReservationInfoModal/common/ReservationTimeSelect";
 import {
   useGetMyReservations,
   useGetMyReservedSchedule,
 } from "@/src/hooks/useMyActivities";
 import useModalStore from "@/src/stores/ModalStore";
 import { formatDateToKorean } from "@/src/utils/calendarFormatDate";
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
 interface ReservationInfoModalProps {
@@ -14,12 +15,20 @@ interface ReservationInfoModalProps {
   selectedActivityId: number;
 }
 
+type ReservationStatus = "pending" | "confimed" | "declined";
+
+/**
+ * @description - ReservationInfoModal 프롭
+ * @param selectedDate - 선택날짜
+ * @param selectedActivityId - 선택 체험
+ * 
+ */
 const ReservationInfoModal = ({
   selectedDate,
   selectedActivityId,
 }: ReservationInfoModalProps) => {
   const { setModalClose } = useModalStore();
-  const [selectTab, setSelectTab] = useState("pending");
+  const [selectTab, setSelectTab] = useState<ReservationStatus>("pending");
   const formattedDate = formatDateToKorean(selectedDate);
   const [selectedScheduleId, setSelectedScheduleId] = useState<
     number | undefined
@@ -53,6 +62,30 @@ const ReservationInfoModal = ({
     isSelectedScheduleId,
   );
 
+  const getButtonStyle = ({
+    currentTab,
+    targetTab,
+  }: {
+    currentTab: string;
+    targetTab: string;
+  }) =>
+    clsx(
+      "relative w-72 cursor-pointer",
+      currentTab === targetTab
+        ? [
+            "font-20px-bold",
+            "text-brand-500",
+            "after:absolute",
+            "after:bottom-[-6px]",
+            "after:left-0",
+            "after:h-4",
+            "after:w-full",
+            "after:rounded-xl",
+            "after:bg-brand-500",
+          ]
+        : "font-20px-regular",
+    );
+
   return (
     <div className="flex max-h-697 w-full max-w-429 flex-col">
       <div className="flex w-full justify-between">
@@ -63,32 +96,29 @@ const ReservationInfoModal = ({
         <button
           type="button"
           onClick={() => setSelectTab("pending")}
-          className={`relative w-72 cursor-pointer ${
-            selectTab === "pending"
-              ? "font-20px-bold text-brand-500 after:absolute after:bottom-[-6px] after:left-0 after:h-4 after:w-full after:rounded-xl after:bg-brand-500"
-              : "font-20px-regular"
-          }`}>
+          className={getButtonStyle({
+            currentTab: selectTab,
+            targetTab: "pending",
+          })}>
           신청 {dayReservations?.count.pending || 0}
         </button>
 
         <button
           type="button"
           onClick={() => setSelectTab("confimed")}
-          className={`relative w-72 cursor-pointer ${
-            selectTab === "confimed"
-              ? "font-20px-bold text-brand-500 after:absolute after:bottom-[-6px] after:left-0 after:h-4 after:w-full after:rounded-xl after:bg-brand-500"
-              : "font-20px-regular"
-          }`}>
+          className={getButtonStyle({
+            currentTab: selectTab,
+            targetTab: "confimed",
+          })}>
           승인 {dayReservations?.count.confirmed || 0}
         </button>
         <button
           type="button"
           onClick={() => setSelectTab("declined")}
-          className={`relative w-72 cursor-pointer ${
-            selectTab === "declined"
-              ? "font-20px-bold text-brand-500 after:absolute after:bottom-[-6px] after:left-0 after:h-4 after:w-full after:rounded-xl after:bg-brand-500"
-              : "font-20px-regular"
-          }`}>
+          className={getButtonStyle({
+            currentTab: selectTab,
+            targetTab: "declined",
+          })}>
           거절 {dayReservations?.count.declined || 0}
         </button>
         <div className="absolute bottom-[-6px] left-0 h-px w-full bg-gray-200" />
