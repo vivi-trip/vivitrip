@@ -32,11 +32,11 @@ const ReservationInfo = ({
     <div>
       <div className="flex flex-col gap-6">
         <div className="flex gap-10">
-          <p className="font-16px-semibold text-gray-500">닉네임</p>{" "}
+          <p className="font-16px-semibold mr-4 text-gray-500">닉네임</p>
           <p className="font-16px-regular text-black"> {nickname}</p>
         </div>
         <div className="flex gap-10">
-          <p className="font-16px-semibold text-gray-500">인원</p>{" "}
+          <p className="font-16px-semibold mr-4 text-gray-500">인원</p>
           <p className="font-16px-regular text-black">{headCount}명</p>
         </div>
         <div className="flex justify-end gap-4">
