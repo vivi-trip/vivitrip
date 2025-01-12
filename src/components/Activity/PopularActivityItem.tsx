@@ -1,5 +1,5 @@
 import Star from "@/assets/svgs/star.svg";
-import type { Activity } from "@/src/types/activity";
+import type { Activity } from "@/src/types/activities";
 import Image from "next/image";
 import Link from "next/link";
 
