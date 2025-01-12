@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 const Carousel = ({ items }: CarouselProps) => {
-  const extendedItems = [items[items.length - 1], ...items, items[0]];
+  const extendedItems = [items[0], ...items, items[0]];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transition, setTransition] = useState(true);
 
@@ -33,7 +33,7 @@ const Carousel = ({ items }: CarouselProps) => {
 
     if (currentIndex === 0) {
       timeoutId = setTimeout(() => {
-        setCurrentIndex(extendedItems.length - 2);
+        setCurrentIndex(extendedItems.length - 1);
         setTransition(false);
       }, 500);
     } else if (currentIndex === extendedItems.length - 1) {
@@ -50,7 +50,7 @@ const Carousel = ({ items }: CarouselProps) => {
 
   return (
     <div className="relative h-240 w-full md:h-550 lg:h-550">
-      <div className="h-full overflow-hidden">
+      <div className="overflow-hidden">
         <div
           className={`flex flex-nowrap ${transition && "transition-transform duration-700 ease-in-out"}`}
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
@@ -61,20 +61,21 @@ const Carousel = ({ items }: CarouselProps) => {
               <div
                 key={`${imageIndex}-${item.src}`}
                 className="relative flex h-240 w-full shrink-0 flex-col justify-between md:h-550 lg:h-550">
-                <Image
-                  src={item.src}
-                  alt={
-                    Array.isArray(item.title)
-                      ? item.title.join(" ")
-                      : item.title
-                  }
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                  priority
-                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Image
+                    src={item.src}
+                    alt={
+                      Array.isArray(item.title)
+                        ? item.title.join(" ")
+                        : item.title
+                    }
+                    width={1920}
+                    height={550}
+                    sizes="100vh"
+                    priority={index === 0}
+                    loading="eager"
+                  />
+                </div>
                 <div
                   className="font-24px-bold md:font-54px-bold lg:font-68px-bold absolute top-1/2 -translate-y-1/2 text-white"
                   style={{
