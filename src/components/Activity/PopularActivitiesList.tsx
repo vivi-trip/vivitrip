@@ -41,10 +41,10 @@ const PopularActivitiesList = ({
             <LeftArrow
               width={44}
               height={44}
-              alt="왼쪽 이동 아이콘"
               className={clsx(
                 currentIndex === 0 ? "text-brand-300" : "text-brand-600",
               )}
+              aria-label="이전 인기 체험 보기 버튼"
             />
           </Button>
           <Button
@@ -55,12 +55,12 @@ const PopularActivitiesList = ({
             <RightArrow
               width={44}
               height={44}
-              alt="오른쪽 이동 아이콘"
               className={clsx(
                 currentIndex === totalCount - 3
                   ? "text-brand-200"
                   : "text-brand-600",
               )}
+              aria-label="다음 인기 체험 보기 버튼"
             />
           </Button>
         </div>
