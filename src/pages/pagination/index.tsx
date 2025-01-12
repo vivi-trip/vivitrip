@@ -1,6 +1,6 @@
 import Star from "@/assets/svgs/star.svg";
 import Pagination from "@/src/components/Pagination/index";
-import { Activity } from "@/src/types/activity";
+import { Activity } from "@/src/types/activities";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -74,7 +74,7 @@ const PaginationPage = () => {
     <>
       {/* 메인 화면 */}
       <div className="my-20">
-        <header className="text-36px-bold mb-8">🛼 모든 체험</header>
+        <header className="font-36px-bold mb-8">🛼 모든 체험</header>
         {loading ? (
           <div>Loading...</div>
         ) : (
@@ -93,7 +93,7 @@ const PaginationPage = () => {
                     />
                   </div>
                   <div className="flex">
-                    <Star alt="별점" />
+                    <Star alt="별점 아이콘" />
                     <p>3.9</p>
                     <p>(108)</p>
                   </div>
