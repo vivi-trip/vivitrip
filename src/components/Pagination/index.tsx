@@ -33,7 +33,7 @@ const Pagination = ({
             onClick={() => navigateToPage(start - 1)}>
             <AltArrowLeft
               className={`${iconSize} ${noPrev ? "text-gray-600" : "text-brand-400"}`}
-              alt="이전 버튼"
+              aria-label="이전 페이지로 이동 버튼"
             />
           </Button>
         </li>
@@ -70,7 +70,7 @@ const Pagination = ({
             onClick={() => navigateToPage(start + pageCount)}>
             <AltArrowRight
               className={`${iconSize} ${noNext ? "text-gray-600" : "text-brand-400"}`}
-              alt="다음 버튼"
+              aria-label="다음 페이지로 이동 버튼"
             />
           </Button>
         </li>
