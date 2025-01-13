@@ -69,11 +69,9 @@ const Carousel = ({ items }: CarouselProps) => {
                         ? item.title.join(" ")
                         : item.title
                     }
-                    width={1920}
-                    height={550}
-                    sizes="100vh"
-                    priority={index === 0}
-                    loading="eager"
+                    className="object-cover object-center"
+                    fill
+                    priority
                   />
                 </div>
                 <div
