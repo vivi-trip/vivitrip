@@ -8,7 +8,7 @@ export interface AllActivitiesListProps {
 
 interface BaseActivitiesProps {
   activities: Activity[];
-  emptyMessage: ReactNode;
+  emptyMessage: string | ReactNode;
 }
 
 export interface PopularActivitiesProps extends BaseActivitiesProps {
