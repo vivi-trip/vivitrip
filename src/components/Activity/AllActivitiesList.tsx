@@ -1,5 +1,4 @@
 import AllActivities from "@/src/components/Activity/AllActivities";
-import SectionLayout from "@/src/components/Activity/SectionLayout";
 import { AllActivitiesListProps } from "@/src/types/activity";
 import { useRouter } from "next/router";
 
@@ -16,7 +15,8 @@ const AllActivitiesList = ({
   }
 
   return (
-    <SectionLayout className="flex flex-col">
+    // <SectionLayout className="flex flex-col">
+    <>
       <div className="flex justify-between">
         <p className="font-18px-bold md:font-36px-bold lg:font-36px-bold">
           🛼 {subTitle}
@@ -27,7 +27,8 @@ const AllActivitiesList = ({
         emptyMessage="체험이 존재하지 않습니다."
         selectedCategory={filteredActivities}
       />
-    </SectionLayout>
+      {/* </SectionLayout> */}
+    </>
   );
 };
 

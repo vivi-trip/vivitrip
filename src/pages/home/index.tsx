@@ -1,7 +1,6 @@
 import AllActivitiesList from "@/src/components/Activity/AllActivitiesList";
 import Dropdown from "@/src/components/Activity/Dropdown";
 import PopularActivitiesList from "@/src/components/Activity/PopularActivitiesList";
-import SectionLayout from "@/src/components/Activity/SectionLayout";
 import FilterButton from "@/src/components/Button/FilterButton";
 import SearchableLayout from "@/src/components/SearchableLayout";
 import {
@@ -57,10 +56,10 @@ const Home = ({
   return (
     <>
       <PopularActivitiesList activities={activities} totalCount={totalCount} />
-      <SectionLayout className="mb-24 mt-40 flex flex-row items-center justify-between gap-15 md:mb-35 md:mt-60 lg:mb-35 lg:mt-60">
+      <div className="mb-24 mt-40 flex flex-row items-center justify-between gap-15 md:mb-35 md:mt-60 lg:mb-35 lg:mt-60">
         <FilterButton />
         <Dropdown />
-      </SectionLayout>
+      </div>
       <AllActivitiesList
         activities={allActivities}
         selectedCategory={selectedCategory}

@@ -1,5 +1,4 @@
 import PopularActivities from "./PopularActivities";
-import SectionLayout from "./SectionLayout";
 import LeftArrow from "@/assets/svgs/btnArrow48pxDefault.svg";
 import RightArrow from "@/assets/svgs/btnArrow48pxVariant4.svg";
 import Button from "@/src/components/Button/Button";
@@ -27,7 +26,8 @@ const PopularActivitiesList = ({
   };
 
   return (
-    <SectionLayout className="flex flex-col">
+    // <SectionLayout className="flex flex-col">
+    <>
       <div className="flex items-center justify-between">
         <h2 className="font-18px-bold md:font-36px-bold lg:font-36px-bold">
           🔥 인기 체험
@@ -71,7 +71,7 @@ const PopularActivitiesList = ({
         setCurrentIndex={setCurrentIndex}
         emptyMessage="체험이 존재하지 않습니다."
       />
-    </SectionLayout>
+    </>
   );
 };
 
