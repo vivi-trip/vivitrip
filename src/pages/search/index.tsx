@@ -9,22 +9,29 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
   const { q } = context.query;
-  const SearchedActivities = await listPopularActivities(10, 1, q as string);
+  const searchedActivitiesInitialData = await listPopularActivities(1);
+  const { totalCount } = searchedActivitiesInitialData;
+
+  const searchedActivities = await listPopularActivities(
+    totalCount,
+    1,
+    q as string,
+  );
 
   return {
     props: {
-      SearchedActivities,
+      searchedActivities,
     },
   };
 };
 
 const Search = ({
-  SearchedActivities,
+  searchedActivities,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
   const { q } = router.query;
 
-  const { activities, totalCount } = SearchedActivities;
+  const { activities, totalCount } = searchedActivities;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [size, setSize] = useState(8);

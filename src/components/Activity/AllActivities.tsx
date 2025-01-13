@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from "react";
 const AllActivities = ({ activities, emptyMessage }: AllActivitiesProps) => {
   const router = useRouter();
   const page = parseInt(router.query.page as string, 10) || 1;
+  const pathname = router.pathname.replace("/", "");
 
   const [size, setSize] = useState(8);
   const [imageSize, setImageSize] = useState({ width: 200, height: 200 });
@@ -17,13 +18,13 @@ const AllActivities = ({ activities, emptyMessage }: AllActivitiesProps) => {
   useEffect(() => {
     const updateSize = () => {
       if (window.innerWidth >= 1024) {
-        setSize?.(8);
+        setSize(pathname === "home" ? 8 : 16);
         setImageSize({ width: 200, height: 200 });
       } else if (window.innerWidth >= 768) {
-        setSize?.(9);
+        setSize(9);
         setImageSize({ width: 200, height: 200 });
       } else {
-        setSize?.(4);
+        setSize(pathname === "home" ? 4 : 8);
         setImageSize({ width: 150, height: 150 });
       }
     };
@@ -31,7 +32,7 @@ const AllActivities = ({ activities, emptyMessage }: AllActivitiesProps) => {
     updateSize();
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
-  }, [setSize]);
+  }, [pathname, setSize]);
 
   // 데이터를 클라이언트에서 분할
   const paginatedActivities = useMemo(() => {
