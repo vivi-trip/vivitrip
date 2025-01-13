@@ -30,41 +30,37 @@ const Search = ({
   const [size, setSize] = useState(8);
 
   return (
-    <>
-      <section>{}</section>
-      <div className="flex flex-col">
-        <div className="flex flex-col gap-12">
-          <div className="flex">
-            <h1 className="font-24px-bold md:font-32px-bold text-basic-black">
-              &apos;{q}&apos;
-            </h1>
-            <h1 className="font-24px-regular md:font-32px-regular">
-              &nbsp;검색 결과
-            </h1>
-          </div>
-          <div>
-            <h3 className="font-16px-regular text-basic-black">
-              총 {totalCount}개의 결과
-            </h3>
-          </div>
+    <div className="flex flex-col">
+      <div className="flex flex-col gap-12">
+        <div className="flex">
+          <h1 className="font-24px-bold md:font-32px-bold text-basic-black">
+            &apos;{q}&apos;
+          </h1>
+          <h1 className="font-24px-regular md:font-32px-regular">
+            &nbsp;검색 결과
+          </h1>
         </div>
         <div>
-          <AllActivities
-            activities={activities}
-            setSize={setSize}
-            emptyMessage={
-              <>
-                검색어와 일치하는 체험이 없습니다.
-                <p />
-                <p />
-                다른 검색어를 사용해 보세요.
-              </>
-            }
-          />
+          <h3 className="font-16px-regular text-basic-black">
+            총 {totalCount}개의 결과
+          </h3>
         </div>
       </div>
-      <section>{}</section>
-    </>
+      <div>
+        <AllActivities
+          activities={activities}
+          setSize={setSize}
+          emptyMessage={
+            <>
+              검색어와 일치하는 체험이 없습니다.
+              <p />
+              <p />
+              다른 검색어를 사용해 보세요.
+            </>
+          }
+        />
+      </div>
+    </div>
   );
 };
 
