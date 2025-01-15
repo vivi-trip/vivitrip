@@ -29,14 +29,20 @@ api.interceptors.response.use(
       const { refreshToken } = useUserStore.getState();
       if (refreshToken) {
         try {
-          const { data } = await axios.post(`${baseURL}/auth/tokens`, {
-            refreshToken,
-          });
+          const { data } = await axios.post(
+            `${baseURL}/auth/tokens`,
+            {
+              refreshToken,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${refreshToken}`,
+              },
+            },
+          );
           const newAccessToken = data.accessToken;
           const newRefreshToken = data.refreshToken;
-
           useUserStore.getState().setTokens(newAccessToken, newRefreshToken);
-
           // 새 accessToken을 원래 요청에 설정 후 재시도
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           return await api(originalRequest);
