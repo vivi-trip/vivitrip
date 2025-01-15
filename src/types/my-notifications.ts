@@ -11,7 +11,27 @@ export type NotificationId = number;
  */
 export interface GetMyNotificationsProps {
   size?: number;
-  cursorId?: number;
+  cursorId?: number | null;
+}
+
+/**
+ * @description 내 알림 데이터
+ * @param id - 알림 ID;
+ * @param teamId - 팀 ID;
+ * @param userId - 유저 ID;
+ * @param content - 콘텐츠;
+ * @param createdAt - 알림 생성일;
+ * @param updatedAt - 알림 수정일;
+ * @param deletedAt - 알림 삭제알;
+ */
+export interface MyNotificationsProps {
+  id: number;
+  teamId: string;
+  userId: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
 }
 
 /**
