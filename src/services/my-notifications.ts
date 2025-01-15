@@ -12,7 +12,7 @@ import {
  * @param size - 알림 갯수
  * @param cursorId - 알림 커서 아이디
  */
-export const getActivity = async ({
+export const listMyNotifications = async ({
   size,
   cursorId,
 }: GetMyNotificationsProps) => {
@@ -31,7 +31,7 @@ export const getActivity = async ({
  * @description 내 알림 삭제
  * @param notificationId - 알람 id
  */
-export const getActivityAvailableSchedule = async ({
+export const deleteMyNotification = async ({
   notificationId,
 }: DeleteMyNotificationProps) => {
   const response = await api.delete(`/my-notifications/${notificationId}`);
