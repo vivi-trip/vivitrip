@@ -5,7 +5,7 @@ const pxToRem = require("tailwindcss-preset-px-to-rem");
 
 const config: Config = {
   presets: [pxToRem],
-  content: ["./src/**/*.{ts,tsx,js,jsx,mdx}"],
+  content: ["./src/**/*.{ts,tsx,js,jsx,mdx}", "./src/styles/global.css"],
   theme: {
     extend: {
       height: {
@@ -85,6 +85,14 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /bg-*/,
+    },
+    {
+      pattern: /text-*/,
+    },
+  ],
 };
 
 export default config;
