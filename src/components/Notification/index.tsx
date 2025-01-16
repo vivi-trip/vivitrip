@@ -106,12 +106,12 @@ const Notification = () => {
         {totalCount > 0 && (
           <i className="absolute right-0 top-0 z-10 size-8 -translate-x-2 -translate-y-2 rounded-full border border-white bg-red-200" />
         )}
-        <IconNotification className="text-gray-600" />
+        <IconNotification className="text-gray-600 focus:outline-none" />
       </Dropdown.Trigger>
 
       <Dropdown.Menu className="left-auto right-0 w-fit !border-gray-200 shadow-xl">
-        <div className="fixed z-50 flex flex-col bg-brand-200 md:relative md:min-w-320">
-          <div className="flex items-center justify-between p-16 pb-8 text-brand-600 last:pb-16">
+        <div className="fixed inset-0 z-50 flex flex-col bg-brand-200 md:relative md:inset-auto md:min-w-320">
+          <div className="flex h-header items-center justify-between p-24 pb-16 text-brand-600 last:pb-16 md:h-auto md:p-16 md:pb-8">
             <div className="flex items-center justify-start gap-8">
               <p className="font-20px-bold text-nowrap">
                 {totalCount > 0 ? `알림 ${totalCount}개` : `알림이 없습니다.`}
@@ -130,7 +130,7 @@ const Notification = () => {
           </div>
 
           {items && items.length > 0 && (
-            <div className="flex flex-col gap-8 overflow-auto p-16 pb-24 pt-8 md:max-h-320">
+            <div className="flex h-main flex-col gap-8 overflow-auto p-24 pt-8 md:h-320 md:!max-h-[50vh] md:p-16 md:pb-24 md:pt-8">
               {items.map((item) => {
                 return (
                   <NotificationItem

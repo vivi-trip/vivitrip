@@ -18,7 +18,7 @@ const GNB = () => {
   const { userData } = useUserStore();
 
   return (
-    <header className="h-header w-full border-b border-solid border-gray-200 px-32 py-16">
+    <header className="h-header w-full border-b border-solid border-gray-200 p-24 lg:px-24">
       <div className="mx-auto flex h-full max-w-screen-xl justify-between">
         <Logo />
         {userData ? <UserMenu /> : <SignMenu />}
