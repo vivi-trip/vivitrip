@@ -47,7 +47,7 @@ const App = ({
       {is404Page ? null : <GNB />}
       <main
         className={clsx(
-          "overflow-auto px-32",
+          "overflow-auto px-24 md:px-32",
           is404Page ? "bg-brand-50" : "h-main bg-gray-50",
         )}>
         <div

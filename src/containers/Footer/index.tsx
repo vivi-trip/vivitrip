@@ -35,14 +35,14 @@ const CLASS_NAME = {
 
 const Footer = () => {
   return (
-    <footer className="-mx-32 h-footer bg-brand-500 p-32">
-      <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-start justify-between gap-32">
+    <footer className="-mx-24 h-footer bg-brand-500 p-32 md:-mx-32">
+      <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-start justify-between gap-x-12 gap-y-40 md:gap-x-32">
         <div className="flex items-center">
           <p className={CLASS_NAME.text}>©vivitrip - 2024</p>
-          <hr className="mx-24 h-16 border-0 border-l border-white opacity-50" />
+          <hr className="mx-12 h-16 border-0 border-l border-white opacity-50 md:mx-24" />
           <TestPages />
         </div>
-        <div className="flex items-center gap-32">
+        <div className="flex items-center gap-12 md:gap-32">
           <Link className={CLASS_NAME.text} href={PATH_NAMES.PrivacyPolicy}>
             Privacy Policy
           </Link>
@@ -50,7 +50,7 @@ const Footer = () => {
             FAQ
           </Link>
         </div>
-        <div className="flex items-center gap-16">
+        <div className="flex items-center gap-12 md:gap-16">
           {SNS_LINKS.map(({ name, icon, href }) => {
             return (
               <div key={`sns_link_${name}`}>

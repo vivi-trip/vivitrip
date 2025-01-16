@@ -45,7 +45,9 @@ const Avatar = () => {
       ) : (
         <IconUser className="text-brand-600" />
       )}
-      <p className="font-16px-medium text-brand-600">{userData.nickname}</p>
+      <p className="font-16px-medium hidden text-brand-600 md:block">
+        {userData.nickname}
+      </p>
     </article>
   );
 };
