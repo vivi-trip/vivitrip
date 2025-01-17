@@ -141,10 +141,14 @@ export const getActivityReviews = async ({
   page,
   size,
 }: GetActivityReviewsProps) => {
-  const response = await api.get(
-    `/activities/${activityId}/reviews?page=${page}&size=${size}`,
-  );
-  return response;
+  let url = `/activities/${activityId}/reviews`;
+
+  if (page) {
+    url = `/activities/${activityId}/reviews?page=${page}&size=${size}`;
+  }
+
+  const response = await api.get(url);
+  return response.data;
 };
 
 /**
