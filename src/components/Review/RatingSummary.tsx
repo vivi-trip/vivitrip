@@ -51,7 +51,7 @@ const RatingSummary = ({
         <StarLgIcon className="size-39 text-yellow-200 md:size-43" />
         <div className="flex items-baseline gap-5">
           <p className="font-44px-bold md:font-50px-bold">{roundedRating}</p>
-          <p className="font-24px-medium md:font-28px-regular text-gray-300">
+          <p className="font-24px-medium md:font-28px-medium text-gray-300">
             /5
           </p>
         </div>
