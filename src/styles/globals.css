@@ -102,8 +102,8 @@
     @apply text-[28px] font-bold leading-[32px];
   }
 
-  .font-28px-regular {
-    @apply text-[28px] font-normal leading-[32px];
+  .font-28px-medium {
+    @apply text-[28px] font-medium leading-[32px];
   }
 
   /* Text-2xl */
