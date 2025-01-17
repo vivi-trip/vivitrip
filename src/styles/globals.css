@@ -59,13 +59,24 @@
 }
 
 @layer utilities {
-  /* Text-6xl */
+  /* Text-8xl */
   .font-68px-bold {
     @apply text-[68px] font-bold leading-[81px];
   }
-  /* Text-5xl */
+
+  /* Text-7xl */
   .font-54px-bold {
     @apply text-[54px] font-bold leading-[64px];
+  }
+
+  /* Text-6xl */
+  .font-50px-bold {
+    @apply text-[50px] font-bold leading-[60px];
+  }
+
+  /* Text-5xl */
+  .font-44px-bold {
+    @apply text-[44px] font-bold leading-[46px];
   }
 
   /* Text-4xl */
@@ -89,6 +100,10 @@
   /* Text-2.5xl */
   .font-28px-bold {
     @apply text-[28px] font-bold leading-[32px];
+  }
+
+  .font-28px-regular {
+    @apply text-[28px] font-normal leading-[32px];
   }
 
   /* Text-2xl */
