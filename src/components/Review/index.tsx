@@ -57,14 +57,16 @@ const Review = ({ reviews, totalCount, averageRating }: ReviewSummary) => {
         <ProgressBar reviews={reviews} totalCount={totalCount} />
       </article>
       <ReviewList fetchedReviews={fetchedReviews} />
-      <footer className="mb-120 mt-16 flex justify-center md:mt-66 lg:mt-48">
-        <Pagination
-          totalItems={totalCount}
-          pageCount={5}
-          currentPage={currentPage}
-          itemCountPerPage={size}
-        />
-      </footer>
+      {totalCount > 0 ? (
+        <footer className="mb-120 mt-16 flex justify-center md:mt-66 lg:mt-48">
+          <Pagination
+            totalItems={totalCount}
+            pageCount={5}
+            currentPage={currentPage}
+            itemCountPerPage={size}
+          />
+        </footer>
+      ) : null}
     </div>
   );
 };
