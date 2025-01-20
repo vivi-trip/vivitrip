@@ -12,7 +12,7 @@ const PopularActivityItem = ({
   reviewCount,
 }: Activity) => {
   return (
-    <div className="group relative size-186 shrink-0 overflow-hidden rounded-3xl md:size-384 lg:size-384">
+    <div className="group relative size-186 shrink-0 overflow-hidden rounded-3xl border border-gray-200 md:size-384 lg:size-384">
       <Link href={`/activity/${id}`}>
         <div className="relative aspect-[1/1] w-186 overflow-hidden rounded-3xl md:w-384 lg:w-384">
           <Image
