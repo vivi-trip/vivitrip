@@ -1,10 +1,10 @@
 import Button from "../../Button/Button";
 import Calendar from "../../calendar/Calendar";
-import ParticipantCount from "./common/ParticipantCount";
-import Price from "./common/Price";
-import TimeSelector from "./common/TimeSelector";
-import TotalPrice from "./common/TotalPrice";
+import ParticipantCount from "@/src/components/modal/ReservationModal/common/ParticipantCount";
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
+import Price from "@/src/components/modal/ReservationModal/common/Price";
+import TimeSelector from "@/src/components/modal/ReservationModal/common/TimeSelector";
+import TotalPrice from "@/src/components/modal/ReservationModal/common/TotalPrice";
 import useModalStore from "@/src/stores/ModalStore";
 import React from "react";
 
