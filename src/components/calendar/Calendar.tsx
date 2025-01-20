@@ -5,6 +5,11 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+interface Schedule {
+  date: string;
+  // 다른 필요한 속성들...
+}
+
 const customLocale: Locale = {
   ...enUS,
   localize: {
@@ -31,7 +36,7 @@ const Calendar = () => {
   };
 
   const isScheduledDate = () => {
-    return data.schedules?.map((schedule) => new Date(schedule.date)) || [];
+    return data.schedules?.map((schedule: Schedule) => new Date(schedule.date)) || [];
   };
 
   return (
