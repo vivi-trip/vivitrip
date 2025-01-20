@@ -1,5 +1,5 @@
 import PenIcon from "@/assets/svgs/ic_pen.svg";
-import { useUploadProfileImage } from "@/src/hooks/useUsers";
+import { useUploadProfileImage } from "@/src/queries/useUsers";
 import { ProfileImageUrlResponse } from "@/src/types/Users";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
