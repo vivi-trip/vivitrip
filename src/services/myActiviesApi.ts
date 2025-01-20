@@ -79,8 +79,8 @@ export const patchReservaionState = async (
 내 체험 삭제
  */
 
-export const deleteArticle = async (params: number): Promise<void> => {
-  await api.delete(`/my-activities/{params.activityId}`, { params });
+export const deleteArticle = async (activityId: number): Promise<void> => {
+  await api.delete(`/my-activities/${activityId}`);
 };
 
 /**
@@ -89,7 +89,7 @@ export const deleteArticle = async (params: number): Promise<void> => {
 export const patchMyActivity = async (
   activityId: number,
   updateData: ActivityUpdateRequest,
-): Promise<ActivityUpdateRequest> => {
+) => {
   const response = await api.patch(`/my-activities/${activityId}`, updateData);
   return response.data;
 };
