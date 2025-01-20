@@ -14,7 +14,7 @@ const AllActivityItem = ({
   return (
     <div className="flex flex-col gap-16">
       <div
-        className="relative w-full overflow-hidden rounded-3xl"
+        className="relative w-full overflow-hidden rounded-3xl border border-gray-200"
         style={{ paddingTop: "100%" }}>
         <Link href={`/activities/${id}`} className="absolute inset-0">
           <Image
