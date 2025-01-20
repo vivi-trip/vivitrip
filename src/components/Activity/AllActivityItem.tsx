@@ -33,7 +33,7 @@ const AllActivityItem = ({
             <p className="font-16px-medium text-basic-black">{rating}</p>
             <p className="font-16px-medium text-gray-600">({reviewCount})</p>
           </div>
-          <p className="font-18px-semibold md:font-24px-semibold lg:font-24px-semibold text-basic-black">
+          <p className="font-18px-semibold md:font-24px-semibold lg:font-24px-semibold text-basic-black md:min-h-64">
             {title}
           </p>
         </div>
