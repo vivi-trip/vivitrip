@@ -1,8 +1,10 @@
 /**
  * @description API 호출 함수 - Activites
  */
+import { ActivityDetailResponse } from "../types/activitiesResponses";
 import api from "@/src/services/axios";
 import {
+  ActivityImageUrl,
   ActivitiesResponse,
   CreateActivityImageUrlProps,
   CreateActivityProps,
@@ -104,9 +106,11 @@ export const createActivity = async ({
  * @description 체험 상세 조회
  * @param activityId - 체험 id
  */
-export const getActivity = async ({ activityId }: GetActivityProps) => {
+export const getActivity = async ({
+  activityId,
+}: GetActivityProps): Promise<ActivityDetailResponse> => {
   const response = await api.get(`/activities/${activityId}`);
-  return response;
+  return response.data;
 };
 
 /**
@@ -165,11 +169,12 @@ export const createActivityReservation = async ({
  * @description 체험 이미지 url 생성
  * @param image - 체험 이미지 파일
  */
-export const createActivityImageUrl = async ({
-  image,
-}: CreateActivityImageUrlProps) => {
-  const response = await api.post(`/activities/image`, {
-    image,
-  });
-  return response;
+export const createActivityImageUrl = async (
+  file: File,
+): Promise<ActivityImageUrl> => {
+  const formData = new FormData();
+  formData.append("image", file);
+
+  const response = await api.post("activities/image", formData);
+  return response.data;
 };
