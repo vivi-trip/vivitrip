@@ -118,7 +118,7 @@ const SideNavigationMenu = ({ url }: Props) => {
                 )}
                 onClick={() => {
                   if (pathname === "/my-profile" && window.innerWidth < 768) {
-                    setModalOpen();
+                    // setModalOpen();
                   } else {
                     // 기존 동작
                     handleClick(item.id);
