@@ -1,6 +1,11 @@
 /**
  * @description API 호출 타입 - Activites
  */
+import {
+  ActivityBasicDataType,
+  Schedule,
+  SubImage,
+} from "@/src/types/activitiesResponses";
 
 export type ActivityId = number;
 
@@ -55,15 +60,10 @@ export interface ActivitiesResponse {
  * @param bannerImageUrl - string, 체험 배너 이미지 url;
  * @param subImageUrls - string[], 체험 내용 이미지 url;
  */
-export interface CreateActivityProps {
-  title: string;
-  category: string;
-  description: string;
-  address: string;
-  price: number;
-  schedules: string[];
+export interface CreateActivityProps extends ActivityBasicDataType {
   bannerImageUrl: string;
-  subImageUrls: string[];
+  subImageUrls: SubImage[];
+  schedules: Schedule[];
 }
 
 /**
@@ -116,4 +116,8 @@ export interface CreateActivityReservationProps {
  */
 export interface CreateActivityImageUrlProps {
   image: File;
+}
+
+export interface ActivityImageUrl {
+  activityImageUrl: string;
 }
