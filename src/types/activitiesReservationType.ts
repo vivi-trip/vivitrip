@@ -148,6 +148,12 @@ export interface ReservaitionStateUpdateRequest {
   updatedAt: string;
 }
 
+interface Schedule {
+  date: string;
+  startTime: string;
+  endTime: string;
+}
+
 export interface ActivityUpdateRequest {
   title: string;
   category: string;
@@ -155,10 +161,11 @@ export interface ActivityUpdateRequest {
   price: number;
   address: string;
   bannerImageUrl: string;
-  subImageIdsToRemove: [];
-  subImageUrlsToAdd: [];
-  scheduleIdsToRemove: [];
-  schedulesToAdd: [];
+  subImageIdsToRemove: number[];
+  subImageUrlsToAdd: string[];
+  scheduleIdsToRemove: number[];
+  schedulesToAdd: Schedule[];
+  subImageUrls?: { id?: number; imageUrl: string }[];
 }
 
 export interface PatchMyActivityParams {
