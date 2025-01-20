@@ -35,31 +35,6 @@ export const useGetMyActivities = (params: GetMyActivities) => {
   return { data, isLoading, error };
 };
 
-
-/**
- * 
- * @description 무한스크롤 쿼리 
- */
-export const useGetInfiniteMyActivities = () => {
-  const { data, fetchNextPage, ...rest } = useInfiniteQuery(
-    infiniteQueryOptions<MyActivities>({
-      queryKey: ["myActivities", "ActivitiesList"],
-      queryFn: ({ pageParam }) => {
-        return getMyActivities({
-          cursorId: pageParam as number | undefined,
-          size: 5,
-        });
-      },
-      initialPageParam: undefined,
-      getNextPageParam: (lastPage) => {
-        return lastPage.cursorId ? lastPage.cursorId : undefined;
-      },
-    }),
-  );
-  return { data, fetchNextPage, ...rest };
-};
-
-
 export const useGetMyReservationDashboard = (
   params: ReservationDashboardParams,
 ) => {
@@ -116,4 +91,23 @@ export const usePatchMyActivity = () => {
       patchMyActivity(activityId, updateData),
   });
   return { mutate };
+};
+
+export const useGetInfiniteMyActivities = () => {
+  const { data, fetchNextPage, hasNextPage, isError, ...rest } =
+    useInfiniteQuery(
+      infiniteQueryOptions<MyActivities>({
+        queryKey: ["activities", "list"],
+        queryFn: ({ pageParam }) => {
+          const cursorId =
+            typeof pageParam === "number" ? pageParam : undefined;
+          return getMyActivities({ cursorId, size: 5 });
+        },
+        initialPageParam: undefined,
+        getNextPageParam: (lastPage) => {
+          return lastPage.cursorId ?? undefined;
+        },
+      }),
+    );
+  return { data, fetchNextPage, hasNextPage, isError, ...rest };
 };
