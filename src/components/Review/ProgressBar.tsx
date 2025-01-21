@@ -30,8 +30,14 @@ const ProgressBar = ({ reviews, totalCount }: ReviewSummary) => {
   const maxCount = Math.max(...Object.values(ratingCounts));
 
   const progressBarColor = (count: number) => {
-    if (count === 0) return "bg-gray-100";
-    return count === maxCount ? "bg-brand-500" : "bg-gray-300";
+    switch (count) {
+      case 0:
+        return "bg-gray-100";
+      case maxCount:
+        return "bg-brand-500";
+      default:
+        return "bg-gray-300";
+    }
   };
 
   return (
