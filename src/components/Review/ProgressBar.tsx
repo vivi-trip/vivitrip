@@ -2,8 +2,10 @@ import PROGRESS_BAR_ITEM from "@/src/constants/progressBar";
 import { ReviewItem, ReviewSummary } from "@/src/types/review";
 
 const ProgressBar = ({ reviews, totalCount }: ReviewSummary) => {
+  const reversedItems = [...PROGRESS_BAR_ITEM].reverse();
+
   const countByRating = (reviewItems: ReviewItem[]) => {
-    const counts = PROGRESS_BAR_ITEM.reduce(
+    const counts = reversedItems.reduce(
       (acc, { range }) => {
         acc[range] = 0;
         return acc;
@@ -42,7 +44,7 @@ const ProgressBar = ({ reviews, totalCount }: ReviewSummary) => {
 
   return (
     <section className="flex h-full w-3/5 max-w-600 flex-col items-center justify-evenly p-10 md:px-20 lg:px-30">
-      {PROGRESS_BAR_ITEM.map(({ range, title }) => (
+      {reversedItems.map(({ range, title }) => (
         <div
           key={range}
           className="flex w-full items-center justify-between gap-20 whitespace-nowrap md:gap-30">
