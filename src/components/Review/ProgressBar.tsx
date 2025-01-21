@@ -46,9 +46,7 @@ const ProgressBar = ({ reviews, totalCount }: ReviewSummary) => {
         <div
           key={range}
           className="flex w-full items-center justify-between gap-20 whitespace-nowrap md:gap-30">
-          <div className="font-16px-regular w-74 shrink-0 text-left">
-            {title}
-          </div>
+          <p className="font-16px-regular w-74 shrink-0 text-left">{title}</p>
           <div className="flex w-full items-center justify-between gap-15 md:gap-20">
             <div className="relative h-17 w-full flex-1 rounded-8 bg-brand-100">
               <div
