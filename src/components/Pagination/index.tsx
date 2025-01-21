@@ -27,8 +27,8 @@ const Pagination = ({
     currentPage,
     itemCountPerPage,
   });
-  const buttonSize = "w-40 h-40 md:w-55 md:h-55";
-  const iconSize = "w-21 h-21";
+  const buttonSize = "size-40 md:size-55";
+  const iconSize = "size-21";
 
   // loading spinner
   const { loadingButtons, showLoadingButtons, hideLoadingButtons } =
