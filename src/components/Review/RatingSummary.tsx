@@ -1,4 +1,5 @@
 import StarLgIcon from "@/assets/svgs/ic_star_lg.svg";
+import PROGRESS_BAR_ITEM from "@/src/constants/progressBar";
 import { ReviewItem, ReviewSummary } from "@/src/types/review";
 
 const RatingSummary = ({
@@ -13,20 +14,10 @@ const RatingSummary = ({
   const satisFactionLevel = (rating: number | "N/A"): string => {
     if (totalCount === 0) return "보통";
     if (rating === "N/A") return "N/A";
-    switch (true) {
-      case rating >= 0 && rating < 1:
-        return "매우 불만족";
-      case rating >= 1 && rating < 2:
-        return "불만족";
-      case rating >= 2 && rating < 3:
-        return "보통";
-      case rating >= 3 && rating < 4:
-        return "만족";
-      case rating >= 4 && rating < 5:
-        return "매우 만족";
-      default:
-        return "보통";
-    }
+
+    const ratingIndex = Math.ceil(rating) - 1;
+
+    return PROGRESS_BAR_ITEM[ratingIndex].title;
   };
 
   // 만족도 계산
