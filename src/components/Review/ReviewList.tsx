@@ -73,7 +73,8 @@ const ReviewList = ({ fetchedReviews }: ReviewListProps) => {
         ))
       ) : (
         <article>
-          <p>후기가 존재하지 않습니다.</p>
+          <p>아직 작성된 후기가 없습니다.</p>
+          <p>체험 후 첫 번째 후기를 작성해 보세요.</p>
         </article>
       )}
     </article>
