@@ -4,21 +4,20 @@ import RatingSummary from "@/src/components/Review/RatingSummary";
 import ReviewList from "@/src/components/Review/ReviewList";
 import { getActivityReviews } from "@/src/services/activities";
 import { ReviewSummary } from "@/src/types/review";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Review = ({ reviews, totalCount, averageRating }: ReviewSummary) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) || 1;
+  const searchParams = router.query;
+  const currentPage = Number(searchParams.page) || 1;
   const [fetchedReviews, setFetchedReviews] = useState([]);
   const activityId = reviews[0]?.activityId;
   const size = 3;
 
   // 초기 페이지 설정
   useEffect(() => {
-    if (!searchParams.get("page")) {
+    if (!searchParams.page) {
       router.replace(`?page=1`);
     }
   }, [searchParams, router]);
@@ -28,7 +27,7 @@ const Review = ({ reviews, totalCount, averageRating }: ReviewSummary) => {
 
     const fetchReviews = async () => {
       try {
-        const page = Number(searchParams.get("page")) || 1;
+        const page = Number(searchParams.page) || 1;
 
         const response = await getActivityReviews({ activityId, page, size });
         setFetchedReviews(response.reviews);
