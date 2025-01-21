@@ -2,7 +2,6 @@ import PROGRESS_BAR_ITEM from "@/src/constants/progressBar";
 import { ReviewItem, ReviewSummary } from "@/src/types/review";
 
 const ProgressBar = ({ reviews, totalCount }: ReviewSummary) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const countByRating = (reviewItems: ReviewItem[]) => {
     const counts = PROGRESS_BAR_ITEM.reduce(
       (acc, { range }) => {
@@ -12,7 +11,7 @@ const ProgressBar = ({ reviews, totalCount }: ReviewSummary) => {
       {} as Record<string, number>,
     );
 
-    reviews.forEach((review) => {
+    reviewItems.forEach((review) => {
       const { rating } = review;
 
       const rangeItem = PROGRESS_BAR_ITEM.find(({ range }) => {
