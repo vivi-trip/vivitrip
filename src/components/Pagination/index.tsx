@@ -44,9 +44,9 @@ const Pagination = ({
 
   const loadingSpinner = (
     <Loading
-      isOverlay="false"
+      isOverlay="node"
       overlayColor="translate"
-      isAbsolute="false"
+      isAbsolute="static"
       loadingBoxColor="translate"
       color="#ffffff"
       size={35}

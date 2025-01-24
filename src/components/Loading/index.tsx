@@ -12,9 +12,9 @@ import clsx from "clsx";
 import React from "react";
 
 const Loading = ({
-  isOverlay = "false",
+  isOverlay = "node",
   overlayColor = "translate",
-  isAbsolute = "false",
+  isAbsolute = "static",
   loadingBoxColor = "translate",
   size = 60,
   speed = 0.9,
@@ -29,14 +29,14 @@ const Loading = ({
   return (
     <div
       className={clsx(
-        isOverlay && LOADING_IS_OVERLAY_PRESET[isOverlay],
-        overlayColor && LOADING_OVERLAY_COLOR_PRESET[overlayColor],
-        isAbsolute && LOADING_IS_ABSOLUTE_PRESET[isAbsolute],
+        LOADING_IS_OVERLAY_PRESET[isOverlay],
+        LOADING_OVERLAY_COLOR_PRESET[overlayColor],
+        LOADING_IS_ABSOLUTE_PRESET[isAbsolute],
       )}>
       <div
         className={clsx(
           loadingBoxColor && LOADING_BOX_COLOR_PRESET[loadingBoxColor],
-          isOverlay === "false" && "size-full",
+          isOverlay === "node" && "size-full",
           "flex flex-col items-center justify-center gap-25 rounded-15 text-center",
           className,
         )}>

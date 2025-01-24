@@ -32,7 +32,7 @@ export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-export type LoadingIsOverlayType = "true" | "false";
+export type LoadingIsOverlayType = "window" | "node";
 export type LoadingOverlayColorType = "translate" | "white" | "blue";
-export type LoadingIsAbsoluteType = "true" | "false";
+export type LoadingIsAbsoluteType = "absolute" | "static";
 export type LoadingBoxColorType = "translate" | "black";
