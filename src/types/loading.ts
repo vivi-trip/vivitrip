@@ -1,3 +1,8 @@
+export type LoadingIsOverlayType = "window" | "node";
+export type LoadingOverlayColorType = "translate" | "white" | "blue";
+export type LoadingIsAbsoluteType = "absolute" | "static";
+export type LoadingBoxColorType = "translate" | "black";
+
 /**
  * @description 로딩 스피너
  * @param isOverlay - overlay 여부
@@ -31,8 +36,3 @@ export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
   textColor?: string;
   className?: string;
 }
-
-export type LoadingIsOverlayType = "window" | "node";
-export type LoadingOverlayColorType = "translate" | "white" | "blue";
-export type LoadingIsAbsoluteType = "absolute" | "static";
-export type LoadingBoxColorType = "translate" | "black";
