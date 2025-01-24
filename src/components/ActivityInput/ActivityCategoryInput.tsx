@@ -23,8 +23,6 @@ const ActivityCategoryInput = ({ control }: CategoryInputProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
   return (
     <div>
       <Controller
@@ -43,7 +41,7 @@ const ActivityCategoryInput = ({ control }: CategoryInputProps) => {
                   "text-gray-500": !isSelected,
                 },
               )}
-              onClick={toggleDropdown}>
+              >
               {field.value || "카테고리"}
               {isOpen ? <IconArrowUp /> : <IconArrowDown />}
             </Dropdown.Trigger>
