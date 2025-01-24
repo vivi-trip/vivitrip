@@ -26,10 +26,10 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-export const useGetMyActivities = (params: GetMyActivities) => {
+export const useGetMyActivities = (params: GetMyActivities ) => {
   const { data, isLoading, error } = useQuery<MyActivities>({
     queryKey: ["myActivities", params],
-    queryFn: () => getMyActivities(params),
+    queryFn: () => getMyActivities(params || {}),
   });
 
   return { data, isLoading, error };
@@ -50,7 +50,7 @@ export const useGetMyReservedSchedule = (
   params: ReservatdeScheduleParams,
   enabled: boolean,
 ) => {
-  const { data, isLoading, error } = useQuery<ReservationScheduleType>({
+  const { data, isLoading, error } = useQuery<ReservationScheduleType[]>({
     queryKey: ["myReservedSchedule", params],
     queryFn: () => getMyReservedSchedule(params),
     enabled,

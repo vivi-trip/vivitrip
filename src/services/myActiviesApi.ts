@@ -41,7 +41,7 @@ export const getMyReservationDashboard = async (
  */
 export const getMyReservedSchedule = async (
   params: ReservatdeScheduleParams,
-): Promise<ReservationScheduleType> => {
+): Promise<ReservationScheduleType[]> => {
   const response = await api.get(
     `/my-activities/${params.activityId}/reserved-schedule`,
     { params },
