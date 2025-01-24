@@ -56,7 +56,6 @@ const PaginationPage = () => {
     showLoading,
     hideLoading,
     showLoadingButtons,
-    hideLoadingButtons,
   } = useLoadingStore();
 
   useEffect(() => {
