@@ -1,14 +1,16 @@
 import Star from "@/assets/svgs/star.svg";
+import Loading from "@/src/components/Loading";
 import Pagination from "@/src/components/Pagination/index";
+import useLoadingStore from "@/src/stores/loadingStore";
 import { Activity } from "@/src/types/activities";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const PaginationPage = () => {
   const router = useRouter();
 
-  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState<number | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [sort, setSort] = useState("latest");
@@ -47,9 +49,19 @@ const PaginationPage = () => {
     }
   }, [router.isReady, router.query.page, page, router]);
 
+  // loading spinner
+  const {
+    isLoading,
+    loadingButtons,
+    showLoading,
+    hideLoading,
+    showLoadingButtons,
+    hideLoadingButtons,
+  } = useLoadingStore();
+
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
+      showLoading();
       try {
         if (page !== null) {
           const response = await fetch(
@@ -58,59 +70,87 @@ const PaginationPage = () => {
           const data = await response.json();
           setActivities(data.activities);
           setTotalCount(data.totalCount);
-          setLoading(false);
+          hideLoading();
         }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error("데이터 페칭 오류", error);
-        setLoading(false);
+        hideLoading();
         throw error;
       }
     };
     fetchData();
-  }, [page, sort, size]);
+  }, [page, sort, size, showLoading, hideLoading]);
 
   return (
     <>
+      {/* loading spinner */}
+      {isLoading && (
+        <Loading
+          isOverlay="true"
+          overlayColor="blue"
+          isAbsolute="false"
+          loadingBoxColor="black"
+          size={{ sm: 50, md: 60, lg: 70 }}
+          loadingText="잠시만 기다려주세요."
+          textStyle="font-18px-medium md:font-20px-regular lg:font-24px-regular"
+          textColor="text-brand-50"
+          className="p-30"
+        />
+      )}
+
       {/* 메인 화면 */}
       <div className="my-20">
         <header className="font-36px-bold mb-8">🛼 모든 체험</header>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <div className="grid grid-cols-2 grid-rows-2 gap-x-8 gap-y-5 md:grid-cols-3 md:grid-rows-3 md:gap-x-16 md:gap-y-32 lg:grid-cols-4 lg:grid-rows-2 lg:gap-x-24 lg:gap-y-48">
-            {Array.isArray(activities) && activities.length > 0 ? (
-              activities.map((activity) => (
-                <div key={activity.id}>
-                  <div className="relative aspect-[1/1] w-full">
-                    <Image
-                      src={activity.bannerImageUrl}
-                      alt="activity.title"
-                      className="rounded-2xl object-cover"
-                      fill
-                      sizes="(max-width: 640px) 168px, (max-width: 768px) 221px, 283px"
-                      priority
+
+        <div className="grid grid-cols-2 grid-rows-2 gap-x-8 gap-y-5 md:grid-cols-3 md:grid-rows-3 md:gap-x-16 md:gap-y-32 lg:grid-cols-4 lg:grid-rows-2 lg:gap-x-24 lg:gap-y-48">
+          {Array.isArray(activities) && activities.length > 0 ? (
+            activities.map((activity) => (
+              <Link
+                href={`https://sp-globalnomad-api.vercel.app/6-1/activities/${activity.id}`}
+                key={activity.id}
+                onClick={() => {
+                  showLoadingButtons(activity.id);
+                }}>
+                <div className="relative aspect-[1/1] w-full">
+                  <Image
+                    src={activity.bannerImageUrl}
+                    alt="activity.title"
+                    className="rounded-2xl object-cover"
+                    fill
+                    sizes="(max-width: 640px) 168px, (max-width: 768px) 221px, 283px"
+                    priority
+                  />
+                  {loadingButtons?.[activity.id] ? (
+                    <Loading
+                      isOverlay="false"
+                      overlayColor="translate"
+                      isAbsolute="true"
+                      loadingBoxColor="black"
+                      color="gray"
+                      size={70}
                     />
-                  </div>
-                  <div className="flex">
-                    <Star alt="별점 아이콘" />
-                    <p>3.9</p>
-                    <p>(108)</p>
-                  </div>
-                  <p className="lg:font-24px-semibold font-18px-semibold overflow-hidden text-ellipsis text-nowrap">
-                    {activity.title}
-                  </p>
-                  <div className="flex">
-                    <p>₩ 42,800</p>
-                    <p>/인</p>
-                  </div>
+                  ) : null}
                 </div>
-              ))
-            ) : (
-              <p>체험이 없습니다.</p>
-            )}
-          </div>
-        )}
+                <div className="flex">
+                  <Star alt="별점 아이콘" />
+                  <p>3.9</p>
+                  <p>(108)</p>
+                </div>
+                <p className="lg:font-24px-semibold font-18px-semibold overflow-hidden text-ellipsis text-nowrap">
+                  {activity.title}
+                </p>
+                <div className="flex">
+                  <p>₩ 42,800</p>
+                  <p>/인</p>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p>체험이 없습니다.</p>
+          )}
+        </div>
+
         <div className="mt-64 flex w-full justify-center">
           <Pagination
             totalItems={totalCount}
