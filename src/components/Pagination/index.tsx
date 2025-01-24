@@ -5,6 +5,7 @@ import Loading from "@/src/components/Loading";
 import usePagination from "@/src/hooks/usePagination";
 import useLoadingStore from "@/src/stores/loadingStore";
 import { PaginationProps } from "@/src/types/pagination";
+import clsx from "clsx";
 
 /**
  * @description
@@ -63,13 +64,16 @@ const Pagination = ({
             gap="10"
             backgroundColor={noPrev ? "white_gray" : "white_green"}
             disabled={noPrev}
-            className={`${buttonSize} relative`}
+            className={clsx(buttonSize, "relative")}
             onClick={() => handlePageClick(start - 1)}>
             {loadingButtons?.[start - 1] ? (
               loadingSpinner
             ) : (
               <AltArrowLeft
-                className={`${iconSize} ${noPrev ? "text-gray-600" : "text-brand-400"}`}
+                className={clsx(
+                  iconSize,
+                  noPrev ? "text-gray-600" : "text-brand-400",
+                )}
                 aria-label="이전 페이지로 이동 버튼"
               />
             )}
@@ -89,7 +93,7 @@ const Pagination = ({
                   backgroundColor={isActivePage ? "green" : "white_green"}
                   fontStyle={isActivePage ? "xxxl" : "xxl"}
                   disabled={isActivePage}
-                  className={`${buttonSize}`}
+                  className={buttonSize}
                   onClick={() => handlePageClick(pageNumber)}>
                   {loadingButtons?.[pageNumber] ? loadingSpinner : pageNumber}
                 </Button>
@@ -103,7 +107,7 @@ const Pagination = ({
             radius="15"
             gap="10"
             backgroundColor={noNext ? "white_gray" : "white_green"}
-            className={`${buttonSize}`}
+            className={buttonSize}
             disabled={noNext}
             onClick={() => handlePageClick(start + pageCount)}>
             {loadingButtons?.[start + pageCount] ? (
