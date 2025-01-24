@@ -57,7 +57,7 @@ const NotificationItem = ({
 
   return (
     <Link
-      href="/my-page"
+      href="mypage"
       className="flex flex-col items-stretch justify-center gap-4 rounded border border-brand-100 bg-white p-12 shadow-md">
       <div className="flex items-center justify-between">
         <p className={clsx(statusColor, "size-5 rounded-full")} />
