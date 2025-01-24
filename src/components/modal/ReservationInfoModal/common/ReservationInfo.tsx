@@ -30,14 +30,16 @@ const ReservationInfo = ({
 
   return (
     <div>
-      <div className="flex flex-col gap-6">
-        <div className="flex gap-10">
-          <p className="font-16px-semibold mr-4 text-gray-500">닉네임</p>
-          <p className="font-16px-regular text-black"> {nickname}</p>
-        </div>
-        <div className="flex gap-10">
-          <p className="font-16px-semibold mr-4 text-gray-500">인원</p>
-          <p className="font-16px-regular text-black">{headCount}명</p>
+      <div className="flex flex-col rounded-4 border p-16">
+        <div className="flex flex-col gap-6">
+          <div className="flex gap-10">
+            <p className="font-16px-semibold mr-4 text-gray-500">닉네임</p>
+            <p className="font-16px-regular text-black"> {nickname}</p>
+          </div>
+          <div className="flex gap-10">
+            <p className="font-16px-semibold mr-4 text-gray-500">인원</p>
+            <p className="font-16px-regular text-black">{headCount}명</p>
+          </div>
         </div>
         <div className="flex justify-end gap-4">
           {selectTab === "pending" && (
@@ -58,7 +60,7 @@ const ReservationInfo = ({
                 width="82"
                 height="38"
                 fontStyle="xl"
-                backgroundColor="black"
+                backgroundColor="white_green"
                 radius="6"
                 gap="8"
                 onClick={() => handleResultUpdate("declined")}>
@@ -72,7 +74,7 @@ const ReservationInfo = ({
             </p>
           )}
           {selectTab === "declined" && (
-            <p className="flex h-38 w-85 items-center justify-center rounded-3xl bg-[#FFF4E8] text-[#FF472E]">
+            <p className="flex h-38 w-85 items-center justify-center rounded-3xl bg-[#FFE4E0] py-10 text-[#FF472E]">
               예약거절
             </p>
           )}
