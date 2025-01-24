@@ -9,7 +9,7 @@
  * @param loadingText - 메시지
  * @param textStyle - 메시지 폰트 스타일
  * @param textColor - 메시지 폰트 색상
- * @param className -
+ * @param className - 로딩 박스 기타 스타일 적용
  */
 
 export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {

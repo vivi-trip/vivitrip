@@ -11,19 +11,6 @@ import { DotSpinner } from "@uiball/loaders";
 import clsx from "clsx";
 import React from "react";
 
-/**
- * @description 로딩 스피너
- * @param isOverlay - 오버레이 여부
- * @param overlayColor - 오버레이 색상
- * @param loadingBoxColor - div 배경 색상
- * @param size - 스피너 크기
- * @param color - 스피너 색상
- * @param loadingText - 스피너와 함께 표시될 메시지
- * @param textStyle - 메시지 텍스트 스타일
- * @param textColor - 메시지 텍스트 색상
- * @param className - 기타 스타일 적용
- */
-
 const Loading = ({
   isOverlay = "false",
   overlayColor = "translate",
