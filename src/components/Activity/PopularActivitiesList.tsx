@@ -26,7 +26,6 @@ const PopularActivitiesList = ({
   };
 
   return (
-    // <SectionLayout className="flex flex-col">
     <>
       <div className="flex items-center justify-between">
         <h2 className="font-18px-bold md:font-36px-bold lg:font-36px-bold">
