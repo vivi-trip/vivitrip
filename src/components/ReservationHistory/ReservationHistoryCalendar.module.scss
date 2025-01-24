@@ -1,0 +1,50 @@
+.custom {
+  :global {
+    .rbc-event {
+      border: none;
+      background-color: transparent;
+      position: relative;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      pointer-events: none;
+      cursor: default;
+
+      &.rbc-selected {
+        outline: none;
+        background-color: transparent !important;
+      }
+    }
+
+    .rbc-row-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .rbc-header {
+      padding: 12px 2px 12px 12px;
+      font-size: 16px;
+      color: var(--gray-500);
+      font-weight: 500;
+
+      @media (min-width: 768px) {
+        padding: 12px 12px 12px 12px;
+      }
+    }
+
+
+    .rbc-date-cell {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .rbc-row-segment {
+      padding: 0;
+    }
+  }
+}
