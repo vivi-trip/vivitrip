@@ -87,9 +87,9 @@ const PaginationPage = () => {
       {/* loading spinner */}
       {isLoading && (
         <Loading
-          isOverlay="true"
+          isOverlay="window"
           overlayColor="blue"
-          isAbsolute="false"
+          isAbsolute="static"
           loadingBoxColor="black"
           size={{ sm: 50, md: 60, lg: 70 }}
           loadingText="잠시만 기다려주세요."
@@ -123,9 +123,9 @@ const PaginationPage = () => {
                   />
                   {loadingButtons?.[activity.id] ? (
                     <Loading
-                      isOverlay="false"
+                      isOverlay="node"
                       overlayColor="translate"
-                      isAbsolute="true"
+                      isAbsolute="absolute"
                       loadingBoxColor="black"
                       color="gray"
                       size={70}

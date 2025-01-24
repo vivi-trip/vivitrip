@@ -6,8 +6,8 @@ import {
 } from "@/src/types/loading";
 
 export const LOADING_IS_OVERLAY_PRESET: Record<LoadingIsOverlayType, string> = {
-  true: "fixed inset-0 z-50 flex flex-col items-center justify-center",
-  false: "size-full z-50 flex flex-col items-center justify-center",
+  window: "fixed inset-0 z-50 flex flex-col items-center justify-center",
+  node: "size-full z-50 flex flex-col items-center justify-center",
 };
 
 export const LOADING_OVERLAY_COLOR_PRESET: Record<
@@ -21,8 +21,8 @@ export const LOADING_OVERLAY_COLOR_PRESET: Record<
 
 export const LOADING_IS_ABSOLUTE_PRESET: Record<LoadingIsAbsoluteType, string> =
   {
-    true: "absolute",
-    false: "static",
+    absolute: "absolute",
+    static: "static",
   };
 
 export const LOADING_BOX_COLOR_PRESET: Record<LoadingBoxColorType, string> = {
