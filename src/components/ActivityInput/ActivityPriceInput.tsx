@@ -8,6 +8,8 @@ interface PriceInputProps {
 
 const ActivityPriceInput = ({ control }: PriceInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
+
+  
   return (
     <div>
       <Controller
@@ -27,13 +29,20 @@ const ActivityPriceInput = ({ control }: PriceInputProps) => {
                 type="number"
                 inputMode="numeric"
                 min="0"
-                step="0.01"
                 placeholder="가격"
+                step="1"
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onChange={(e) => {
-                  const value = parseFloat(e.target.value);
-                  field.onChange(value >= 0 ? value : 0);
+                  const value = parseInt(e.target.value, 10);
+                  field.onChange(
+                    Number.isNaN(Number(value)) ? 0 : Math.max(0, value),
+                  );
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "." || e.key === ",") {
+                    e.preventDefault();
+                  }
                 }}
                 className="font-16px-regular mt-16 h-56 w-full rounded-4 border border-gray-500 py-15 pl-16"
               />
