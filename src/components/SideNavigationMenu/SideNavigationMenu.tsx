@@ -24,14 +24,7 @@ const SideNavigationMenu = ({ url }: Props) => {
    * @description - 프로필이미지 훅 차후 목데이터 삭제후 사용
    * @todo  삭제 할것
    */
-  // const { data } = useGetUserProfile();
-
-  /**
-   * @description - 목데이터
-   */
-  const data = {
-    profileImageUrl: undefined,
-  };
+  const { data } = useGetUserProfile();
 
   const handleClick = (Id: number) => {
     setSelectedItem(Id);
@@ -85,7 +78,7 @@ const SideNavigationMenu = ({ url }: Props) => {
       <div className="relative flex justify-center">
         {pathname === "/my-profile"
           ? url && (
-              <ProfileUpload url={url} profileImageUrl={data.profileImageUrl} />
+              <ProfileUpload url={url} profileImageUrl={data?.profileImageUrl} />
             )
           : data && (
               <div className="relative size-160 overflow-hidden rounded-160 bg-gray-200 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]">
