@@ -2,7 +2,6 @@ import { ActivityFormDataType } from "@/src/types/activityFormDataType";
 import React from "react";
 import { Control, Controller } from "react-hook-form";
 
-
 interface TitleInputProps {
   control: Control<ActivityFormDataType>;
 }
@@ -16,7 +15,7 @@ const ActivityTitleInput = ({ control }: TitleInputProps) => {
         rules={{
           required: { value: true, message: "필수 입력 값입니다." },
           pattern: {
-            value: /^(?=.*[A-Za-z가-힣])[\dA-Za-z가-힣\s]+$/,
+            value: /^[^\n]+$/,
             message: "문자열을 포함하여 작성해주세요.",
           },
         }}
