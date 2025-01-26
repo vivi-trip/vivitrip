@@ -51,7 +51,7 @@ const ReservationInfoModal = ({
 
   const { data: dayReservations } = useGetMyReservedSchedule(
     {
-      activityId: selectedActivityId,
+      activityId: { activityId: selectedActivityId },
       date: selectedDate,
     },
     isSelectedScheduleId,
@@ -73,7 +73,7 @@ const ReservationInfoModal = ({
 
   const { data: reservedTimeData } = useGetMyReservations(
     {
-      activityId: selectedActivityId,
+      activityId: { activityId: selectedActivityId },
       scheduleId: selectedScheduleId,
       status: selectTab,
     },
