@@ -21,7 +21,7 @@ const MyreservationHisroy = () => {
 
   return (
     <div>
-      <div className="flex w-full justify-center gap-24 pt-72">
+      <div className="flex w-full justify-center gap-24 pt-72 mb-120">
         <SideNavigationMenu />
         <div className="flex-1">
           <div className="flex flex-col">
