@@ -19,26 +19,27 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
-      mutate(file, {
-        onSuccess: (data: ProfileImageUrlResponse) => {
-          setUploadedImage(data.profileImageUrl);
-          url(data.profileImageUrl);
-          queryClient.invalidateQueries({ queryKey: ["userProfile"] });
-        },
-      });
-    }
-  };
+    if (!file) return;
 
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
+    mutate(file, {
+      onSuccess: (data: ProfileImageUrlResponse) => {
+        setUploadedImage(data.profileImageUrl);
+        url(data.profileImageUrl);
+        queryClient.invalidateQueries({ queryKey: ["userProfile"] });
+
+        // 파일 입력값 초기화
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      },
+      onError: (error) => {
+        console.error("Image upload failed:", error);
+      },
+    });
   };
 
   return (
-    <button
-      type="button"
-      onClick={() => handleUploadClick()}
-      className="relative size-160 cursor-pointer border-0 bg-transparent p-0">
+    <div className="relative size-160 border-0 bg-transparent p-0">
       <div
         className="relative size-160 overflow-hidden rounded-full bg-gray-200"
         style={{ boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.08)" }}>
@@ -66,7 +67,7 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
         <PenIcon
           width={44}
           height={44}
-          className="absolute bottom-0 right-12 z-10"
+          className="absolute bottom-0 right-12 z-10 cursor-pointer"
           aria-label="이미지 업로드"
         />
         <input
@@ -78,7 +79,7 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
           onChange={handleImageChange}
         />
       </label>
-    </button>
+    </div>
   );
 };
 
