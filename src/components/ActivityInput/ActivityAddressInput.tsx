@@ -1,56 +1,23 @@
 import { ActivityFormDataType } from "@/src/types/activityFormDataType";
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
+import DaumPostcodeEmbed, { Address } from "react-daum-postcode";
 import { Control, Controller } from "react-hook-form";
-
-interface DaumPostcode {
-  open: () => void;
-  oncomplete: (data: any) => void;
-}
-
-declare global {
-  interface Window {
-    daum: {
-      Postcode: new (options: {
-        oncomplete: (data: any) => void;
-      }) => DaumPostcode;
-    };
-  }
-}
 
 interface AddressInputProps {
   control: Control<ActivityFormDataType>;
 }
 
 const ActivityAddressInput = ({ control }: AddressInputProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   const addressInputRef = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
-    script.async = true;
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
-  const handleOpenAddressSearch = (onChange: (value: string) => void) => {
-    if (window.daum && window.daum.Postcode) {
-      new window.daum.Postcode({
-        oncomplete(data: any) {
-          if (addressInputRef?.current && data.address) {
-            addressInputRef.current.value = data.address;
-            onChange(data.address);
-          }
-        },
-      }).open();
-    } else {
-      console.error("Daum Postcode script not loaded");
+  const handleComplete = (data: Address, onChange: (value: string) => void) => {
+    if (addressInputRef?.current) {
+      addressInputRef.current.value = data.address;
+      onChange(data.address);
     }
+    setIsOpen(false);
   };
-
   return (
     <div className="flex flex-col gap-6">
       <Controller
@@ -72,9 +39,17 @@ const ActivityAddressInput = ({ control }: AddressInputProps) => {
               type="text"
               id="address-input"
               placeholder="주소를 입력해주세요."
-              onClick={() => handleOpenAddressSearch(field.onChange)}
+              onClick={() => setIsOpen(true)}
               readOnly
             />
+            {isOpen && (
+              <div className="relative mt-2">
+                <DaumPostcodeEmbed
+                  onComplete={(data) => handleComplete(data, field.onChange)}
+                  style={{ height: 300 }}
+                />
+              </div>
+            )}
             {error && (
               <div className="mt-2 pl-1 text-red-500">{error.message}</div>
             )}
