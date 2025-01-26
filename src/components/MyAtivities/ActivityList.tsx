@@ -19,7 +19,7 @@ const ActivityList = () => {
 
   return (
     <>
-      <div className="mt-16 flex flex-col gap-6 mb-30">
+      <div className="mt-16 flex flex-col gap-6 mb-120">
         {data?.pages.map((page) => {
           if (page.totalCount === 0) {
             return (
