@@ -192,6 +192,7 @@ const ActivityImageInput = ({
                         }
                         fill
                         alt="이미지"
+                        objectFit="cover"
                       />
                     </div>
                     <button
@@ -222,6 +223,7 @@ const ActivityImageInput = ({
                           }
                           fill
                           alt="이미지"
+                          objectFit="cover"
                         />
                       </div>
                       <button
@@ -240,6 +242,7 @@ const ActivityImageInput = ({
                 최소 {minImages}개의 이미지가 필요합니다.
               </div>
             )}
+            {maxImages > 2 && <p>*이미지는 최대 4개까지 등록 가능합니다.</p>}
           </div>
         );
       }}
