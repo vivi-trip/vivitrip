@@ -6,11 +6,13 @@ import ActivityTextArea from "../ActivityInput/ActivityTextArea";
 import ActivityTimeInput from "../ActivityInput/ActivityTimeInput";
 import ActivityTitleInput from "../ActivityInput/ActivityTitleInput";
 import Button from "../Button/Button";
+import TwoButtonModal from "../modal/TwoButtonModal";
 import {
   useCreateActivity,
   useGetActivities,
   usePatchMyActivity,
 } from "@/src/queries/useActivities";
+import useModalStore from "@/src/stores/ModalStore";
 import { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
 import { ActivityFormDataType } from "@/src/types/activityFormDataType";
 import { useRouter } from "next/router";
@@ -39,6 +41,22 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
   const { data: ActivitiesDetail } = useGetActivities(activityId);
   const { mutate: createActivity } = useCreateActivity();
   const { mutate: PatchMyActivity } = usePatchMyActivity();
+
+  const { setModalOpen, setModalClose } = useModalStore();
+
+  const handleCancelClick = () => {
+    setModalOpen(
+      <TwoButtonModal
+        onCancel={() => {
+          router.push("/my-activities");
+          setModalClose();
+        }}
+        title="작성을 취소하시겠습니까?"
+        negativeContent="아니오"
+        interactiveContent="작성취소"
+      />,
+    );
+  };
 
   const handleCreateActivity = (data: ActivityFormDataType) => {
     const { subImages, ...rest } = data;
@@ -149,7 +167,7 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
   };
 
   return (
-    <div className="min-w-343 mb-20 px-16">
+    <div className="mb-120 min-w-343 px-16">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-24 flex justify-between">
           <p className="font-32px-bold">
@@ -184,18 +202,44 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
           <ActivityImageInput
             minImages={1}
             maxImages={1}
-            title="배너이미지"
+            title="배너 이미지"
             control={control}
             name="bannerImageUrl"
           />
           <ActivityImageInput
-            minImages={4}
-            maxImages={6}
+            minImages={1}
+            maxImages={4}
             title="소개 이미지"
             control={control}
             name="subImages"
             onImageChange={handleImageChange}
           />
+        </div>
+        <div className="mt-20 flex justify-end gap-10">
+          <Button
+            type="submit"
+            width="120"
+            height="48"
+            radius="4"
+            gap="4"
+            fontStyle="l"
+            backgroundColor="black"
+            disabled={!isValid}
+            className="disabled:border-none disabled:bg-gray-500 disabled:text-white">
+            {isModification ? "체험 수정하기" : "체험 등록하기"}
+          </Button>
+          <Button
+            type="button"
+            width="120"
+            height="48"
+            radius="4"
+            gap="4"
+            fontStyle="l"
+            onClick={handleCancelClick}
+            backgroundColor="white_green"
+            className="disabled:border-none disabled:bg-gray-500 disabled:text-white">
+            {isModification ? "수정 취소하기" : "체험 취소하기"}
+          </Button>
         </div>
       </form>
     </div>
