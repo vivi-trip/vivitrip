@@ -20,6 +20,10 @@ const ReservationInfo = ({
 
   const { mutate } = usePatchReservationState();
 
+  /**
+   * 
+   * @todo 성공 또는 실패시 토스트  알림 추가 할것 
+   */
   const handleResultUpdate = (status: string) => {
     mutate({
       activityId,
