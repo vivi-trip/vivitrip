@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // output: "export", // 프로젝트 정적 페이지 전용으로 설정
   reactStrictMode: true,
   webpack: (config) => {
     config.module.rules.push({

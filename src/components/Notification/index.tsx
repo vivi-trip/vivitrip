@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import IconClose from "@/assets/svgs/close.svg";
 import IconNotification from "@/assets/svgs/ic_notification.svg";
 import IconRefresh from "@/assets/svgs/ic_refresh.svg";
@@ -53,7 +54,7 @@ const Notification = () => {
   const [cursorId, setCursorId] = useState<number | null>(null);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [items, setItems] = useState<MyNotificationsProps[]>([]);
-  const { data, isPending, refetch } = useMyNotificationsListQuery({
+  const { data, isLoading, isPending, refetch } = useMyNotificationsListQuery({
     size,
     cursorId,
   });
@@ -81,7 +82,9 @@ const Notification = () => {
     setTotalCount(items.length);
   }, [items]);
 
-  const handleIndicator = useCallback(() => {
+  const handleIndicator = useCallback(async () => {
+    if (isLoading) return;
+
     if (data) {
       setCursorId(data.data.cursorId);
       setTotalCount(MOCK_DATA.length);
@@ -89,8 +92,7 @@ const Notification = () => {
       // setItems(data.data.notifications);
       setItems(MOCK_DATA);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, isLoading]);
 
   useEffect(() => {
     handleIndicator();
