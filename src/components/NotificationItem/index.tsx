@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import IconClose from "@/assets/svgs/close.svg";
 import HighlightText from "@/src/components/HighlightText/HighlightText";
 import STATUS_KEYWORD_HIGHLIGHT from "@/src/constants/my-notifications";
@@ -40,6 +41,15 @@ const NotificationItem = ({
     return null;
   }, [item]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const MOCK_PATHNAME = {
+    blue: `/my-page`,
+    red: `/my-page`,
+    green: `/my-page`,
+  };
+
+  console.log(statusColor?.split("-")[1]);
+
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     handleDelete();
@@ -47,13 +57,7 @@ const NotificationItem = ({
 
   return (
     <Link
-      href={
-        statusColor === null
-          ? ""
-          : statusColor.includes("green")
-            ? `/my-page`
-            : `/my-page`
-      }
+      href="/my-page"
       className="flex flex-col items-stretch justify-center gap-4 rounded border border-brand-100 bg-white p-12 shadow-md">
       <div className="flex items-center justify-between">
         <p className={clsx(statusColor, "size-5 rounded-full")} />
