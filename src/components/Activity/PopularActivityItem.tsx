@@ -22,6 +22,7 @@ const PopularActivityItem = ({
             fill
             sizes="(max-width: 640px) 186px, (max-width: 768px) 384px, 384px"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/30 to-black/80" />
           <div className="absolute size-full transition group-hover:bg-black group-hover:opacity-40" />
         </div>
 
@@ -32,7 +33,7 @@ const PopularActivityItem = ({
               {rating} ({reviewCount})
             </p>
           </div>
-          <p className="md:font-32px-bold lg:font-32px-bold font-18px-bold text-white">
+          <p className="md:font-32px-bold lg:font-32px-bold font-18px-bold line-clamp-2 h-52 overflow-hidden text-white md:h-84">
             {title}
           </p>
           <div className="flex items-center gap-5">
