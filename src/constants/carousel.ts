@@ -1,14 +1,14 @@
-import mainImage1 from "@/assets/pngs/mainImage1.png";
-import mainImage2 from "@/assets/pngs/mainImage2.png";
-import mainImage3 from "@/assets/pngs/mainImage3.png";
-import mainImage4 from "@/assets/pngs/mainImage4.png";
-import mainImage5 from "@/assets/pngs/mainImage5.png";
-import mainImage6 from "@/assets/pngs/mainImage6.png";
-import mainImage7 from "@/assets/pngs/mainImage7.png";
-import mainImage8 from "@/assets/pngs/mainImage8.png";
-import mainImage9 from "@/assets/pngs/mainImage9.png";
-import mainImage10 from "@/assets/pngs/mainImage10.png";
-import mainImage11 from "@/assets/pngs/mainImage11.png";
+import mainImage1 from "@/assets/mainBanner/mainImage1.avif";
+import mainImage2 from "@/assets/mainBanner/mainImage2.avif";
+import mainImage3 from "@/assets/mainBanner/mainImage3.avif";
+import mainImage4 from "@/assets/mainBanner/mainImage4.avif";
+import mainImage5 from "@/assets/mainBanner/mainImage5.avif";
+import mainImage6 from "@/assets/mainBanner/mainImage6.avif";
+import mainImage7 from "@/assets/mainBanner/mainImage7.avif";
+import mainImage8 from "@/assets/mainBanner/mainImage8.avif";
+import mainImage9 from "@/assets/mainBanner/mainImage9.avif";
+import mainImage10 from "@/assets/mainBanner/mainImage10.avif";
+import mainImage11 from "@/assets/mainBanner/mainImage11.avif";
 import { CarouselItem } from "@/src/types/carousel";
 
 const CAROUSEL_ITEM: CarouselItem[] = [
