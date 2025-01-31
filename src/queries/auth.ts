@@ -31,7 +31,7 @@ import {
 } from "@/src/types/user";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 /**
  * @description - 로그아웃 함수

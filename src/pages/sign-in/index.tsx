@@ -8,8 +8,8 @@ import { useSignIn } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/userStore";
 import { SignInProps } from "@/src/types/user";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
+import { useRouter } from "next/router";
+import { FormEvent, useEffect } from "react";
 
 const SignInRoute = () => {
   const router = useRouter();
@@ -25,7 +25,9 @@ const SignInRoute = () => {
     signinFn(param);
   };
 
-  if (userData) return router.replace(PATH_NAMES.Root);
+  useEffect(() => {
+    if (userData) router.replace(PATH_NAMES.Root);
+  }, [userData, router]);
 
   return (
     <div className="mx-auto flex min-h-main w-full max-w-640 flex-col items-stretch justify-center py-48">

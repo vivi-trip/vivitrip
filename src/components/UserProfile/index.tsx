@@ -2,7 +2,7 @@ import Avatar from "@/src/components/Avatar";
 import Dropdown from "@/src/components/Dropdown";
 import PATH_NAMES from "@/src/constants/pathname";
 import { useSignOut } from "@/src/queries/auth";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const UserProfile = () => {
   const router = useRouter();
