@@ -6,7 +6,7 @@ import useHydration from "@/src/hooks/useHydration";
 import { useUpdateMyData } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/userStore";
 import { UserPatchProps } from "@/src/types/user";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { FormEvent, useEffect } from "react";
 
 const RouteMyPage = () => {
@@ -32,8 +32,7 @@ const RouteMyPage = () => {
 
   useEffect(() => {
     if (!userData) router.replace(PATH_NAMES.Root);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userData, router]);
 
   if (!isHydrated) return null;
 

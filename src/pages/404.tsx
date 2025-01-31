@@ -4,7 +4,7 @@ import AltArrowLeft from "@/assets/svgs/AltArrowLeft.svg";
 import AltArrowRight from "@/assets/svgs/AltArrowRight.svg";
 import Button from "@/src/components/Button/Button";
 import { NextPage } from "next";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import Lottie from "react-lottie-player";
 
 // statusCode 반환

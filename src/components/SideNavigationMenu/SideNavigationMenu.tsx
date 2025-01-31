@@ -8,7 +8,7 @@ import useModalStore from "@/src/stores/ModalStore";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 
 const SideNavigationMenu = ({ url }: Props) => {
   const { setModalOpen } = useModalStore();
-  const pathname = usePathname();
+  const { pathname } = useRouter();
   const [selectedItem, setSelectedItem] = useState<null | number>(null);
 
   /**

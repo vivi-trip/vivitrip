@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -27,7 +27,7 @@ const App = ({
 
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
 
-  const pathname = usePathname();
+  const { pathname } = useRouter();
 
   const currentPathname =
     pathname === "/home" || pathname === "/search"

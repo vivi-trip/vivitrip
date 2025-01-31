@@ -4,7 +4,7 @@ import { getKakaoToken, getKakaoUserInfo } from "@/src/services/auth";
 import useOauthSignStore from "@/src/stores/oauthSignStore";
 import { OauthActions } from "@/src/types/oauth";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 import { FormEvent, useEffect } from "react";
 
 export interface OauthKakaoSignProps {
@@ -13,8 +13,7 @@ export interface OauthKakaoSignProps {
 
 const OauthKakaoSign = ({ action }: OauthKakaoSignProps) => {
   const router = useRouter();
-  const responseParams = useSearchParams();
-  const code = responseParams.get("code") ?? "";
+  const code = (router.query.code as string) ?? "";
   const { mutate: mutateSignIn, isPending: isPendingSignIn } = useOauthSignIn();
   const { mutate: mutateSignUp, isPending: isPendingSignUp } = useOauthSignUp();
   const { profile, setProfile } = useOauthSignStore();
