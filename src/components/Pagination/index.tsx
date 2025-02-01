@@ -57,7 +57,7 @@ const Pagination = ({
   return (
     <div>
       <ul className="flex gap-10">
-        <li className={`${noPrev}`}>
+        <li className={clsx(noPrev)}>
           <Button
             type="button"
             radius="15"
