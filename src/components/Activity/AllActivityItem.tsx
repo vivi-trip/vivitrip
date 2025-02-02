@@ -1,4 +1,6 @@
 import Star from "@/assets/svgs/star.svg";
+import Loading from "@/src/components/Loading";
+import useLoadingStore from "@/src/stores/loadingStore";
 import { Activity } from "@/src/types/activities";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,12 +13,20 @@ const AllActivityItem = ({
   rating,
   reviewCount,
 }: Activity) => {
+  // loading spinner
+  const { loadingButtons, showLoadingButtons } = useLoadingStore();
+
   return (
     <div className="flex flex-col gap-16">
       <div
         className="relative w-full overflow-hidden rounded-3xl border border-gray-200"
         style={{ paddingTop: "100%" }}>
-        <Link href={`/activities/${id}`} className="absolute inset-0">
+        <Link
+          href={`/activities/${id}`}
+          className="absolute inset-0"
+          onClick={() => {
+            showLoadingButtons(id);
+          }}>
           <Image
             src={bannerImageUrl}
             alt={title}
@@ -24,6 +34,16 @@ const AllActivityItem = ({
             fill
             sizes="(max-width: 640px) 168px, (max-width: 768px) 221px, 283px"
           />
+          {loadingButtons?.[id] ? (
+            <Loading
+              isOverlay="node"
+              overlayColor="translate"
+              isAbsolute="absolute"
+              loadingBoxColor="black"
+              color="white"
+              size={40}
+            />
+          ) : null}
         </Link>
       </div>
       <div className="flex flex-col gap-15">
