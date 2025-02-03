@@ -40,7 +40,7 @@ const SearchableLayout = ({ children }: { children: ReactNode }) => {
   return (
     <main className="-mx-24 flex h-full flex-col items-center md:-mx-32">
       <Carousel items={items} />
-      <div className="w-full max-w-1200 px-16 md:px-24 lg:px-24">
+      <div className="w-full max-w-1248 px-16 md:px-24 lg:px-24">
         <section
           style={{ boxShadow: "0px 4px 16px 0px #1122110D" }}
           className="relative -mt-60 flex h-129 flex-col gap-15 rounded-2xl bg-white px-24 py-16 md:h-184 md:gap-32 md:py-32 lg:h-184 lg:gap-32 lg:py-32">
