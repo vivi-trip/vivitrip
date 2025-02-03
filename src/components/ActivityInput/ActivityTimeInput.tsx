@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import ActivityDatePickerInput from "@/src/components/ActivityInput/ActivityDatePickerInput";
 import TimeDropdown from "@/src/components/ActivityInput/TimeDropdown";
 import { ActivityFormDataType } from "@/src/types/activityFormDataType";
@@ -128,7 +129,11 @@ const ActivityTimeInput = ({
             <button
               type="button"
               onClick={handleAddTime}
-              className="font-24px-medium ml-2 mt-34 size-44 rounded-7 bg-brand-500 text-white md:mt-42 md:size-56 lg:ml-20">
+              className={clsx(
+                "font-24px-medium ml-2 mt-34 size-44 rounded-7 bg-brand-500 text-white",
+                "md:mt-42 md:size-56 lg:ml-20",
+                "hover:bg-brand-600",
+              )}>
               +
             </button>
           </div>
@@ -201,7 +206,11 @@ const ActivityTimeInput = ({
                     <button
                       type="button"
                       onClick={() => handleRemoveTime(index)}
-                      className="font-24px-medium ml-2 size-44 rounded-7 bg-brand-400 text-white md:size-56 lg:ml-20">
+                      className={clsx(
+                        "font-24px-medium ml-2 size-44 rounded-7 bg-brand-400 text-white",
+                        "md:size-56 lg:ml-20",
+                        "hover:bg-brand-600",
+                      )}>
                       -
                     </button>
                   </div>
