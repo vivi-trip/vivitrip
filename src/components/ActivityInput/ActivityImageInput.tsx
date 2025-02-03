@@ -1,4 +1,6 @@
-import IconFileClose from "@/assets/svgs/ic_file_close.svg";
+import IconFileCloseLg from "@/assets/svgs/ic_file_close_lg.svg";
+import IconFileCloseMd from "@/assets/svgs/ic_file_close_md.svg";
+import IconFileCloseSm from "@/assets/svgs/ic_file_close_sm.svg";
 import IconImageAdd from "@/assets/svgs/ic_image_add.svg";
 import { useUploadActivtyAddImage } from "@/src/queries/useActivities";
 import { ActivityImageUrl } from "@/src/types/activities";
@@ -199,7 +201,9 @@ const ActivityImageInput = ({
                       type="button"
                       onClick={() => onChange("")}
                       className="absolute -right-20 -top-20 z-10">
-                      <IconFileClose />
+                      <IconFileCloseSm className="block md:hidden" />
+                      <IconFileCloseMd className="hidden md:block lg:hidden" />
+                      <IconFileCloseLg className="hidden lg:block" />
                     </button>
                   </div>
                 </div>
@@ -230,7 +234,9 @@ const ActivityImageInput = ({
                         type="button"
                         onClick={() => handleRemoveImage(index)}
                         className="absolute -right-20 -top-20 z-10">
-                        <IconFileClose />
+                        <IconFileCloseSm className="block md:hidden" />
+                        <IconFileCloseMd className="hidden md:block lg:hidden" />
+                        <IconFileCloseLg className="hidden lg:block" />
                       </button>
                     </div>
                   </div>
