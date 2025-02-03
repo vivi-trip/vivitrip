@@ -75,7 +75,7 @@ export const useGetMyReservations = ({
  * @param reservationId - 예약 id
  * @param status - 예약 상태
  */
-export const usePatchMyReservation = () => {
+export const usePatchMyreservation = () => {
   return useMutation({
     mutationKey: ["myReservation"],
     mutationFn: ({ reservationId, status }: UpdateMyReservationProps) =>
