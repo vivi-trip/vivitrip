@@ -7,6 +7,11 @@ import {
   ListMyReservationsProps,
   UpdateMyReservationProps,
 } from "@/src/types/my-reservations";
+import {
+  GetMyReservations,
+  MyReservationsPatchResponses,
+  PostMyReviwsResponses,
+} from "@/src/types/my-reservatios-responses";
 
 /**
  * @description 내 예약 리스트 조회
@@ -18,7 +23,7 @@ export const listMyReservations = async ({
   size,
   status,
   cursorId,
-}: ListMyReservationsProps) => {
+}: ListMyReservationsProps): Promise<GetMyReservations> => {
   const context = {
     query: cursorId || status || size ? "?" : "",
     size: cursorId ? `cursorId=${cursorId}` : "",
@@ -28,7 +33,7 @@ export const listMyReservations = async ({
   const response = await api.get(
     `/my-reservations${context.query}${context.size}${context.status}${context.cursorId}`,
   );
-  return response;
+  return response.data;
 };
 
 /**
@@ -39,11 +44,11 @@ export const listMyReservations = async ({
 export const UpdateMyReservation = async ({
   reservationId,
   status,
-}: UpdateMyReservationProps) => {
+}: UpdateMyReservationProps): Promise<PostMyReviwsResponses> => {
   const response = await api.patch(`/my-reservations/${reservationId}`, {
     status,
   });
-  return response;
+  return response.data;
 };
 
 /**
@@ -56,10 +61,10 @@ export const createMyReservationReview = async ({
   reservationId,
   rating,
   content,
-}: CreateMyReservationReviewProps) => {
+}: CreateMyReservationReviewProps): Promise<MyReservationsPatchResponses> => {
   const response = await api.post(`/my-reservations/${reservationId}`, {
     rating,
     content,
   });
-  return response;
+  return response.data;
 };
