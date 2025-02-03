@@ -38,6 +38,11 @@ const TEST_USERS: TestUserProps[] = [
     email: "choi@ju.hyeok",
     password: "choi@ju.hyeok",
   },
+  {
+    nickname: "체험테스트",
+    email: "123123123@naver.com",
+    password: "123123123z",
+  },
 ];
 
 export default TEST_USERS;
