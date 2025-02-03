@@ -44,7 +44,7 @@ const ActivityPriceInput = ({ control }: PriceInputProps) => {
                     e.preventDefault();
                   }
                 }}
-                className="font-16px-regular mt-16 h-56 w-full rounded-4 border border-gray-500 py-15 pl-16"
+                className="font-16px-regular mt-16 h-56 w-full rounded-4 border border-gray-500 py-15 px-16"
               />
               {error && (
                 <div className="pl-1 text-red-500">{error?.message}</div>
