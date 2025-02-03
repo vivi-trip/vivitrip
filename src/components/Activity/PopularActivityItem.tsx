@@ -47,7 +47,7 @@ const PopularActivityItem = ({
 
         <div className="absolute bottom-12 flex flex-col gap-5 px-20 py-12 md:bottom-0 md:gap-20 md:py-30 md:pr-113 lg:bottom-0 lg:gap-20 lg:py-30 lg:pr-113">
           <div className="flex items-center gap-5">
-            <Star width={18} height={18} className="my-3" />
+            <Star width={20} height={20} className="my-2" />
             <p className="font-14px-semibold text-white">
               {rating} ({reviewCount})
             </p>
