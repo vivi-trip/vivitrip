@@ -26,7 +26,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-export const useGetMyActivities = (params: GetMyActivities ) => {
+export const useGetMyActivities = (params: GetMyActivities) => {
   const { data, isLoading, error } = useQuery<MyActivities>({
     queryKey: ["myActivities", params],
     queryFn: () => getMyActivities(params || {}),
@@ -93,15 +93,15 @@ export const usePatchMyActivity = () => {
   return { mutate };
 };
 
-export const useGetInfiniteMyActivities = () => {
+export const useGetInfiniteMyActivities = (size: number = 5) => {
   const { data, fetchNextPage, hasNextPage, isError, ...rest } =
     useInfiniteQuery(
       infiniteQueryOptions<MyActivities>({
-        queryKey: ["activities", "list"],
+        queryKey: ["activities", "list", size],
         queryFn: ({ pageParam }) => {
           const cursorId =
             typeof pageParam === "number" ? pageParam : undefined;
-          return getMyActivities({ cursorId, size: 5 });
+          return getMyActivities({ cursorId, size });
         },
         initialPageParam: undefined,
         getNextPageParam: (lastPage) => {
