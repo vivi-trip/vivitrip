@@ -42,7 +42,6 @@ export const formatDate2 = (dateString: string) => {
   return `${year}.${month}.${day}`;
 };
 
-
 export const formatDateToKorean = (dateString: string): string => {
   const date = new Date(dateString);
   const year = date.getFullYear();
@@ -51,6 +50,13 @@ export const formatDateToKorean = (dateString: string): string => {
   return `${year}년 ${month}월 ${day}일`;
 };
 
+export function formatDate3(dateString: string): string {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더합니다
+  const day = date.getDate();
 
+  return `${year}. ${month}. ${day}`;
+}
 
 export default formatDateToYYYYMMDD;
