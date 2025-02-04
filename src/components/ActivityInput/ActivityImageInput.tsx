@@ -24,7 +24,6 @@ interface ActivityImageInputProps {
   minImages?: number;
   title: string;
   onImageChange?: (addedUrls: string[], removedIds: number[]) => void;
-  isModification?: boolean;
 }
 
 /**
@@ -41,7 +40,6 @@ const ActivityImageInput = ({
   control,
   name,
   onImageChange,
-  isModification = false,
 }: ActivityImageInputProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -88,6 +86,7 @@ const ActivityImageInput = ({
           }
           return selectedImages.length < minImages;
         };
+
         const handleImageChange = (
           event: React.ChangeEvent<HTMLInputElement>,
         ) => {
@@ -106,16 +105,7 @@ const ActivityImageInput = ({
                   if (currentImages.length < maxImages) {
                     const newImages = [...currentImages, newImageUrl];
                     onChange(newImages);
-
-                    if (isModification) {
-                      const existingUrls = Array.isArray(value)
-                        ? value.map((img) => img.imageUrl)
-                        : [];
-                      if (!existingUrls.includes(newImageUrl)) {
-                        setAddedUrls((prev) => [...prev, newImageUrl]);
-                        onChange(newImageUrl);
-                      }
-                    }
+                    setAddedUrls((prev) => [...prev, newImageUrl]);
                   }
                 }
               },
@@ -130,15 +120,13 @@ const ActivityImageInput = ({
           );
 
           if (name === "subImages") {
-            if (isModification) {
-              if (removedImage.id) {
-                setRemovedIds((prev) => [...prev, removedImage.id!]);
-                onChange(newImages);
-              } else if (addedUrls.includes(removedImage.imageUrl)) {
-                setAddedUrls((prev) =>
-                  prev.filter((url) => url !== removedImage.imageUrl),
-                );
-              }
+            if (removedImage.id) {
+              setRemovedIds((prev) => [...prev, removedImage.id!]);
+              onChange(newImages);
+            } else if (addedUrls.includes(removedImage.imageUrl)) {
+              setAddedUrls((prev) =>
+                prev.filter((url) => url !== removedImage.imageUrl),
+              );
             }
             onChange(newImages);
           } else if (name === "bannerImageUrl") {
@@ -200,7 +188,11 @@ const ActivityImageInput = ({
                     <button
                       type="button"
                       onClick={() => onChange("")}
-                      className="absolute -right-20 -top-20 z-10">
+                      className={clsx(
+                        "absolute -right-10 -top-10 z-10",
+                        "md:-right-14 md:-top-14",
+                        "lg:-right-20 lg:-top-20",
+                      )}>
                       <IconFileCloseSm className="block md:hidden" />
                       <IconFileCloseMd className="hidden md:block lg:hidden" />
                       <IconFileCloseLg className="hidden lg:block" />
@@ -233,7 +225,11 @@ const ActivityImageInput = ({
                       <button
                         type="button"
                         onClick={() => handleRemoveImage(index)}
-                        className="absolute -right-20 -top-20 z-10">
+                        className={clsx(
+                          "absolute -right-10 -top-10 z-10",
+                          "md:-right-14 md:-top-14",
+                          "lg:-right-20 lg:-top-20",
+                        )}>
                         <IconFileCloseSm className="block md:hidden" />
                         <IconFileCloseMd className="hidden md:block lg:hidden" />
                         <IconFileCloseLg className="hidden lg:block" />
