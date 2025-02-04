@@ -34,6 +34,9 @@ const MyReservationHistory = () => {
                   </p>
                   <Dropdown>
                     <Dropdown.Trigger
+                      onClick={() => {
+                        setIsOpen(true);
+                      }}
                       className={clsx(
                         "font-16px-regular text-left",
                         "flex h-56 w-full items-center justify-between",
