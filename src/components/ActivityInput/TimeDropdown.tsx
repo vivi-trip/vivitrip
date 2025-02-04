@@ -51,7 +51,7 @@ const TimeDropdown = ({
         {value || placeholder}
         {isOpen ? <IconArrowUp /> : <IconArrowDown />}
       </Dropdown.Trigger>
-      <Dropdown.Menu className="max-h-164 overflow-y-auto">
+      <Dropdown.Menu className="max-h-164 overflow-y-auto z-20">
         {timeOptions.map((option) => (
           <Dropdown.Item
             key={option.value}
