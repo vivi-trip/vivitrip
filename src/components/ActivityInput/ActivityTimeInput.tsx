@@ -20,7 +20,7 @@ interface Schedule {
 
 interface TimeInputProps {
   control: Control<ActivityFormDataType>;
-  fields: FieldArrayWithId<ActivityFormDataType, "schedules", "id">[];
+  fields: FieldArrayWithId<ActivityFormDataType, "schedules", "rhfId">[];
   append: UseFieldArrayAppend<ActivityFormDataType, "schedules">;
   remove: UseFieldArrayRemove;
   onScheduleChange?: (
@@ -39,16 +39,8 @@ const ActivityTimeInput = ({
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-
-  const [originalSchedules, setOriginalSchedules] = useState<Schedule[]>([]);
   const [addedSchedules, setAddedSchedules] = useState<Schedule[]>([]);
   const [removedScheduleIds, setRemovedScheduleIds] = useState<number[]>([]);
-
-  useEffect(() => {
-    if (fields.length > 0 && originalSchedules.length === 0) {
-      setOriginalSchedules(fields);
-    }
-  }, [fields, originalSchedules]);
 
   useEffect(() => {
     if (onScheduleChange) {
@@ -74,9 +66,9 @@ const ActivityTimeInput = ({
   const handleRemoveTime = (index: number) => {
     const removedSchedule = fields[index];
 
-    if (typeof removedSchedule.id === "number") {
-      // 서버에서 가져온 기존 스케줄 삭제
-      setRemovedScheduleIds((prev) => [...prev, removedSchedule.id]);
+    if (removedSchedule.id) {
+      // 실제 서버 ID 체크
+      setRemovedScheduleIds((prev) => [...prev, removedSchedule.id!]);
     } else {
       // 새로 추가한 스케줄 삭제
       setAddedSchedules((prev) =>
@@ -126,8 +118,11 @@ const ActivityTimeInput = ({
                 />
               </div>
             </div>
-            <button
+            <Button
               type="button"
+              radius="8"
+              gap="4"
+              backgroundColor="black"
               onClick={handleAddTime}
               className={clsx(
                 "font-24px-medium ml-2 mt-34 size-44 rounded-7 bg-brand-500 text-white",
@@ -135,7 +130,7 @@ const ActivityTimeInput = ({
                 "hover:bg-brand-600",
               )}>
               +
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -203,8 +198,11 @@ const ActivityTimeInput = ({
                         )}
                       />
                     </div>
-                    <button
+                    <Button
                       type="button"
+                      radius="8"
+                      gap="4"
+                      backgroundColor="black"
                       onClick={() => handleRemoveTime(index)}
                       className={clsx(
                         "font-24px-medium ml-2 size-44 rounded-7 bg-brand-400 text-white",
@@ -212,7 +210,7 @@ const ActivityTimeInput = ({
                         "hover:bg-brand-600",
                       )}>
                       -
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
