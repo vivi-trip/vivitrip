@@ -8,7 +8,7 @@ import { useGetMyActivities } from "@/src/hooks/useMyActivities";
 import clsx from "clsx";
 import { useState } from "react";
 
-const MyreservationHisroy = () => {
+const MyReservationHistory = () => {
   const { data } = useGetMyActivities({});
 
   const myActivities = data?.activities;
@@ -21,7 +21,7 @@ const MyreservationHisroy = () => {
 
   return (
     <div>
-      <div className="flex w-full justify-center gap-24 pt-72 mb-120">
+      <div className="mb-120 flex w-full justify-center gap-24 pt-72">
         <SideNavigationMenu />
         <div className="flex-1">
           <div className="flex flex-col">
@@ -44,18 +44,24 @@ const MyreservationHisroy = () => {
                       {isOpen ? <IconArrowUp /> : <IconArrowDown />}
                     </Dropdown.Trigger>
                     <Dropdown.Menu className="w-full">
-                      {myActivities.map((activitie) => (
-                        <Dropdown.Item
-                          key={activitie.id}
-                          className="font-16px-regular flex justify-start py-15 pl-16 text-black hover:bg-gray-100"
-                          onClick={() => {
-                            setSelectedActivityId(activitie.id);
-                            setActivityTitle(activitie.title);
-                            setIsOpen(false);
-                          }}>
-                          {activitie.title}
+                      {myActivities && myActivities.length > 0 ? (
+                        myActivities.map((activity) => (
+                          <Dropdown.Item
+                            key={activity.id}
+                            className="font-16px-regular flex justify-start py-15 pl-16 text-black hover:bg-gray-100"
+                            onClick={() => {
+                              setSelectedActivityId(activity.id);
+                              setActivityTitle(activity.title);
+                              setIsOpen(false);
+                            }}>
+                            {activity.title}
+                          </Dropdown.Item>
+                        ))
+                      ) : (
+                        <Dropdown.Item className="font-16px-regular flex justify-start py-15 pl-16 text-gray-500">
+                          체험이 없습니다.
                         </Dropdown.Item>
-                      ))}
+                      )}
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
@@ -85,4 +91,4 @@ const MyreservationHisroy = () => {
   );
 };
 
-export default MyreservationHisroy;
+export default MyReservationHistory;
