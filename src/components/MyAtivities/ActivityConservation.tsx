@@ -83,6 +83,7 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "schedules",
+    keyName: "rhfId"
   });
 
   useEffect(() => {
