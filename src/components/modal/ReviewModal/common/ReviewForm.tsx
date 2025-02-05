@@ -1,14 +1,24 @@
 import Button from "../../../Button/Button";
 import StarOff from "@/assets/svgs/ic_star_off.svg";
 import StarOn from "@/assets/svgs/ic_star_on.svg";
+import PopupModal from "@/src/components/modal/PopupModal";
+import { useCreateReviews } from "@/src/queries/useMyReservations";
+import useModalStore from "@/src/stores/ModalStore";
+import { ReservationRating } from "@/src/types/my-reservations";
 import clsx from "clsx";
 import React, { useState } from "react";
 
-const ReviewForm = () => {
-  const [rating, setRating] = useState<number | null>(null);
+interface ReviewFromProps {
+  reservationId: number;
+}
+
+const ReviewForm = ({ reservationId }: ReviewFromProps) => {
+  const [rating, setRating] = useState<ReservationRating>(0);
   const [reviewText, setReviewText] = useState("");
+  const { setModalOpen } = useModalStore();
   // TODO: 토스트 상태 추가
-  // const [showToast, setShowToast] = useState(false);
+
+  const { mutate: createReview } = useCreateReviews();
 
   const handleReviewChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
@@ -16,15 +26,34 @@ const ReviewForm = () => {
     setReviewText(event.target.value);
   };
 
-  const handleStars = (clicked: number) => {
-    setRating((prev) => (prev === clicked ? null : clicked));
+  const handleStars = (clicked: ReservationRating) => {
+    if (rating === clicked) {
+      // 동일한 별점을 다시 클릭하면 하나 줄어든 값으로 설정
+      const newRating = clicked - 1;
+      setRating(newRating as ReservationRating); // 최소값은 0으로 유지
+    } else {
+      // 다른 별점을 클릭하면 해당 값으로 설정
+      setRating(clicked);
+    }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // TODO: 성공 시 토스트 메시지 표시
-    // TODO: API 추가
-    // TODO: submit 성공시 rating, reviewText   초기화
+
+    const reviewData = { reservationId, rating, content: reviewText };
+
+    createReview(reviewData, {
+      onSuccess: () => {
+        setModalOpen(<PopupModal title="리뷰가 등록 되었습니다." />);
+        setReviewText("");
+        setRating(0);
+      },
+      onError: () => {
+        setModalOpen(
+          <PopupModal title="리뷰 등록에 실패했습니다. 다시 시도해주세요." />,
+        );
+      },
+    });
   };
 
   return (
@@ -33,10 +62,10 @@ const ReviewForm = () => {
         {[1, 2, 3, 4, 5].map((id) => (
           <div
             key={id}
-            onClick={() => handleStars(id)}
+            onClick={() => handleStars(id as ReservationRating)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
-                handleStars(id);
+                handleStars(id as ReservationRating);
               }
             }}
             tabIndex={0}
@@ -67,7 +96,7 @@ const ReviewForm = () => {
           onChange={handleReviewChange}
         />
         <Button
-          type="button"
+          type="submit"
           width="auto"
           height="56"
           radius="4"
