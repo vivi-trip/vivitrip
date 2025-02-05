@@ -76,6 +76,37 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     );
   };
 
+  const riviewData = {
+    bannerImageUrl,
+    title,
+    date,
+    startTime,
+    endTime,
+    headCount,
+    totalPrice,
+    id,
+  };
+
+  const { setModalOpen } = useModalStore();
+  const { mutate: PatchMyReservation } = usePatchMyReservation();
+
+  const handleCancelReservation = () => {
+    PatchMyReservation(
+      { reservationId: id, status: "canceled" },
+      {
+        onSuccess: () => {
+          setModalOpen(<PopupModal title="예약이 취소되었습니다." />);
+        },
+        onError: (error) => {
+          console.error("예약 취소 중 오류 발생:", error);
+          setModalOpen(
+            <PopupModal title="예약 취소가 실패 했습니다. 다시 시도해주세요." />,
+          );
+        },
+      },
+    );
+  };
+
   const getStatusInfo = (statusLabel: ReservationStatus) => {
     switch (statusLabel) {
       case "completed":
