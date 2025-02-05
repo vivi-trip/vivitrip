@@ -1,4 +1,8 @@
 import Button from "../Button/Button";
+import PopupModal from "../modal/PopupModal";
+import ReviewModal from "../modal/ReviewModal/ReviewModal";
+import { usePatchMyReservation } from "@/src/queries/useMyReservations";
+import useModalStore from "@/src/stores/ModalStore";
 import { ReservationStatus } from "@/src/types/my-reservations";
 import { Reservation } from "@/src/types/my-reservatios-responses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
@@ -39,6 +43,37 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
   } = reservation;
 
   const { bannerImageUrl, id, title } = activity;
+
+  const riviewData = {
+    bannerImageUrl,
+    title,
+    date,
+    startTime,
+    endTime,
+    headCount,
+    totalPrice,
+    id,
+  };
+
+  const { setModalOpen } = useModalStore();
+  const { mutate: PatchMyReservation } = usePatchMyReservation();
+
+  const handleCancelReservation = () => {
+    PatchMyReservation(
+      { reservationId: id, status: "canceled" },
+      {
+        onSuccess: () => {
+          setModalOpen(<PopupModal title="예약이 취소되었습니다." />);
+        },
+        onError: (error) => {
+          console.error("예약 취소 중 오류 발생:", error);
+          setModalOpen(
+            <PopupModal title="예약 취소가 실패 했습니다. 다시 시도해주세요." />,
+          );
+        },
+      },
+    );
+  };
 
   const getStatusInfo = (statusLabel: ReservationStatus) => {
     switch (statusLabel) {
@@ -124,37 +159,42 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
               <div
                 className={clsx(
                   "flex w-full items-center justify-between",
-                  "font-16px-medium py-7 text-left",
-                  "md:font-20px-medium md:mt-10 md:py-4",
+                  "font-16px-medium text-left",
+                  "md:font-20px-medium md:mt-10",
                   "lg:font-24px-medium lg:mt-16",
                 )}>
                 <span>₩{totalPrice.toLocaleString("ko-KR")}</span>
                 {status === "pending" && (
                   <Button
                     type="button"
-                    width="122"
-                    height="32"
                     radius="6"
                     gap="8"
-                    fontStyle="l"
                     backgroundColor="white_green"
+                    onClick={handleCancelReservation}
                     className={clsx(
-                      "font-14px-bold ml-4 w-80 max-w-160 px-14 py-6 text-brand-500",
+                      "font-14px-bold h-32 min-w-80 max-w-160 px-14 py-6 text-brand-500",
+                      "md:font-16px-bold md:h-40 md:px-26 md:py-7",
+                      "lg:h-43 lg:px-42 lg:py-8",
                     )}>
-                    예약 취소하기
+                    예약 취소
                   </Button>
                 )}
                 {reviewSubmitted && (
                   <Button
                     type="button"
-                    width="122"
-                    height="32"
                     radius="6"
                     gap="8"
-                    fontStyle="l"
                     backgroundColor="black"
+                    onClick={() =>
+                      setModalOpen(<ReviewModal riviewData={riviewData} />, {
+                        customClass:
+                          "size-full md:w-480 md:h-750 p-24 md:px-24 md:pt-23 min-w-375 rounded-none md:rounded-3xl",
+                      })
+                    }
                     className={clsx(
-                      "font-14px-bold ml-4 w-80 max-w-160 px-14 py-6 text-white",
+                      "font-14px-bold h-32 min-w-80 max-w-160 px-14 py-6 text-brand-500",
+                      "md:font-16px-bold md:h-40 md:px-26 md:py-7",
+                      "lg:h-43 lg:px-42 lg:py-8",
                     )}>
                     후기 작성
                   </Button>
