@@ -18,7 +18,7 @@ export interface Activity {
  * @param id - 체험 id
  * @param teamIdid - 팀 id
  * @param userId - 유저 id
- * @param activity - 체험 내용 
+ * @param activity - 체험 내용
  * @param scheduleId - 예약 시간 id
  * @param status - 예약 상태
  * @param reviewSubmitted - 리뷰 가능 여부
@@ -45,6 +45,27 @@ export interface Reservation {
   endTime: string;
   createdAt: string;
   updatedAt: string;
+}
+
+/**
+ * @description 리뷰 모달 전달 데이터
+ * @param bannerImageUrl - 배너이미지
+ * @param title - 체험 타이틀
+ * @param totalCount - 체험  토탈 가격
+ * @param headCount - 체험 신청 인원 수
+ * @param date - 체험 예약 날짜
+ * @param startTime - 체험 시작 시간
+ * @param endTime - 체험 종료 시간
+ */
+export interface ReviewData {
+  id: number;
+  bannerImageUrl: string;
+  title: string;
+  totalPrice: number;
+  headCount: number;
+  date: string;
+  startTime: string;
+  endTime: string;
 }
 
 /**
@@ -92,7 +113,6 @@ export interface MyReservationsPatchResponses {
   createdAt: string;
   updatedAt: string;
 }
-
 
 /**
  * @description 내 예약 리뷰 작서 리스폰스 데이터
