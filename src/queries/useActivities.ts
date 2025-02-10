@@ -47,7 +47,7 @@ export const usePatchMyActivity = () => {
   });
 };
 
-export const usePostActivityReservayion = () => {
+export const usePostActivityReservation = () => {
   return useMutation({
     mutationFn: (activityReservayiondata: CreateActivityReservationProps) =>
       createActivityReservation(activityReservayiondata),
