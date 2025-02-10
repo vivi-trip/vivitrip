@@ -12,6 +12,7 @@ interface CalendarState {
   onChangeSchedule: (schedule: Schedule | null) => void;
   onChangeMembers: (members: number) => void;
   onChangeSelectMonth: (month: number | null) => void;
+  onChangeData: (data: ActivityDetailResponse) => void;
 }
 
 /**
@@ -28,6 +29,7 @@ export const useCalendarStore = create<CalendarState>((set) => ({
   onChangeSchedule: (schedule) => set({ selectSchedule: schedule }),
   onChangeMembers: (members) => set({ members }),
   onChangeSelectMonth: (month) => set({ selectMonth: month }),
+  onChangeData: (data: ActivityDetailResponse) => set({ data }),
 }));
 
 export const useCalendar = () => {
