@@ -1,12 +1,12 @@
-import Button from "../../Button/Button";
-import Calendar from "../../calendar/Calendar";
-import PopupModal from "../PopupModal";
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
+import Button from "@/src/components/Button/Button";
+import Calendar from "@/src/components/calendar/Calendar";
+import PopupModal from "@/src/components/modal/PopupModal";
 import ParticipantCount from "@/src/components/modal/ReservationModal/common/ParticipantCount";
 import Price from "@/src/components/modal/ReservationModal/common/Price";
 import TimeSelector from "@/src/components/modal/ReservationModal/common/TimeSelector";
 import TotalPrice from "@/src/components/modal/ReservationModal/common/TotalPrice";
-import { usePostActivityReservayion } from "@/src/queries/useActivities";
+import { usePostActivityReservation } from "@/src/queries/useActivities";
 import { useCalendar } from "@/src/stores/CalendarStore";
 import useModalStore from "@/src/stores/ModalStore";
 import React from "react";
@@ -16,7 +16,7 @@ const ReservationModal = () => {
   const { data, members, onChangeMembers, onChangeSchedule, selectSchedule } =
     useCalendar();
   const { price, schedules, id: activityId } = data;
-  const { mutate: postActivityReservation } = usePostActivityReservayion();
+  const { mutate: postActivityReservation } = usePostActivityReservation();
 
   const submitReservation = () => {
     if (!selectSchedule || !selectSchedule.id) {
