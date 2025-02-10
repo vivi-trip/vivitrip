@@ -1,12 +1,15 @@
+import ActivityReservationBar from "@/src/components/ActivityReservation/ActivityReservationBar";
 import PopupModal from "@/src/components/modal/PopupModal";
 import ReservationCancelModal from "@/src/components/modal/ReservationCancelModal";
 import ReservationInfoModal from "@/src/components/modal/ReservationInfoModal/ReservationInfoModal";
 import ReservationModal from "@/src/components/modal/ReservationModal/ReservationModal";
 import ReviewModal from "@/src/components/modal/ReviewModal/ReviewModal";
+import { useGetActivities } from "@/src/queries/useActivities";
 import useModalStore from "@/src/stores/ModalStore";
 
 const OpenModalButton = () => {
   const { setModalOpen } = useModalStore();
+  const { data } = useGetActivities(3622);
 
   return (
     <div className="flex flex-col gap-23">
@@ -36,7 +39,7 @@ const OpenModalButton = () => {
         예약하기
       </button>
 
-      <button
+      {/* <button
         type="button"
         className="font-24px-bold"
         onClick={() =>
@@ -45,7 +48,7 @@ const OpenModalButton = () => {
           })
         }>
         리뷰
-      </button>
+      </button> */}
 
       <button
         type="button"
@@ -63,6 +66,8 @@ const OpenModalButton = () => {
         }>
         예약확인
       </button>
+
+      {data && <ActivityReservationBar data={data} />}
     </div>
   );
 };
