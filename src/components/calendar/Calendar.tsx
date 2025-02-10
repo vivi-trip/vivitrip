@@ -1,5 +1,5 @@
 import CalendarHeader from "./CalendarHeader";
-import { useCalendarStore } from "@/src/stores/CalendarStore";
+import { useCalendar, useCalendarStore } from "@/src/stores/CalendarStore";
 import { Locale, enUS } from "date-fns/locale";
 import React from "react";
 import DatePicker from "react-datepicker";
@@ -29,14 +29,16 @@ const Calendar = () => {
     onChangeSelectDate,
     onChangeSelectMonth,
     data,
-  } = useCalendarStore();
+  } = useCalendar();
 
   const handleMonthChange = (date: Date) => {
     onChangeSelectMonth(date.getMonth());
   };
 
   const isScheduledDate = () => {
-    return data.schedules?.map((schedule: Schedule) => new Date(schedule.date)) || [];
+    return (
+      data.schedules?.map((schedule: Schedule) => new Date(schedule.date)) || []
+    );
   };
 
   return (
