@@ -4,7 +4,6 @@ import { Schedule, Schedules } from "@/src/types/activitiesResponses";
 import clsx from "clsx";
 import React, { useState } from "react";
 
-
 const TimeSelector = ({ schedules }: Schedules) => {
   const { onChangeSchedule, selectSchedule, formatDate } = useCalendar();
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -14,7 +13,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
       setSelectedId(null);
       onChangeSchedule(null);
     } else {
-      setSelectedId(data.id);
+      setSelectedId(data.id ?? null);
       onChangeSchedule(data);
     }
   };
