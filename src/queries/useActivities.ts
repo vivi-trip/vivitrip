@@ -1,10 +1,15 @@
 import {
   createActivity,
   createActivityImageUrl,
+  createActivityReservation,
   getActivity,
 } from "../services/activities";
 import { patchMyActivity } from "../services/myActiviesApi";
-import { ActivityImageUrl, CreateActivityProps } from "../types/activities";
+import {
+  ActivityImageUrl,
+  CreateActivityProps,
+  CreateActivityReservationProps,
+} from "../types/activities";
 import { ActivityUpdateRequest } from "../types/activitiesReservationType";
 import { ActivityDetailResponse } from "../types/activitiesResponses";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -24,7 +29,6 @@ export const useGetActivities = (activityId: number | undefined) => {
   return { data, isLoading, error };
 };
 
-
 export const useCreateActivity = () => {
   return useMutation({
     mutationFn: (data: CreateActivityProps) => createActivity(data),
@@ -40,6 +44,13 @@ export const usePatchMyActivity = () => {
       activityId: number;
       updateData: ActivityUpdateRequest;
     }) => patchMyActivity(activityId, updateData),
+  });
+};
+
+export const usePostActivityReservayion = () => {
+  return useMutation({
+    mutationFn: (activityReservayiondata: CreateActivityReservationProps) =>
+      createActivityReservation(activityReservayiondata),
   });
 };
 
