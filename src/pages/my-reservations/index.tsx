@@ -1,16 +1,11 @@
-import ActivityList from "@/src/components/MyAtivities/ActivityList";
 import ReservationList from "@/src/components/MyReservations/ReservationList";
 import ReservationStatusDropdown from "@/src/components/MyReservations/ReservationStatusDropdown";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import { ReservationStatus } from "@/src/types/my-reservations";
-import { GetMyReservations } from "@/src/types/my-reservatios-responses";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 const MyReservations = () => {
   const [status, setStatus] = useState<ReservationStatus | "">("");
-
-  const router = useRouter();
 
   const handleStatusChange = (newStatus: ReservationStatus) => {
     setStatus(newStatus);
@@ -18,7 +13,7 @@ const MyReservations = () => {
 
   return (
     <div>
-      <div className="flex w-full justify-center gap-24 pt-72">
+      <div className="mx-auto flex w-full min-w-344 justify-center gap-24 pt-72 ">
         <SideNavigationMenu />
         <div className="flex-1">
           <div className="flex items-center justify-between">
