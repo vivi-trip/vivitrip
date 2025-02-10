@@ -13,7 +13,9 @@ interface Props {
 const ProfileUpload = ({ url, profileImageUrl }: Props) => {
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [uploadedImage, setUploadedImage] = useState("");
+  const [uploadedImage, setUploadedImage] = useState<string | undefined>(
+    undefined,
+  );
 
   const { mutate } = useUploadProfileImage();
 
@@ -43,25 +45,22 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
       <div
         className="relative size-160 overflow-hidden rounded-full bg-gray-200"
         style={{ boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.08)" }}>
-        {profileImageUrl || uploadedImage ? (
-          <Image
-            src={profileImageUrl || uploadedImage}
-            fill
-            alt="프로필 사진"
-            placeholder="blur"
-            blurDataURL={profileImageUrl || uploadedImage}
-            objectFit="contain"
-          />
-        ) : (
-          <Image
-            src="/images/Image_default_profile_image.png"
-            fill
-            alt="프로필 사진"
-            placeholder="blur"
-            blurDataURL="/images/Image_default_profile_image.png"
-            objectFit="contain"
-          />
-        )}
+        <Image
+          src={
+            uploadedImage ??
+            profileImageUrl ??
+            "/images/Image_default_profile_image.png"
+          }
+          fill
+          alt="프로필 사진"
+          placeholder="blur"
+          blurDataURL={
+            uploadedImage ??
+            profileImageUrl ??
+            "/images/Image_default_profile_image.png"
+          }
+          objectFit="cover"
+        />
       </div>
       <label htmlFor="file-input">
         <PenIcon
