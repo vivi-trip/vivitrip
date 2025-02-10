@@ -40,9 +40,10 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     headCount,
     totalPrice,
     reviewSubmitted,
+    id,
   } = reservation;
 
-  const { bannerImageUrl, id, title } = activity;
+  const { bannerImageUrl, title } = activity;
 
   const riviewData = {
     bannerImageUrl,
