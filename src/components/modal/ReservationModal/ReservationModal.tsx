@@ -1,28 +1,57 @@
 import Button from "../../Button/Button";
 import Calendar from "../../calendar/Calendar";
-import ParticipantCount from "@/src/components/modal/ReservationModal/common/ParticipantCount";
+import PopupModal from "../PopupModal";
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
+import ParticipantCount from "@/src/components/modal/ReservationModal/common/ParticipantCount";
 import Price from "@/src/components/modal/ReservationModal/common/Price";
 import TimeSelector from "@/src/components/modal/ReservationModal/common/TimeSelector";
 import TotalPrice from "@/src/components/modal/ReservationModal/common/TotalPrice";
+import { usePostActivityReservayion } from "@/src/queries/useActivities";
+import { useCalendar } from "@/src/stores/CalendarStore";
 import useModalStore from "@/src/stores/ModalStore";
 import React from "react";
 
 const ReservationModal = () => {
-  const { setModalClose } = useModalStore();
-  // TODO: 각 컴포넌트  데이터  수정해야함
+  const { setModalClose, setModalOpen } = useModalStore();
+  const { data, members, onChangeMembers, onChangeSchedule, selectSchedule } =
+    useCalendar();
+  const { price, schedules, id: activityId } = data;
+  const { mutate: postActivityReservation } = usePostActivityReservayion();
 
+  const submitReservation = () => {
+    if (!selectSchedule || !selectSchedule.id) {
+      return;
+    }
+
+    const reservationData = {
+      activityId,
+      scheduleId: selectSchedule?.id,
+      headCount: members,
+    };
+
+    postActivityReservation(reservationData, {
+      onSuccess: () => {
+        setModalOpen(<PopupModal title="예약 되었습니다." />);
+      },
+    });
+  };
+
+  const modalClose = () => {
+    setModalClose();
+    onChangeMembers(1);
+    onChangeSchedule(null);
+  };
   return (
-    <div className="flex flex-col">
-      <Price price={1000} />
+    <div className="flex min-w-350 flex-col">
+      <Price price={price} />
       <div className="mb-20 mt-16 flex items-center justify-between border-t-2 pt-16">
         <p className="font-24px-bold">날짜</p>
-        <button type="button" onClick={setModalClose}>
+        <button type="button" onClick={modalClose}>
           <CloseIcon />
         </button>
       </div>
       <Calendar />
-      <TimeSelector />
+      <TimeSelector schedules={schedules} />
       <ParticipantCount />
       <div className="flex h-56 w-full justify-center">
         <Button
@@ -33,11 +62,12 @@ const ReservationModal = () => {
           gap="4"
           backgroundColor="black"
           fontStyle="xl"
-          className="lg:w-full">
+          className="lg:w-full"
+          onClick={submitReservation}>
           예약하기
         </Button>
       </div>
-      <TotalPrice total={1000} />
+      <TotalPrice total={price * members} />
     </div>
   );
 };
