@@ -23,7 +23,7 @@ const ActivityReservationBar = ({ data }: ActivityReservationBarProps) => {
   return (
     <div
       className={clsx(
-        "fixed flex h-83 w-full items-center justify-between",
+        "fixed flex h-80 w-full items-center justify-between",
         "bottom-0 left-0 z-50",
         "border-t border-[#A1A1A1] bg-white",
         "px-16 md:px-40",
