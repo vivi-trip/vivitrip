@@ -16,7 +16,7 @@ export interface SubImage {
  * @param endTime 체험 종료시간
  */
 export interface Schedule {
-  id: number;
+  id?: number;
   date: string;
   startTime: string;
   endTime: string;
