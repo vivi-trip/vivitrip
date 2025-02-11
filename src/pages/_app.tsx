@@ -29,10 +29,7 @@ const App = ({
 
   const { pathname } = useRouter();
 
-  const currentPathname =
-    pathname === "/home" || pathname === "/search"
-      ? pathname
-      : pathname.split("/")[1];
+  const isHomePage = pathname === "/home" || pathname === "/search";
 
   // 404 page 여부 확인
   const is404Page = pageProps?.statusCode === 404;
@@ -53,7 +50,7 @@ const App = ({
         <div
           className={clsx(
             "mx-auto min-h-main",
-            currentPathname ? null : "max-w-screen-xl",
+            !isHomePage && "max-w-screen-xl",
           )}>
           {getLayout(<Component {...pageProps} />)}
         </div>
