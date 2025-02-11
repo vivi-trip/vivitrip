@@ -7,6 +7,7 @@ export type PathNameType =
   | "PrivacyPolicy"
   | "FAQ"
   | "KakaoSignIn"
-  | "KakaoSignUp";
+  | "KakaoSignUp"
+  | "Activity";
 
 export type TestPagePathNameType = "Chip" | "Button";
