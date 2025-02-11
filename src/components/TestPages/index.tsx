@@ -8,6 +8,7 @@ const TEST_PAGES = [
   { path: PATH_NAMES.KakaoAdmin, name: "카카오 계정 연결끊기" },
   { path: PATH_NAMES.Button, name: "버튼컴포넌트 예시" },
   { path: PATH_NAMES.Chip, name: "칩컴포넌트 예시" },
+  { path: PATH_NAMES.Activity, name: "체험 상세페이지" },
 ];
 
 const TestPages = () => {
