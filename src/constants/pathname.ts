@@ -12,7 +12,7 @@ const PATH_NAMES: Record<PathNameType | TestPagePathNameType, string> = {
   Button: "/button",
   KakaoSignIn: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-in`,
   KakaoSignUp: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-up`,
-  Activity: `/activities`,
+  Activity: `/activity`,
 };
 
 export default PATH_NAMES;
