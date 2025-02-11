@@ -49,7 +49,7 @@ const Carousel = ({ items }: CarouselProps) => {
   }, [currentIndex, extendedItems.length]);
 
   return (
-    <div className="relative h-240 w-full md:h-550 lg:h-550">
+    <div className="relative -mx-24 h-240 md:-mx-32 md:h-550">
       <div className="overflow-hidden">
         <div
           className={`flex flex-nowrap ${transition && "transition-transform duration-700 ease-in-out"}`}
@@ -60,7 +60,7 @@ const Carousel = ({ items }: CarouselProps) => {
             return (
               <div
                 key={`${imageIndex}-${item.src}`}
-                className="relative flex h-240 w-full shrink-0 flex-col justify-between md:h-550 lg:h-550">
+                className="relative flex h-240 w-full shrink-0 flex-col justify-between md:h-550">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src={item.src}
