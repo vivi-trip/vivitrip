@@ -1,5 +1,6 @@
 import Favicon from "../components/Favicon";
 import Modal from "../components/modal/Modal";
+import ScrollProvider from "../contexts/ScrollContext";
 import "@/src/components/calendar/calendar.css";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
@@ -42,9 +43,10 @@ const App = ({
       </Head>
       <Modal />
       {is404Page ? null : <GNB />}
-      <main
+      <ScrollProvider
+        as="main"
         className={clsx(
-          "overflow-auto px-24 md:px-32",
+          "px-24 md:px-32",
           is404Page ? "bg-brand-50" : "h-main bg-gray-50",
         )}>
         <div
@@ -55,7 +57,7 @@ const App = ({
           {getLayout(<Component {...pageProps} />)}
         </div>
         {is404Page || pathname.includes("sign") ? null : <Footer />}
-      </main>
+      </ScrollProvider>
     </QueryClientProvider>
   );
 };
