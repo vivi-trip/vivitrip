@@ -1,3 +1,6 @@
+import IcKebab from "@/assets/svgs/ic_kebab.svg";
+import IcLocation from "@/assets/svgs/ic_location.svg";
+import IcStar from "@/assets/svgs/star.svg";
 import Dropdown from "@/src/components/Dropdown";
 import { useRouter } from "next/router";
 
@@ -14,19 +17,21 @@ const ActivitiesPage = () => {
           <p className="font-14px-regular">문화·예술</p>
           <p className="font-32px-bold mt-10">함께 배우면 즐거운 스트릿 댄스</p>
           <div className="mt-16 flex gap-12">
-            <div className="flex gap-6">
-              <p>star icon</p>
-              <p className="font-14px-regular">4.9 (293)</p>
+            <div className="flex items-center gap-6">
+              <IcStar />
+              <p className="font-14px-regular">{`${rating} (${reviewCount})`}</p>
             </div>
-            <div className="flex gap-2">
-              <p>mark icon</p>
-              <p className="font-14px-regular">서울 중구 청계천로 100 10F</p>
+            <div className="flex items-center gap-2">
+              <IcLocation />
+              <p className="font-14px-regular">{address}</p>
             </div>
           </div>
         </div>
         <div>
           <Dropdown>
-            <Dropdown.Trigger>...</Dropdown.Trigger>
+            <Dropdown.Trigger>
+                <IcKebab />
+              </Dropdown.Trigger>
             <Dropdown.Menu className="left-auto right-0">
               <Dropdown.Item>수정하기</Dropdown.Item>
               <Dropdown.Item>삭제하기</Dropdown.Item>
