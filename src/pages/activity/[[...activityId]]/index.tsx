@@ -5,6 +5,7 @@ import Dropdown from "@/src/components/Dropdown";
 import Loading from "@/src/components/Loading";
 import { useScroll } from "@/src/contexts/ScrollContext";
 import { useGetActivities } from "@/src/queries/useActivities";
+import useUserStore from "@/src/stores/userStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -12,6 +13,7 @@ import { useRouter } from "next/router";
 const ActivitiesPage = () => {
   const router = useRouter();
   const { activityId } = router.query;
+  const { userData } = useUserStore();
   const {
     data: activityData,
     isLoading,
@@ -70,17 +72,19 @@ const ActivitiesPage = () => {
             </div>
           </div>
         </div>
-        <div>
-          <Dropdown>
-            <Dropdown.Trigger>
+        {userData && userData.id === userId && (
+          <div>
+            <Dropdown>
+              <Dropdown.Trigger>
                 <IcKebab />
               </Dropdown.Trigger>
-            <Dropdown.Menu className="left-auto right-0">
-              <Dropdown.Item>수정하기</Dropdown.Item>
-              <Dropdown.Item>삭제하기</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
+              <Dropdown.Menu className="left-auto right-0">
+                <Dropdown.Item>수정하기</Dropdown.Item>
+                <Dropdown.Item>삭제하기</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        )}
       </div>
       {/* 타이틀 영역 */}
 
