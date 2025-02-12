@@ -1,9 +1,9 @@
-import Favicon from "../components/Favicon";
-import Modal from "../components/modal/Modal";
-import ScrollProvider from "../contexts/ScrollContext";
+import Favicon from "@/src/components/Favicon";
 import "@/src/components/calendar/calendar.css";
+import Modal from "@/src/components/modal/Modal";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
+import ScrollProvider from "@/src/contexts/ScrollContext";
 import "@/src/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";
