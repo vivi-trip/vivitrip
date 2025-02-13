@@ -111,7 +111,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
                         <IconKebabSmall />
                       </div>
                     </Dropdown.Trigger>
-                    <Dropdown.Menu className="-left-110">
+                    <Dropdown.Menu className="left-auto right-0">
                       <Dropdown.Item
                         onClick={handleMoveToEditPage}
                         className="px-48 py-17">
