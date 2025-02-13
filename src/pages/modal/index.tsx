@@ -57,7 +57,7 @@ const OpenModalButton = () => {
               selectedDate="2024-01-01"
             />,
             {
-              customClass: "w-429 h-750  p-24",
+              customClass: "w-429 h-750 min-h-750 p-24",
             },
           )
         }>

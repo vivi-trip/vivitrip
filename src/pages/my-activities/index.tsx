@@ -9,6 +9,8 @@ const MyActivities = () => {
   const handleClick = () => {
     router.push("/my-activities/registration");
   };
+
+  
   return (
     <div>
       <div className="flex w-full justify-center gap-24 pt-72">

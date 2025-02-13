@@ -74,7 +74,7 @@ const CustomEvent = ({ event }: EventProps<CalendarEvent>) => {
 
 const getReservationCircles = (events: Event[]) => {
   return (
-    <div className="relative flex flex-col items-center md:mt-12">
+    <div className="relative items-center md:mt-12">
       {events.map((event) => {
         const { completed, confirmed, pending } = event.reservations;
         const circles = [];
@@ -125,7 +125,7 @@ const MyDateHeader = ({ label, date }: { label: string; date: Date }) => {
 };
 
 const CustomToolbar = ({ label, onNavigate }: CustomToolbarProps) => (
-  <div className="mx-auto mb-17 flex w-342 items-center justify-between px-4 py-5 md:mb-18">
+  <div className="mx-auto mb-17 flex max-w-342 items-center justify-between px-4 py-5 md:mb-18">
     <button type="button" onClick={() => onNavigate("PREV")}>
       <IconPrev />
     </button>
@@ -210,9 +210,6 @@ const ReservationHistoryCalendar = ({
     }
   }, [mockMonthReservations, setData]);
 
-
-
-  
   const handleNavigate = (action: NavigateAction) => {
     let newDate = new Date();
 
@@ -243,7 +240,8 @@ const ReservationHistoryCalendar = ({
         selectedDate={formattedDate}
       />,
       {
-        customClass: "w-full h-full md:w-429 md:h-750 p-4 md:p-24",
+        customClass:
+          "w-full h-full md:max-h-[80vh] md:w-429 md:h-750 p-4 md:p-24",
       },
     );
   };
