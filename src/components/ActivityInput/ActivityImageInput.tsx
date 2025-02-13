@@ -142,7 +142,7 @@ const ActivityImageInput = ({
                 type="button"
                 onClick={handleUploadClick}
                 className={clsx(
-                  "rounded-12 border-2 border-dashed border-gray-300 bg-gray-50",
+                  "rounded-12 border-2 border-dashed border-gray-300 bg-white",
                   "aspect-square w-full",
                   "flex cursor-pointer flex-col items-center justify-center",
                   "transition-colors duration-300 hover:border-gray-400 hover:bg-gray-100",
