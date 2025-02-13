@@ -1,3 +1,4 @@
+import useOutsideClick from "@/src/hooks/useOutsideClick";
 import { ActivityFormDataType } from "@/src/types/activityFormDataType";
 import React, { useRef, useState } from "react";
 import DaumPostcodeEmbed, { Address } from "react-daum-postcode";
@@ -10,6 +11,7 @@ interface AddressInputProps {
 const ActivityAddressInput = ({ control }: AddressInputProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const addressInputRef = useRef<HTMLInputElement | null>(null);
+  const popupRef = useRef<HTMLDivElement | null>(null);
 
   const handleComplete = (data: Address, onChange: (value: string) => void) => {
     if (addressInputRef?.current) {
@@ -18,6 +20,9 @@ const ActivityAddressInput = ({ control }: AddressInputProps) => {
     }
     setIsOpen(false);
   };
+
+  useOutsideClick(popupRef, () => setIsOpen(false));
+
   return (
     <div className="flex flex-col gap-6">
       <Controller
@@ -43,10 +48,10 @@ const ActivityAddressInput = ({ control }: AddressInputProps) => {
               readOnly
             />
             {isOpen && (
-              <div className="relative mt-2">
+              <div ref={popupRef} className="relative mt-2">
                 <DaumPostcodeEmbed
                   onComplete={(data) => handleComplete(data, field.onChange)}
-                  style={{ height: 300 }}
+                  style={{ height: 445 }}
                 />
               </div>
             )}
