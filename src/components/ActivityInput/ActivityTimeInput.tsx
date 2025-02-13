@@ -100,7 +100,11 @@ const ActivityTimeInput = ({
                 시작 시간
               </div>
               <div className="flex-1">
-                <TimeDropdown value={startTime} onChange={setStartTime} />
+                <TimeDropdown
+                  value={startTime}
+                  onChange={setStartTime}
+                  disabled={!selectedDate}
+                />
               </div>
             </div>
             <span className="mx-2 mt-26 hidden md:mt-32 lg:mx-15 lg:block">
@@ -115,6 +119,7 @@ const ActivityTimeInput = ({
                   value={endTime}
                   onChange={setEndTime}
                   minTime={startTime}
+                  disabled={!selectedDate || !startTime}
                 />
               </div>
             </div>
@@ -124,10 +129,12 @@ const ActivityTimeInput = ({
               gap="4"
               backgroundColor="black"
               onClick={handleAddTime}
+              disabled={!endTime}
               className={clsx(
                 "font-24px-medium ml-2 mt-34 size-44 rounded-7 bg-brand-500 text-white",
                 "md:mt-42 md:size-56 lg:ml-20",
                 "hover:bg-brand-600",
+                !endTime && "cursor-not-allowed bg-gray-500 opacity-50",
               )}>
               +
             </Button>
