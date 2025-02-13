@@ -1,9 +1,10 @@
 import IconArrowDown from "@/assets/svgs/ic_arrow_down.svg";
 import IconArrowUp from "@/assets/svgs/ic_arrow_up.svg";
 import Dropdown from "@/src/components/Dropdown/index";
+import useOutsideClick from "@/src/hooks/useOutsideClick";
 import { ActivityFormDataType } from "@/src/types/activityFormDataType";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Control, Controller } from "react-hook-form";
 
 interface CategoryInputProps {
@@ -22,15 +23,20 @@ const ActivityCategoryInput = ({ control }: CategoryInputProps) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  useOutsideClick(dropdownRef, () => setIsOpen(false));
 
   return (
-    <div>
+    <div ref={dropdownRef}>
       <Controller
         name="category"
         control={control}
         render={({ field }) => (
-          <Dropdown className="w-full">
+          <Dropdown className="w-full bg-white">
             <Dropdown.Trigger
+              onClick={toggleDropdown}
               className={clsx(
                 "font-16px-regular text-left",
                 "flex h-56 w-full items-center justify-between",
@@ -40,8 +46,7 @@ const ActivityCategoryInput = ({ control }: CategoryInputProps) => {
                   "text-black": isSelected,
                   "text-gray-500": !isSelected,
                 },
-              )}
-              >
+              )}>
               {field.value || "카테고리"}
               {isOpen ? <IconArrowUp /> : <IconArrowDown />}
             </Dropdown.Trigger>
