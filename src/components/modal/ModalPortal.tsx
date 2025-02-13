@@ -19,7 +19,7 @@ const ModalOverlay = ({ onClose }: { onClose: () => void }) => {
       tabIndex={0}
       onKeyDown={handleKeyDown}
       aria-label="Close modal"
-      className="fixed inset-0 z-40"
+      className="fixed inset-0 z-40 bg-[rgba(0,0,0,0.32)]"
     />
   );
 };
