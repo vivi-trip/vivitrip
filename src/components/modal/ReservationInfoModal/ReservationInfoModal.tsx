@@ -13,13 +13,12 @@ import {
 import { formatDateToKorean } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useState } from "react";
+import { ReservationStatusType } from "@/src/types/reservation";
 
 interface ReservationInfoModalProps {
   selectedDate: string;
   selectedActivityId: number;
 }
-
-type ReservationStatus = "pending" | "confirmed" | "declined";
 
 /**
  * @description - ReservationInfoModal 프롭
@@ -32,7 +31,7 @@ const ReservationInfoModal = ({
   selectedActivityId,
 }: ReservationInfoModalProps) => {
   const { setModalClose } = useModalStore();
-  const [selectTab, setSelectTab] = useState<ReservationStatus>("pending");
+  const [selectTab, setSelectTab] = useState<ReservationStatusType>("pending");
   const formattedDate = formatDateToKorean(selectedDate);
   const [selectedScheduleId, setSelectedScheduleId] = useState<
     number | undefined
@@ -206,7 +205,7 @@ const ReservationInfoModal = ({
     );
 
   return (
-    <div className="mt-24 flex max-h-697 w-full max-w-429 flex-col">
+    <div className="md: mt-24 flex max-h-750 min-h-697 w-full max-w-429 flex-col">
       <div className="flex w-full justify-between">
         <div className="font-24px-bold">예약정보</div>
         <CloseIcon onClick={setModalClose} />
