@@ -18,6 +18,14 @@
       }
     }
 
+    .rbc-month-view {
+      border: none;
+    }
+
+    .rbc-row-bg {
+      right: 0;
+    }
+
     .rbc-row-content {
       display: flex;
       flex-direction: column;
@@ -36,7 +44,6 @@
       }
     }
 
-
     .rbc-date-cell {
       display: flex;
       flex-direction: column;
@@ -44,7 +51,7 @@
     }
 
     .rbc-row-segment {
-      padding: 0;
+      padding: 2;
     }
   }
 }
