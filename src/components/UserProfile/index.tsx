@@ -13,7 +13,7 @@ const UserProfile = () => {
       <Dropdown.Trigger>
         <Avatar />
       </Dropdown.Trigger>
-      <Dropdown.Menu>
+      <Dropdown.Menu className="left-auto right-0">
         <Dropdown.Item onClick={() => router.push(PATH_NAMES.MyPage)}>
           마이페이지
         </Dropdown.Item>
