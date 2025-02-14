@@ -1,6 +1,7 @@
 import IconUser from "@/assets/svgs/ic_user.svg";
 import useUserStore from "@/src/stores/userStore";
 import { ProfileImageUrl } from "@/src/types/user";
+import clsx from "clsx";
 
 const Avatar = () => {
   const { userData, userProvider } = useUserStore();
@@ -20,6 +21,18 @@ const Avatar = () => {
     }
   })();
 
+  const AVATAR_TYPES = {
+    kakao: {
+      context: "카카오",
+      className: "border-[#fae100]",
+    },
+    google: {
+      context: "구글",
+      className:
+        "border-b-[#34A853] border-l-[#FBBC04] border-r-[#4285F4] border-t-[#EA4335]",
+    },
+  };
+
   if (!userData) return null;
 
   return (
@@ -32,15 +45,15 @@ const Avatar = () => {
             alt={profileImageUrl.name}
             className="relative size-32 rounded-full"
           />
-          {userProvider && userProvider === "kakao" ? (
-            <div className="absolute -inset-4 rounded-full border-2 border-[#fae100] text-[0]">
-              카카오 계정
-            </div>
-          ) : (
-            <div className="absolute -inset-4 rounded-full border-2 border-b-[#34A853] border-l-[#FBBC04] border-r-[#4285F4] border-t-[#EA4335] text-[0]">
-              구글 계정
-            </div>
-          )}
+          <div
+            className={clsx(
+              "absolute -inset-4 rounded-full border-2 text-[0]",
+              userProvider
+                ? AVATAR_TYPES[userProvider].className
+                : "border-brand-400",
+            )}>
+            {userProvider ? AVATAR_TYPES[userProvider].context : "일반"} 계정
+          </div>
         </div>
       ) : (
         <IconUser className="text-brand-600" />
