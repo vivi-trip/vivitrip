@@ -50,7 +50,7 @@ const Avatar = () => {
               "absolute -inset-4 rounded-full border-2 text-[0]",
               userProvider
                 ? AVATAR_TYPES[userProvider].className
-                : "border-brand-400",
+                : "border-b-brand-300 border-l-brand-200 border-r-brand-400 border-t-brand-500",
             )}>
             {userProvider ? AVATAR_TYPES[userProvider].context : "일반"} 계정
           </div>
