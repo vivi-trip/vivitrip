@@ -50,7 +50,7 @@ const ActivityCategoryInput = ({ control }: CategoryInputProps) => {
               {field.value || "카테고리"}
               {isOpen ? <IconArrowUp /> : <IconArrowDown />}
             </Dropdown.Trigger>
-            <Dropdown.Menu className="w-full">
+            <Dropdown.Menu className="w-full bg-white">
               {options.map((option) => (
                 <Dropdown.Item
                   key={option.value}
