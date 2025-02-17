@@ -50,12 +50,12 @@ const ActivitiesPage = () => {
   } = activityData as ActivityDetailResponse;
 
   return (
-    <div className="my-80 pb-300">
+    <div className="my-24 pb-300 md:my-32 lg:my-80">
       <div className="flex items-center justify-between">
         <div>
           <p className="font-14px-regular">{category}</p>
-          <p className="font-32px-bold mt-10">{title}</p>
-          <div className="mt-16 flex gap-12">
+          <p className="font-24px-bold md:font-32px-bold mt-10">{title}</p>
+          <div className="mt-16 flex flex-col gap-12 lg:flex-row">
             <div className="flex items-center gap-6">
               <IcStar />
               <p className="font-14px-regular">{`${rating} (${reviewCount})`}</p>
