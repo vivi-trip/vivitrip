@@ -4,6 +4,7 @@ import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageL
 import Dropdown from "@/src/components/Dropdown";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
+import Custom404 from "@/src/pages/404";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/userStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
@@ -34,13 +35,7 @@ const ActivitiesPage = () => {
       />
     );
 
-  if (error)
-    return (
-      <div>
-        <p>데이터를 가져오는 중 에러가 발생하였습니다.</p>
-        <p>잠시후 다시 시도해주세요.</p>
-      </div>
-    );
+  if (error) return <Custom404 statusCode={404} />;
 
   const {
     category,
