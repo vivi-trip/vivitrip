@@ -7,6 +7,7 @@ import ActivityTimeInput from "../ActivityInput/ActivityTimeInput";
 import ActivityTitleInput from "../ActivityInput/ActivityTitleInput";
 import Button from "../Button/Button";
 import TwoButtonModal from "../modal/TwoButtonModal";
+import PATH_NAMES from "@/src/constants/pathname";
 import {
   useCreateActivity,
   useGetActivities,
@@ -48,7 +49,7 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
     setModalOpen(
       <TwoButtonModal
         onCancel={() => {
-          router.push("/my-activities");
+          router.push(PATH_NAMES.MyActivities);
           setModalClose();
         }}
         title="작성을 취소하시겠습니까?"
@@ -68,7 +69,7 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
 
     createActivity(requestData, {
       onSuccess: () => {
-        router.push("/my-activities");
+        router.push(PATH_NAMES.MyActivities);
       },
     });
   };
@@ -170,7 +171,7 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
         },
         {
           onSuccess: () => {
-            router.push("/my-activities");
+            router.push(PATH_NAMES.MyActivities);
           },
         },
       );
