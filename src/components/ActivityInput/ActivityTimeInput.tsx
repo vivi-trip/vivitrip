@@ -159,7 +159,7 @@ const ActivityTimeInput = ({
                         className={clsx(
                           "h-44 w-full px-12 py-10",
                           "md:h-56 md:px-16 md:py-15",
-                          "rounded-4 border border-gray-500",
+                          "rounded-4 border border-gray-500 bg-white",
                         )}>
                         {field.value}
                       </div>
@@ -175,7 +175,7 @@ const ActivityTimeInput = ({
                         render={({ field }) => (
                           <div
                             className={clsx(
-                              "h-44 py-10 pl-12",
+                              "h-44 py-10 pl-12 bg-white",
                               "md:h-56 md:px-16 md:py-15",
                               "rounded-4 border border-gray-500",
                               "flex items-center justify-between",
@@ -194,7 +194,7 @@ const ActivityTimeInput = ({
                         render={({ field }) => (
                           <div
                             className={clsx(
-                              "h-44 py-10 pl-12",
+                              "h-44 py-10 pl-12 bg-white",
                               "md:h-56 md:px-16 md:py-15",
                               "rounded-4 border border-gray-500",
                               "flex items-center justify-between",
