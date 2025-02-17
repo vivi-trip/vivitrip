@@ -1,11 +1,12 @@
 import IcLocation from "@/assets/svgs/ic_location.svg";
 import IcStar from "@/assets/svgs/star.svg";
+import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageList";
+import Dropdown from "@/src/components/Dropdown";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/userStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 const ActivitiesPage = () => {
@@ -76,40 +77,10 @@ const ActivitiesPage = () => {
       </div>
       {/* 타이틀 영역 */}
 
-      <div className="mt-24 grid h-560 grid-cols-4 grid-rows-2 gap-8 overflow-hidden rounded-12">
-        <div className="col-span-2 row-span-full size-full overflow-hidden">
-          <div className="font-32px-bold relative flex size-full items-center justify-center bg-brand-200 text-brand-600">
-            Image 1
-            <Image
-              src={bannerImageUrl}
-              alt="배너 이미지"
-              priority
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
-        </div>
-
-        {Array.from({ length: 4 }).map((_, i) => {
-          return (
-            <div
-              className="size-full overflow-hidden"
-              key={`subImages_${i + 1}`}>
-              <div className="font-32px-bold relative flex size-full items-center justify-center bg-brand-300 text-brand-600">
-                {subImages.length > i && (
-                  <Image
-                    src={subImages[i].imageUrl ?? ""}
-                    alt="서브 이미지"
-                    priority
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <ActivityImageList
+        bannerImageUrl={bannerImageUrl}
+        subImages={subImages}
+      />
       {/* 체험 이미지 영역 */}
 
       <div className="mt-80 grid grid-cols-8 grid-rows-3 gap-40">
