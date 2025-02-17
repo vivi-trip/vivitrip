@@ -1,8 +1,7 @@
-import IcKebab from "@/assets/svgs/ic_kebab.svg";
 import IcLocation from "@/assets/svgs/ic_location.svg";
 import IcStar from "@/assets/svgs/star.svg";
-import Dropdown from "@/src/components/Dropdown";
 import Loading from "@/src/components/Loading";
+import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/userStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
@@ -72,17 +71,7 @@ const ActivitiesPage = () => {
           </div>
         </div>
         {userData && userData.id === userId && (
-          <div>
-            <Dropdown>
-              <Dropdown.Trigger>
-                <IcKebab />
-              </Dropdown.Trigger>
-              <Dropdown.Menu className="left-auto right-0">
-                <Dropdown.Item>수정하기</Dropdown.Item>
-                <Dropdown.Item>삭제하기</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
+          <MyActivityHandler activityId={Number(activityId)} />
         )}
       </div>
       {/* 타이틀 영역 */}
