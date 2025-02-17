@@ -8,6 +8,8 @@ export type PathNameType =
   | "FAQ"
   | "KakaoSignIn"
   | "KakaoSignUp"
-  | "Activity";
+  | "Activity"
+  | "MyActivities"
+  | "MyActivitiesRegistration";
 
 export type TestPagePathNameType = "Chip" | "Button";
