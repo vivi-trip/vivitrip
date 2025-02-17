@@ -3,6 +3,7 @@ import IcLocation from "@/assets/svgs/ic_location.svg";
 import IcStar from "@/assets/svgs/star.svg";
 import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageList";
 import ActivityLocation from "@/src/components/ActivityLocation/ActivityLocation";
+import Dropdown from "@/src/components/Dropdown";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import { useGetActivities } from "@/src/queries/useActivities";
