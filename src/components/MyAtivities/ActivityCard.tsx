@@ -1,10 +1,5 @@
-import Dropdown from "../Dropdown";
-import TwoButtonModal from "../modal/TwoButtonModal";
-import IconKebab from "@/assets/svgs/ic_kebab.svg";
-import IconKebabSmall from "@/assets/svgs/ic_kebab_small.svg";
+import MyActivityHandler from "./MyActivityHandler";
 import IconStar from "@/assets/svgs/ic_star.svg";
-import { useDeleteArticle } from "@/src/hooks/useMyActivities";
-import useModalStore from "@/src/stores/ModalStore";
 import { Activity } from "@/src/types/activitiesReservationType";
 import clsx from "clsx";
 import Image from "next/image";
@@ -25,30 +20,6 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
   } = activity;
 
   const router = useRouter();
-  const { setModalOpen, setModalClose } = useModalStore();
-  const { mutate } = useDeleteArticle();
-
-  const handleMoveToEditPage = () => {
-    router.push(`/my-activities/registration/${activityId}`);
-  };
-
-  const handleDeleteData = () => {
-    mutate(activityId, {
-      onSuccess: () => {
-        /**
-         * @todo 차후  토스트로 대체
-         */
-        console.log("체험이 성공적으로 삭제되었습니다.");
-
-        setModalClose();
-        router.push("/my-activities");
-      },
-      onError: (error) => {
-        // 삭제 실패 시 실행할 로직
-        console.error("체험 삭제 중 오류 발생:", error);
-      },
-    });
-  };
 
   return (
     <div
@@ -102,38 +73,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
                   ₩{price?.toLocaleString("ko-KR")} /인
                 </p>
                 <div>
-                  <Dropdown className="flex">
-                    <Dropdown.Trigger className="flex justify-end">
-                      <div className="hidden md:block">
-                        <IconKebab />
-                      </div>
-                      <div className="block md:hidden">
-                        <IconKebabSmall />
-                      </div>
-                    </Dropdown.Trigger>
-                    <Dropdown.Menu className="left-auto right-0">
-                      <Dropdown.Item
-                        onClick={handleMoveToEditPage}
-                        className="px-48 py-17">
-                        수정하기
-                      </Dropdown.Item>
-                      <div className="border-b border-gray-200" />
-                      <Dropdown.Item
-                        onClick={() => {
-                          setModalOpen(
-                            <TwoButtonModal
-                              title="체험을 삭제하시겠습니까?"
-                              negativeContent="취소하기"
-                              interactiveContent="삭제하기"
-                              onCancel={handleDeleteData}
-                            />,
-                          );
-                        }}
-                        className="px-48 py-17">
-                        삭제하기
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  <MyActivityHandler activityId={activityId} />
                 </div>
               </div>
             </div>
