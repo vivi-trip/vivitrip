@@ -1,13 +1,14 @@
 import Button from "@/src/components/Button/Button";
 import ActivityList from "@/src/components/MyAtivities/ActivityList";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
+import PATH_NAMES from "@/src/constants/pathname";
 import { useRouter } from "next/router";
 
 const MyActivities = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/my-activities/registration");
+    router.push(PATH_NAMES.MyActivitiesRegistration);
   };
 
   

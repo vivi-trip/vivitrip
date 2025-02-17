@@ -1,5 +1,6 @@
 import MyActivityHandler from "./MyActivityHandler";
 import IconStar from "@/assets/svgs/ic_star.svg";
+import PATH_NAMES from "@/src/constants/pathname";
 import { Activity } from "@/src/types/activitiesReservationType";
 import clsx from "clsx";
 import Image from "next/image";
@@ -31,7 +32,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
       <button
         type="button"
         onClick={() => {
-          router.push(`activities/${activityId}`);
+          router.push(`${PATH_NAMES.Activity}/${activityId}`);
         }}
         className={clsx(
           "h-128 w-full min-w-344 rounded-24 border border-white",
