@@ -1,3 +1,4 @@
+import ScrollToTopHandler from "../components/ScrollHandler/ScrollToTopHandler";
 import Favicon from "@/src/components/Favicon";
 import "@/src/components/calendar/calendar.css";
 import Modal from "@/src/components/modal/Modal";
@@ -49,6 +50,7 @@ const App = ({
           "px-24 md:px-32",
           is404Page ? "bg-brand-50" : "h-main bg-gray-50",
         )}>
+        <ScrollToTopHandler />
         <div
           className={clsx(
             "mx-auto min-h-main",
