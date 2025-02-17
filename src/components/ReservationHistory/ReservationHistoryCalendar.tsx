@@ -241,7 +241,7 @@ const ReservationHistoryCalendar = ({
       />,
       {
         customClass:
-          "w-full h-full md:max-h-[80vh] md:w-429 md:h-750 p-4 md:p-24",
+          "w-full h-full md:max-h-[50vh] md:w-429 p-4 md:p-24",
       },
     );
   };
