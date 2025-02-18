@@ -1,13 +1,15 @@
+import ActivityReservationBar from "@/src/components/ActivityReservation/ActivityReservationBar";
 import IcLocation from "@/assets/svgs/ic_location.svg";
 import IcStar from "@/assets/svgs/star.svg";
 import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageList";
 import ActivityLocation from "@/src/components/ActivityLocation/ActivityLocation";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
-import Custom404 from "@/src/pages/404";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/userStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
+import Image from "next/image";
+import Custom404 from "@/src/pages/404";
 import { useRouter } from "next/router";
 
 const ActivitiesPage = () => {
@@ -121,6 +123,7 @@ const ActivitiesPage = () => {
 
               from. @JuhyeokC
             */}
+              {activityData && <ActivityReservationBar activityData={activityData} />}
             <p>예약하기 컴포넌트</p>
           </div>
         </div>
