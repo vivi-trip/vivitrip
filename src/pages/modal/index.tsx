@@ -67,7 +67,7 @@ const OpenModalButton = () => {
         예약확인
       </button>
 
-      {data && <ActivityReservationBar data={data} />}
+      {data && <ActivityReservationBar activityData={data} />}
     </div>
   );
 };
