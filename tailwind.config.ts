@@ -86,6 +86,8 @@ const config: Config = {
   },
   plugins: [],
   safelist: [
+    "grid-cols-12",
+    "grid-rows-12",
     {
       pattern: /bg-*/,
     },
