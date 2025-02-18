@@ -16,7 +16,7 @@ interface TimeDropdownProps {
 const TimeDropdown = ({
   value,
   onChange,
-  placeholder = "00:00",
+  placeholder = "0:00",
   minTime,
   disabled = false,
 }: TimeDropdownProps) => {
@@ -24,7 +24,7 @@ const TimeDropdown = ({
     if (disabled) return [];
     const options = Array.from({ length: 24 }, (_, i) => ({
       value: `${i}:00`,
-      label: `${i < 10 ? `0${i}` : i}:00`,
+      label: `${i}:00`,
     }));
 
     if (minTime) {
@@ -53,8 +53,8 @@ const TimeDropdown = ({
         <Dropdown.Trigger
           onClick={toggleDropdown}
           className={clsx(
-            "h-44 py-10 pl-12",
-            "md:h-56 md:px-16 md:py-15",
+            "h-44 py-10 pl-10",
+            "md:h-56 md:px-12 md:py-15",
             "rounded-4 border border-gray-500",
             "flex justify-between",
             disabled && "cursor-not-allowed opacity-50",
