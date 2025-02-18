@@ -56,7 +56,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
   return (
     <div>
       <p className="font-18px-bold">예약 가능한 시간</p>
-      <div>{renderSchedules()}</div>
+      <div className="flex gap-10">{renderSchedules()}</div>
     </div>
   );
 };
