@@ -78,12 +78,24 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
     handleSubmit,
     reset,
     formState: { isValid },
-  } = useForm<ActivityFormDataType>({ mode: "onChange" });
+  } = useForm<ActivityFormDataType>({
+    mode: "onChange",
+    defaultValues: {
+      title: "",
+      category: "",
+      description: "",
+      address: "",
+      price: 0,
+      bannerImageUrl: "",
+      subImages: [],
+      schedules: [],
+    },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "schedules",
-    keyName: "rhfId"
+    keyName: "rhfId",
   });
 
   useEffect(() => {
