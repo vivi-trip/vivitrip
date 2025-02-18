@@ -12,6 +12,7 @@ const ActivityTitleInput = ({ control }: TitleInputProps) => {
       <Controller
         name="title"
         control={control}
+        defaultValue=""
         rules={{
           required: { value: true, message: "필수 입력 값입니다." },
           pattern: {
@@ -24,7 +25,7 @@ const ActivityTitleInput = ({ control }: TitleInputProps) => {
             <input
               {...field}
               placeholder="제목"
-              className="font-16px-regular h-56 w-full rounded-4 border border-gray-500 py-15 px-16"
+              className="font-16px-regular h-56 w-full rounded-4 border border-gray-500 px-16 py-15"
             />
             {error && <div className="pl-1 text-red-500">{error?.message}</div>}
           </>
