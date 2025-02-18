@@ -123,7 +123,9 @@ const ActivitiesPage = () => {
 
               from. @JuhyeokC
             */}
-              {activityData && <ActivityReservationBar activityData={activityData} />}
+            {activityData && (
+              <ActivityReservationBar activityData={activityData} />
+            )}
             <p>예약하기 컴포넌트</p>
           </div>
         </div>
