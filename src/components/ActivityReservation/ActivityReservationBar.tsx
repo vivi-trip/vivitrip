@@ -8,17 +8,19 @@ import clsx from "clsx";
 import { useEffect } from "react";
 
 interface ActivityReservationBarProps {
-  data: ActivityDetailResponse;
+  activityData: ActivityDetailResponse;
 }
 
-const ActivityReservationBar = ({ data }: ActivityReservationBarProps) => {
+const ActivityReservationBar = ({
+  activityData,
+}: ActivityReservationBarProps) => {
   const { onChangeData, members } = useCalendar();
-  const { price } = data;
+  const { price } = activityData;
   const { setModalOpen } = useModalStore();
 
   useEffect(() => {
-    onChangeData(data);
-  }, [data, onChangeData]);
+    onChangeData(activityData);
+  }, [activityData, onChangeData]);
 
   return (
     <div
