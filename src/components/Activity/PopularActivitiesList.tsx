@@ -2,6 +2,7 @@ import PopularActivities from "./PopularActivities";
 import LeftArrow from "@/assets/svgs/btnArrow48pxDefault.svg";
 import RightArrow from "@/assets/svgs/btnArrow48pxVariant4.svg";
 import Button from "@/src/components/Button/Button";
+import useVisibleWidth from "@/src/hooks/Activity/useVisibleWidth";
 import { ActivitiesResponse } from "@/src/types/activities";
 import clsx from "clsx";
 import { useState } from "react";
@@ -25,9 +26,14 @@ const PopularActivitiesList = ({
     }
   };
 
+  // clientWidth 추적
+  const { containerRef, visibleWidth } = useVisibleWidth();
+
   return (
     <>
-      <div className="mt-24 flex items-center justify-between md:mt-18 lg:mt-34">
+      <div
+        ref={containerRef}
+        className="mt-24 flex items-center justify-between md:mt-18 lg:mt-34">
         <h2 className="font-18px-bold md:font-36px-bold lg:font-36px-bold">
           🔥 인기 체험
         </h2>
@@ -68,6 +74,7 @@ const PopularActivitiesList = ({
         activities={activities}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
+        containerWidth={visibleWidth}
         emptyMessage="체험이 존재하지 않습니다."
       />
     </>
