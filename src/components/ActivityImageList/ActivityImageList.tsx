@@ -1,3 +1,4 @@
+import ActivityImage from "./ActivityImage";
 import Style from "./ActivityImageList.module.css";
 import IconLeftArrow from "@/assets/svgs/btnArrow48pxDefault.svg";
 import IconRightArrow from "@/assets/svgs/btnArrow48pxVariant4.svg";
@@ -7,28 +8,78 @@ import IconRefresh from "@/assets/svgs/ic_refresh.svg";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Space = dynamic(() => import("antd/es/space"), { ssr: false });
-const Image = dynamic(() => import("antd/es/image"), { ssr: false });
 const PreviewGroup = dynamic(() => import("antd/es/image/PreviewGroup"), {
   ssr: false,
 });
+
+const gridLength: number = 12;
+const ImageGridClassName: Record<string, string | string[] | string[][]> = {
+  size: `grid-cols-${gridLength} grid-rows-${gridLength}`,
+
+  banner: [
+    "row-span-full",
+    "row-span-8 lg:col-span-7",
+    "row-span-8 lg:col-span-7",
+    "row-span-8 lg:col-span-7",
+    "row-span-8 lg:col-span-6",
+  ],
+
+  sub: [
+    "",
+    "col-span-full row-span-4 lg:col-span-5 lg:row-span-full",
+    "col-span-6 row-span-4 lg:col-span-5 lg:row-span-6",
+    "col-span-4 row-span-4 lg:col-span-5 lg:row-span-4",
+    "col-span-3 row-span-4 lg:col-span-3 lg:row-span-6",
+  ],
+
+  rounded: [
+    ["rounded-t-12 lg:rounded-l-12 lg:rounded-tr-none"],
+    ["rounded-b-12 lg:rounded-r-12 lg:rounded-bl-none"],
+    ["rounded-bl-12 lg:rounded-tr-12 lg:rounded-bl-none", "rounded-br-12"],
+    ["rounded-bl-12 lg:rounded-tr-12 lg:rounded-bl-none", "", "rounded-br-12"],
+    [
+      "rounded-bl-12 lg:rounded-bl-none",
+      "lg:rounded-tr-12 lg:rounded-bl-none",
+      "",
+      "rounded-br-12",
+    ],
+  ],
+};
 
 const ActivityImageList = ({
   bannerImageUrl,
   subImages,
 }: Pick<ActivityDetailResponse, "bannerImageUrl" | "subImages">) => {
-  const imageList = useMemo<string[]>(() => {
-    const list = [bannerImageUrl];
-    subImages.forEach(({ imageUrl }) => list.push(imageUrl));
-    return list;
-  }, [bannerImageUrl, subImages]);
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const [gridHeight, setGridHeight] = useState<number>(0);
 
-  if (imageList.length === 0) return null;
+  useEffect(() => {
+    const updateHeight = () => {
+      const scale = window.innerWidth >= 1024 ? 6 : 9;
+      if (gridRef.current) {
+        setGridHeight(
+          Math.floor(gridRef.current.clientWidth / gridLength) * scale,
+        );
+      }
+    };
+
+    updateHeight();
+
+    window.addEventListener("resize", updateHeight);
+
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
   return (
-    <div className="mt-24 grid h-320 grid-cols-4 grid-rows-4 gap-8 overflow-hidden rounded-12 md:h-480 lg:h-560">
+    <div
+      ref={gridRef}
+      className={clsx(ImageGridClassName.size, "mt-24 grid gap-10")}
+      style={{
+        height: `${gridHeight}px`,
+      }}>
       <PreviewGroup
         preview={{
           // eslint-disable-next-line react/no-unstable-nested-components
@@ -80,29 +131,25 @@ const ActivityImageList = ({
             </Space>
           ),
         }}>
-        {imageList.map((item, idx) => {
+        <ActivityImage
+          className={clsx(
+            "col-span-full lg:row-span-full",
+            ImageGridClassName.banner[subImages.length],
+            ImageGridClassName.rounded[0][0],
+          )}
+          imageUrl={bannerImageUrl}
+        />
+        {subImages.map((item, idx) => {
+          if (subImages.length <= idx) return null;
           return (
-            <div
-              key={item}
+            <ActivityImage
+              key={item.id}
               className={clsx(
-                "size-full overflow-hidden",
-                idx === 0 &&
-                  "col-span-4 row-span-3 lg:col-span-2 lg:row-span-full",
-                idx !== 0 && "lg:row-span-2",
-              )}>
-              <div className="font-32px-bold relative flex size-full items-center justify-center bg-brand-200 text-brand-600">
-                <Image
-                  src={item}
-                  width="100%"
-                  height="100%"
-                  alt={item}
-                  className="size-full object-cover"
-                  preview={{
-                    mask: <p>원본보기</p>,
-                  }}
-                />
-              </div>
-            </div>
+                ImageGridClassName.sub[subImages.length],
+                ImageGridClassName.rounded[subImages.length][idx],
+              )}
+              imageUrl={item.imageUrl}
+            />
           );
         })}
       </PreviewGroup>
