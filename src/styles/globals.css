@@ -201,6 +201,10 @@
   }
 
   /* Text-xs */
+  .font-12px-bold {
+    @apply text-[12px] font-bold leading-[18px];
+  }
+
   .font-12px-semibold {
     @apply text-[12px] font-semibold leading-[18px];
   }
