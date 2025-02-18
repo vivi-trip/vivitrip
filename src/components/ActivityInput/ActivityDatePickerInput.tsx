@@ -26,18 +26,18 @@ const ActivityDatePickerInput = ({
           className={clsx(
             "!w-full",
             "font-14px-regular text-black",
-            "md:font-16px-regular md:h-56",
+            "md:font-16px-regular md:h-56 md:px-16",
             "rounded-4 border border-gray-500",
-            "min-h-44 px-16 py-8",
+            "min-h-44 px-6 py-8",
           )}
-          dateFormat="yyyy-MM-dd"   
+          dateFormat="yyyy-MM-dd"
           placeholderText="YYYY-MM-DD"
-          selected={selectedDate ? new Date(selectedDate) : null} 
+          selected={selectedDate ? new Date(selectedDate) : null}
           onChange={(date: Date | null) => {
             onChange(date ? formatDateToYYYYMMDD(date) : null);
           }}
         />
-        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 pr-12 lg:first-letter:pr-24">
+        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2  md:pr-12 lg:first-letter:pr-24">
           <IconCalendarMini />
         </div>
       </div>
