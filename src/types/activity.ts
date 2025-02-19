@@ -1,10 +1,27 @@
 import { Activity } from "@/src/types/activities";
 import { ReactNode } from "react";
 
-export type ActivityTextStyleType =
+export type ActivityTextWrapperStyleType =
+  | "isSmallerXsScreen"
+  | "isXsScreen"
+  | "default";
+
+export type ActivityRatingTextStyleType =
+  | "isSmallerXsScreen"
+  | "isXsScreen"
+  | "default";
+
+export type ActivityTitleTextStyleType =
+  | "isExtraXsScreen"
+  | "isSmallerXsScreen"
   | "isXsScreen"
   | "isSmToMdScreen"
   | "isMdToLgScreen"
+  | "default";
+
+export type ActivityPriceTextStyleType =
+  | "isSmallerXsScreen"
+  | "isXsScreen"
   | "default";
 
 export interface AllActivitiesListProps {
