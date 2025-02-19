@@ -5,17 +5,8 @@ const useItemWidth = (gap: number, containerWidth: number) => {
 
   useEffect(() => {
     const updateItemWidth = () => {
-      let newItemWidth;
-      if (window.innerWidth >= 1024) {
-        newItemWidth = (containerWidth - 2 * gap) / 3;
-        setItemWidth(newItemWidth);
-      } else if (window.innerWidth >= 768) {
-        newItemWidth = (containerWidth - 2 * gap) / 3;
-        setItemWidth(newItemWidth);
-      } else {
-        newItemWidth = (containerWidth - 2 * gap) / 3;
-        setItemWidth(newItemWidth);
-      }
+      const newItemWidth = (containerWidth - 2 * gap) / 3;
+      setItemWidth(newItemWidth);
     };
 
     updateItemWidth();
