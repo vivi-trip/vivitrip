@@ -29,7 +29,15 @@ const PopularActivityItem = ({
   }, [onImageLoad]);
 
   // 화면 크기 별 폰트 크기
-  const { isXsScreen, getActivityTextStyle } = useResponsiveTextStyle();
+  const {
+    isExtraXsScreen,
+    isXsScreen,
+    isSmallerXsScreen,
+    getActivityTextWrapperStyle,
+    getActivityRatingTextStyle,
+    getActivityTitleTextStyle,
+    getActivityPriceTextStyle,
+  } = useResponsiveTextStyle();
 
   // loading spinner
   const { loadingButtons, showLoadingButtons } = useLoadingStore();
@@ -60,46 +68,47 @@ const PopularActivityItem = ({
           />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/30 to-black/80" />
-
-        <div
-          className={clsx(
-            "absolute flex flex-col gap-5 px-20 py-12 md:gap-10 md:py-30 md:pr-60 lg:gap-20 lg:pr-90",
-            isXsScreen ? "bottom-5" : "bottom-12 md:bottom-0",
-          )}>
-          <div className="flex items-center gap-5">
-            <Star
-              width={isXsScreen ? 16 : 20}
-              height={isXsScreen ? 16 : 20}
-              className="my-2 block"
-            />
-            <p
-              className={clsx(
-                "text-white",
-                isXsScreen ? "font-14px-semibold" : "font-14px-semibold",
-              )}>
-              {rating} ({reviewCount})
-            </p>
-          </div>
-          <p
+        {!isExtraXsScreen && (
+          <div
             className={clsx(
-              "line-clamp-2 overflow-hidden text-white",
-              getActivityTextStyle(),
+              "absolute bottom-12 flex flex-col gap-5 px-20 py-12 md:bottom-0 md:gap-10 md:py-30 md:pr-60 lg:gap-20 lg:pr-90",
+              getActivityTextWrapperStyle(),
             )}>
-            {title}
-          </p>
-          <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5">
+              <Star
+                width={isXsScreen || isSmallerXsScreen ? 16 : 20}
+                height={isXsScreen || isSmallerXsScreen ? 16 : 20}
+                className="my-2 block"
+              />
+              <p className={clsx("text-white", getActivityRatingTextStyle())}>
+                {rating} ({reviewCount})
+              </p>
+            </div>
             <p
               className={clsx(
-                "text-white",
-                isXsScreen
-                  ? "font-14px-bold"
-                  : "font-16px-bold md:font-18px-bold lg:font-20px-bold",
+                "line-clamp-2 overflow-hidden text-white",
+                getActivityTitleTextStyle(),
               )}>
-              ₩ {price.toLocaleString()}
+              {title}
             </p>
-            <p className="font-14px-regular my-1 text-gray-600">/ 인</p>
+            <div
+              className={clsx(
+                "flex items-center gap-5",
+                isSmallerXsScreen && "gap-2",
+              )}>
+              <p className={clsx("text-white", getActivityPriceTextStyle())}>
+                ₩ {price.toLocaleString()}
+              </p>
+              <p
+                className={clsx(
+                  "font-14px-regular my-1 line-clamp-1 text-gray-600",
+                  isSmallerXsScreen && "font-12px-regular",
+                )}>
+                / 인
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </Link>
     </div>
   );
