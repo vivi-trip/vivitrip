@@ -22,7 +22,7 @@ const PopularActivities = ({
   // auto slide 활성화 여부
   const { isAutoSlide, pauseAutoSlide } = useAutoSlideStatus();
 
-  // 버튼 클릭 시 자동 슬라이드 중지
+  // sm, md: 버튼 클릭 시 auto slide 중지
   const handleManualPrev = () => {
     pauseAutoSlide();
     handlePrev();
@@ -46,6 +46,8 @@ const PopularActivities = ({
   if (!activities || activities.length === 0) {
     return <p>{emptyMessage}</p>;
   }
+
+  console.log("currentIndex", currentIndex);
 
   return (
     <div className="group relative max-w-1200 overflow-hidden">

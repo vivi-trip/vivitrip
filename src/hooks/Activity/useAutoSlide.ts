@@ -10,12 +10,13 @@ const useAutoSlide = (
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex: number) => {
           const nextIndex =
-            prevIndex < activitiesLength - 1 ? prevIndex + 1 : 0;
+            prevIndex < activitiesLength - 3 ? prevIndex + 1 : 0;
 
           // 마지막 데이터에 도달했을 때 데이터 요청
-          if (nextIndex === activitiesLength - 1) {
+          if (nextIndex === activitiesLength - 3) {
             setCurrentIndex(0);
           }
+
           return nextIndex;
         });
       }, 3000);
