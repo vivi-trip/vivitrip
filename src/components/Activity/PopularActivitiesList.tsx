@@ -75,6 +75,9 @@ const PopularActivitiesList = ({
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
         containerWidth={visibleWidth}
+        totalCount={totalCount}
+        handlePrev={handlePrev}
+        handleNext={handleNext}
         emptyMessage="체험이 존재하지 않습니다."
       />
     </>

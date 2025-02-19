@@ -38,6 +38,9 @@ export interface PopularActivitiesProps extends BaseActivitiesProps {
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
   containerWidth: number;
+  totalCount: number;
+  handlePrev: () => void;
+  handleNext: () => Promise<void>;
 }
 
 export interface PopularActivityItemProps extends Activity {
