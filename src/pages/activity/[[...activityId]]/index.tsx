@@ -1,7 +1,6 @@
 import IcLocation from "@/assets/svgs/ic_location.svg";
 import IcStar from "@/assets/svgs/star.svg";
 import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageList";
-import Dropdown from "@/src/components/Dropdown";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import Custom404 from "@/src/pages/404";
