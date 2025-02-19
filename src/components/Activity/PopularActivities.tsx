@@ -67,7 +67,7 @@ const PopularActivities = ({
             />
           ))}
       </div>
-      <div className="hidden group-hover:block lg:hidden">
+      <div className="hidden group-hover:block lg:group-hover:hidden">
         <Button
           type="button"
           className="absolute left-1 top-1/2 size-30 -translate-y-1/2 md:size-40"
