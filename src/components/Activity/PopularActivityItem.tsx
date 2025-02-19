@@ -40,7 +40,14 @@ const PopularActivityItem = ({
   } = useResponsiveTextStyle();
 
   // loading spinner
-  const { loadingButtons, showLoadingButtons } = useLoadingStore();
+  const { loadingButtons, showLoadingButtons, hideLoadingButtons } =
+    useLoadingStore();
+
+  useEffect(() => {
+    return () => {
+      hideLoadingButtons(id);
+    };
+  }, [hideLoadingButtons, id]);
 
   return (
     <div className="relative aspect-[1/1] w-full overflow-hidden rounded-3xl border border-gray-200">
