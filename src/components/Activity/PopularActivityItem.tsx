@@ -1,5 +1,6 @@
 import Star from "@/assets/svgs/star.svg";
 import Loading from "@/src/components/Loading";
+import PATH_NAMES from "@/src/constants/pathname";
 import useResponsiveTextStyle from "@/src/hooks/Activity/useResponsiveTextStyle";
 import useLoadingStore from "@/src/stores/loadingStore";
 import type { PopularActivityItemProps } from "@/src/types/activity";
@@ -52,7 +53,8 @@ const PopularActivityItem = ({
   return (
     <div className="relative aspect-[1/1] w-full overflow-hidden rounded-3xl border border-gray-200">
       <Link
-        href={`/activity/${id}`}
+        href={`${PATH_NAMES.Activity}/${id}
+`}
         onClick={() => {
           showLoadingButtons(id);
         }}>

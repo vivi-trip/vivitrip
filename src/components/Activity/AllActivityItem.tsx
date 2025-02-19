@@ -1,5 +1,6 @@
 import Star from "@/assets/svgs/star.svg";
 import Loading from "@/src/components/Loading";
+import PATH_NAMES from "@/src/constants/pathname";
 import useLoadingStore from "@/src/stores/loadingStore";
 import { Activity } from "@/src/types/activities";
 import Image from "next/image";
@@ -22,7 +23,8 @@ const AllActivityItem = ({
         className="relative w-full overflow-hidden rounded-3xl border border-gray-200"
         style={{ paddingTop: "100%" }}>
         <Link
-          href={`/activities/${id}`}
+          href={`${PATH_NAMES.Activity}/${id}
+          `}
           className="absolute inset-0"
           onClick={() => {
             showLoadingButtons(id);
