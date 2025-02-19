@@ -47,8 +47,6 @@ const PopularActivities = ({
     return <p>{emptyMessage}</p>;
   }
 
-  console.log("currentIndex", currentIndex);
-
   return (
     <div className="group relative max-w-1200 overflow-hidden">
       <div
@@ -69,7 +67,7 @@ const PopularActivities = ({
             />
           ))}
       </div>
-      <div className="lg:hidden">
+      <div className="hidden group-hover:block lg:hidden">
         <Button
           type="button"
           className="absolute left-1 top-1/2 size-30 -translate-y-1/2 md:size-40"
