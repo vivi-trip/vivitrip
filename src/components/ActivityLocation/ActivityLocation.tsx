@@ -26,7 +26,7 @@ const ActivityLocation = ({ address }: { address: string }) => {
 
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
-      <div className="w-full overflow-hidden rounded-16">
+      <div className="w-full overflow-hidden rounded-16 border border-brand-300">
         {location && (
           <Map
             mapId="vivitrip_activity_map"
