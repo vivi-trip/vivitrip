@@ -1,6 +1,7 @@
 import IcLocation from "@/assets/svgs/ic_location.svg";
 import IcStar from "@/assets/svgs/star.svg";
 import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageList";
+import ActivityLocation from "@/src/components/ActivityLocation/ActivityLocation";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import Custom404 from "@/src/pages/404";
@@ -85,7 +86,7 @@ const ActivitiesPage = () => {
         {/* 설명 영역 */}
 
         <div className="col-span-5 col-start-1 border-t border-brand-300 pt-40">
-          <p>카카오 지도 API</p>
+          <ActivityLocation address={address} />
         </div>
         {/* 지도 영역 */}
 
