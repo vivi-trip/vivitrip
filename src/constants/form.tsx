@@ -1,26 +1,10 @@
+import { ButtonStyles, FieldKeys, IconType } from "../types/form";
 import Calendar from "@/assets/svgs/btnCalendar.svg";
 import Search from "@/assets/svgs/btnSearch.svg";
 import VisibilityOff from "@/assets/svgs/btnVisibility_off.svg";
 import VisibilityOn from "@/assets/svgs/btnVisibility_on.svg";
-import ButtonProps from "@/src/types/button";
-import React, { ReactNode } from "react";
 
-export type Position = "left" | "right";
-
-export type IconType = {
-  icon: (isVisible?: boolean) => ReactNode;
-  onClick: () => void;
-  position: Position;
-  padding?: string;
-  margin?: string;
-};
-
-export const iconPosition = {
-  left: "left-0",
-  right: "right-20",
-};
-
-const icons: Record<string, IconType> = {
+export const icons: Record<string, IconType> = {
   password: {
     icon: (isVisible?: boolean) =>
       isVisible ? (
@@ -54,24 +38,10 @@ const icons: Record<string, IconType> = {
   },
 } as const;
 
-// export type IconKeys = keyof typeof icons; 이렇게 하고 싶은데 이렇게 하면 자동완성이 안됨
-export type IconKeys = "password" | "confirmPassword" | "calendar" | "search";
-export type InputKeys =
-  | "password"
-  | "confirmPassword"
-  | "nickname"
-  | "email"
-  | "default"
-  | "search";
-
-export type FieldKeys = "authPage" | "expPage" | "search" | "default";
-export type FormKeys = InputKeys | FieldKeys;
-
-export interface ButtonStyles {
-  style?: ButtonProps;
-  tailwindStyle?: string;
-  fieldStyle?: string;
-}
+export const iconPosition = {
+  left: "left-0",
+  right: "right-20",
+} as const;
 
 export const fieldPosition = {
   default: "",
@@ -119,9 +89,3 @@ export const variantStyles: Record<FieldKeys, ButtonStyles> = {
     fieldStyle: "",
   },
 } as const;
-
-export interface FieldStyles {
-  style: (typeof fieldPosition)[keyof typeof fieldPosition];
-}
-
-export default icons;
