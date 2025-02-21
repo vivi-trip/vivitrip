@@ -32,7 +32,9 @@ const ScrollProvider = ({
 
   return (
     <ScrollContext.Provider value={contextValue}>
-      <Component ref={scrollRef} className={clsx("overflow-auto", className)}>
+      <Component
+        ref={scrollRef}
+        className={clsx("overflow-y-auto overflow-x-hidden", className)}>
         {children}
       </Component>
     </ScrollContext.Provider>

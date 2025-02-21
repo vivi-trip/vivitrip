@@ -24,11 +24,13 @@ const ActivityReservationBar = ({
 
   return (
     <div
+      // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
       className={clsx(
-        "fixed flex h-80 w-full items-center justify-between",
-        "bottom-0 left-0 z-40",
+        "flex h-80 w-auto items-center justify-between",
+        "sticky bottom-0 z-10",
         "border-t border-[#A1A1A1] bg-white",
-        "px-16 md:px-40",
+        "px-24 md:px-[4000px]",
+        "-mx-24 md:-mx-[4000px]",
       )}>
       <div className="flex flex-col">
         <div className="flex items-center gap-6">
@@ -48,8 +50,7 @@ const ActivityReservationBar = ({
           backgroundColor="black"
           onClick={() =>
             setModalOpen(<ReservationModal />, {
-              customClass:
-                "md:w-450",
+              customClass: "md:w-450",
             })
           }
           fontStyle="xl">

@@ -52,49 +52,44 @@ const ActivitiesPage = () => {
   } = activityData as ActivityDetailResponse;
 
   return (
-    <div className="my-24 pb-300 md:my-32 lg:my-80">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="font-14px-regular">{category}</p>
-          <p className="font-24px-bold md:font-32px-bold mt-10">{title}</p>
-          <div className="mt-16 flex flex-col gap-12 lg:flex-row">
-            <div className="flex items-center gap-6">
-              <IcStar />
-              <p className="font-14px-regular">{`${rating} (${reviewCount})`}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <IcLocation />
-              <p className="font-14px-regular">{address}</p>
+    <>
+      <div className="my-24 pb-300 md:my-32 lg:my-80">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="font-14px-regular">{category}</p>
+            <p className="font-24px-bold md:font-32px-bold mt-10">{title}</p>
+            <div className="mt-16 flex flex-col gap-12 lg:flex-row">
+              <div className="flex items-center gap-6">
+                <IcStar />
+                <p className="font-14px-regular">{`${rating} (${reviewCount})`}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <IcLocation />
+                <p className="font-14px-regular">{address}</p>
+              </div>
             </div>
           </div>
+          {userData && userData.id === userId && (
+            <MyActivityHandler activityId={Number(activityId)} />
+          )}
         </div>
-        {userData && userData.id === userId && (
-          <MyActivityHandler activityId={Number(activityId)} />
-        )}
-      </div>
-      {/* 타이틀 영역 */}
 
-      <ActivityImageList
-        bannerImageUrl={bannerImageUrl}
-        subImages={subImages}
-      />
-      {/* 체험 이미지 영역 */}
+        <ActivityImageList
+          bannerImageUrl={bannerImageUrl}
+          subImages={subImages}
+        />
 
-      <div className="mt-80 grid grid-cols-8 grid-rows-3 gap-40">
-        <div className="col-span-5 col-start-1 border-t border-brand-300 pt-40">
+        <div className="mt-40 border-t border-brand-300 pt-80">
           <p className="font-20px-bold">체험 설명</p>
           <p className="font-16px-regular mt-16">{description}</p>
         </div>
-        {/* 설명 영역 */}
 
-        <div className="col-span-5 col-start-1 border-t border-brand-300 pt-40">
+        <div className="mt-40 border-t border-brand-300 pt-40">
           <ActivityLocation address={address} />
         </div>
-        {/* 지도 영역 */}
 
-        <div className="col-span-5 col-start-1 border-t border-brand-300 pt-40">
-          <div>
-            {/* 
+        <div className="mt-40 border-t border-brand-300 pt-40">
+          {/* 
               to. @hayuri1990
               
               후기 컴포넌트 렌더링 위치입니다.
@@ -105,34 +100,12 @@ const ActivitiesPage = () => {
 
               from. @JuhyeokC
             */}
-            <p>후기 컴포넌트</p>
-          </div>
+          <p>후기 컴포넌트</p>
         </div>
-        {/* 후기 영역 */}
-
-        <div className="col-start-6 col-end-[-1] row-span-full">
-          <div>
-            {/* 
-              to. @kanghyosung1
-              
-              예약하기 컴포넌트 렌더링 위치입니다.
-              해당 파일이 아닌 컴포넌트를 따로 생성해주시길 바라며,
-              변수 activityId 를 prop 으로 가져가서 api 요청에 사용하시면 됩니다.
-              
-              빈 div 태그 안에 위치한 건 overflow 컨트롤을 위해서 입니다. 작업완료 후 필요에 따라 제거 가능합니다.
-
-              from. @JuhyeokC
-            */}
-            {activityData && (
-              <ActivityReservationBar activityData={activityData} />
-            )}
-            <p>예약하기 컴포넌트</p>
-          </div>
-        </div>
-        {/* 예약하기 영역 */}
       </div>
-      {/* 콘텐츠 영역 */}
-    </div>
+
+      {activityData && <ActivityReservationBar activityData={activityData} />}
+    </>
   );
 };
 
