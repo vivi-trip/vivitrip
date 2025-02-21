@@ -6,6 +6,7 @@ export type PathNameType =
   | "MyPage"
   | "PrivacyPolicy"
   | "FAQ"
+  | "Form"
   | "KakaoSignIn"
   | "KakaoSignUp"
   | "Activity"
