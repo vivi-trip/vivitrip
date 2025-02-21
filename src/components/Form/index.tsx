@@ -162,7 +162,7 @@ const Input: React.FC<InputProps> = ({
       : (errorMessage as FieldError)?.message || "";
 
   const inputStyles =
-    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none focus:border-[3px] focus:border-brand-400";
+    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none focus:border-brand-400 focus:shadow-[inset_0_0_0_2px_rgba(159,181,196,0.8)]";
 
   return (
     <div className="flex w-full flex-col">
