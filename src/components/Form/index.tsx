@@ -1,17 +1,14 @@
 import Button from "@/src/components/Button/Button";
-import icons, {
-  FieldKeys,
-  FormKeys,
-  InputKeys,
-  iconPosition,
-  variantStyles,
-} from "@/src/constants/form";
+import { iconPosition, icons, variantStyles } from "@/src/constants/form";
 import validationRules from "@/src/constants/validation";
 import {
   ErrorProps,
+  FieldKeys,
   FieldProps,
+  FormKeys,
   FormProps,
   IconProps,
+  InputKeys,
   InputProps,
   LabelProps,
   SubmitButtonProps,
