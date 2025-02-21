@@ -32,7 +32,6 @@
     "react-lottie-player": "^2.1.0",
     "react-time-picker": "^7.0.0",
     "sass": "^1.83.4",
-    "react-hook-form": "^7.53.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-preset-px-to-rem": "^1.2.1",
     "uuid": "^9.0.1",
