@@ -82,9 +82,9 @@ const ActivityLocation = ({ address }: { address: string }) => {
         )}
       </div>
 
-      <div className="mt-8 flex items-center">
+      <div className="mt-8 flex items-center gap-2">
         <IcLocation />
-        <p className="font-14px-regular">{address}</p>
+        <p className="font-14px-regular flex-1">{address}</p>
       </div>
     </APIProvider>
   );
