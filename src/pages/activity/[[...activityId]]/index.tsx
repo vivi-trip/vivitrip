@@ -1,8 +1,8 @@
-import ActivityReservationBar from "@/src/components/ActivityReservation/ActivityReservationBar";
-import IcLocation from "@/assets/svgs/ic_location.svg";
-import IcStar from "@/assets/svgs/star.svg";
+import ActivityContentSection from "@/src/components/ActivityContentSection";
 import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageList";
 import ActivityLocation from "@/src/components/ActivityLocation/ActivityLocation";
+import ActivityReservationBar from "@/src/components/ActivityReservation/ActivityReservationBar";
+import ActivityTitleSection from "@/src/components/ActivityTitleSection";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import { useGetActivities } from "@/src/queries/useActivities";
@@ -22,6 +22,18 @@ const ActivitiesPage = () => {
     error,
   } = useGetActivities(Number(activityId));
 
+  const {
+    category,
+    title,
+    address,
+    rating,
+    reviewCount,
+    description,
+    bannerImageUrl,
+    subImages,
+    userId,
+  } = activityData as ActivityDetailResponse;
+
   if (isLoading)
     return (
       <Loading
@@ -39,56 +51,39 @@ const ActivitiesPage = () => {
 
   if (error) return <Custom404 statusCode={404} />;
 
-  const {
-    category,
-    title,
-    address,
-    rating,
-    reviewCount,
-    description,
-    bannerImageUrl,
-    subImages,
-    userId,
-  } = activityData as ActivityDetailResponse;
+  if (!activityData) return null;
 
   return (
     <>
       <div className="my-24 pb-300 md:my-32 lg:my-80">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-14px-regular">{category}</p>
-            <p className="font-24px-bold md:font-32px-bold mt-10">{title}</p>
-            <div className="mt-16 flex flex-col gap-12 lg:flex-row">
-              <div className="flex items-center gap-6">
-                <IcStar />
-                <p className="font-14px-regular">{`${rating} (${reviewCount})`}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <IcLocation />
-                <p className="font-14px-regular">{address}</p>
-              </div>
-            </div>
-          </div>
-          {userData && userData.id === userId && (
-            <MyActivityHandler activityId={Number(activityId)} />
-          )}
-        </div>
+        <ActivityTitleSection
+          category={category}
+          title={title}
+          address={address}
+          rating={rating}
+          reviewCount={reviewCount}
+          userMenu={
+            userData &&
+            userData.id === userId && (
+              <MyActivityHandler activityId={Number(activityId)} />
+            )
+          }
+        />
 
         <ActivityImageList
           bannerImageUrl={bannerImageUrl}
           subImages={subImages}
         />
 
-        <div className="mt-40 border-t border-brand-300 pt-80">
-          <p className="font-20px-bold">체험 설명</p>
+        <ActivityContentSection title="체험 설명">
           <p className="font-16px-regular mt-16">{description}</p>
-        </div>
+        </ActivityContentSection>
 
-        <div className="mt-40 border-t border-brand-300 pt-40">
+        <ActivityContentSection title="체험 장소">
           <ActivityLocation address={address} />
-        </div>
+        </ActivityContentSection>
 
-        <div className="mt-40 border-t border-brand-300 pt-40">
+        <ActivityContentSection title="체험 후기">
           {/* 
               to. @hayuri1990
               
@@ -101,7 +96,7 @@ const ActivitiesPage = () => {
               from. @JuhyeokC
             */}
           <p>후기 컴포넌트</p>
-        </div>
+        </ActivityContentSection>
       </div>
 
       {activityData && <ActivityReservationBar activityData={activityData} />}
