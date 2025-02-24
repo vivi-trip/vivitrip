@@ -17,6 +17,7 @@ const MyReservationHistory = () => {
     number | undefined
   >();
   const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState("");
   const [activityTitle, setActivityTitle] = useState("");
 
   return (
@@ -50,11 +51,17 @@ const MyReservationHistory = () => {
                       myActivities.map((activity) => (
                         <Dropdown.Item
                           key={activity.id}
-                          className="font-16px-regular flex justify-start py-15 pl-16 text-black hover:bg-gray-100"
+                          className={clsx(
+                            "font-16px-regular flex justify-start py-15 pl-16 text-black",
+                            status === activity.title
+                              ? "bg-brand-400 text-white"
+                              : "hover:bg-gray-100",
+                          )}
                           onClick={() => {
                             setSelectedActivityId(activity.id);
                             setActivityTitle(activity.title);
                             setIsOpen(false);
+                            setStatus(activity.title);
                           }}>
                           {activity.title}
                         </Dropdown.Item>

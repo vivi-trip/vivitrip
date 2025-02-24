@@ -45,6 +45,7 @@ export const useGetMyReservations = ({
       queryKey: ["myReservations", { size, status }],
       queryFn: ({ pageParam }) => {
         const cursorId = typeof pageParam === "number" ? pageParam : undefined;
+
         return listMyReservations({ size, cursorId, status });
       },
       getNextPageParam: (lastPage) => lastPage.cursorId ?? undefined,
