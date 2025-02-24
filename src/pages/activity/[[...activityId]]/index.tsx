@@ -22,18 +22,6 @@ const ActivitiesPage = () => {
     error,
   } = useGetActivities(Number(activityId));
 
-  const {
-    category,
-    title,
-    address,
-    rating,
-    reviewCount,
-    description,
-    bannerImageUrl,
-    subImages,
-    userId,
-  } = activityData as ActivityDetailResponse;
-
   if (isLoading)
     return (
       <Loading
@@ -50,6 +38,18 @@ const ActivitiesPage = () => {
     );
 
   if (error) return <Custom404 statusCode={404} />;
+
+  const {
+    category,
+    title,
+    address,
+    rating,
+    reviewCount,
+    description,
+    bannerImageUrl,
+    subImages,
+    userId,
+  } = activityData as ActivityDetailResponse;
 
   if (!activityData) return null;
 
