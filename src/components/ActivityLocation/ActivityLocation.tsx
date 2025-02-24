@@ -10,19 +10,33 @@ import {
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-const ZOOM_SIZE = 16;
+const BASE_ZOOM_SIZE = 22;
+const BASE_INFO_WINDOW_OFFSET = 0.00001;
+
+const DEFAULT_ZOOM_SIZE = 16;
 
 const ActivityLocation = ({ address }: { address: string }) => {
-  const [infoWindowOpen, setInfoWindowOpen] = useState<boolean>(true);
-  const addressContext = useMemo(() => {
-    if (!address) return null;
-    return address.split(",");
-  }, [address]);
+  const addressContext = address.split(",") || null;
   const { location } = useGoogleMaps(address);
 
-  const handleClickMarker = () => {
-    setInfoWindowOpen(true);
+  const [zoomSize, setZoomSize] = useState<number>(DEFAULT_ZOOM_SIZE);
+  const infoWindowOffsetSize = useMemo(() => {
+    const scale = BASE_ZOOM_SIZE - zoomSize;
+    const power = 2 ** scale || 1;
+    return power * BASE_INFO_WINDOW_OFFSET;
+  }, [zoomSize]);
+
+  const [infoWindowOpen, setInfoWindowOpen] = useState<boolean>(true);
+
+  const handleToggleInfoWindow = () => {
+    setInfoWindowOpen((prev) => !prev);
   };
+
+  const handleCloseInfoWindow = () => {
+    setInfoWindowOpen(false);
+  };
+
+  if (!address) return null;
 
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
@@ -30,11 +44,13 @@ const ActivityLocation = ({ address }: { address: string }) => {
         {location && (
           <Map
             mapId="vivitrip_activity_map"
-            defaultZoom={ZOOM_SIZE}
-            minZoom={ZOOM_SIZE}
-            maxZoom={ZOOM_SIZE}
+            defaultZoom={DEFAULT_ZOOM_SIZE}
+            minZoom={2}
+            maxZoom={BASE_ZOOM_SIZE}
             defaultCenter={{ lat: location.lat, lng: location.lng }}
-            disableDefaultUI={true}
+            onZoomChanged={({ map }) => {
+              setZoomSize(map.getZoom() ?? DEFAULT_ZOOM_SIZE);
+            }}
             style={{
               width: "100%",
               height: "480px",
@@ -43,7 +59,7 @@ const ActivityLocation = ({ address }: { address: string }) => {
             {infoWindowOpen && (
               <InfoWindow
                 position={{
-                  lat: location.lat + 0.0006,
+                  lat: location.lat + infoWindowOffsetSize,
                   lng: location.lng,
                 }}
                 headerContent={
@@ -56,7 +72,8 @@ const ActivityLocation = ({ address }: { address: string }) => {
                     );
                   })
                 }
-                onCloseClick={() => setInfoWindowOpen(false)}>
+                onClose={handleCloseInfoWindow}
+                onCloseClick={handleCloseInfoWindow}>
                 <div className="p-2">
                   <Link
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
@@ -71,7 +88,7 @@ const ActivityLocation = ({ address }: { address: string }) => {
             <AdvancedMarker
               position={location}
               clickable={true}
-              onClick={handleClickMarker}>
+              onClick={handleToggleInfoWindow}>
               <Pin
                 borderColor="#c4590d"
                 background="#ff7c1d"
