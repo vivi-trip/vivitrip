@@ -37,7 +37,7 @@ const Search = ({
   const [size, setSize] = useState(8);
 
   return (
-    <div>
+    <div className="mt-24 lg:mt-40">
       <h1 className="font-24px-semibold md:font-32px-semibold">
         &apos;{q}&apos; 검색 결과&nbsp;
         <span className="font-24px-bold md:font-32px-bold text-brand-500">
