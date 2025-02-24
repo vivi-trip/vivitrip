@@ -1,39 +1,28 @@
-import { fieldPosition } from "../constants/form";
 import ButtonProps from "@/src/types/button";
 import { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
 import { FieldValues } from "react-hook-form";
 
-export type Position = "left" | "right";
-
-// export type IconKeys = keyof typeof icons; 이렇게 하고 싶은데 이렇게 하면 자동완성이 안됨
+export type IconPosition = "left" | "right";
 export type IconKeys = "password" | "confirmPassword" | "calendar" | "search";
 export type IconType = {
   icon: (isVisible?: boolean) => ReactNode;
   onClick: () => void;
-  position: Position;
+  position: IconPosition;
   padding?: string;
   margin?: string;
 };
 
-export type InputKeys =
-  | "password"
-  | "confirmPassword"
-  | "nickname"
-  | "email"
-  | "default"
-  | "search";
+export type InputKeys = "default" | "email" | "nickname" | IconKeys;
 
-export type FieldKeys = "authPage" | "expPage" | "search" | "default";
+export type FieldPosition = "default" | "column";
+export type FieldKeys = "default" | "authPage" | "expPage" | "search";
+
 export type FormKeys = InputKeys | FieldKeys;
 
 export interface BaseProps {
   children?: ReactNode;
   className?: string;
   resetOnSubmit?: boolean;
-}
-
-export interface FieldStyles {
-  style: (typeof fieldPosition)[keyof typeof fieldPosition];
 }
 
 export interface FormProps<T extends FieldValues> extends BaseProps {
@@ -52,7 +41,7 @@ export interface LabelProps
 
 export interface IconProps extends BaseProps {
   onClick?: () => void;
-  position: Position;
+  position: IconPosition;
 }
 
 export interface ButtonStyles {

@@ -1,10 +1,17 @@
-import { ButtonStyles, FieldKeys, IconType } from "../types/form";
 import Calendar from "@/assets/svgs/btnCalendar.svg";
 import Search from "@/assets/svgs/btnSearch.svg";
 import VisibilityOff from "@/assets/svgs/btnVisibility_off.svg";
 import VisibilityOn from "@/assets/svgs/btnVisibility_on.svg";
+import {
+  ButtonStyles,
+  FieldKeys,
+  FieldPosition,
+  IconKeys,
+  IconPosition,
+  IconType,
+} from "@/src/types/form";
 
-export const icons: Record<string, IconType> = {
+export const icons: Record<IconKeys, IconType> = {
   password: {
     icon: (isVisible?: boolean) =>
       isVisible ? (
@@ -24,6 +31,7 @@ export const icons: Record<string, IconType> = {
     icon: () => <Calendar width={32} height={32} />,
     onClick: () => {},
     position: "right",
+    margin: "ml-20",
   },
   search: {
     icon: () => (
@@ -33,20 +41,20 @@ export const icons: Record<string, IconType> = {
     ),
     onClick: () => {},
     position: "left",
-    padding: "pl-[40px]",
-    margin: "ml-[40px]",
+    padding: "pl-40",
+    margin: "ml-40",
   },
-} as const;
+};
 
-export const iconPosition = {
+export const iconPosition: Record<IconPosition, string> = {
   left: "left-0",
   right: "right-20",
-} as const;
+};
 
-export const fieldPosition = {
+export const fieldPosition: Record<FieldPosition, string> = {
   default: "",
-  column: "flex flex-row items-center justify-between",
-} as const;
+  column: "flex flex-row items-end justify-between",
+};
 
 export const variantStyles: Record<FieldKeys, ButtonStyles> = {
   authPage: {
@@ -88,4 +96,4 @@ export const variantStyles: Record<FieldKeys, ButtonStyles> = {
   default: {
     fieldStyle: "",
   },
-} as const;
+};

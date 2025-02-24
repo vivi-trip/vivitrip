@@ -15,8 +15,22 @@ const FormPage = () => {
 
   return (
     <section className="m-100 flex flex-col space-y-100">
+      <Form onSubmit={() => {}} className="m-auto flex w-480">
+        <Form.Title>움직이는 레이블</Form.Title>
+
+        <Form.Field variant="default">
+          <Form.Input label="움직이는 레이블" />
+        </Form.Field>
+
+        <Form.Field variant="calendar">
+          <Form.Input label="날짜를 선택해주세요." />
+        </Form.Field>
+      </Form>
+
       {/* 로그인/회원가입 페이지 */}
       <Form onSubmit={onSubmit} className="m-auto flex w-480">
+        <Form.Title>회원가입</Form.Title>
+
         <Form.Field variant="nickname">
           <Form.Label>닉네임</Form.Label>
           <Form.Input placeholder="닉네임을 입력해 주세요" />
