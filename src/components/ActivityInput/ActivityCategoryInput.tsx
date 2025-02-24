@@ -23,6 +23,7 @@ const ActivityCategoryInput = ({ control }: CategoryInputProps) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+  const [status, setStatus] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -54,11 +55,17 @@ const ActivityCategoryInput = ({ control }: CategoryInputProps) => {
               {options.map((option) => (
                 <Dropdown.Item
                   key={option.value}
-                  className="font-16px-regular flex justify-start py-15 pl-16 text-black hover:bg-gray-100"
+                  className={clsx(
+                    "font-16px-regular flex justify-start py-15 pl-16 text-black hover:bg-gray-100",
+                    status === option.value
+                      ? "bg-brand-400 text-white"
+                      : "hover:bg-gray-100",
+                  )}
                   onClick={() => {
                     field.onChange(option.value);
                     setIsSelected(true);
                     setIsOpen(false);
+                    setStatus(option.value);
                   }}>
                   {option.label}
                 </Dropdown.Item>
