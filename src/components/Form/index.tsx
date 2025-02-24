@@ -1,19 +1,29 @@
 import Button from "@/src/components/Button/Button";
 import { iconPosition, icons, variantStyles } from "@/src/constants/form";
 import validationRules from "@/src/constants/validation";
+import useHydration from "@/src/hooks/useHydration";
 import {
   ErrorProps,
   FieldKeys,
   FieldProps,
   FormKeys,
   FormProps,
+  IconKeys,
+  IconPosition,
   IconProps,
   InputKeys,
   InputProps,
   LabelProps,
   SubmitButtonProps,
 } from "@/src/types/form";
-import { createContext, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   Controller,
   FieldError,
@@ -56,18 +66,35 @@ const Form = <T extends FieldValues>({
 };
 
 const FieldContext = createContext<{
+  htmlForId: string;
   variant: FormKeys;
   setVariant?: (variant: FormKeys) => void;
 }>({
+  htmlForId: "",
   variant: "default",
 });
 
 const Field = ({ children, className, variant }: FieldProps) => {
-  const contextValue = useMemo(() => ({ variant }), [variant]);
+  const isHydrated = useHydration();
+  const [htmlForId, setHtmlFor] = useState<string>("");
+  const contextValue = useMemo(() => {
+    return { variant, htmlForId };
+  }, [variant, htmlForId]);
   const fieldStyle =
     variant in variantStyles
       ? variantStyles[variant as FieldKeys]?.fieldStyle
       : "";
+
+  const generateForId = useCallback(() => {
+    const randomIdx = Math.floor(Math.random() * 1000);
+    return variant + randomIdx;
+  }, [variant]);
+
+  useEffect(() => {
+    setHtmlFor(generateForId());
+  }, [generateForId]);
+
+  if (!isHydrated) return null;
 
   return (
     <FieldContext.Provider value={contextValue}>
@@ -79,9 +106,9 @@ const Field = ({ children, className, variant }: FieldProps) => {
 };
 
 const Label = ({ children, className, htmlFor, ...rest }: LabelProps) => {
-  const { variant } = useContext(FieldContext);
+  const { htmlForId } = useContext(FieldContext);
   return (
-    <label className={twMerge(className)} htmlFor={variant} {...rest}>
+    <label className={twMerge(className)} htmlFor={htmlForId} {...rest}>
       {children}
     </label>
   );
@@ -94,7 +121,7 @@ const Icon = ({ children, className, onClick, position }: IconProps) => {
       onClick={onClick}
       className={twMerge(
         "absolute top-1/2 -translate-y-1/2 transform",
-        iconPosition[position],
+        iconPosition[position as IconPosition],
         className,
       )}>
       {children}
@@ -128,7 +155,7 @@ const Input: React.FC<InputProps> = ({
   value,
   ...rest
 }) => {
-  const { variant } = useContext(FieldContext);
+  const { variant, htmlForId } = useContext(FieldContext);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -138,7 +165,8 @@ const Input: React.FC<InputProps> = ({
 
   const isPasswordVariant =
     variant === "password" || variant === "confirmPassword";
-  const selectedIcon = icons[variant] || (icon ? icons[icon] : null);
+  const selectedIcon =
+    icons[variant as IconKeys] || (icon ? icons[icon] : null);
   const inputType = isPasswordVariant && !isPasswordVisible ? "password" : type;
 
   const handleIconClick =
@@ -166,76 +194,85 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <div className="flex w-full flex-col">
-      <span>
-        <div className="relative">
-          <label
+      <div className={twMerge("relative", label && "mt-16")}>
+        {label && (
+          <div
             className={twMerge(
-              "font-16px-regular pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 rounded bg-white text-gray-600 transition-all",
-              isFocused && "top-2 px-6",
-              selectedIcon?.margin,
-            )}
-            htmlFor={variant}>
-            {label}
-          </label>
-          {readOnly ? (
-            <Component
-              id={variant}
-              type={inputType}
+              "flex items-center overflow-hidden rounded",
+              "font-16px-regular text-gray-600",
+              "absolute left-0 top-1/2 h-32 -translate-y-1/2 transition-all",
+              "pointer-events-none",
+              isFocused && "left-8 top-0 px-12",
+              selectedIcon ? selectedIcon.margin : "ml-20",
+            )}>
+            <div
               className={twMerge(
-                inputStyles,
-                as === "textarea" ? "h-346 resize-none" : "h-58",
-                "bg-brand-100",
-                className,
-              )}
-              readOnly
-              autoComplete={type}
-              value={value}
-              {...rest}
-            />
-          ) : (
-            <Controller
-              name={variant}
-              control={control}
-              defaultValue={value || ""}
-              rules={validationRules(watch)[variant as InputKeys]}
-              render={({ field }) => (
-                <Component
-                  id={variant}
-                  type={inputType}
-                  className={twMerge(
-                    inputStyles,
-                    as === "textarea" ? "h-346 resize-none" : "h-58",
-                    selectedIcon?.padding,
-                    className,
-                  )}
-                  {...field}
-                  autoComplete={isPasswordVariant ? "new-password" : type}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={async () => {
-                    const trimmedValue = (field.value || "").trim();
-                    setIsFocused(trimmedValue !== "");
-                    field.onChange(trimmedValue);
-                    await trigger(variant);
-                  }}
-                  onChange={async (e) => {
-                    field.onChange(e);
-                    await trigger(variant);
-                  }}
-                  {...rest}
-                />
+                "absolute bottom-0 left-0 right-0 top-0 bg-white",
+                isFocused && "top-1/2",
               )}
             />
-          )}
-          {selectedIcon && (
-            <Icon
-              className={iconClassName}
-              onClick={readOnly ? undefined : handleIconClick}
-              position={selectedIcon.position}>
-              {selectedIcon.icon(isPasswordVisible)}
-            </Icon>
-          )}
-        </div>
-      </span>
+            <p className="relative">{label}</p>
+          </div>
+        )}
+        {readOnly ? (
+          <Component
+            id={htmlForId}
+            name={variant}
+            type={inputType}
+            className={twMerge(
+              inputStyles,
+              as === "textarea" ? "h-346 resize-none" : "h-58",
+              "bg-brand-100",
+              className,
+            )}
+            readOnly
+            autoComplete={type}
+            value={value}
+            {...rest}
+          />
+        ) : (
+          <Controller
+            name={variant}
+            control={control}
+            defaultValue={value || ""}
+            rules={validationRules(watch)[variant as InputKeys]}
+            render={({ field }) => (
+              <Component
+                id={htmlForId}
+                type={inputType}
+                className={twMerge(
+                  inputStyles,
+                  as === "textarea" ? "h-346 resize-none" : "h-58",
+                  selectedIcon?.padding,
+                  className,
+                )}
+                {...field}
+                autoComplete={isPasswordVariant ? "new-password" : type}
+                onFocus={() => setIsFocused(true)}
+                onBlur={async () => {
+                  const trimmedValue = (field.value || "").trim();
+                  setIsFocused(trimmedValue !== "");
+                  field.onChange(trimmedValue);
+                  await trigger(variant);
+                }}
+                onChange={async (e) => {
+                  field.onChange(e);
+                  await trigger(variant);
+                }}
+                {...rest}
+              />
+            )}
+          />
+        )}
+        {selectedIcon && (
+          <Icon
+            className={iconClassName}
+            onClick={readOnly ? undefined : handleIconClick}
+            position={selectedIcon.position}>
+            {selectedIcon.icon(isPasswordVisible)}
+          </Icon>
+        )}
+      </div>
       {displayErrorMessage && (
         <Error className={errorClassName}>{displayErrorMessage}</Error>
       )}
