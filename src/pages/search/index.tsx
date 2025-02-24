@@ -37,22 +37,14 @@ const Search = ({
   const [size, setSize] = useState(8);
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-col gap-12">
-        <div className="flex">
-          <h1 className="font-24px-bold md:font-32px-bold text-basic-black">
-            &apos;{q}&apos;
-          </h1>
-          <h1 className="font-24px-regular md:font-32px-regular">
-            &nbsp;검색 결과
-          </h1>
-        </div>
-        <div>
-          <h3 className="font-16px-regular text-basic-black">
-            총 {totalCount}개의 결과
-          </h3>
-        </div>
-      </div>
+    <div>
+      <h1 className="font-24px-semibold md:font-32px-semibold">
+        &apos;{q}&apos; 검색 결과&nbsp;
+        <span className="font-24px-bold md:font-32px-bold text-brand-500">
+          {totalCount}
+        </span>
+        건
+      </h1>
       <div>
         <AllActivities
           activities={activities}
