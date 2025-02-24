@@ -1,8 +1,9 @@
 import Dropdown from "../Dropdown";
 import AltArrowDown from "@/assets/svgs/altArrowDown.svg";
+import useOutsideClick from "@/src/hooks/useOutsideClick";
 import { ReservationStatus } from "@/src/types/my-reservations";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface ReservationStatusDropdownProps {
   handleStatusChange: (status: ReservationStatus) => void;
@@ -12,7 +13,8 @@ const ReservationStatusDropdown = ({
   handleStatusChange,
 }: ReservationStatusDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState<ReservationStatus | "">("");
+  const [status, setStatus] = useState<ReservationStatus>("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleItemClick = (newStatus: ReservationStatus) => {
     setStatus(newStatus);
@@ -21,7 +23,8 @@ const ReservationStatusDropdown = ({
   };
 
   const options = [
-    { label: "예약 신청", value: "pending" },
+    { label: "체험 전체", value: "all" },
+    { label: "예약 완료", value: "pending" },
     { label: "예약 취소", value: "canceled" },
     { label: "예약 승인", value: "confirmed" },
     { label: "예약 거절", value: "declined" },
@@ -34,8 +37,10 @@ const ReservationStatusDropdown = ({
     }
   }, [status, handleStatusChange]);
 
+  useOutsideClick(dropdownRef, () => setIsOpen(false));
+
   return (
-    <div>
+    <div ref={dropdownRef}>
       <Dropdown>
         <Dropdown.Trigger
           className={clsx(
@@ -52,20 +57,22 @@ const ReservationStatusDropdown = ({
           </p>
           <AltArrowDown className={clsx(isOpen && "rotate-180")} />
         </Dropdown.Trigger>
-        {isOpen && (
-          <Dropdown.Menu className="h-290 overflow-y-auto">
-            {options.map((option) => (
-              <Dropdown.Item
-                key={option.value}
-                onClick={() =>
-                  handleItemClick(option.value as ReservationStatus)
-                }
-                className="px-16 py-15 hover:bg-gray-100">
-                {option.label}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        )}
+
+        <Dropdown.Menu className="h-326 overflow-y-auto">
+          {options.map((option) => (
+            <Dropdown.Item
+              key={option.value}
+              onClick={() => handleItemClick(option.value as ReservationStatus)}
+              className={clsx(
+                "px-16 py-15",
+                status === option.value
+                  ? "bg-brand-400 text-white"
+                  : "hover:bg-gray-100",
+              )}>
+              {option.label}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
       </Dropdown>
     </div>
   );
