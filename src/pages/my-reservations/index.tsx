@@ -13,7 +13,7 @@ const MyReservations = () => {
 
   return (
     <div>
-      <div className="mx-auto flex w-full min-w-344 justify-center gap-24 pt-72 ">
+      <div className="mx-auto flex w-full min-w-344 justify-center gap-24 pt-72">
         <SideNavigationMenu />
         <div className="flex-1">
           <div className="flex items-center justify-between">
