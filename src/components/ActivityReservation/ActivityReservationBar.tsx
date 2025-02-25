@@ -49,7 +49,7 @@ const ActivityReservationBar = ({
           onClick={() =>
             setModalOpen(<ReservationModal />, {
               customClass:
-                "size-full min-w-350 md:max-w-460  min-w-350 rounded-none md:rounded-3xl",
+                "md:w-450",
             })
           }
           fontStyle="xl">

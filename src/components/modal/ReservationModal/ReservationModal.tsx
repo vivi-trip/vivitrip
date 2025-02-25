@@ -42,7 +42,7 @@ const ReservationModal = () => {
     onChangeSchedule(null);
   };
   return (
-    <div className="flex w-312 flex-col">
+    <div className="mx-auto max-w-312">
       <Price price={price} />
       <div className="mb-20 flex items-center justify-between border-t-2 pt-16">
         <p className="font-24px-bold">날짜</p>
@@ -56,13 +56,12 @@ const ReservationModal = () => {
       <div className="flex h-56 w-full justify-center">
         <Button
           type="button"
-          width="470"
           height="56"
           radius="4"
           gap="4"
           backgroundColor="black"
           fontStyle="xl"
-          className="lg:w-full"
+          className="w-full"
           onClick={submitReservation}>
           예약하기
         </Button>
