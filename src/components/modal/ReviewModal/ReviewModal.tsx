@@ -24,10 +24,12 @@ const ReviewModal = ({ riviewData }: ReviewModalProps) => {
   } = riviewData;
 
   return (
-    <div className={clsx("flex flex-col items-center")}>
-      <div className="mt-30 flex w-full justify-between">
+    <div className={clsx("mx-auto")}>
+      <div className="flex w-full justify-between">
         <h1 className="font-24px-bold text-black">후기 작성</h1>
-        <CloseIcon onClick={setModalClose} />
+        <button type="button" onClick={setModalClose}>
+          <CloseIcon />
+        </button>
       </div>
       <div className="mt-41 flex flex-col gap-24">
         <ReviewContent
