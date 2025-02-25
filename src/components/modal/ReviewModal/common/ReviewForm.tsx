@@ -103,7 +103,7 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
           fontStyle="l"
           disabled={!reviewText}
           className={clsx(
-            "lg:w-full",
+            "md:mb-30 lg:w-full",
             !reviewText
               ? "cursor-not-allowed bg-gray-500 text-gray-600"
               : "border-none bg-brand-500 text-white",
