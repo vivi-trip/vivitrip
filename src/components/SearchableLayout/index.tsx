@@ -23,6 +23,7 @@ const SearchableLayout = ({ children }: { children: ReactNode }) => {
   const onSubmit = () => {
     // 검색어가 없거나 검색어가 쿼리스트링과 같을 경우 페이지 이동 방지
     if (!search || search === q) return;
+    (document.activeElement as HTMLInputElement).blur();
     router.push(`/search?q=${encodeURIComponent(search)}`);
   };
 
