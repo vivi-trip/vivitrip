@@ -10,10 +10,10 @@ import {
   ReservationInfosType,
   ReservationScheduleType,
 } from "@/src/types/activitiesReservationType";
+import { ReservationStatusType } from "@/src/types/reservation";
 import { formatDateToKorean } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useState } from "react";
-import { ReservationStatusType } from "@/src/types/reservation";
 
 interface ReservationInfoModalProps {
   selectedDate: string;
@@ -205,10 +205,12 @@ const ReservationInfoModal = ({
     );
 
   return (
-    <div className="md: mt-24 flex max-h-750 min-h-697 w-full max-w-429 flex-col">
-      <div className="flex w-full justify-between">
+    <div>
+      <div className="flex justify-between">
         <div className="font-24px-bold">예약정보</div>
-        <CloseIcon onClick={setModalClose} />
+        <button type="button" onClick={setModalClose}>
+          <CloseIcon />
+        </button>
       </div>
       <div className="relative mt-8 flex flex-row">
         <button
