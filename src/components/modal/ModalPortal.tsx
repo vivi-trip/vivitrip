@@ -32,8 +32,9 @@ interface ModalContainerProps {
 const ModalContainer = ({ children, customClass }: ModalContainerProps) => {
   const modalClasses = clsx(
     "fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 overflow-auto bg-white shadow-lg",
-    "rounded-3xl",
-    "flex justify-center md:max-h-[80vh] scrollbar-none",
+    "scrollbar-none size-full p-24",
+    "md:max-h-[80vh] md:rounded-3xl md:p-48 md:size-auto",
+
     customClass,
   );
   return <div className={modalClasses}>{children}</div>;
