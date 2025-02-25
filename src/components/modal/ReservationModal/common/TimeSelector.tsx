@@ -30,7 +30,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
           radius="8"
           gap="10"
           fontStyle="xxxl"
-          className={clsx("mt-16 h-46 px-12 py-10", {
+          className={clsx("mr-10 mt-16 h-46 px-12 py-10", {
             "bg-brand-500 text-white": isSelected,
             "border border-brand-500 text-brand-500": !isSelected,
           })}
@@ -44,19 +44,31 @@ const TimeSelector = ({ schedules }: Schedules) => {
   };
 
   const renderSchedules = () => {
-    const filter = schedules.find((v) => v.date === formatDate);
-    if (!filter) {
+    const filteredSchedules = schedules
+      .filter((v) => v.date === formatDate) // 선택한 날짜에 해당하는 데이터만 필터링
+      .sort((a, b) => {
+        const timeA = Number(a.startTime.replace(":", "")); // "09:00" → 900, "23:00" → 2300
+        const timeB = Number(b.startTime.replace(":", ""));
+        return timeA - timeB;
+      });
+
+    if (filteredSchedules.length === 0) {
       return (
-        <div className="font-16px-bold my-10">예약가능한 시간이 없습니다</div>
+        <div className="font-14px-medium my-10 text-gray-800">
+          예약가능한 시간이 없습니다
+        </div>
       );
     }
-    return schedules.map((data) => handleIsDateButtons(data));
+
+    return filteredSchedules.map((data) => handleIsDateButtons(data));
   };
 
   return (
     <div>
-      <p className="font-18px-bold">예약 가능한 시간</p>
-      <div className="flex gap-10">{renderSchedules()}</div>
+      <p className="font-18px-bold mt-20">예약 가능한 시간</p>
+      <div className="scrollbar-none mx-10 overflow-x-auto pb-4">
+        <div className="flex whitespace-nowrap">{renderSchedules()}</div>
+      </div>
     </div>
   );
 };
