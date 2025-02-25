@@ -42,7 +42,7 @@ const Calendar = () => {
   };
 
   return (
-    <div className="mx-auto max-w-md p-4">
+    <div className="mx-auto overflow-x-auto">
       <DatePicker
         selected={selectDate}
         onChange={(date: Date | null) => {
