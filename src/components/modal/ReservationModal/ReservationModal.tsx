@@ -42,9 +42,9 @@ const ReservationModal = () => {
     onChangeSchedule(null);
   };
   return (
-    <div className="flex min-w-350 flex-col">
+    <div className="flex w-312 flex-col">
       <Price price={price} />
-      <div className="mb-20 mt-16 flex items-center justify-between border-t-2 pt-16">
+      <div className="mb-20 flex items-center justify-between border-t-2 pt-16">
         <p className="font-24px-bold">날짜</p>
         <button type="button" onClick={modalClose}>
           <CloseIcon />
