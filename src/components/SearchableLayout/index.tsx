@@ -40,7 +40,7 @@ const SearchableLayout = ({ children }: { children: ReactNode }) => {
       <div className="w-full max-w-1200 px-16 md:px-24 lg:px-24">
         <section
           style={{ boxShadow: "0px 4px 16px 0px #1122110D" }}
-          className="relative -mt-60 mb-24 flex h-129 flex-col gap-15 rounded-2xl bg-white px-24 py-16 md:mb-18 md:h-184 md:gap-32 md:py-32 lg:mb-34 lg:h-184 lg:gap-32 lg:py-32">
+          className="relative -mt-60 flex h-129 flex-col gap-15 rounded-2xl bg-white px-24 py-16 md:h-184 md:gap-32 md:py-32 lg:h-184 lg:gap-32 lg:py-32">
           <p className="font-16px-bold md:font-20px-bold lg:font-20px-bold text-basic-black">
             무엇을 체험하고 싶으신가요?
           </p>

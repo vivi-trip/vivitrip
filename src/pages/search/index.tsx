@@ -56,6 +56,7 @@ const Search = ({
               다른 검색어를 사용해 보세요.
             </>
           }
+          className="mt-16 md:mt-24"
         />
       </div>
     </div>
