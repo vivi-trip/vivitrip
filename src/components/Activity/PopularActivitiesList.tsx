@@ -27,7 +27,7 @@ const PopularActivitiesList = ({
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="mt-24 flex items-center justify-between md:mt-18 lg:mt-34">
         <h2 className="font-18px-bold md:font-36px-bold lg:font-36px-bold">
           🔥 인기 체험
         </h2>

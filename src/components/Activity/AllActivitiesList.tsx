@@ -25,6 +25,7 @@ const AllActivitiesList = ({
         activities={activities}
         emptyMessage="체험이 존재하지 않습니다."
         selectedCategory={filteredActivities}
+        className="mt-24 md:mt-32"
       />
     </>
   );

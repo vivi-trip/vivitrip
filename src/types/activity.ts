@@ -19,6 +19,7 @@ export interface PopularActivitiesProps extends BaseActivitiesProps {
 export interface AllActivitiesProps extends BaseActivitiesProps {
   setSize?: React.Dispatch<React.SetStateAction<number>>;
   selectedCategory?: string;
+  className: string;
 }
 
 export interface SearchableLayoutProps {

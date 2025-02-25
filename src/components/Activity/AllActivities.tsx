@@ -2,11 +2,16 @@ import NotFound from "@/assets/pngs/notFound.png";
 import AllActivityItem from "@/src/components/Activity/AllActivityItem";
 import Pagination from "@/src/components/Pagination";
 import { AllActivitiesProps } from "@/src/types/activity";
+import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 
-const AllActivities = ({ activities, emptyMessage }: AllActivitiesProps) => {
+const AllActivities = ({
+  activities,
+  emptyMessage,
+  className,
+}: AllActivitiesProps) => {
   const router = useRouter();
   const page = parseInt(router.query.page as string, 10) || 1;
   const pathname = router.pathname.replace("/", "");
@@ -60,7 +65,11 @@ const AllActivities = ({ activities, emptyMessage }: AllActivitiesProps) => {
 
   return (
     <>
-      <div className="mt-24 grid auto-rows-auto grid-cols-2 gap-x-8 gap-y-16 md:mt-32 md:grid-cols-3 md:gap-x-16 md:gap-y-32 lg:mt-32 lg:grid-cols-4 lg:gap-x-24 lg:gap-y-48">
+      <div
+        className={clsx(
+          className,
+          "grid auto-rows-auto grid-cols-2 gap-x-8 gap-y-16 md:grid-cols-3 md:gap-x-16 md:gap-y-32 lg:grid-cols-4 lg:gap-x-24 lg:gap-y-48",
+        )}>
         {paginatedActivities.map((activity) => (
           <AllActivityItem key={activity.id} {...activity} />
         ))}
