@@ -5,12 +5,20 @@ import useOutsideClick from "@/src/hooks/useOutsideClick";
 import clsx from "clsx";
 import React, { useMemo, useRef, useState } from "react";
 
+interface Schedule {
+  date: string;
+  startTime: string;
+  endTime: string;
+}
+
 interface TimeDropdownProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
   minTime?: string;
   disabled: boolean;
+  addedSchedules: Schedule[];
+  existingSchedules: Schedule[];
 }
 
 const TimeDropdown = ({
@@ -19,24 +27,39 @@ const TimeDropdown = ({
   placeholder = "0:00",
   minTime,
   disabled = false,
+  addedSchedules,
+  existingSchedules,
 }: TimeDropdownProps) => {
+  const isTimeOverlapping = (time: string, schedules: Schedule[]) => {
+    const hour = parseInt(time, 10);
+    return schedules.some(
+      (schedule) =>
+        hour >= parseInt(schedule.startTime, 10) &&
+        hour < parseInt(schedule.endTime, 10),
+    );
+  };
+
   const timeOptions = useMemo(() => {
     if (disabled) return [];
-    const options = Array.from({ length: 24 }, (_, i) => ({
+
+    const allHours = Array.from({ length: 24 }, (_, i) => ({
       value: `${i}:00`,
       label: `${i}:00`,
     }));
 
     if (minTime) {
-      const [minHour] = minTime.split(":").map(Number);
-      return options.filter((option) => {
-        const [hour] = option.value.split(":").map(Number);
-        return hour > minHour;
-      });
+      const minHour = parseInt(minTime, 10);
+      const nextHour = (minHour + 1) % 24;
+      return [{ value: `${nextHour}:00`, label: `${nextHour}:00` }];
     }
 
-    return options;
-  }, [minTime, disabled]);
+    return allHours.filter((option) => {
+      return !isTimeOverlapping(option.value, [
+        ...addedSchedules,
+        ...existingSchedules,
+      ]);
+    });
+  }, [minTime, disabled, addedSchedules, existingSchedules]);
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -63,7 +86,7 @@ const TimeDropdown = ({
           {isOpen ? <IconArrowUp /> : <IconArrowDown />}
         </Dropdown.Trigger>
         {!disabled && isOpen && (
-          <Dropdown.Menu className="z-20 max-h-164 overflow-y-auto">
+          <Dropdown.Menu className="z-20 max-h-164 overflow-y-auto bg-white">
             {timeOptions.map((option) => (
               <Dropdown.Item
                 key={option.value}
