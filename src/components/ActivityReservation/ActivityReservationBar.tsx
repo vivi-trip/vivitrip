@@ -26,7 +26,7 @@ const ActivityReservationBar = ({
     <div
       className={clsx(
         "fixed flex h-80 w-full items-center justify-between",
-        "bottom-0 left-0 z-50",
+        "bottom-0 left-0 z-40",
         "border-t border-[#A1A1A1] bg-white",
         "px-16 md:px-40",
       )}>
@@ -49,7 +49,7 @@ const ActivityReservationBar = ({
           onClick={() =>
             setModalOpen(<ReservationModal />, {
               customClass:
-                "size-full py-50 min-w-350 md:w-650 md:h-900 px-24 md:px-24 md:items-center min-w-375 rounded-none md:rounded-3xl",
+                "size-full min-w-350 md:max-w-460  min-w-350 rounded-none md:rounded-3xl",
             })
           }
           fontStyle="xl">
