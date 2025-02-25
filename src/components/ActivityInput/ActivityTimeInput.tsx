@@ -41,12 +41,22 @@ const ActivityTimeInput = ({
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [addedSchedules, setAddedSchedules] = useState<Schedule[]>([]);
   const [removedScheduleIds, setRemovedScheduleIds] = useState<number[]>([]);
+  const [existingSchedules, setExistingSchedules] = useState<Schedule[]>([]);
 
   useEffect(() => {
     if (onScheduleChange) {
       onScheduleChange(addedSchedules, removedScheduleIds);
     }
   }, [addedSchedules, removedScheduleIds, onScheduleChange]);
+
+  useEffect(() => {
+    const schedules = fields.map((field) => ({
+      date: field.date,
+      startTime: field.startTime,
+      endTime: field.endTime,
+    }));
+    setExistingSchedules(schedules);
+  }, [fields]);
 
   const handleAddTime = () => {
     if (selectedDate && startTime && endTime) {
@@ -65,22 +75,15 @@ const ActivityTimeInput = ({
 
   const handleRemoveTime = (index: number) => {
     const removedSchedule = fields[index];
-
+  
     if (removedSchedule.id) {
-      // 실제 서버 ID 체크
       setRemovedScheduleIds((prev) => [...prev, removedSchedule.id!]);
     } else {
-      // 새로 추가한 스케줄 삭제
       setAddedSchedules((prev) =>
-        prev.filter(
-          (s) =>
-            s.date !== removedSchedule.date ||
-            s.startTime !== removedSchedule.startTime ||
-            s.endTime !== removedSchedule.endTime,
-        ),
+        prev.filter((s, idx) => idx !== index)
       );
     }
-
+  
     remove(index);
   };
 
@@ -104,6 +107,8 @@ const ActivityTimeInput = ({
                   value={startTime}
                   onChange={setStartTime}
                   disabled={!selectedDate}
+                  addedSchedules={addedSchedules}
+                  existingSchedules={existingSchedules}
                 />
               </div>
             </div>
@@ -120,6 +125,8 @@ const ActivityTimeInput = ({
                   onChange={setEndTime}
                   minTime={startTime}
                   disabled={!selectedDate || !startTime}
+                  addedSchedules={addedSchedules}
+                  existingSchedules={existingSchedules}
                 />
               </div>
             </div>
@@ -148,7 +155,7 @@ const ActivityTimeInput = ({
           <div className="flex flex-col gap-8 md:gap-16 lg:gap-21">
             {fields.map((scheduleField, index) => (
               <div
-                key={scheduleField.id}
+                key={scheduleField.rhfId}
                 className="flex w-full gap-5 lg:gap-20">
                 <div className="flex-1">
                   <Controller
@@ -175,7 +182,7 @@ const ActivityTimeInput = ({
                         render={({ field }) => (
                           <div
                             className={clsx(
-                              "h-44 py-10 pl-12 bg-white",
+                              "h-44 bg-white py-10 pl-12",
                               "md:h-56 md:px-16 md:py-15",
                               "rounded-4 border border-gray-500",
                               "flex items-center justify-between",
@@ -194,7 +201,7 @@ const ActivityTimeInput = ({
                         render={({ field }) => (
                           <div
                             className={clsx(
-                              "h-44 py-10 pl-12 bg-white",
+                              "h-44 bg-white py-10 pl-12",
                               "md:h-56 md:px-16 md:py-15",
                               "rounded-4 border border-gray-500",
                               "flex items-center justify-between",
