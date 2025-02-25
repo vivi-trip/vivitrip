@@ -29,6 +29,9 @@ const SearchableLayout = ({ children }: { children: ReactNode }) => {
 
   // 엔터 입력 시 검색 작동
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) {
+      return;
+    }
     if (e.key === "Enter") {
       onSubmit();
     }
