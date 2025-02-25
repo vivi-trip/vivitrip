@@ -25,7 +25,7 @@ const ReviewModal = ({ riviewData }: ReviewModalProps) => {
 
   return (
     <div className={clsx("flex flex-col items-center")}>
-      <div className="flex w-full justify-between">
+      <div className="mt-30 flex w-full justify-between">
         <h1 className="font-24px-bold text-black">후기 작성</h1>
         <CloseIcon onClick={setModalClose} />
       </div>
