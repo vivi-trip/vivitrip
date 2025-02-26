@@ -108,14 +108,14 @@ const FormPage = () => {
         // resetOnSubmit  미설정시 자동으로 입력값 초기화 됨. 검색은 초기화 불필요해서 false로 설정 필요
         // 검색 시 placeholder 대신 Input의 라벨 기능을 사용함
         resetOnSubmit={false}>
-        <Form.Label className="font-24px-bold">
-          무엇을 체험하고 싶으신가요?
-          {/* <div className="mt-32 flex items-center gap-12"></div> */}
-        </Form.Label>
-
         <Form.Field variant="search">
-          <Form.Input label="내가 원하는 체험은" />
-          <Form.SubmitButton>검색하기</Form.SubmitButton>
+          <Form.Label className="font-24px-bold">
+            무엇을 체험하고 싶으신가요?
+          </Form.Label>
+          <div className="flex items-end gap-8">
+            <Form.Input label="내가 원하는 체험은" />
+            <Form.SubmitButton>검색하기</Form.SubmitButton>
+          </div>
         </Form.Field>
       </Form>
     </section>
