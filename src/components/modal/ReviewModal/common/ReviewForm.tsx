@@ -1,4 +1,5 @@
 import Button from "../../../Button/Button";
+import IconStar from "@/assets/svgs/ic_ pretty_star.svg";
 import StarOff from "@/assets/svgs/ic_star_off.svg";
 import StarOn from "@/assets/svgs/ic_star_on.svg";
 import PopupModal from "@/src/components/modal/PopupModal";
@@ -58,7 +59,7 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
 
   return (
     <>
-      <div className="flex h-100 w-432 justify-center gap-8 px-60 py-22">
+      <div className="flex h-100 w-432 justify-center gap-8 px-48 py-22">
         {[1, 2, 3, 4, 5].map((id) => (
           <div
             key={id}
@@ -72,9 +73,9 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
             role="button"
             className="cursor-pointer">
             {rating !== null && id <= rating ? (
-              <StarOn width={56} height={56} />
+              <IconStar className="text-yellow-400" />
             ) : (
-              <StarOff width={56} height={56} />
+              <IconStar className="text-transparent stroke-gray-400" />
             )}
           </div>
         ))}
