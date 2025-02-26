@@ -91,7 +91,7 @@ export const variantStyles: Record<FieldKeys, ButtonStyles> = {
       fontStyle: "xl",
     },
     tailwindStyle: "w-96 md:w-136",
-    fieldStyle: fieldPosition.column,
+    fieldStyle: fieldPosition.default,
   },
   default: {
     fieldStyle: "",
