@@ -13,7 +13,7 @@ const ReservationStatusDropdown = ({
   handleStatusChange,
 }: ReservationStatusDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState<ReservationStatus>("");
+  const [status, setStatus] = useState<ReservationStatus>("all");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleItemClick = (newStatus: ReservationStatus) => {
