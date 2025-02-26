@@ -58,6 +58,7 @@ const Form = <T extends FieldValues>({
           "font-16px-regular relative flex flex-col gap-28 text-basic-black",
           className,
         )}
+        autoComplete="off"
         {...rest}>
         {children}
       </form>
@@ -176,6 +177,14 @@ const Input: React.FC<InputProps> = ({
 
   const Component = as === "textarea" ? "textarea" : "input";
 
+  const passwordProps = isPasswordVariant
+    ? {
+        autoComplete: "new-password",
+        autoCorrect: "off",
+        spellCheck: false,
+      }
+    : {};
+
   const {
     control,
     formState: { errors },
@@ -190,7 +199,7 @@ const Input: React.FC<InputProps> = ({
       : (errorMessage as FieldError)?.message || "";
 
   const inputStyles =
-    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none focus:border-brand-400 focus:shadow-[inset_0_0_0_2px_rgba(159,181,196,0.8)]";
+    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none focus:border-[rgba(159,181,196,0.8)] focus:shadow-[inset_0_0_0_1px_rgba(159,181,196,0.8)]";
 
   return (
     <div className="flex w-full flex-col">
@@ -247,7 +256,7 @@ const Input: React.FC<InputProps> = ({
                   className,
                 )}
                 {...field}
-                autoComplete={isPasswordVariant ? "new-password" : type}
+                {...passwordProps}
                 onFocus={() => setIsFocused(true)}
                 onBlur={async () => {
                   const trimmedValue = (field.value || "").trim();
