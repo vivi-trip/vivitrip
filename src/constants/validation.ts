@@ -1,4 +1,4 @@
-import { InputKeys } from "@/src/constants/form";
+import { InputKeys } from "@/src/types/form";
 
 interface ValidationRule {
   required?: string;
@@ -47,8 +47,9 @@ const validationRules = (
       message: "닉네임은 최소 2자 이상이어야 합니다.",
     },
   },
-  default: {},
+  calendar: {},
   search: {},
+  default: {},
 });
 
 export default validationRules;
