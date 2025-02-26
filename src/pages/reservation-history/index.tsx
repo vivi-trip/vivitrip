@@ -17,7 +17,6 @@ const MyReservationHistory = () => {
     number | undefined
   >();
   const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState("");
   const [activityTitle, setActivityTitle] = useState("");
 
   return (
@@ -53,7 +52,7 @@ const MyReservationHistory = () => {
                           key={activity.id}
                           className={clsx(
                             "font-16px-regular flex justify-start py-15 pl-16 text-black",
-                            status === activity.title
+                            activityTitle === activity.title
                               ? "bg-brand-400 text-white"
                               : "hover:bg-gray-100",
                           )}
@@ -61,7 +60,6 @@ const MyReservationHistory = () => {
                             setSelectedActivityId(activity.id);
                             setActivityTitle(activity.title);
                             setIsOpen(false);
-                            setStatus(activity.title);
                           }}>
                           {activity.title}
                         </Dropdown.Item>
