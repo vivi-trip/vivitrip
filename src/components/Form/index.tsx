@@ -109,7 +109,10 @@ const Field = ({ children, className, variant }: FieldProps) => {
 const Label = ({ children, className, htmlFor, ...rest }: LabelProps) => {
   const { htmlForId } = useContext(FieldContext);
   return (
-    <label className={twMerge(className)} htmlFor={htmlForId} {...rest}>
+    <label
+      className={twMerge("cursor-pointer select-none", className)}
+      htmlFor={htmlForId}
+      {...rest}>
       {children}
     </label>
   );
@@ -122,6 +125,7 @@ const Icon = ({ children, className, onClick, position }: IconProps) => {
       onClick={onClick}
       className={twMerge(
         "absolute top-1/2 -translate-y-1/2 transform",
+        "select-none",
         iconPosition[position as IconPosition],
         className,
       )}>
@@ -185,6 +189,13 @@ const Input: React.FC<InputProps> = ({
       }
     : {};
 
+  const textareaProps =
+    as === "textarea"
+      ? {
+          rows: 8,
+        }
+      : {};
+
   const {
     control,
     formState: { errors },
@@ -199,7 +210,10 @@ const Input: React.FC<InputProps> = ({
       : (errorMessage as FieldError)?.message || "";
 
   const inputStyles =
-    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none focus:border-[rgba(159,181,196,0.8)] focus:shadow-[inset_0_0_0_1px_rgba(159,181,196,0.8)]";
+    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none";
+
+  const inputFocusStyles =
+    "focus:border-[rgba(159,181,196,0.8)] focus:shadow-[inset_0_0_0_1px_rgba(159,181,196,0.8)]";
 
   return (
     <div className="flex w-full flex-col">
@@ -216,7 +230,7 @@ const Input: React.FC<InputProps> = ({
             )}>
             <div
               className={twMerge(
-                "absolute bottom-0 left-0 right-0 top-0 bg-white",
+                "absolute bottom-0 left-0 right-0 top-1/2 bg-white transition-all",
                 isFocused && "top-1/2",
               )}
             />
@@ -225,18 +239,19 @@ const Input: React.FC<InputProps> = ({
         )}
         {readOnly ? (
           <Component
-            id={htmlForId}
             name={variant}
             type={inputType}
             className={twMerge(
               inputStyles,
-              as === "textarea" ? "h-346 resize-none" : "h-58",
+              "cursor-not-allowed",
+              as === "textarea" ? "resize-none" : "h-58",
               "bg-brand-100",
               className,
             )}
-            readOnly
-            autoComplete={type}
             value={value}
+            readOnly
+            {...passwordProps}
+            {...textareaProps}
             {...rest}
           />
         ) : (
@@ -251,12 +266,14 @@ const Input: React.FC<InputProps> = ({
                 type={inputType}
                 className={twMerge(
                   inputStyles,
-                  as === "textarea" ? "h-346 resize-none" : "h-58",
+                  inputFocusStyles,
+                  as === "textarea" ? "resize-none" : "h-58",
                   selectedIcon?.padding,
                   className,
                 )}
                 {...field}
                 {...passwordProps}
+                {...textareaProps}
                 onFocus={() => setIsFocused(true)}
                 onBlur={async () => {
                   const trimmedValue = (field.value || "").trim();
