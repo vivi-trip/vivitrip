@@ -73,6 +73,7 @@ Dropdown.Trigger = ({
       )}
       onClick={(event: MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
+        event.preventDefault();
         if (typeof onClick === "function") onClick();
         toggle();
       }}
@@ -109,13 +110,18 @@ Dropdown.Item = ({
 
   return (
     <button
+      type="button"
       className={clsx(
         "relative block w-full text-nowrap rounded-none",
         className,
       )}
-      type="button"
+      onClick={(event: MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        event.preventDefault();
+      }}
       onMouseDown={(event: MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
+        event.preventDefault();
         if (typeof onClick === "function") onClick();
         toggle();
       }}
