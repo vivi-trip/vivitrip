@@ -1,4 +1,4 @@
-import Button from "@/src/components/Button/Button";
+import Form from "@/src/components/Form";
 import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
@@ -8,7 +8,7 @@ import useUserStore from "@/src/stores/userStore";
 import { SignUpProps } from "@/src/types/user";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FormEvent, useEffect } from "react";
+import { useEffect } from "react";
 
 const SignUpRoute = () => {
   const router = useRouter();
@@ -16,98 +16,52 @@ const SignUpRoute = () => {
   const { mutate: signupFn, isPending: isPendingSignup } = useSignUp();
   const { email, clearEmail } = useTempEmailStore();
 
-  const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const param = Object.fromEntries(formData) as unknown as SignUpProps;
-
-    signupFn(param);
+  const handleSignUp = async (data: SignUpProps) => {
+    signupFn(data);
   };
 
   useEffect(() => {
     if (email) clearEmail();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   useEffect(() => {
     if (userData) router.replace(PATH_NAMES.Root);
   }, [userData, router]);
 
   return (
-    <div className="mx-auto flex min-h-main w-full max-w-640 flex-col items-stretch justify-center py-48">
-      <Logo size="lg" />
+    <div className="mx-auto min-h-main w-full max-w-640 py-48">
+      <Form onSubmit={handleSignUp}>
+        <Form.Title className="flex-col gap-16">
+          <Logo size="lg" />
+          <p>회원가입</p>
+        </Form.Title>
 
-      <form className="mt-56 flex flex-col gap-32" onSubmit={handleSignUp}>
-        <div className="relative">
-          <label htmlFor="signup_email" className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">이메일</p>
-            <input
-              type="email"
-              name="email"
-              id="signup_email"
-              placeholder="이메일을 입력해 주세요"
-              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={email}
-            />
-          </label>
-        </div>
+        <Form.Field variant="email">
+          <Form.Label>이메일</Form.Label>
+          <Form.Input placeholder="이메일을 입력해 주세요" />
+        </Form.Field>
 
-        <div className="relative">
-          <label htmlFor="signup_nickname" className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">닉네임</p>
-            <input
-              type="text"
-              name="nickname"
-              id="signup_nickname"
-              placeholder="닉네임을 입력해 주세요"
-              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-            />
-          </label>
-        </div>
+        <Form.Field variant="nickname">
+          <Form.Label>닉네임</Form.Label>
+          <Form.Input placeholder="닉네임을 입력해 주세요" />
+        </Form.Field>
 
-        <div className="relative">
-          <label htmlFor="signup_password" className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">비밀번호</p>
-            <input
-              type="password"
-              name="password"
-              id="signup_password"
-              placeholder="비밀번호을 입력해 주세요"
-              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-            />
-          </label>
-        </div>
+        <Form.Field variant="password">
+          <Form.Label>비밀번호</Form.Label>
+          <Form.Input placeholder="8자 이상 입력해 주세요" />
+        </Form.Field>
 
-        <div className="relative">
-          <label
-            htmlFor="signup_confirmPassword"
-            className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">비밀번호 확인</p>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="signup_confirmPassword"
-              placeholder="비밀번호를 한번 더 입력해 주세요"
-              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-            />
-          </label>
-        </div>
+        <Form.Field variant="confirmPassword">
+          <Form.Label>비밀번호 확인</Form.Label>
+          <Form.Input placeholder="비밀번호를 한번 더 입력해 주세요" />
+        </Form.Field>
 
-        <div className="relative">
-          <Button
-            type="submit"
-            height="56"
-            fullWidth
-            radius="6"
-            backgroundColor="black"
-            fontStyle="xl"
-            disabled={isPendingSignup}
-            className="disabled:bg-gray-500">
-            회원가입 하기
-          </Button>
-        </div>
-      </form>
+        <Form.Field variant="authPage">
+          <Form.SubmitButton disabled={isPendingSignup}>
+            회원가입
+          </Form.SubmitButton>
+        </Form.Field>
+      </Form>
 
       <p className="mt-32 text-center">
         <span className="font-16px-regular text-gray-800">회원이신가요?</span>
