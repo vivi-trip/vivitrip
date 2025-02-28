@@ -31,7 +31,7 @@ const ReviewModal = ({ riviewData }: ReviewModalProps) => {
           <CloseIcon />
         </button>
       </div>
-      <div className="mt-41 flex flex-col gap-24">
+      <div className="mt-41 ">
         <ReviewContent
           title={title}
           bannerImageUrl={bannerImageUrl}
