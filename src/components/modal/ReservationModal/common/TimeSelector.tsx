@@ -30,7 +30,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
           radius="8"
           gap="10"
           fontStyle="xxxl"
-          className={clsx("mr-10 mt-16 h-46 px-12 py-10", {
+          className={clsx("mr-10 h-46 px-12 py-10", {
             "bg-brand-500 text-white": isSelected,
             "border border-brand-500 text-brand-500": !isSelected,
           })}
@@ -54,7 +54,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
 
     if (filteredSchedules.length === 0) {
       return (
-        <div className="font-14px-medium my-10 text-gray-800">
+        <div className="font-14px-medium text-gray-800">
           예약가능한 시간이 없습니다
         </div>
       );
@@ -66,8 +66,8 @@ const TimeSelector = ({ schedules }: Schedules) => {
   return (
     <div>
       <p className="font-18px-bold mt-20">예약 가능한 시간</p>
-      <div className="scrollbar-none mx-10 overflow-x-auto pb-4">
-        <div className="flex whitespace-nowrap">{renderSchedules()}</div>
+      <div className="scrollbar-none mx-10 overflow-x-auto">
+        <div className="flex my-16 whitespace-nowrap">{renderSchedules()}</div>
       </div>
     </div>
   );
