@@ -31,7 +31,16 @@ const ReservationModal = () => {
 
     postActivityReservation(reservationData, {
       onSuccess: () => {
-        setModalOpen(<PopupModal title="예약 되었습니다." />);
+        setModalOpen(
+          <PopupModal
+            title="예약이 신청 되었습니다."
+            content="예약 관리자가 예약 승인을 하면 
+          예약이 완료 됩니다."
+          />,
+          {
+            customClass: "md:p-32",
+          },
+        );
       },
     });
   };
@@ -61,9 +70,10 @@ const ReservationModal = () => {
           gap="4"
           backgroundColor="black"
           fontStyle="xl"
-          className="w-full"
+          className="w-full disabled:border-none disabled:bg-gray-500 disabled:text-white"
+          disabled={!selectSchedule || !selectSchedule.id}
           onClick={submitReservation}>
-          예약하기
+          예약 신청하기
         </Button>
       </div>
       <TotalPrice total={price * members} />
