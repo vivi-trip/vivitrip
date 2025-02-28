@@ -68,7 +68,7 @@ Dropdown.Trigger = ({
     <button
       type="button"
       className={clsx(
-        "flex w-full flex-wrap items-center justify-start",
+        "flex w-full flex-wrap items-center justify-start outline-none",
         className,
       )}
       onClick={(event: MouseEvent<HTMLButtonElement>) => {
