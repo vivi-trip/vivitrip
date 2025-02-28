@@ -22,7 +22,7 @@ const ParticipantCount = () => {
 
   return (
     <div>
-      <div className="mt-16 flex flex-col gap-8 border-t-2 pb-24 pt-12">
+      <div className="flex flex-col gap-8 border-t-2 pb-24 pt-12">
         <p className="font-18px-bold">참여 인원 수</p>
         <div className="flex h-40 w-120 items-center rounded-md border bg-white">
           <button
