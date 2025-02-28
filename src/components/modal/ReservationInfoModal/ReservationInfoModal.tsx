@@ -205,7 +205,7 @@ const ReservationInfoModal = ({
     );
 
   return (
-    <div>
+    <div className="min-w-280">
       <div className="flex justify-between">
         <div className="font-24px-bold">예약정보</div>
         <button type="button" onClick={setModalClose}>
