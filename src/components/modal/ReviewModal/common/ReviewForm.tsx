@@ -80,13 +80,13 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
       </div>
       <form
         onSubmit={reviewText ? handleSubmit : undefined}
-        className="flex w-full flex-col gap-24">
+        className="w-full ">
         <textarea
           placeholder="후기를 작성해주세요"
           className={clsx(
             "rounded-4 border border-gray-500 text-basic-black",
             "font-16px-regular",
-            "px-16 py-8",
+            "px-16 py-8 mt-24",
             "h-240 w-full",
             "resize-none",
             "focus:border-brand-500 focus:outline-none",
@@ -103,7 +103,7 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
           fontStyle="l"
           disabled={!reviewText}
           className={clsx(
-            "lg:w-full",
+            "w-full mt-24",
             !reviewText
               ? "cursor-not-allowed bg-gray-500 text-gray-600"
               : "border-none bg-brand-500 text-white",
