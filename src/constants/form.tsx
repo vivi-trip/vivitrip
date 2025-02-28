@@ -21,6 +21,7 @@ export const icons: Record<IconKeys, IconType> = {
       ),
     onClick: () => {},
     position: "right",
+    margin: "ml-20",
   },
   confirmPassword: {
     icon: (isVisible?: boolean) => icons.password.icon(isVisible),
@@ -64,7 +65,7 @@ export const variantStyles: Record<FieldKeys, ButtonStyles> = {
       fullWidth: true,
       radius: "6",
       gap: "10",
-      backgroundColor: "green",
+      backgroundColor: "black",
       fontStyle: "xl",
     },
     fieldStyle: fieldPosition.default,
