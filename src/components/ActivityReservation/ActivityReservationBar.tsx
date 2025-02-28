@@ -53,7 +53,7 @@ const ActivityReservationBar = ({
             })
           }
           fontStyle="xl">
-          날짜 선택하기
+          체험 예약하기
         </Button>
       </div>
     </div>
