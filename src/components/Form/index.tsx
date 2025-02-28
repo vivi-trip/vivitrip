@@ -55,7 +55,7 @@ const Form = <T extends FieldValues>({
       <form
         onSubmit={methods.handleSubmit(handleSubmit)}
         className={twMerge(
-          "font-16px-regular relative flex flex-col gap-28 text-basic-black",
+          "font-16px-regular relative flex flex-col gap-24 text-basic-black",
           className,
         )}
         autoComplete="off"
@@ -223,14 +223,14 @@ const Input: React.FC<InputProps> = ({
             className={twMerge(
               "flex items-center overflow-hidden rounded",
               "font-16px-regular text-gray-600",
-              "absolute left-0 top-1/2 h-32 -translate-y-1/2 transition-all",
+              "absolute left-20 top-1/2 h-32 -translate-y-1/2 transition-all",
               "pointer-events-none",
-              isFocused && "left-8 top-0 px-12",
-              selectedIcon ? selectedIcon.margin : "ml-20",
+              isFocused && "left-12 top-0 px-12",
+              // selectedIcon ? selectedIcon.margin : "ml-20",
             )}>
             <div
               className={twMerge(
-                "absolute bottom-0 left-0 right-0 top-1/2 bg-white transition-all",
+                "absolute bottom-0 left-0 right-0 top-0 bg-white transition-all",
                 isFocused && "top-1/2",
               )}
             />
@@ -308,6 +308,7 @@ const Input: React.FC<InputProps> = ({
 
 const SubmitButton = ({ className, children, ...rest }: SubmitButtonProps) => {
   const { variant } = useContext(FieldContext);
+  const { disabled } = rest;
 
   const { style, tailwindStyle } =
     variant in variantStyles ? variantStyles[variant as FieldKeys] : {};
@@ -318,9 +319,9 @@ const SubmitButton = ({ className, children, ...rest }: SubmitButtonProps) => {
     <Button
       className={twMerge(
         tailwindStyle,
-        !formState.isValid ? "bg-brand-300" : "",
+        // !formState.isValid ? "bg-brand-300" : "",
       )}
-      disabled={!formState.isValid}
+      disabled={!formState.isValid || disabled}
       type="submit"
       {...style}
       {...rest}>
