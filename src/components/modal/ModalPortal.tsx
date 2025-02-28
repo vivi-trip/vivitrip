@@ -1,6 +1,7 @@
 import useEscapeClose from "@/src/hooks/useEscapeClose";
 import useModalStore from "@/src/stores/ModalStore";
 import clsx from "clsx";
+import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -33,7 +34,7 @@ const ModalContainer = ({ children, customClass }: ModalContainerProps) => {
   const modalClasses = clsx(
     "fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 overflow-auto bg-white shadow-lg",
     "scrollbar-none size-full p-24",
-    "md:max-h-[80vh] md:rounded-3xl md:p-48 md:size-auto",
+    "md:size-auto md:max-h-[80vh] md:rounded-3xl md:p-48",
 
     customClass,
   );
@@ -44,13 +45,15 @@ const ModalPotal = ({ children }: { children: ReactNode }) => {
   const [mounted, setMounted] = useState<boolean>(false);
   const { isModalOpen, setModalClose, modalOptions } = useModalStore();
   useEscapeClose(setModalClose);
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
     return () => {
       setMounted(false);
+      setModalClose();
     };
-  }, []);
+  }, [setModalClose]);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -63,6 +66,20 @@ const ModalPotal = ({ children }: { children: ReactNode }) => {
       document.body.style.overflow = "unset";
     };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (isModalOpen) {
+        setModalClose();
+      }
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [isModalOpen, setModalClose, router]);
 
   if (typeof window === "undefined") return null;
   if (!mounted) return null;
