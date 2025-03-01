@@ -4,11 +4,13 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 const Carousel = ({ items }: CarouselProps) => {
-  const extendedItems = [items[0], ...items, items[0]];
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const extendedItems = [items[10], ...items, items[0]];
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [transition, setTransition] = useState(true);
 
   const goToPrevious = () => {
+    if (currentIndex <= 0) return;
+
     setTransition(true);
     setCurrentIndex((prevIndex) => prevIndex - 1);
   };
@@ -17,7 +19,12 @@ const Carousel = ({ items }: CarouselProps) => {
     if (currentIndex === extendedItems.length - 1) return;
 
     setTransition(true);
-    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setCurrentIndex((prevIndex) => {
+      if (currentIndex === 12) {
+        return 1;
+      }
+      return prevIndex + 1;
+    });
   }, [currentIndex, extendedItems.length]);
 
   useEffect(() => {
@@ -33,7 +40,7 @@ const Carousel = ({ items }: CarouselProps) => {
 
     if (currentIndex === 0) {
       timeoutId = setTimeout(() => {
-        setCurrentIndex(extendedItems.length - 1);
+        setCurrentIndex(extendedItems.length - 2);
         setTransition(false);
       }, 500);
     } else if (currentIndex === extendedItems.length - 1) {
@@ -49,7 +56,7 @@ const Carousel = ({ items }: CarouselProps) => {
   }, [currentIndex, extendedItems.length]);
 
   return (
-    <div className="relative -mx-24 h-240 md:-mx-32 md:h-550">
+    <div className="relative h-240 w-full md:h-550">
       <div className="overflow-hidden">
         <div
           className={`flex flex-nowrap ${transition && "transition-transform duration-700 ease-in-out"}`}
