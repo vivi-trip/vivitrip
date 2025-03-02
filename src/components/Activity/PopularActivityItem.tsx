@@ -31,7 +31,7 @@ const PopularActivityItem = ({
 
   // 화면 크기 별 폰트 크기
   const {
-    isExtraXsScreen,
+    isMicroScreen,
     isXsScreen,
     isSmallerXsScreen,
     getActivityTextWrapperStyle,
@@ -77,7 +77,7 @@ const PopularActivityItem = ({
           />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/30 to-black/80" />
-        {!isExtraXsScreen && (
+        {!isMicroScreen && (
           <div
             className={clsx(
               "absolute bottom-12 flex flex-col gap-5 px-20 py-12 md:bottom-0 md:gap-10 md:py-30 md:pr-60 lg:gap-20 lg:pr-90",
@@ -89,7 +89,11 @@ const PopularActivityItem = ({
                 height={isXsScreen || isSmallerXsScreen ? 16 : 20}
                 className="my-2 block"
               />
-              <p className={clsx("text-white", getActivityRatingTextStyle())}>
+              <p
+                className={clsx(
+                  "line-clamp-1 text-white",
+                  getActivityRatingTextStyle(),
+                )}>
                 {rating} ({reviewCount})
               </p>
             </div>
@@ -111,7 +115,7 @@ const PopularActivityItem = ({
               <p
                 className={clsx(
                   "font-14px-regular my-1 line-clamp-1 text-gray-600",
-                  isSmallerXsScreen && "font-12px-regular",
+                  isSmallerXsScreen && "font-14px-regular",
                 )}>
                 / 인
               </p>

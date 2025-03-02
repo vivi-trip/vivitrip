@@ -1,8 +1,10 @@
 import Star from "@/assets/svgs/star.svg";
 import Loading from "@/src/components/Loading";
 import PATH_NAMES from "@/src/constants/pathname";
+import useResponsiveTextStyle from "@/src/hooks/Activity/useResponsiveTextStyle";
 import useLoadingStore from "@/src/stores/loadingStore";
 import { Activity } from "@/src/types/activities";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,6 +18,8 @@ const AllActivityItem = ({
 }: Activity) => {
   // loading spinner
   const { loadingButtons, showLoadingButtons } = useLoadingStore();
+
+  const { isMicroScreen } = useResponsiveTextStyle();
 
   return (
     <div className="flex flex-col gap-16">
@@ -60,10 +64,22 @@ const AllActivityItem = ({
           </p>
         </div>
         <div className="flex items-center gap-5">
-          <p className="font-20px-bold md:font-28px-bold lg:font-24px-bold text-basic-black">
+          <p
+            className={clsx(
+              "line-clamp-1 overflow-hidden text-basic-black",
+              isMicroScreen
+                ? "font-16px-bold"
+                : "font-20px-bold md:font-28px-bold lg:font-24px-bold",
+            )}>
             ₩ {price.toLocaleString()}
           </p>
-          <p className="font-16px-regular md:font-20px-regular lg:font-20px-regular text-gray-800">
+          <p
+            className={clsx(
+              "line-clamp-1 overflow-hidden text-gray-800",
+              isMicroScreen
+                ? "font-14px-regular"
+                : "font-16px-regular md:font-20px-regular lg:font-20px-regular",
+            )}>
             / 인
           </p>
         </div>
