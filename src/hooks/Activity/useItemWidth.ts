@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 
-const useItemWidth = (gap: number, containerWidth: number) => {
+const useItemWidth = (gap?: number, containerWidth?: number) => {
   const [itemWidth, setItemWidth] = useState(0);
+  const [itemLength, setItemLength] = useState(3);
+  const [itemGap, setItemGap] = useState(0);
 
   useEffect(() => {
     const updateItemWidth = () => {
-      const newItemWidth = (containerWidth - 2 * gap) / 3;
-      setItemWidth(newItemWidth);
+      setItemLength(window.innerWidth <= 480 ? 2 : 3);
+      if (gap && containerWidth) {
+        setItemGap(itemLength === 3 ? 2 * gap : gap);
+        setItemWidth(() => {
+          return (containerWidth - itemGap) / itemLength;
+        });
+      }
     };
 
     updateItemWidth();
@@ -15,9 +22,9 @@ const useItemWidth = (gap: number, containerWidth: number) => {
     return () => {
       window.removeEventListener("resize", updateItemWidth);
     };
-  }, [containerWidth, gap, itemWidth]);
+  }, [containerWidth, gap, itemGap, itemLength]);
 
-  return itemWidth;
+  return { itemWidth, itemLength };
 };
 
 export default useItemWidth;
