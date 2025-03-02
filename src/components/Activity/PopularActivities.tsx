@@ -17,6 +17,7 @@ const PopularActivities = ({
   totalCount,
   handlePrev,
   handleNext,
+  itemsPerSlide,
   emptyMessage,
 }: PopularActivitiesProps) => {
   // auto slide 활성화 여부
@@ -33,14 +34,16 @@ const PopularActivities = ({
     handleNext();
   };
 
-  // auto slide
-  useAutoSlide(isAutoSlide, activities.length, setCurrentIndex);
-
   // 슬라이드 이동 너비 설정
   const { gap, slideWidth, handleResize } = useSlideWidth();
 
   // 인기 체험 아이템 크기
-  const itemWidth = useItemWidth(gap, containerWidth);
+  const { itemWidth } = useItemWidth(gap, containerWidth);
+
+  // auto slide
+  useAutoSlide(isAutoSlide, activities.length, itemsPerSlide, setCurrentIndex);
+
+  const lastSlideItems = itemsPerSlide === 3 ? 3 : 2;
 
   // 체험이 없을 때 메시지 표시
   if (!activities || activities.length === 0) {
@@ -85,11 +88,11 @@ const PopularActivities = ({
           type="button"
           className="absolute right-1 top-1/2 size-30 -translate-y-1/2 md:size-40"
           onClick={handleManualNext}
-          disabled={currentIndex === totalCount - 3}>
+          disabled={currentIndex === totalCount - lastSlideItems}>
           <RightArrow
             className={clsx(
               "size-30 bg-black/50 text-white md:size-40",
-              currentIndex === totalCount - 3 && "invisible",
+              currentIndex === totalCount - lastSlideItems && "invisible",
             )}
             aria-label="다음 인기 체험 보기 버튼"
           />
