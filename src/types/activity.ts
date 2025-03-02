@@ -2,6 +2,7 @@ import { Activity } from "@/src/types/activities";
 import { ReactNode } from "react";
 
 export type ActivityTextWrapperStyleType =
+  | "isExtraXsScreen"
   | "isSmallerXsScreen"
   | "isXsScreen"
   | "default";
@@ -20,6 +21,7 @@ export type ActivityTitleTextStyleType =
   | "default";
 
 export type ActivityPriceTextStyleType =
+  | "isExtraXsScreen"
   | "isSmallerXsScreen"
   | "isXsScreen"
   | "default";
@@ -40,7 +42,8 @@ export interface PopularActivitiesProps extends BaseActivitiesProps {
   containerWidth: number;
   totalCount: number;
   handlePrev: () => void;
-  handleNext: () => Promise<void>;
+  handleNext: () => void;
+  itemsPerSlide: number;
 }
 
 export interface PopularActivityItemProps extends Activity {
