@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from "react";
 
 const useResponsiveTextStyle = () => {
+  const [isMicroScreen, setIsMicroScreen] = useState(false);
   const [isExtraXsScreen, setIsExtraXsScreen] = useState(false);
   const [isSmallerXsScreen, setIsSmallerXsScreen] = useState(false);
   const [isXsScreen, setIsXsScreen] = useState(false);
@@ -15,8 +16,9 @@ const useResponsiveTextStyle = () => {
 
   useEffect(() => {
     const updateScreenSize = () => {
-      setIsExtraXsScreen(window.innerWidth <= 380);
-      setIsSmallerXsScreen(window.innerWidth > 380 && window.innerWidth <= 477);
+      setIsMicroScreen(window.innerWidth <= 305);
+      setIsExtraXsScreen(window.innerWidth > 305 && window.innerWidth <= 360);
+      setIsSmallerXsScreen(window.innerWidth > 360 && window.innerWidth <= 480);
       setIsXsScreen(window.innerWidth > 477 && window.innerWidth < 590);
       setIsSmToMdScreen(window.innerWidth >= 768 && window.innerWidth < 900);
       setIsMdToLgScreen(window.innerWidth >= 1024 && window.innerWidth < 1155);
@@ -24,6 +26,7 @@ const useResponsiveTextStyle = () => {
 
     updateScreenSize();
     window.addEventListener("resize", updateScreenSize);
+
     return () => {
       window.removeEventListener("resize", updateScreenSize);
     };
@@ -31,6 +34,8 @@ const useResponsiveTextStyle = () => {
 
   const getActivityTextWrapperStyle = () => {
     switch (true) {
+      case isExtraXsScreen:
+        return ACTIVITY_TEXT_WRAPPER_STYLE_PRESET.isExtraXsScreen;
       case isSmallerXsScreen:
         return ACTIVITY_TEXT_WRAPPER_STYLE_PRESET.isSmallerXsScreen;
       case isXsScreen:
@@ -70,6 +75,8 @@ const useResponsiveTextStyle = () => {
 
   const getActivityPriceTextStyle = () => {
     switch (true) {
+      case isExtraXsScreen:
+        return ACTIVITY_PRICE_TEXT_STYLE_PRESET.isExtraXsScreen;
       case isSmallerXsScreen:
         return ACTIVITY_PRICE_TEXT_STYLE_PRESET.isSmallerXsScreen;
       case isXsScreen:
@@ -80,9 +87,10 @@ const useResponsiveTextStyle = () => {
   };
 
   return {
-    isXsScreen,
-    isSmallerXsScreen,
+    isMicroScreen,
     isExtraXsScreen,
+    isSmallerXsScreen,
+    isXsScreen,
     getActivityTextWrapperStyle,
     getActivityRatingTextStyle,
     getActivityTitleTextStyle,
