@@ -58,14 +58,16 @@ const PopularActivityItem = ({
         onClick={() => {
           showLoadingButtons(id);
         }}>
-        <Image
-          src={bannerImageUrl}
-          ref={imgRef}
-          alt={title}
-          className="object-cover transition-transform duration-300"
-          fill
-          sizes="(max-width: 640px) 186px, (max-width: 768px) 384px, 384px"
-        />
+        <div className="relative size-full">
+          <Image
+            src={bannerImageUrl}
+            ref={imgRef}
+            alt={title}
+            className="object-cover transition-transform duration-300"
+            fill
+            sizes="(max-width: 640px) 186px, (max-width: 768px) 384px, 384px"
+          />
+        </div>
         {loadingButtons?.[id] ? (
           <Loading
             isOverlay="node"
