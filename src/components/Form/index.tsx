@@ -226,7 +226,6 @@ const Input: React.FC<InputProps> = ({
               "absolute left-20 top-1/2 h-32 -translate-y-1/2 transition-all",
               "pointer-events-none",
               isFocused && "left-12 top-0 px-12",
-              // selectedIcon ? selectedIcon.margin : "ml-20",
             )}>
             <div
               className={twMerge(
