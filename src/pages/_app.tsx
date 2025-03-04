@@ -43,23 +43,27 @@ const App = ({
         <Favicon />
       </Head>
       <Modal />
-      {is404Page ? null : <GNB />}
-      <ScrollProvider
-        as="main"
-        className={clsx(
-          "px-24 md:px-32",
-          is404Page ? "bg-brand-50" : "h-main bg-gray-50",
-        )}>
-        <ScrollToTopHandler />
-        <div
+      <div className="min-w-240">
+        {is404Page || pathname.includes("sign") ? null : <GNB />}
+        <ScrollProvider
+          as="main"
           className={clsx(
-            "mx-auto min-h-main",
-            !isHomePage && "max-w-screen-xl",
+            "px-24 md:px-32",
+            is404Page || pathname.includes("sign")
+              ? "bg-brand-50"
+              : "h-main bg-gray-50",
           )}>
-          {getLayout(<Component {...pageProps} />)}
-        </div>
-        {is404Page || pathname.includes("sign") ? null : <Footer />}
-      </ScrollProvider>
+          <ScrollToTopHandler />
+          <div
+            className={clsx(
+              "mx-auto min-h-main",
+              !isHomePage && "max-w-screen-xl",
+            )}>
+            {getLayout(<Component {...pageProps} />)}
+          </div>
+          {is404Page || pathname.includes("sign") ? null : <Footer />}
+        </ScrollProvider>
+      </div>
     </QueryClientProvider>
   );
 };
