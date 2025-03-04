@@ -13,7 +13,7 @@ const SignMenu = () => {
   const router = useRouter();
   const windowSize = useWindowSize();
 
-  if (windowSize === "sm")
+  if (windowSize === "xs" || windowSize === "sm")
     return (
       <Dropdown>
         <Dropdown.Trigger>
