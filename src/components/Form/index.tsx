@@ -316,14 +316,12 @@ const SubmitButton = ({ className, children, ...rest }: SubmitButtonProps) => {
 
   return (
     <Button
-      className={twMerge(
-        tailwindStyle,
-        // !formState.isValid ? "bg-brand-300" : "",
-      )}
-      disabled={!formState.isValid || disabled}
       type="submit"
+      className={twMerge(tailwindStyle)}
       {...style}
-      {...rest}>
+      {...rest}
+      backgroundColor={!formState.isValid || disabled ? "gray" : "black"}
+      disabled={!formState.isValid || disabled}>
       {children}
     </Button>
   );
