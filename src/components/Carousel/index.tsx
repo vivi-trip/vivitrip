@@ -1,59 +1,11 @@
 import Button from "@/src/components/Button/Button";
+import useCarousel from "@/src/hooks/Carousel/useCarousel";
 import { CarouselProps } from "@/src/types/carousel";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
 
 const Carousel = ({ items }: CarouselProps) => {
-  const extendedItems = [items[10], ...items, items[0]];
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const [transition, setTransition] = useState(true);
-
-  const goToPrevious = () => {
-    if (currentIndex <= 0) return;
-
-    setTransition(true);
-    setCurrentIndex((prevIndex) => prevIndex - 1);
-  };
-
-  const goToNext = useCallback(() => {
-    if (currentIndex === extendedItems.length - 1) return;
-
-    setTransition(true);
-    setCurrentIndex((prevIndex) => {
-      if (currentIndex === 12) {
-        return 1;
-      }
-      return prevIndex + 1;
-    });
-  }, [currentIndex, extendedItems.length]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      goToNext();
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, goToNext]);
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    if (currentIndex === 0) {
-      timeoutId = setTimeout(() => {
-        setCurrentIndex(extendedItems.length - 2);
-        setTransition(false);
-      }, 500);
-    } else if (currentIndex === extendedItems.length - 1) {
-      timeoutId = setTimeout(() => {
-        setCurrentIndex(1);
-        setTransition(false);
-      }, 500);
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [currentIndex, extendedItems.length]);
+  const { transition, currentIndex, extendedItems, goToPrevious, goToNext } =
+    useCarousel({ items });
 
   const commonButtonClass =
     "font-16px-regular lg:font-24px-regular absolute top-1/2 h-50 w-25 -translate-y-1/2 rounded-full bg-basic-navy text-white hover:bg-brand-600 lg:h-60 lg:w-30";
