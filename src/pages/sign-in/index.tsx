@@ -32,11 +32,13 @@ const SignInRoute = () => {
         </Form.Title>
 
         <Form.Field variant="email">
-          <Form.Input label="이메일" />
+          <Form.Label>이메일</Form.Label>
+          <Form.Input placeholder="이메일을 입력해 주세요" />
         </Form.Field>
 
         <Form.Field variant="password">
-          <Form.Input label="비밀번호" />
+          <Form.Label>비밀번호</Form.Label>
+          <Form.Input placeholder="8자 이상 입력해 주세요" />
         </Form.Field>
 
         <Form.Field variant="authPage" className="mt-20">
