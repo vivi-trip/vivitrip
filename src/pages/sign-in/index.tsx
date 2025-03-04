@@ -4,6 +4,7 @@ import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
 import TEST_USERS from "@/src/constants/testUsers";
+import SignPageWrap from "@/src/containers/SignPageWrap";
 import { useSignIn } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/userStore";
 import { SignInProps } from "@/src/types/user";
@@ -25,7 +26,7 @@ const SignInRoute = () => {
   }, [userData, router]);
 
   return (
-    <div className="mx-auto min-h-main w-full max-w-640 py-48">
+    <SignPageWrap>
       <Form onSubmit={handleSignIn} className="gap-16">
         <Form.Title className="flex-col gap-16">
           <Logo size="lg" />
@@ -78,7 +79,7 @@ const SignInRoute = () => {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-    </div>
+    </SignPageWrap>
   );
 };
 
