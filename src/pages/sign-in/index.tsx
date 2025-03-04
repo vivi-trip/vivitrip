@@ -2,13 +2,13 @@ import Dropdown from "@/src/components/Dropdown";
 import Form from "@/src/components/Form";
 import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
+import SignOptionSection from "@/src/components/SignOptionSection";
 import PATH_NAMES from "@/src/constants/pathname";
 import TEST_USERS from "@/src/constants/testUsers";
 import SignPageWrap from "@/src/containers/SignPageWrap";
 import { useSignIn } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/userStore";
 import { SignInProps } from "@/src/types/user";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -49,16 +49,7 @@ const SignInRoute = () => {
         </Form.Field>
       </Form>
 
-      <p className="mt-32 text-center">
-        <span className="font-16px-regular text-gray-800">
-          회원이 아니신가요?
-        </span>
-        <Link
-          href={PATH_NAMES.SignUp}
-          className="ml-8 text-brand-500 underline underline-offset-2">
-          회원가입하기
-        </Link>
-      </p>
+      <SignOptionSection action="in" />
 
       <OauthSign action="in" />
 
