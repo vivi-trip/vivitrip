@@ -21,12 +21,14 @@ export const icons: Record<IconKeys, IconType> = {
       ),
     onClick: () => {},
     position: "right",
+    padding: "pr-64",
     margin: "ml-20",
   },
   confirmPassword: {
     icon: (isVisible?: boolean) => icons.password.icon(isVisible),
     onClick: () => {},
     position: "right",
+    padding: "pr-64",
   },
   calendar: {
     icon: () => <Calendar width={32} height={32} />,
