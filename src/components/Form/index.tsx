@@ -16,6 +16,7 @@ import {
   LabelProps,
   SubmitButtonProps,
 } from "@/src/types/form";
+import { ComponentProps } from "@/src/types/type";
 import {
   createContext,
   useCallback,
@@ -327,7 +328,7 @@ const SubmitButton = ({ className, children, ...rest }: SubmitButtonProps) => {
   );
 };
 
-const Title = ({ className, children }: SubmitButtonProps) => {
+const Title = ({ className, children }: ComponentProps) => {
   return (
     <div
       className={twMerge(
