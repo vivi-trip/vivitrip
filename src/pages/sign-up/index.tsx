@@ -33,7 +33,6 @@ const SignUpRoute = () => {
       <Form onSubmit={handleSignUp}>
         <Form.Title className="flex-col gap-16">
           <Logo size="lg" />
-          <p>회원가입</p>
         </Form.Title>
 
         <Form.Field variant="email">
