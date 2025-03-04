@@ -35,7 +35,7 @@ const CLASS_NAME = {
 
 const Footer = () => {
   return (
-    <footer className="-mx-24 h-footer bg-brand-500 p-32 md:-mx-32">
+    <footer className="min-h-footer -mx-24 bg-brand-500 p-32 md:-mx-32">
       <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-start justify-between gap-x-12 gap-y-40 md:gap-x-32">
         <div className="flex items-center">
           <p className={CLASS_NAME.text}>©vivitrip - 2024</p>
