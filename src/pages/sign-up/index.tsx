@@ -2,6 +2,7 @@ import Form from "@/src/components/Form";
 import Logo from "@/src/components/Logo";
 import OauthSign from "@/src/components/OauthSign";
 import PATH_NAMES from "@/src/constants/pathname";
+import SignPageWrap from "@/src/containers/SignPageWrap";
 import { useSignUp } from "@/src/queries/auth";
 import useTempEmailStore from "@/src/stores/tempEmailStore";
 import useUserStore from "@/src/stores/userStore";
@@ -29,7 +30,7 @@ const SignUpRoute = () => {
   }, [userData, router]);
 
   return (
-    <div className="mx-auto min-h-main w-full max-w-640 py-48">
+    <SignPageWrap>
       <Form onSubmit={handleSignUp}>
         <Form.Title className="flex-col gap-16">
           <Logo size="lg" />
@@ -72,7 +73,7 @@ const SignUpRoute = () => {
       </p>
 
       <OauthSign action="up" />
-    </div>
+    </SignPageWrap>
   );
 };
 
