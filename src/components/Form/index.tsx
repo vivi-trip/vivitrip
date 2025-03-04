@@ -210,7 +210,7 @@ const Input: React.FC<InputProps> = ({
       : (errorMessage as FieldError)?.message || "";
 
   const inputStyles =
-    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none";
+    "font-16px-regular w-full rounded-md p-[16px_20px] placeholder:text-gray-700 border border-gray-700 outline-none truncate";
 
   const inputFocusStyles =
     "focus:border-[rgba(159,181,196,0.8)] focus:shadow-[inset_0_0_0_1px_rgba(159,181,196,0.8)]";
