@@ -15,6 +15,7 @@ const config: Config = {
       },
       minHeight: {
         main: "calc(100vh - (var(--header-height)) - (var(--footer-height)))",
+        footer: "var(--footer-height)",
       },
       colors: {
         /* brand */
