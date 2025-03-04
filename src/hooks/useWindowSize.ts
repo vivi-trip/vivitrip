@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 
 const WINDOW_SIZES = {
+  xs: 320,
   sm: 480,
   md: 1024,
   lg: Infinity,
