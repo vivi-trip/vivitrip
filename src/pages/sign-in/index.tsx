@@ -29,7 +29,6 @@ const SignInRoute = () => {
       <Form onSubmit={handleSignIn} className="gap-16">
         <Form.Title className="flex-col gap-16">
           <Logo size="lg" />
-          <p>로그인</p>
         </Form.Title>
 
         <Form.Field variant="email">
