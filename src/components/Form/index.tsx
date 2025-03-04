@@ -55,7 +55,7 @@ const Form = <T extends FieldValues>({
       <form
         onSubmit={methods.handleSubmit(handleSubmit)}
         className={twMerge(
-          "font-16px-regular relative flex flex-col gap-24 text-basic-black",
+          "font-16px-regular relative flex flex-col gap-32 text-basic-black",
           className,
         )}
         autoComplete="off"
@@ -99,7 +99,7 @@ const Field = ({ children, className, variant }: FieldProps) => {
 
   return (
     <FieldContext.Provider value={contextValue}>
-      <div className={twMerge("flex flex-col gap-8", fieldStyle, className)}>
+      <div className={twMerge("flex flex-col gap-4", fieldStyle, className)}>
         {children}
       </div>
     </FieldContext.Provider>
