@@ -5,7 +5,7 @@ import useOauthSignStore from "@/src/stores/oauthSignStore";
 import { OauthActions } from "@/src/types/oauth";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FormEvent, useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 export interface OauthKakaoSignProps {
   action: OauthActions;
@@ -14,6 +14,7 @@ export interface OauthKakaoSignProps {
 const OauthKakaoSign = ({ action }: OauthKakaoSignProps) => {
   const router = useRouter();
   const code = (router.query.code as string) ?? "";
+  const [submitted, setSubmitted] = useState<boolean>(false);
   const { mutate: mutateSignIn, isPending: isPendingSignIn } = useOauthSignIn();
   const { mutate: mutateSignUp, isPending: isPendingSignUp } = useOauthSignUp();
   const { profile, setProfile } = useOauthSignStore();
@@ -25,6 +26,7 @@ const OauthKakaoSign = ({ action }: OauthKakaoSignProps) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    event.stopPropagation();
 
     if (profile === null) return;
     const { nickname, profileImageUrl } = profile;
@@ -51,9 +53,13 @@ const OauthKakaoSign = ({ action }: OauthKakaoSignProps) => {
       default:
         break;
     }
+
+    setSubmitted(true);
   };
 
   const fetchKakaoUser = async () => {
+    if (submitted) return;
+
     try {
       const response = await getKakaoToken(action, code);
       const { data } = await getKakaoUserInfo(response.data.access_token);
@@ -71,8 +77,8 @@ const OauthKakaoSign = ({ action }: OauthKakaoSignProps) => {
   };
 
   useEffect(() => {
-    if (code) {
-      if (profile === null) fetchKakaoUser();
+    if (code && profile === null) {
+      fetchKakaoUser();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code, profile]);
@@ -98,7 +104,7 @@ const OauthKakaoSign = ({ action }: OauthKakaoSignProps) => {
             type="submit"
             className={btnKakaoStyle}
             disabled={action === "in" ? isPendingSignIn : isPendingSignUp}>
-            카카오계정으로 {action === "in" ? "로그인" : "회원가입"} 하기
+            {`카카오계정으로 ${action === "in" ? "로그인" : "회원가입"} 하기`}
           </button>
         </form>
       ) : (
