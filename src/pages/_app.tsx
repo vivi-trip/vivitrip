@@ -1,18 +1,19 @@
-import ScrollToTopHandler from "../components/ScrollHandler/ScrollToTopHandler";
 import Favicon from "@/src/components/Favicon";
+import ScrollToTopHandler from "@/src/components/ScrollHandler/ScrollToTopHandler";
 import "@/src/components/calendar/calendar.css";
 import Modal from "@/src/components/modal/Modal";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import ScrollProvider from "@/src/contexts/ScrollContext";
 import "@/src/styles/globals.css";
+import { checkAndClearStorage } from "@/src/utils/token";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
 type NextPageWithLayout = NextPage & {
@@ -35,6 +36,10 @@ const App = ({
 
   // 404 page 여부 확인
   const is404Page = pageProps?.statusCode === 404;
+
+  useEffect(() => {
+    checkAndClearStorage();
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
