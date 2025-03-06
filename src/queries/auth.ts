@@ -9,7 +9,6 @@
 /* eslint-disable no-console */
 
 /* eslint-disable no-restricted-globals */
-import useOauthSignStore from "../stores/oauthSignStore";
 import PATH_NAMES from "@/src/constants/pathname";
 import {
   getUserInfo,
@@ -20,6 +19,7 @@ import {
   signin,
   signup,
 } from "@/src/services/auth";
+import useOauthSignStore from "@/src/stores/oauthSignStore";
 import useSignupLinkStore from "@/src/stores/tempEmailStore";
 import useUserStore from "@/src/stores/userStore";
 import { OauthTypes } from "@/src/types/oauth";
@@ -29,6 +29,11 @@ import {
   SignInSuccessResponseProps,
   User,
 } from "@/src/types/user";
+import {
+  deleteTokensFromCookies,
+  getTokensFromCookies,
+  setCookiesByTokens,
+} from "@/src/utils/token";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useRouter } from "next/router";
@@ -43,6 +48,7 @@ export const useSignOut = () => {
   const { clearProfile } = useOauthSignStore();
 
   const handleSignOut = () => {
+    deleteTokensFromCookies();
     clearUser();
     clearProfile();
     router.replace(PATH_NAMES.Root);
@@ -57,7 +63,7 @@ export const useSignOut = () => {
  */
 export const useSignIn = () => {
   const router = useRouter();
-  const { setUserData, setTokens } = useUserStore();
+  const { setUserData } = useUserStore();
   const { setEmail } = useSignupLinkStore();
 
   return useMutation({
@@ -66,7 +72,8 @@ export const useSignIn = () => {
       const { data: response } = data as SignInSuccessResponseProps;
       const { accessToken, refreshToken, user } = response;
       setUserData(user);
-      setTokens(accessToken, refreshToken);
+      setCookiesByTokens({ accessToken, refreshToken });
+      getTokensFromCookies();
       router.replace(PATH_NAMES.Root);
     },
     onError(error, variables) {
@@ -173,7 +180,7 @@ export const useOauthSignOut = () => {
  */
 export const useOauthSignIn = () => {
   const router = useRouter();
-  const { setUserData, setUserProvider, setTokens } = useUserStore();
+  const { setUserData, setUserProvider } = useUserStore();
   const { profile, clearProfile } = useOauthSignStore();
 
   return useMutation({
@@ -188,7 +195,7 @@ export const useOauthSignIn = () => {
         user.profileImageUrl = profile.profileImageUrl;
       }
 
-      setTokens(accessToken, refreshToken);
+      setCookiesByTokens({ accessToken, refreshToken });
       setUserData(user);
       setUserProvider(variables.provider as OauthTypes);
       router.replace(PATH_NAMES.Root);
