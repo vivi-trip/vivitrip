@@ -1,4 +1,9 @@
 import useUserStore from "@/src/stores/userStore";
+import {
+  deleteTokensFromCookies,
+  getTokensFromCookies,
+  setCookiesByTokens,
+} from "@/src/utils/token";
 import axios, { AxiosInstance } from "axios";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -9,7 +14,7 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.request.use(
   (prev) => {
-    const { accessToken } = useUserStore.getState();
+    const { accessToken } = getTokensFromCookies();
     const config = { ...prev }; // config 복사본 생성
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -26,7 +31,7 @@ api.interceptors.response.use(
     const originalRequest = error.config;
 
     if (response?.status === 401) {
-      const { refreshToken } = useUserStore.getState();
+      const { refreshToken } = getTokensFromCookies();
       if (refreshToken) {
         try {
           const { data } = await axios.post(
@@ -42,16 +47,24 @@ api.interceptors.response.use(
           );
           const newAccessToken = data.accessToken;
           const newRefreshToken = data.refreshToken;
-          useUserStore.getState().setTokens(newAccessToken, newRefreshToken);
+
+          setCookiesByTokens({
+            accessToken: newAccessToken,
+            refreshToken: newRefreshToken,
+          });
           // 새 accessToken을 원래 요청에 설정 후 재시도
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           return await api(originalRequest);
         } catch (refreshError) {
-          useUserStore.getState().clearUser(); // 갱신 실패 시 유저 로그아웃 처리
+          // 갱신 실패 시 유저 로그아웃 처리
+          deleteTokensFromCookies();
+          useUserStore.getState().clearUser();
           return Promise.reject(refreshError);
         }
       } else {
-        useUserStore.getState().clearUser(); // refreshToken 없으면 유저 상태 초기화
+        // refreshToken 없으면 유저 상태 초기화
+        deleteTokensFromCookies();
+        useUserStore.getState().clearUser();
       }
     }
 
