@@ -8,15 +8,15 @@ interface OauthKakaoAccount {
   clearProfile: () => void;
 }
 
-const useOauthSignStore = create<OauthKakaoAccount>()(
-  persist(
+const useOauthSignStore = create(
+  persist<OauthKakaoAccount>(
     (set) => ({
       profile: null,
       setProfile: (data) => set({ profile: data }),
       clearProfile: () => set({ profile: null }),
     }),
     {
-      name: "vivitrip-oauth-sign-storage",
+      name: String(process.env.NEXT_PUBLIC_OAUTH_STORAGE_NAME),
       storage: createJSONStorage(() => sessionStorage),
     },
   ),
