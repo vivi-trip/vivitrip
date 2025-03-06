@@ -8,7 +8,6 @@ import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/userStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
-import Image from "next/image";
 import Custom404 from "@/src/pages/404";
 import { useRouter } from "next/router";
 
