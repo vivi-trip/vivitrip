@@ -10,6 +10,7 @@ interface FormData {
 
 const FormPage = () => {
   const onSubmit = (data: FormData) => {
+    // eslint-disable-next-line no-console
     console.log("데이터 확인", data);
   };
 
