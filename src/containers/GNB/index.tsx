@@ -4,18 +4,7 @@ import UserMenu from "@/src/components/UserMenu";
 import useWindowSize from "@/src/hooks/useWindowSize";
 import useUserStore from "@/src/stores/userStore";
 
-export async function getServerSideProps() {
-  const user = { name: null };
-  return {
-    props: { user }, // 페이지에 전달
-  };
-}
-
 const GNB = () => {
-  /**
-   * @todo
-   * 사용자 확인하기 - 임시
-   */
   const { userData } = useUserStore();
   const windowSize = useWindowSize();
 

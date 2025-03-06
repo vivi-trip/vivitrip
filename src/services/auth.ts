@@ -102,7 +102,6 @@ export const getKakaoToken = async (action: OauthActions, code: string) => {
       },
     },
   );
-  localStorage.setItem("prevcode", code);
   return response;
 };
 
