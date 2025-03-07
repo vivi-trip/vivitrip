@@ -20,7 +20,7 @@ export const setCookiesByTokens = ({
 }: TokenProps) => {
   if (accessToken) {
     setCookie(TOKEN_NAME.access, accessToken, {
-      maxAge: 60 * 60 * 24,
+      maxAge: 60 * 10,
       path: "/",
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
@@ -30,7 +30,7 @@ export const setCookiesByTokens = ({
 
   if (refreshToken) {
     setCookie(TOKEN_NAME.refresh, refreshToken, {
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 60 * 60 * 24,
       path: "/",
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
