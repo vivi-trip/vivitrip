@@ -5,8 +5,8 @@ import Modal from "@/src/components/modal/Modal";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import ScrollProvider from "@/src/contexts/ScrollContext";
+import useUserStore from "@/src/stores/userStore";
 import "@/src/styles/globals.css";
-import { checkAndClearStorage } from "@/src/utils/token";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";
 import { NextPage } from "next";
@@ -32,13 +32,17 @@ const App = ({
 
   const { pathname } = useRouter();
 
+  const { userData, checkAndClearUserData } = useUserStore();
+
   const isHomePage = pathname === "/home" || pathname === "/search";
 
   // 404 page 여부 확인
   const is404Page = pageProps?.statusCode === 404;
 
   useEffect(() => {
-    checkAndClearStorage();
+    if (userData) {
+      checkAndClearUserData();
+    }
   });
 
   return (
