@@ -16,6 +16,8 @@ const PATH_NAMES: Record<PathNameType | TestPagePathNameType, string> = {
   Activity: `/activity`,
   MyActivities: `/my-activities`,
   MyActivitiesRegistration: `/my-activities/registration`,
+  MyReservations: `/my-reservations`,
+  ReservationHistory: `/reservation-history`,
 };
 
 export default PATH_NAMES;
