@@ -60,7 +60,7 @@ const UserProfile = () => {
       <Dropdown.Trigger>
         <Avatar />
       </Dropdown.Trigger>
-      <Dropdown.Menu className="left-auto right-0 !mt-8 !border-gray-200 !bg-gray-200 shadow-lg">
+      <Dropdown.Menu className="left-auto right-0 !mt-8 !border-gray-200 shadow-lg">
         {USER_PROFILE_MENU_LIST.map(({ id, icon, name, handleClick }, idx) => {
           return (
             <Dropdown.Item
@@ -69,10 +69,10 @@ const UserProfile = () => {
                 "flex items-center justify-start",
                 "min-h-44 min-w-136 gap-8 p-8 px-12",
                 "font-14px-medium",
-                "bg-white text-gray-600",
+                "border-gray-200 bg-white text-gray-600",
                 "transition-all",
                 "hover:bg-gray-50 hover:text-brand-500",
-                idx !== 0 && "mt-1",
+                idx !== 0 && "border-t",
               )}
               onClick={handleClick}>
               {icon}
