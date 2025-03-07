@@ -1,3 +1,4 @@
+import { checkAndClearStorage } from "../utils/token";
 import { OauthTypes } from "@/src/types/oauth";
 import { User } from "@/src/types/user";
 import { create } from "zustand";
@@ -9,6 +10,7 @@ interface UserStore {
   setUserData: (data: User) => void;
   setUserProvider: (provider: OauthTypes) => void;
   clearUser: () => void;
+  checkAndClearUserData: () => void;
 }
 
 const useUserStore = create(
@@ -23,6 +25,14 @@ const useUserStore = create(
           userData: null,
           userProvider: null,
         }),
+      checkAndClearUserData: () => {
+        if (checkAndClearStorage()) {
+          set({
+            userData: null,
+            userProvider: null,
+          });
+        }
+      },
     }),
     {
       name: String(process.env.NEXT_PUBLIC_USER_STORAGE_NAME), // 저장소의 항목 이름(고유해야 함)
