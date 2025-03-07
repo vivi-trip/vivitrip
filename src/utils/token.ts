@@ -69,7 +69,6 @@ export const checkAndClearStorage = () => {
 
   if (!accessToken || !refreshToken) {
     localStorage.removeItem(String(process.env.NEXT_PUBLIC_USER_STORAGE_NAME));
-    localStorage.removeItem(String(process.env.NEXT_PUBLIC_OAUTH_STORAGE_NAME));
   }
 
   return !accessToken || !refreshToken;
