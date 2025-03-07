@@ -11,6 +11,8 @@ export type PathNameType =
   | "KakaoSignUp"
   | "Activity"
   | "MyActivities"
-  | "MyActivitiesRegistration";
+  | "MyActivitiesRegistration"
+  | "MyReservations"
+  | "ReservationHistory";
 
 export type TestPagePathNameType = "Chip" | "Button";
