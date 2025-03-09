@@ -1,7 +1,7 @@
 import ButtonProps from "../types/button";
 import lottieJson from "@/assets/json/404.json";
-import AltArrowLeft from "@/assets/svgs/AltArrowLeft.svg";
-import AltArrowRight from "@/assets/svgs/AltArrowRight.svg";
+import AltArrowLeft from "@/assets/svgs/altArrowLeft.svg";
+import AltArrowRight from "@/assets/svgs/altArrowRight.svg";
 import Button from "@/src/components/Button/Button";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
