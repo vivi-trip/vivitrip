@@ -4,8 +4,12 @@ import AltArrowLeft from "@/assets/svgs/altArrowLeft.svg";
 import AltArrowRight from "@/assets/svgs/altArrowRight.svg";
 import Button from "@/src/components/Button/Button";
 import { NextPage } from "next";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import Lottie from "react-lottie-player";
+
+// import Lottie from "react-lottie-player";
+
+const Lottie = dynamic(() => import("react-lottie-player"), { ssr: false });
 
 // statusCode 반환
 export const getStaticProps = async () => {
