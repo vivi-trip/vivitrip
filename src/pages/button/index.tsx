@@ -1,4 +1,4 @@
-import AltArrowLeft from "@/assets/svgs/AltArrowLeft.svg";
+import AltArrowLeft from "@/assets/svgs/altArrowLeft.svg";
 import BtnArrow48pxDefault from "@/assets/svgs/btnArrow48pxDefault.svg";
 import BtnArrow48pxVariant4 from "@/assets/svgs/btnArrow48pxVariant4.svg";
 import Close from "@/assets/svgs/close.svg";
