@@ -1,16 +1,17 @@
 import Button from "@/src/components/Button/Button";
-import Logo from "@/src/components/Logo";
 import useUserStore from "@/src/stores/userStore";
 import { MyPageProps } from "@/src/types/user";
 
 const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
   const { userData } = useUserStore();
 
-  return (
-    <div className="mx-auto flex min-h-main w-full max-w-640 flex-col items-stretch justify-center py-48">
-      <Logo size="lg" />
+  if (!userData) return null;
 
-      <form className="mt-56 flex flex-col gap-32" onSubmit={handleSubmit}>
+  return (
+    <div className="mx-auto w-full max-w-640 pb-48 md:ml-0">
+      <p className="font-32px-bold">내정보</p>
+
+      <form className="mt-32 flex flex-col gap-32" onSubmit={handleSubmit}>
         <div className="relative">
           <label htmlFor="login_id" className="flex flex-col gap-8">
             <p className="font-16px-regular text-basic-black">이메일</p>
@@ -20,7 +21,7 @@ const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
               id="login_email"
               placeholder="이메일을 입력해 주세요"
               className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={userData?.email}
+              defaultValue={userData.email}
               readOnly
               disabled
             />
@@ -36,7 +37,7 @@ const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
               id="user_nickname"
               placeholder="닉네임을 입력해 주세요"
               className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={userData?.nickname}
+              defaultValue={userData.nickname}
             />
           </label>
         </div>
