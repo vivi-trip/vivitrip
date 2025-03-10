@@ -43,12 +43,12 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
         className="relative size-160 overflow-hidden rounded-full bg-gray-200"
         style={{ boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.08)" }}>
         <Image
+          className="object-cover"
           src={
             uploadedImage ??
             profileImageUrl ??
             "/images/Image_default_profile_image.png"
           }
-          fill
           alt="프로필 사진"
           placeholder="blur"
           blurDataURL={
@@ -56,7 +56,8 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
             profileImageUrl ??
             "/images/Image_default_profile_image.png"
           }
-          style={{ objectFit: "cover" }}
+          fill
+          sizes="160px"
         />
       </div>
       <label htmlFor="file-input">
