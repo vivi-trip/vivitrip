@@ -11,12 +11,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Control, Controller } from "react-hook-form";
 
-// interface ImageObject {
-//   id?: number; // 서버에서 할당된 ID (있을 수도, 없을 수도 있음)
-//   tempId: number; // 클라이언트에서 임시로 할당하는 ID
-//   imageUrl: string;
-// }
-
 interface ActivityImageInputProps {
   control: Control<ActivityFormDataType>;
   name: "bannerImageUrl" | "subImages";
@@ -182,7 +176,7 @@ const ActivityImageInput = ({
                         }
                         fill
                         alt="이미지"
-                        objectFit="cover"
+                        style={{ objectFit: "cover" }}
                       />
                     </div>
                     <button
@@ -219,12 +213,18 @@ const ActivityImageInput = ({
                           }
                           fill
                           alt="이미지"
-                          objectFit="cover"
+                          style={{ objectFit: "cover" }}
                         />
                       </div>
-                      <button
-                        type="button"
+                      <div
+                        role="button"
+                        tabIndex={0}
                         onClick={() => handleRemoveImage(index)}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            handleRemoveImage(index);
+                          }
+                        }}
                         className={clsx(
                           "absolute -right-10 -top-10 z-10",
                           "md:-right-14 md:-top-14",
@@ -233,7 +233,7 @@ const ActivityImageInput = ({
                         <IconFileCloseSm className="block md:hidden" />
                         <IconFileCloseMd className="hidden md:block lg:hidden" />
                         <IconFileCloseLg className="hidden lg:block" />
-                      </button>
+                      </div>
                     </div>
                   </div>
                 ))

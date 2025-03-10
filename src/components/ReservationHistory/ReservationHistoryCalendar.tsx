@@ -87,7 +87,7 @@ const getReservationCircles = (events: Event[]) => {
           <div key={`event-${event.date}`} className="flex gap-5 pl-5">
             {circles.map((circleColor) => (
               <div
-                key={`${event.date}-${event.reservations}`}
+                key={`${event.date}-${circleColor}`}
                 className={`mt-5 size-8 rounded-full ${circleColor}`}
               />
             ))}
@@ -100,8 +100,9 @@ const getReservationCircles = (events: Event[]) => {
 
 const MyDateHeader = ({ label, date }: { label: string; date: Date }) => {
   const { data } = useReservationStore();
+
   // 해당 날짜에 예약 정보가 있는지 확인
-  const eventsForDate = data.filter(
+  const eventsForDate = data?.filter(
     (event) => event.date === format(date, "yyyy-MM-dd"),
   );
 
@@ -112,12 +113,12 @@ const MyDateHeader = ({ label, date }: { label: string; date: Date }) => {
         className={clsx(
           "font-20px-semibold cursor-pointer border-none bg-transparent pl-12 pt-12 text-left text-gray-500",
           // 모바일에서만 이벤트가 있을 때 다른 폰트 크기 적용
-          eventsForDate.length > 0 && "font-16px-semibold pl-8 pt-8",
+          eventsForDate?.length > 0 && "font-16px-semibold pl-8 pt-8",
         )}>
         {label}
       </button>
       {/* 해당 날짜에 예약 정보가 있을 경우 원을 표시 */}
-      {eventsForDate.length > 0 && (
+      {eventsForDate?.length > 0 && (
         <div className="relative">{getReservationCircles(eventsForDate)}</div>
       )}
     </div>
@@ -151,64 +152,27 @@ const ReservationHistoryCalendar = ({
   const { setModalOpen, isModalOpen } = useModalStore();
   const setData = useReservationStore((state) => state.setData);
 
-  // const { data } = useGetMyReservationDashboard({
-  //   activityId: { activityId },
-  //   year: currentYear.toString(),
-  //   month: (currentMonth + 1).toString().padStart(2, "0"),
-  // });
+  const { data } = useGetMyReservationDashboard({
+    activityId,
+    year: currentYear.toString(),
+    month: (currentMonth + 1).toString().padStart(2, "0"),
+  });
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setData(data.MonthReservations);
-  //   }
-  // }, [data, setData]);
-
-  // const events: CalendarEvent[] = useMemo(() => {
-  //   if (!data || !data.MonthReservations) return [];
-  //   return data.MonthReservations.map((item) => ({
-  //     start: new Date(item.date),
-  //     end: new Date(item.date),
-  //     allDay: true,
-  //     reservations: item.reservations,
-  //   }));
-  // }, [data]);
-
-  const mockMonthReservations = useMemo(
-    () => [
-      {
-        date: "2025-01-15",
-        reservations: {
-          completed: 2,
-          confirmed: 3,
-          pending: 1,
-        },
-      },
-      {
-        date: "2025-01-20",
-        reservations: {
-          completed: 1,
-          confirmed: 2,
-          pending: 4,
-        },
-      },
-    ],
-    [],
-  );
+  useEffect(() => {
+    if (data) {
+      setData(data.MonthReservations);
+    }
+  }, [data, setData]);
 
   const events: CalendarEvent[] = useMemo(() => {
-    return mockMonthReservations.map((item) => ({
+    if (!data || !data.MonthReservations) return [];
+    return data.MonthReservations.map((item) => ({
       start: new Date(item.date),
       end: new Date(item.date),
       allDay: true,
       reservations: item.reservations,
     }));
-  }, [mockMonthReservations]);
-
-  useEffect(() => {
-    if (mockMonthReservations) {
-      setData(mockMonthReservations);
-    }
-  }, [mockMonthReservations, setData]);
+  }, [data]);
 
   const handleNavigate = (action: NavigateAction) => {
     let newDate = new Date();
@@ -220,7 +184,6 @@ const ReservationHistoryCalendar = ({
     } else if (action === "TODAY") {
       newDate = new Date();
     } else {
-      console.warn(`Unhandled navigation action: ${action}`);
       return;
     }
 

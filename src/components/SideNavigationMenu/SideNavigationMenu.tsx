@@ -4,7 +4,6 @@ import SettingCheckIcon from "@/assets/svgs/ic_setting_check.svg";
 import TextboxCheckIcon from "@/assets/svgs/ic_textbox_check.svg";
 import ProfileUpload from "@/src/components/SideNavigationMenu/common/ProfileUpload";
 import { useGetUserProfile } from "@/src/queries/useUsers";
-import useModalStore from "@/src/stores/ModalStore";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +15,7 @@ interface Props {
 }
 
 const SideNavigationMenu = ({ url }: Props) => {
-  const { setModalOpen } = useModalStore();
+
   const { pathname } = useRouter();
   const [selectedItem, setSelectedItem] = useState<null | number>(null);
 
@@ -91,7 +90,7 @@ const SideNavigationMenu = ({ url }: Props) => {
                       ? data.profileImageUrl
                       : "/images/Image_default_profile_image.png"
                   }
-                  objectFit="cover"
+                  style={{ objectFit: "cover" }}
                   alt="프로필이미지"
                   fill
                 />
