@@ -1,12 +1,12 @@
-import ActivityAddressInput from "../ActivityInput/ActivityAddressInput";
-import ActivityCategoryInput from "../ActivityInput/ActivityCategoryInput";
-import ActivityImageInput from "../ActivityInput/ActivityImageInput";
-import ActivityPriceInput from "../ActivityInput/ActivityPriceInput";
-import ActivityTextArea from "../ActivityInput/ActivityTextArea";
-import ActivityTimeInput from "../ActivityInput/ActivityTimeInput";
-import ActivityTitleInput from "../ActivityInput/ActivityTitleInput";
-import Button from "../Button/Button";
-import TwoButtonModal from "../modal/TwoButtonModal";
+import ActivityAddressInput from "@/src/components/ActivityInput/ActivityAddressInput";
+import ActivityCategoryInput from "@/src/components/ActivityInput/ActivityCategoryInput";
+import ActivityImageInput from "@/src/components/ActivityInput/ActivityImageInput";
+import ActivityPriceInput from "@/src/components/ActivityInput/ActivityPriceInput";
+import ActivityTextArea from "@/src/components/ActivityInput/ActivityTextArea";
+import ActivityTimeInput from "@/src/components/ActivityInput/ActivityTimeInput";
+import ActivityTitleInput from "@/src/components/ActivityInput/ActivityTitleInput";
+import Button from "@/src/components/Button/Button";
+import TwoButtonModal from "@/src/components/modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import {
   useCreateActivity,

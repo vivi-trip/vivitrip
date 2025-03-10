@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "@/src/components/Button/Button";
 import useModalStore from "@/src/stores/ModalStore";
 import clsx from "clsx";
 import React from "react";
@@ -6,6 +6,7 @@ import React from "react";
 interface PopupModalProps {
   title: string;
   content?: string;
+
 }
 
 const PopupModal = ({ title, content }: PopupModalProps): JSX.Element => {
@@ -16,7 +17,7 @@ const PopupModal = ({ title, content }: PopupModalProps): JSX.Element => {
       className={clsx(
         "m-auto flex min-h-250 min-w-280 flex-col justify-center",
         "size-full rounded-12 text-center",
-        "md:h-[15vh] md:w-[50vw] md:min-w-500",
+        "md:h-[15vh] md:w-[20vw] md:min-w-500",
       )}>
       <div
         className={clsx(

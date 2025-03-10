@@ -3,16 +3,17 @@ import {
   createActivityImageUrl,
   createActivityReservation,
   getActivity,
-} from "../services/activities";
-import { patchMyActivity } from "../services/myActiviesApi";
+} from "@/src/services/activities";
+import { patchMyActivity } from "@/src/services/myActiviesApi";
 import {
   ActivityImageUrl,
   CreateActivityProps,
   CreateActivityReservationProps,
-} from "../types/activities";
-import { ActivityUpdateRequest } from "../types/activitiesReservationType";
-import { ActivityDetailResponse } from "../types/activitiesResponses";
+} from "@/src/types/activities";
+import { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
+import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import { useMutation, useQuery } from "@tanstack/react-query";
+
 
 export const useGetActivities = (activityId: number | undefined) => {
   const { data, isLoading, error } = useQuery<ActivityDetailResponse>({

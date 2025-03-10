@@ -1,10 +1,9 @@
-import Button from "../Button/Button";
-import PopupModal from "../modal/PopupModal";
-import ReviewModal from "../modal/ReviewModal/ReviewModal";
+import Button from "@/src/components/Button/Button";
+import PopupModal from "@/src/components/modal/PopupModal";
+import ReviewModal from "@/src/components/modal/ReviewModal/ReviewModal";
 import RESERVATION_LABEL from "@/src/constants/reserbationStatus";
 import { usePatchMyReservation } from "@/src/queries/useMyReservations";
 import useModalStore from "@/src/stores/ModalStore";
-import { ReservationStatus } from "@/src/types/my-reservations";
 import { Reservation } from "@/src/types/my-reservatios-responses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";
@@ -40,7 +39,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     endTime,
     headCount,
     totalPrice,
-    reviewSubmitted,
+    // reviewSubmitted,     리뷰작성 가능 여부 확인이 안되는 상태 이후 삭제할지 결정 필요
     id,
   } = reservation;
 
@@ -67,11 +66,8 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
         onSuccess: () => {
           setModalOpen(<PopupModal title="예약이 취소되었습니다." />);
         },
-        onError: (error) => {
-          console.error("예약 취소 중 오류 발생:", error);
-          setModalOpen(
-            <PopupModal title="예약 취소가 실패 했습니다. 다시 시도해주세요." />,
-          );
+        onError: () => {
+          setModalOpen(<PopupModal title="예약 취소가 실패 했습니다." />);
         },
       },
     );
@@ -82,7 +78,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
   return (
     <div
       className={clsx(
-        "mb-8 h-128 w-full min-w-344 rounded-24 border border-white",
+        "mb-8 h-128 w-full min-w-280 rounded-24 border border-white",
         "md:mb-16 md:h-156",
         "lg:mb-24 lg:h-204",
       )}
@@ -99,14 +95,14 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
             src={bannerImageUrl}
             alt="체험이미지"
             fill
-            objectFit="cover"
+            style={{ objectFit: "cover" }}
             className="rounded-l-24 border border-brand-200 bg-brand-400"
           />
         </div>
         <div
           className={clsx(
             "w-full",
-            "my-11 ml-11 mr-14 flex flex-col",
+            "my-8 ml-8 mr-9 flex flex-col",
             "md:my-12 md:ml-12 md:mr-16",
             "lg:mx-24 lg:my-21",
           )}>
@@ -134,7 +130,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
               "lg:font-18px-regular lg:mt-12",
             )}>
             <p>
-              <span>{formatDate3(date)}</span> <span>{startTime}</span> -
+              <span>{formatDate3(date)}</span> · <span>{startTime}</span> -
               <span> {endTime}</span> · <span>{headCount}명</span>
             </p>
           </div>
@@ -154,14 +150,14 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
                 backgroundColor="white_green"
                 onClick={handleCancelReservation}
                 className={clsx(
-                  "font-14px-bold h-32 min-w-80 max-w-160 px-14 py-6 text-brand-500",
+                  "font-12px-bold h-32 min-w-80 max-w-160 px-14 py-6 text-brand-500",
                   "md:font-16px-bold md:h-40 md:px-26 md:py-7",
                   "lg:h-43 lg:px-42 lg:py-8",
                 )}>
                 예약 취소
               </Button>
             )}
-            {reviewSubmitted && (
+            {status === "completed" && (
               <Button
                 type="button"
                 radius="6"
