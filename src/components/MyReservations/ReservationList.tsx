@@ -1,54 +1,64 @@
 import ReservationCard from "./ReservationCard";
-import mockReservationData from "./mockdata";
 import IconEmpty from "@/assets/svgs/ic_empty.svg";
+import Loading from "@/src/components/Loading";
 import { useGetMyReservations } from "@/src/queries/useMyReservations";
 import { ReservationStatus } from "@/src/types/my-reservations";
 
 const ReservationList = ({ status }: { status: ReservationStatus }) => {
-  const { data, ref } = useGetMyReservations({
-    size: 10,
-    status: status === "" || status === "all" ? undefined : status,
+  const { data, ref, isLoading, isError } = useGetMyReservations({
+    size: 20,
+    status: status === "" ? undefined : status,
   });
 
-  const filteredMockData = mockReservationData.pages.map((page) => ({
+  if (isLoading) {
+    return (
+      <Loading
+        isOverlay="window"
+        overlayColor="blue"
+        isAbsolute="static"
+        loadingBoxColor="black"
+        size={{ sm: 50, md: 60, lg: 70 }}
+        loadingText="잠시만 기다려주세요."
+        textStyle="font-18px-medium md:font-20px-regular lg:font-24px-regular"
+        textColor="text-brand-50"
+        className="p-30"
+      />
+    );
+  }
+
+  if (isError) {
+    return <div>에러가 발생했습니다.</div>;
+  }
+
+  const isAllReservationsEmpty =
+    !data || data.pages.every((page) => page.totalCount === 0);
+
+  const isStatusNotFound =
+    !isAllReservationsEmpty &&
+    data.pages.every((page) => page.reservations.length === 0);
+
+  const filteredData = data?.pages.map((page) => ({
     ...page,
     reservations:
-      status === "all" || status === ""
+      status === ""
         ? page.reservations
         : page.reservations.filter(
             (reservation) => reservation.status === status,
           ),
   }));
 
-  // 🔹 전체 예약 데이터가 없는 경우 
-  const isAllReservationsEmpty = mockReservationData.pages.every(
-    (page) => page.totalCount === 0,
-  );
-
-  // 🔹 특정 status에 맞는 데이터가 없는 경우
-  const isStatusNotFound =
-    !isAllReservationsEmpty &&
-    filteredMockData.every((page) => page.reservations.length === 0);
-
   return (
-    <div className="mb-120 mt-12 md:mt-24 lg:mt-16">
+    <div className="my-48">
       {isAllReservationsEmpty && (
-        <div className="mt-80 items-center gap-20">
+        <div className="flex flex-col items-center gap-16">
           <IconEmpty />
-          <p className="">아직 등록한 체험이 없어요</p>
+          <p className="font-18px-medium">체험이 없습니다.</p>
         </div>
-      )}
-
-      {!isAllReservationsEmpty && isStatusNotFound && (
-      <div className="mt-80 text-center">
-      <IconEmpty className="mx-auto" />
-      <p className="mt-20 font-18px-medium"> 체험이 없습니다.</p>
-    </div>
       )}
 
       {!isAllReservationsEmpty &&
         !isStatusNotFound &&
-        filteredMockData.map((page) =>
+        filteredData?.map((page) =>
           page.reservations.map((item) => (
             <ReservationCard key={item.id} reservation={item} />
           )),
