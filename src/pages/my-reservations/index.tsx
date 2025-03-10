@@ -13,16 +13,16 @@ const MyReservations = () => {
 
   return (
     <div>
-      <div className="mx-auto flex w-full min-w-344 justify-center gap-24 pt-72">
+      <div className="mx-auto flex w-full justify-center gap-24 pt-72">
         <SideNavigationMenu />
         <div className="flex-1">
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between">
             <p className="font-32px-bold">예약 내역</p>
             <ReservationStatusDropdown
               handleStatusChange={handleStatusChange}
             />
           </div>
-          <div className="">
+          <div>
             <ReservationList status={status} />
           </div>
         </div>

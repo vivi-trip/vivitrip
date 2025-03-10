@@ -21,7 +21,7 @@ const SortDropdown = ({ orderBy, onSortChange }: SortDropdownProps) => {
     <div className="px-30 pt-40">
       <ShortDropdown onClose={handleOffDropdown}>
         <ShortDropdown.Trigger onClick={handleToggleDropdown}>
-          <div className="text-18px-semibold flex h-40 w-140 items-center justify-between rounded-12 border border-green-100 px-10 py-20 text-green-100">
+          <div className="font-18px-semibold flex h-40 w-140 items-center justify-between rounded-12 border border-green-100 px-10 py-20 text-green-100">
             {orderBy === "like" ? "좋아요 많은순" : "최신순"}
             <AltArrowDown />
           </div>
