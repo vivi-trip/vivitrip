@@ -86,7 +86,9 @@ const MyReservationHistory = () => {
                 "lg:mt-80",
               )}>
               <IconEmpty />
-              <p className="mt-37">아직 등록한 체험이 없어요.</p>
+              <p className="font-18px-medium mt-37">
+                아직 등록한 체험이 없어요.
+              </p>
             </div>
           )}
         </div>

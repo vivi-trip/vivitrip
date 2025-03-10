@@ -16,7 +16,7 @@ const MyActivities = () => {
       <SideNavigationMenu />
       <div className="flex-1">
         <div className="flex justify-between">
-          <p className="font-32px-bold">내 체험 관리</p>
+          <p className="font-24px-bold md:font-32px-bold">내 체험 관리</p>
           <Button
             type="button"
             width="120"

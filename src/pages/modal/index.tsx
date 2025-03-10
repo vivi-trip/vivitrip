@@ -3,7 +3,6 @@ import PopupModal from "@/src/components/modal/PopupModal";
 import ReservationCancelModal from "@/src/components/modal/ReservationCancelModal";
 import ReservationInfoModal from "@/src/components/modal/ReservationInfoModal/ReservationInfoModal";
 import ReservationModal from "@/src/components/modal/ReservationModal/ReservationModal";
-import ReviewModal from "@/src/components/modal/ReviewModal/ReviewModal";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useModalStore from "@/src/stores/ModalStore";
 
@@ -49,17 +48,6 @@ const OpenModalButton = () => {
         }>
         예약하기
       </button>
-
-      {/* <button
-        type="button"
-        className="font-24px-bold"
-        onClick={() =>
-          setModalOpen(<ReviewModal />, {
-            customClass: "w-480 h-750",
-          })
-        }>
-        리뷰
-      </button> */}
 
       <button
         type="button"
