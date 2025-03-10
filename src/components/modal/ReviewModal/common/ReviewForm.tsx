@@ -1,9 +1,10 @@
-import Button from "../../../Button/Button";
-import IconStar from "@/assets/svgs/ic_ pretty_star.svg";
+import IconStar from "@/assets/svgs/ic_pretty_star.svg";
+import Button from "@/src/components/Button/Button";
 import PopupModal from "@/src/components/modal/PopupModal";
 import { useCreateReviews } from "@/src/queries/useMyReservations";
 import useModalStore from "@/src/stores/ModalStore";
 import { ReservationRating } from "@/src/types/my-reservations";
+import { AxiosError } from "axios";
 import clsx from "clsx";
 import React, { useState } from "react";
 
@@ -15,7 +16,6 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
   const [rating, setRating] = useState<ReservationRating>(0);
   const [reviewText, setReviewText] = useState("");
   const { setModalOpen } = useModalStore();
-  // TODO: 토스트 상태 추가
 
   const { mutate: createReview } = useCreateReviews();
 
@@ -47,17 +47,17 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
         setReviewText("");
         setRating(0);
       },
-      onError: () => {
-        setModalOpen(
-          <PopupModal title="리뷰 등록에 실패했습니다. 다시 시도해주세요." />,
-        );
+      onError: (error) => {
+        if (error instanceof AxiosError && error.response) {
+          setModalOpen(<PopupModal title={error.response.data.message} />);
+        }
       },
     });
   };
 
   return (
     <>
-      <div className="flex h-100 w-432 justify-center gap-8 px-48 py-22">
+      <div className="flex h-100 w-full items-center justify-center gap-8 px-48 py-22">
         {[1, 2, 3, 4, 5].map((id) => (
           <div
             key={id}
@@ -71,22 +71,20 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
             role="button"
             className="cursor-pointer">
             {rating !== null && id <= rating ? (
-              <IconStar className="text-yellow-400" />
+              <IconStar className="size-60 text-yellow-400" />
             ) : (
-              <IconStar className="text-transparent stroke-gray-400" />
+              <IconStar className="size-50 stroke-gray-400 text-transparent" />
             )}
           </div>
         ))}
       </div>
-      <form
-        onSubmit={reviewText ? handleSubmit : undefined}
-        className="w-full ">
+      <form onSubmit={reviewText ? handleSubmit : undefined} className="w-full">
         <textarea
           placeholder="후기를 작성해주세요"
           className={clsx(
             "rounded-4 border border-gray-500 text-basic-black",
             "font-16px-regular",
-            "px-16 py-8 mt-24",
+            "mt-24 px-16 py-8",
             "h-240 w-full",
             "resize-none",
             "focus:border-brand-500 focus:outline-none",
@@ -103,7 +101,7 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
           fontStyle="l"
           disabled={!reviewText}
           className={clsx(
-            "w-full mt-24",
+            "mt-24 w-full",
             !reviewText
               ? "cursor-not-allowed bg-gray-500 text-gray-600"
               : "border-none bg-brand-500 text-white",
