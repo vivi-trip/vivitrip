@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "@/src/components/Button/Button";
 import CheckIcon from "@/assets/svgs/ic_check.svg";
 import useModalStore from "@/src/stores/ModalStore";
 import React from "react";

@@ -1,5 +1,5 @@
-import Button from "../Button/Button";
-import ReservationModal from "../modal/ReservationModal/ReservationModal";
+import Button from "@/src/components/Button/Button";
+import ReservationModal from "@/src/components/modal/ReservationModal/ReservationModal";
 import { useCalendar } from "@/src/stores/CalendarStore";
 import useModalStore from "@/src/stores/ModalStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";

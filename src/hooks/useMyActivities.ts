@@ -6,7 +6,7 @@ import {
   getMyResrvations,
   patchMyActivity,
   patchReservaionState,
-} from "../services/myActiviesApi";
+} from "@/src/services/myActiviesApi";
 import {
   GetMyActivities,
   MyActivities,
@@ -18,12 +18,13 @@ import {
   ReservationMonthInfosType,
   ReservationScheduleType,
   ReservationsParams,
-} from "../types/activitiesReservationType";
+} from "@/src/types/activitiesReservationType";
 import {
   infiniteQueryOptions,
   useInfiniteQuery,
   useMutation,
   useQuery,
+  useQueryClient,
 } from "@tanstack/react-query";
 
 export const useGetMyActivities = (params: GetMyActivities) => {
@@ -46,14 +47,10 @@ export const useGetMyReservationDashboard = (
   return { data, isLoading, error };
 };
 
-export const useGetMyReservedSchedule = (
-  params: ReservatdeScheduleParams,
-  enabled: boolean,
-) => {
+export const useGetMyReservedSchedule = (params: ReservatdeScheduleParams) => {
   const { data, isLoading, error } = useQuery<ReservationScheduleType[]>({
     queryKey: ["myReservedSchedule", params],
     queryFn: () => getMyReservedSchedule(params),
-    enabled,
   });
   return { data, isLoading, error };
 };
@@ -71,16 +68,26 @@ export const useGetMyReservations = (
 };
 
 export const usePatchReservationState = () => {
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: (params: ReservaitionState) => patchReservaionState(params),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["myReservationDashboard"] });
+    },
   });
 
   return { mutate };
 };
 
 export const useDeleteArticle = () => {
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: (params: number) => deleteArticle(params),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["activities"],
+      });
+    },
   });
   return { mutate };
 };
@@ -97,7 +104,7 @@ export const useGetInfiniteMyActivities = (size: number = 5) => {
   const { data, fetchNextPage, hasNextPage, isError, ...rest } =
     useInfiniteQuery(
       infiniteQueryOptions<MyActivities>({
-        queryKey: ["activities", "list", size],
+        queryKey: ["activities"],
         queryFn: ({ pageParam }) => {
           const cursorId =
             typeof pageParam === "number" ? pageParam : undefined;

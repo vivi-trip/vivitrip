@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "@/src/components/Button/Button";
 import ActivityDatePickerInput from "@/src/components/ActivityInput/ActivityDatePickerInput";
 import TimeDropdown from "@/src/components/ActivityInput/TimeDropdown";
 import { ActivityFormDataType } from "@/src/types/activityFormDataType";
@@ -75,15 +75,13 @@ const ActivityTimeInput = ({
 
   const handleRemoveTime = (index: number) => {
     const removedSchedule = fields[index];
-  
+
     if (removedSchedule.id) {
       setRemovedScheduleIds((prev) => [...prev, removedSchedule.id!]);
     } else {
-      setAddedSchedules((prev) =>
-        prev.filter((s, idx) => idx !== index)
-      );
+      setAddedSchedules((prev) => prev.filter((s, idx) => idx !== index));
     }
-  
+
     remove(index);
   };
 
@@ -109,6 +107,7 @@ const ActivityTimeInput = ({
                   disabled={!selectedDate}
                   addedSchedules={addedSchedules}
                   existingSchedules={existingSchedules}
+                  selectedDate={selectedDate}
                 />
               </div>
             </div>
@@ -127,6 +126,7 @@ const ActivityTimeInput = ({
                   disabled={!selectedDate || !startTime}
                   addedSchedules={addedSchedules}
                   existingSchedules={existingSchedules}
+                  selectedDate={selectedDate}
                 />
               </div>
             </div>

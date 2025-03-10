@@ -2,7 +2,7 @@ import {
   ProfileImageUrlResponse,
   UpdateUserProfileRequest,
   UserProfileResponse,
-} from "../types/Users";
+} from "@/src/types/Users";
 import api from "./axios";
 
 /**

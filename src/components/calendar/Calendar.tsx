@@ -1,5 +1,5 @@
 import CalendarHeader from "./CalendarHeader";
-import { useCalendar, useCalendarStore } from "@/src/stores/CalendarStore";
+import { useCalendar } from "@/src/stores/CalendarStore";
 import { Locale, enUS } from "date-fns/locale";
 import React from "react";
 import DatePicker from "react-datepicker";
