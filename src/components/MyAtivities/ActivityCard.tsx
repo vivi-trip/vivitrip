@@ -25,7 +25,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
   return (
     <div
       className={clsx(
-        "relative mt-24 h-128 w-full min-w-344",
+        "relative mt-24 h-128 w-full min-w-280",
         "md:h-156",
         "lg:h-204",
       )}>
@@ -35,7 +35,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
           router.push(`${PATH_NAMES.Activity}/${activityId}`);
         }}
         className={clsx(
-          "h-128 w-full min-w-344 rounded-24 border border-white",
+          "h-128 w-full rounded-24 border border-white",
           "md:h-156",
           "lg:h-204",
         )}
@@ -52,7 +52,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
               src={bannerImageUrl}
               alt="체험 이미지"
               fill
-              objectFit="cover"
+              style={{ objectFit: "cover" }}
               className="rounded-l-24 border border-brand-200 bg-brand-400"
             />
           </div>

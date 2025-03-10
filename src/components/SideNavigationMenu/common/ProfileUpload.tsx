@@ -34,9 +34,6 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
           fileInputRef.current.value = "";
         }
       },
-      onError: (error) => {
-        console.error("Image upload failed:", error);
-      },
     });
   };
 
@@ -59,7 +56,7 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
             profileImageUrl ??
             "/images/Image_default_profile_image.png"
           }
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
         />
       </div>
       <label htmlFor="file-input">
