@@ -9,6 +9,7 @@ import TotalPrice from "@/src/components/modal/ReservationModal/common/TotalPric
 import { usePostActivityReservation } from "@/src/queries/useActivities";
 import { useCalendar } from "@/src/stores/CalendarStore";
 import useModalStore from "@/src/stores/ModalStore";
+import { AxiosError } from "axios";
 import React from "react";
 
 const ReservationModal = () => {
@@ -41,6 +42,23 @@ const ReservationModal = () => {
             customClass: "md:p-32",
           },
         );
+      },
+      onError: (error: unknown) => {
+        // error가 AxiosError인지 확인
+        if (error instanceof AxiosError && error.response) {
+          // 서버에서 반환한 메시지를 가져와서 사용자에게 표시
+          const errorMessage =
+            error.response.data.message ||
+            "예약을 처리하는 데 오류가 발생했습니다.";
+
+          setModalOpen(<PopupModal title={errorMessage} />, {
+            customClass: "md:p-32",
+          });
+        } else {
+          setModalOpen(<PopupModal title="서버 응답이 없습니다." />, {
+            customClass: "md:p-32",
+          });
+        }
       },
     });
   };
