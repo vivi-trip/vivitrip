@@ -57,7 +57,16 @@ const RouteMyPage = () => {
       return <p>MyPageGoogle</p>;
     }
     case "kakao": {
-      return <MyPageKakao handleSubmit={handleSubmit} isPending={isPending} />;
+      return (
+        <div className="flex w-full justify-center gap-24 pt-72">
+          <div className="hidden md:block">
+            <SideNavigationMenu url={onChangeImageURL} />
+          </div>
+          <div className="flex-1">
+            <MyPageKakao />
+          </div>
+        </div>
+      );
     }
     default: {
       return (

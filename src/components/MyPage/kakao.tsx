@@ -1,52 +1,67 @@
+/* eslint-disable no-alert */
+
+/* eslint-disable no-restricted-globals */
+
 /* eslint-disable no-console */
 import Button from "@/src/components/Button/Button";
-import Logo from "@/src/components/Logo";
+import PATH_NAMES from "@/src/constants/pathname";
+import { deleteKakaoUser } from "@/src/services/auth";
 import useUserStore from "@/src/stores/userStore";
-import { MyPageProps } from "@/src/types/user";
-import Image from "next/image";
-import type { ChangeEvent } from "react";
+import { useRouter } from "next/router";
 
-/**
- * @todo
- * - 프로필 이미지 클릭 시 바로 파일 선택
- * - 이미지 파일 확인 로직 선행
- * - 이미지 선택 시 바로 이미지 수정 api 로직 수행
- * - 마이페이지용 프로필 이미지 수정 컴포넌트 따로 생성
- */
+const MyPageKakao = () => {
+  const router = useRouter();
+  const { userData, clearUser } = useUserStore();
 
-const MyPageKakao = ({ handleSubmit, isPending }: MyPageProps) => {
-  const { userData } = useUserStore();
+  const handleClick = async () => {
+    if (!userData) return;
 
-  const handleProfileImage = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log("🚀 ~ handleProfileImage ~ event:", event);
+    const answer = confirm("카카오 계정 연결을 끊으시겠습니까?");
 
-    const { files } = event.target;
-    const file = files ? files[0] : null;
-    console.log("🚀 ~ handleProfileImage ~ file:", file);
+    if (!answer) return;
+
+    const kakaoId = Number(userData.email.split("@")[0]);
+
+    await deleteKakaoUser(kakaoId).then(() => {
+      clearUser();
+    });
+
+    router.replace(PATH_NAMES.Root);
   };
 
-  return (
-    <div className="mx-auto flex min-h-main w-full max-w-640 flex-col items-stretch justify-center py-48">
-      <Logo size="lg" />
+  if (!userData) return null;
 
-      <form className="mt-56 flex flex-col gap-32" onSubmit={handleSubmit}>
+  return (
+    <div className="mx-auto w-full max-w-640 pb-48 md:ml-0">
+      <p className="font-32px-bold">내정보</p>
+
+      <div className="mt-32 flex flex-col gap-32">
         <div className="relative">
-          <label htmlFor="user_profileImageUrl" className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">프로필 이미지</p>
-            <Image
-              width={64}
-              height={64}
-              src={userData?.profileImageUrl as string}
-              alt="프로필 이미지"
-              className="rounded-16"
-            />
+          <label htmlFor="login_id" className="flex flex-col gap-8">
+            <p className="font-16px-regular text-basic-black">회원번호</p>
             <input
-              type="file"
-              name="profileImageUrl"
-              id="user_profileImageUrl"
-              placeholder="프로필 이미지를 등록해 주세요"
+              type="id"
+              name="id"
+              id="login_id"
               className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              onChange={handleProfileImage}
+              defaultValue={userData.id}
+              readOnly
+              disabled
+            />
+          </label>
+        </div>
+
+        <div className="relative">
+          <label htmlFor="login_id" className="flex flex-col gap-8">
+            <p className="font-16px-regular text-basic-black">이메일</p>
+            <input
+              type="email"
+              name="email"
+              id="login_email"
+              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
+              defaultValue={userData.email}
+              readOnly
+              disabled
             />
           </label>
         </div>
@@ -60,25 +75,26 @@ const MyPageKakao = ({ handleSubmit, isPending }: MyPageProps) => {
               id="user_nickname"
               placeholder="닉네임을 입력해 주세요"
               className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={userData?.nickname}
+              defaultValue={userData.nickname}
+              readOnly
+              disabled
             />
           </label>
         </div>
 
         <div className="relative">
           <Button
-            type="submit"
+            type="button"
             height="56"
             fullWidth
             radius="6"
-            backgroundColor="black"
-            fontStyle="xl"
-            disabled={isPending}
-            className="disabled:bg-gray-500">
-            수정하기
+            fontStyle="l"
+            className="bg-[#fae100]"
+            onClick={handleClick}>
+            카카오 계정 연결 끊기
           </Button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
