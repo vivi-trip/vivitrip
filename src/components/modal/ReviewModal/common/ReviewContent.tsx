@@ -29,7 +29,7 @@ const ReviewContent = ({
             src={bannerImageUrl}
             alt={title}
             layout="fill"
-            objectFit="cover"
+            style={{ objectFit: "cover" }}
             className="rounded-12"
           />
         </div>
