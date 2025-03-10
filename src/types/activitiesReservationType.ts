@@ -64,7 +64,7 @@ export interface ActivityId {
  * @param month 조회 달
  */
 export interface ReservationDashboardParams {
-  activityId: ActivityId;
+  activityId: number;
   year?: string;
   month?: string;
 }

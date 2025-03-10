@@ -24,15 +24,24 @@ export const listMyReservations = async ({
   status,
   cursorId,
 }: ListMyReservationsProps): Promise<GetMyReservations> => {
-  const context = {
-    query: cursorId || status || size ? "?" : "",
-    size: cursorId ? `cursorId=${cursorId}` : "",
-    status: status ? `status=${status}` : "",
-    cursorId: size ? `size=${size}` : "",
-  };
-  const response = await api.get(
-    `/my-reservations${context.query}${context.size}${context.status}${context.cursorId}`,
-  );
+  const params: string[] = [];
+
+  if (cursorId) {
+    params.push(`cursorId=${cursorId}`);
+  }
+
+  if (status) {
+    params.push(`status=${status}`);
+  }
+
+  if (size) {
+    params.push(`size=${size}`);
+  }
+
+  // 쿼리 파라미터가 하나 이상 있을 경우 ?로 시작하고, 나머지는 &로 연결
+  const queryString = params.length > 0 ? `?${params.join("&")}` : "";
+
+  const response = await api.get(`/my-reservations${queryString}`);
   return response.data;
 };
 
@@ -62,9 +71,13 @@ export const createMyReservationReview = async ({
   rating,
   content,
 }: CreateMyReservationReviewProps): Promise<MyReservationsPatchResponses> => {
-  const response = await api.post(`/my-reservations/${reservationId}`, {
-    rating,
-    content,
-  });
+  const response = await api.post(
+    `/my-reservations/${reservationId}/reviews
+`,
+    {
+      rating,
+      content,
+    },
+  );
   return response.data;
 };
