@@ -65,7 +65,7 @@ const RouteMyPage = () => {
           <div className="hidden md:block">
             <SideNavigationMenu url={onChangeImageURL} />
           </div>
-          <div className="md:flex-1">
+          <div className="flex-1">
             <MyPage handleSubmit={handleSubmit} isPending={isPending} />
           </div>
         </div>
