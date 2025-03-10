@@ -19,6 +19,7 @@ interface TimeDropdownProps {
   disabled: boolean;
   addedSchedules: Schedule[];
   existingSchedules: Schedule[];
+  selectedDate: string | null;
 }
 
 const TimeDropdown = ({
@@ -29,18 +30,20 @@ const TimeDropdown = ({
   disabled = false,
   addedSchedules,
   existingSchedules,
+  selectedDate,
 }: TimeDropdownProps) => {
-  const isTimeOverlapping = (time: string, schedules: Schedule[]) => {
-    const hour = parseInt(time, 10);
-    return schedules.some(
-      (schedule) =>
-        hour >= parseInt(schedule.startTime, 10) &&
-        hour < parseInt(schedule.endTime, 10),
-    );
-  };
-
   const timeOptions = useMemo(() => {
     if (disabled) return [];
+
+    const isTimeOverlapping = (time: string, schedules: Schedule[]) => {
+      const hour = parseInt(time.split(":")[0], 10);
+      return schedules.some(
+        (schedule) =>
+          schedule.date === selectedDate &&
+          hour >= parseInt(schedule.startTime.split(":")[0], 10) &&
+          hour < parseInt(schedule.endTime.split(":")[0], 10),
+      );
+    };
 
     const allHours = Array.from({ length: 24 }, (_, i) => ({
       value: `${i}:00`,
@@ -59,7 +62,7 @@ const TimeDropdown = ({
         ...existingSchedules,
       ]);
     });
-  }, [minTime, disabled, addedSchedules, existingSchedules]);
+  }, [minTime, disabled, addedSchedules, existingSchedules, selectedDate]);
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
