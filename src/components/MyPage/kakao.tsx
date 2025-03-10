@@ -4,6 +4,7 @@
 
 /* eslint-disable no-console */
 import Button from "@/src/components/Button/Button";
+import Form from "@/src/components/Form";
 import PATH_NAMES from "@/src/constants/pathname";
 import { deleteKakaoUser } from "@/src/services/auth";
 import useUserStore from "@/src/stores/userStore";
@@ -32,70 +33,37 @@ const MyPageKakao = () => {
   if (!userData) return null;
 
   return (
-    <div className="mx-auto w-full max-w-640 pb-48 md:ml-0">
-      <p className="font-32px-bold">내정보</p>
+    <Form
+      onSubmit={() => false}
+      className="mx-auto w-full max-w-640 pb-48 md:ml-0">
+      <Form.Title>내정보</Form.Title>
 
-      <div className="mt-32 flex flex-col gap-32">
-        <div className="relative">
-          <label htmlFor="login_id" className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">회원번호</p>
-            <input
-              type="id"
-              name="id"
-              id="login_id"
-              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={userData.id}
-              readOnly
-              disabled
-            />
-          </label>
-        </div>
+      <Form.Field variant="default">
+        <Form.Label>회원번호</Form.Label>
+        <Form.Input value={userData.id} readOnly disabled />
+      </Form.Field>
 
-        <div className="relative">
-          <label htmlFor="login_id" className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">이메일</p>
-            <input
-              type="email"
-              name="email"
-              id="login_email"
-              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={userData.email}
-              readOnly
-              disabled
-            />
-          </label>
-        </div>
+      <Form.Field variant="email">
+        <Form.Label>이메일</Form.Label>
+        <Form.Input value={userData.email} readOnly disabled />
+      </Form.Field>
 
-        <div className="relative">
-          <label htmlFor="user_nickname" className="flex flex-col gap-8">
-            <p className="font-16px-regular text-basic-black">닉네임</p>
-            <input
-              type="text"
-              name="nickname"
-              id="user_nickname"
-              placeholder="닉네임을 입력해 주세요"
-              className="font-16px-regular min-h-56 rounded-6 border border-gray-500 px-20 py-12 outline-none transition-all focus:border-brand-400"
-              defaultValue={userData.nickname}
-              readOnly
-              disabled
-            />
-          </label>
-        </div>
+      <Form.Field variant="nickname">
+        <Form.Label>닉네임</Form.Label>
+        <Form.Input value={userData.nickname} readOnly disabled />
+      </Form.Field>
 
-        <div className="relative">
-          <Button
-            type="button"
-            height="56"
-            fullWidth
-            radius="6"
-            fontStyle="l"
-            className="bg-[#fae100]"
-            onClick={handleClick}>
-            카카오 계정 연결 끊기
-          </Button>
-        </div>
-      </div>
-    </div>
+      <Button
+        type="button"
+        height="56"
+        fullWidth
+        radius="6"
+        fontStyle="l"
+        className="mt-20 bg-[#fae100]"
+        onClick={handleClick}>
+        카카오 계정 연결 끊기
+      </Button>
+    </Form>
   );
 };
 
