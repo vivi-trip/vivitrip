@@ -1,5 +1,7 @@
 import Button from "@/src/components/Button/Button";
+import PopupModal from "@/src/components/modal/PopupModal";
 import { usePatchReservationState } from "@/src/hooks/useMyActivities";
+import useModalStore from "@/src/stores/ModalStore";
 import { ReservationInfoType } from "@/src/types/activitiesReservationType";
 
 interface ReservationInfoProps {
@@ -16,21 +18,37 @@ const ReservationInfo = ({
     headCount,
     activityId,
     id: reservationId,
+    date,
   } = reservationInfo;
+
+  const { setModalOpen } = useModalStore();
 
   const { mutate } = usePatchReservationState();
 
-  /**
-   *
-   * @todo 성공 또는 실패시 토스트  알림 추가 할것
-   */
   const handleResultUpdate = (status: string) => {
-    mutate({
-      activityId: { activityId },
-      reservationId,
-      status,
-    });
+    mutate(
+      {
+        activityId: { activityId },
+        reservationId,
+        status,
+      },
+      {
+        onSuccess: () => {
+          const titleMessage =
+            status === "confirmed"
+              ? "예약이 승인되었습니다."
+              : "예약이 거절되었습니다.";
+          setModalOpen(<PopupModal title={titleMessage} />);
+        },
+      },
+    );
   };
+
+  // 현재 날짜와 비교
+  const currentDate = new Date();
+  const reservationDate = new Date(date);
+  const isSameOrFutureDate =
+    reservationDate.setHours(0, 0, 0, 0) >= currentDate.setHours(0, 0, 0, 0);
 
   return (
     <div>
@@ -46,7 +64,7 @@ const ReservationInfo = ({
           </div>
         </div>
         <div className="flex justify-end gap-4">
-          {selectTab === "pending" && (
+          {selectTab === "pending" && isSameOrFutureDate && (
             <>
               <Button
                 type="button"
