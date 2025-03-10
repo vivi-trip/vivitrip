@@ -60,7 +60,7 @@ const RouteMyPage = () => {
       return (
         <div className="flex w-full justify-center gap-24 pt-72">
           <div className="hidden md:block">
-            <SideNavigationMenu url={onChangeImageURL} />
+            <SideNavigationMenu />
           </div>
           <div className="flex-1">
             <MyPageKakao />
