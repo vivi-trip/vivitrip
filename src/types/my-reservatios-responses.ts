@@ -115,7 +115,7 @@ export interface MyReservationsPatchResponses {
 }
 
 /**
- * @description 내 예약 리뷰 작서 리스폰스 데이터
+ * @description 내 예약 리뷰 작성 리스폰스 데이터
  * @param id - 체험 id
  * @param teamId - 팀 id
  * @param activityId - 체험 id

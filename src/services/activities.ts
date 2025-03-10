@@ -1,12 +1,11 @@
 /**
  * @description API 호출 함수 - Activites
  */
-import { ActivityDetailResponse } from "../types/activitiesResponses";
+import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import api from "@/src/services/axios";
 import {
   ActivityImageUrl,
   ActivitiesResponse,
-  CreateActivityImageUrlProps,
   CreateActivityProps,
   CreateActivityReservationProps,
   GetActivityAvailableScheduleProps,

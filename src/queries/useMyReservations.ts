@@ -2,17 +2,18 @@ import {
   UpdateMyReservation,
   createMyReservationReview,
   listMyReservations,
-} from "../services/my-reservations";
+} from "@/src/services/my-reservations";
 import {
   CreateMyReservationReviewProps,
   ListMyReservationsProps,
   UpdateMyReservationProps,
-} from "../types/my-reservations";
+} from "@/src/types/my-reservations";
 import { GetMyReservations } from "@/src/types/my-reservatios-responses";
 import {
   infiniteQueryOptions,
   useInfiniteQuery,
   useMutation,
+  useQueryClient,
 } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
@@ -42,11 +43,10 @@ export const useGetMyReservations = ({
     error,
   } = useInfiniteQuery(
     infiniteQueryOptions<GetMyReservations>({
-      queryKey: ["myReservations", { size, status }],
-      queryFn: ({ pageParam }) => {
-        const cursorId = typeof pageParam === "number" ? pageParam : undefined;
+      queryKey: ["myReservations", { size, status: status || undefined }],
 
-        return listMyReservations({ size, cursorId, status });
+      queryFn: () => {
+        return listMyReservations({ size, status });
       },
       getNextPageParam: (lastPage) => lastPage.cursorId ?? undefined,
       initialPageParam: 1,
@@ -77,10 +77,16 @@ export const useGetMyReservations = ({
  * @param status - 예약 상태
  */
 export const usePatchMyReservation = () => {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["myReservation"],
+    mutationKey: ["myReservations"],
     mutationFn: ({ reservationId, status }: UpdateMyReservationProps) =>
       UpdateMyReservation({ reservationId, status }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["myReservations"],
+      });
+    },
   });
 };
 

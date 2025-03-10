@@ -10,7 +10,7 @@ import {
   ReservationMonthInfosType,
   ReservationScheduleType,
   ReservationsParams,
-} from "../types/activitiesReservationType";
+} from "@/src/types/activitiesReservationType";
 import api from "./axios";
 
 /**
@@ -29,22 +29,26 @@ export const getMyActivities = async (
 export const getMyReservationDashboard = async (
   params: ReservationDashboardParams,
 ): Promise<ReservationMonthInfosType> => {
+  const { activityId, year, month } = params;
   const response = await api.get(
-    `/my-activities/${params.activityId}/reservation-dashboard`,
-    { params },
+    `/my-activities/${activityId}/reservation-dashboard`,
+    {
+      params: { year, month },
+    },
   );
-  return response.data;
+  return { MonthReservations: response.data };
 };
 
 /**
 내 체험 날짜별 예약 정보 (신청,승인, 거절)가 있는 스케줄 조회
  */
-export const getMyReservedSchedule = async (
-  params: ReservatdeScheduleParams,
-): Promise<ReservationScheduleType[]> => {
+export const getMyReservedSchedule = async ({
+  activityId: { activityId },
+  date,
+}: ReservatdeScheduleParams): Promise<ReservationScheduleType[]> => {
   const response = await api.get(
-    `/my-activities/${params.activityId}/reserved-schedule`,
-    { params },
+    `/my-activities/${activityId}/reserved-schedule`,
+    { params: { date } },
   );
   return response.data;
 };
@@ -52,25 +56,26 @@ export const getMyReservedSchedule = async (
 /**
 내 체험 예약 시간대별 예약 내역 조회 
  */
-export const getMyResrvations = async (
-  params: ReservationsParams,
-): Promise<ReservationInfosType> => {
-  const response = await api.get(
-    `/my-activities/${params.activityId}/reservations`,
-    { params },
-  );
+export const getMyResrvations = async ({
+  activityId: { activityId },
+  ...restParams
+}: ReservationsParams): Promise<ReservationInfosType> => {
+  const response = await api.get(`/my-activities/${activityId}/reservations`, {
+    params: restParams,
+  });
   return response.data;
 };
 
 /**
 내 체험 날짜별 예약 상태(승인,거절) 업데이트
  */
-export const patchReservaionState = async (
-  params: ReservaitionState,
-): Promise<ReservaitionStateUpdateRequest> => {
+export const patchReservaionState = async ({
+  activityId: { activityId },
+  ...restParams
+}: ReservaitionState): Promise<ReservaitionStateUpdateRequest> => {
   const response = await api.patch(
-    `/my-activities/${params.activityId}/reservations/${params.reservationId}`,
-    { status: params.status },
+    `/my-activities/${activityId}/reservations/${restParams.reservationId}`,
+    { status: restParams.status },
   );
   return response.data;
 };

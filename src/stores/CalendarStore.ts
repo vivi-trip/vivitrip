@@ -1,5 +1,5 @@
-import { ActivityDetailResponse, Schedule } from "../types/activitiesResponses";
-import formatDateToYYYYMMDD from "../utils/calendarFormatDate";
+import { ActivityDetailResponse, Schedule } from "@/src/types/activitiesResponses";
+import formatDateToYYYYMMDD from "@/src/utils/calendarFormatDate";
 import { create } from "zustand";
 
 interface CalendarState {
