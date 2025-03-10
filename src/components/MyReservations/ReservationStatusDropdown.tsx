@@ -1,4 +1,4 @@
-import Dropdown from "../Dropdown";
+import Dropdown from "@/src/components/Dropdown";
 import AltArrowDown from "@/assets/svgs/altArrowDown.svg";
 import useOutsideClick from "@/src/hooks/useOutsideClick";
 import { ReservationStatus } from "@/src/types/my-reservations";
@@ -13,18 +13,17 @@ const ReservationStatusDropdown = ({
   handleStatusChange,
 }: ReservationStatusDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState<ReservationStatus>("all");
+  const [status, setStatus] = useState<ReservationStatus>("");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleItemClick = (newStatus: ReservationStatus) => {
+  const handleItemClick = (newStatus: ReservationStatus | "") => {
     setStatus(newStatus);
-
     setIsOpen(false);
   };
 
   const options = [
-    { label: "체험 전체", value: "all" },
-    { label: "예약 완료", value: "pending" },
+    { label: "체험 전체", value: "" },
+    { label: "예약 신청", value: "pending" },
     { label: "예약 취소", value: "canceled" },
     { label: "예약 승인", value: "confirmed" },
     { label: "예약 거절", value: "declined" },
@@ -32,9 +31,7 @@ const ReservationStatusDropdown = ({
   ];
 
   useEffect(() => {
-    if (status !== "") {
-      handleStatusChange(status);
-    }
+    handleStatusChange(status);
   }, [status, handleStatusChange]);
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));
@@ -53,7 +50,7 @@ const ReservationStatusDropdown = ({
           <p className="font-18px-medium text-brand-400">
             {status
               ? options.find((opt) => opt.value === status)?.label
-              : "필터"}
+              : "체험 전체"}
           </p>
           <AltArrowDown className={clsx(isOpen && "rotate-180")} />
         </Dropdown.Trigger>
