@@ -3,7 +3,7 @@ import CalendarCheckIcon from "@/assets/svgs/ic_calendar_check.svg";
 import SettingCheckIcon from "@/assets/svgs/ic_setting_check.svg";
 import TextboxCheckIcon from "@/assets/svgs/ic_textbox_check.svg";
 import ProfileUpload from "@/src/components/SideNavigationMenu/common/ProfileUpload";
-import { useGetUserProfile } from "@/src/queries/useUsers";
+import useUserStore from "@/src/stores/userStore";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,15 +15,9 @@ interface Props {
 }
 
 const SideNavigationMenu = ({ url }: Props) => {
-
+  const { userData } = useUserStore();
   const { pathname } = useRouter();
   const [selectedItem, setSelectedItem] = useState<null | number>(null);
-
-  /**
-   * @description - 프로필이미지 훅 차후 목데이터 삭제후 사용
-   * @todo  삭제 할것
-   */
-  const { data } = useGetUserProfile();
 
   const handleClick = (Id: number) => {
     setSelectedItem(Id);
@@ -67,6 +61,8 @@ const SideNavigationMenu = ({ url }: Props) => {
     },
   ];
 
+  if (!userData) return null;
+
   return (
     <div
       className={clsx(
@@ -75,27 +71,25 @@ const SideNavigationMenu = ({ url }: Props) => {
         pathname === "/my-page" ? "flex w-344" : "hidden",
       )}>
       <div className="relative flex justify-center">
-        {pathname === "/my-page"
-          ? url && (
-              <ProfileUpload
-                url={url}
-                profileImageUrl={data?.profileImageUrl}
+        {url ? (
+          <ProfileUpload url={url} profileImageUrl={userData.profileImageUrl} />
+        ) : (
+          userData && (
+            <div className="relative size-160 overflow-hidden rounded-160 bg-gray-200 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]">
+              <Image
+                className="object-cover"
+                src={
+                  userData.profileImageUrl
+                    ? userData.profileImageUrl
+                    : "/images/Image_default_profile_image.png"
+                }
+                alt="프로필이미지"
+                fill
+                sizes="160px"
               />
-            )
-          : data && (
-              <div className="relative size-160 overflow-hidden rounded-160 bg-gray-200 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]">
-                <Image
-                  src={
-                    data.profileImageUrl
-                      ? data.profileImageUrl
-                      : "/images/Image_default_profile_image.png"
-                  }
-                  style={{ objectFit: "cover" }}
-                  alt="프로필이미지"
-                  fill
-                />
-              </div>
-            )}
+            </div>
+          )
+        )}
       </div>
       <ul className="flex flex-col gap-8">
         {menuItems.map((item) => (
