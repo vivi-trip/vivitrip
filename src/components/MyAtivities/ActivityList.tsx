@@ -19,17 +19,17 @@ const ActivityList = () => {
 
   return (
     <>
-      <div className="mt-16 flex flex-col gap-6 mb-120">
+      <div className="flex flex-col gap-6 my-48 ">
         {data?.pages.map((page) => {
           if (page.totalCount === 0) {
             return (
               <div
                 key="no-activities"
-                className="mt-80 flex flex-col items-center gap-20">
+                className="flex flex-col items-center gap-20">
                 <div className="">
                   <IconEmpty />
                 </div>
-                <p className="">아직 등록한 체험이 없어요</p>
+                <p className="font-18px-medium">아직 등록한 체험이 없어요</p>
               </div>
             );
           }
