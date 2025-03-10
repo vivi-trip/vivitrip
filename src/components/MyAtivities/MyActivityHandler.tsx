@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
-import Dropdown from "../Dropdown";
-import TwoButtonModal from "../modal/TwoButtonModal";
 import IconKebab from "@/assets/svgs/ic_kebab.svg";
 import IconKebabSmall from "@/assets/svgs/ic_kebab_small.svg";
+import Dropdown from "@/src/components/Dropdown";
+import PopupModal from "@/src/components/modal/PopupModal";
+import TwoButtonModal from "@/src/components/modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import { useDeleteArticle } from "@/src/hooks/useMyActivities";
 import useModalStore from "@/src/stores/ModalStore";
 import { ActivityId } from "@/src/types/activitiesReservationType";
+import { AxiosError } from "axios";
 import { useRouter } from "next/router";
 
 const MyActivityHandler = ({ activityId }: ActivityId) => {
   const router = useRouter();
-  const { setModalOpen, setModalClose } = useModalStore();
+  const { setModalOpen } = useModalStore();
   const { mutate } = useDeleteArticle();
 
   const handleMoveToEditPage = () => {
@@ -21,17 +23,12 @@ const MyActivityHandler = ({ activityId }: ActivityId) => {
   const handleDeleteData = () => {
     mutate(activityId, {
       onSuccess: () => {
-        /**
-         * @todo 차후  토스트로 대체
-         */
-        console.log("체험이 성공적으로 삭제되었습니다.");
-
-        setModalClose();
-        router.push(PATH_NAMES.MyActivities);
+        setModalOpen(<PopupModal title="체험이 성공적으로 삭제되었습니다." />);
       },
       onError: (error) => {
-        // 삭제 실패 시 실행할 로직
-        console.error("체험 삭제 중 오류 발생:", error);
+        if (error instanceof AxiosError && error.response) {
+          setModalOpen(<PopupModal title={error.response.data.message} />);
+        }
       },
     });
   };
