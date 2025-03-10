@@ -85,10 +85,17 @@ const OauthKakaoSign = ({ action }: OauthKakaoSignProps) => {
 
   if (!code) return null;
 
+  if (submitted)
+    return (
+      <div className="fixed inset-0 flex items-center justify-center">
+        <p className="font-24px-regular">{`카카오계정으로 ${action === "in" ? "로그인" : "회원가입"} 중...`}</p>
+      </div>
+    );
+
   return (
-    <div className="mx-auto flex min-h-main w-full max-w-640 flex-col items-stretch justify-center py-48">
+    <div className="mx-auto flex h-screen w-full max-w-640 flex-col items-stretch justify-center py-48">
       {profile ? (
-        <form className="mt-56 flex flex-col gap-32" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-32" onSubmit={handleSubmit}>
           <div className="relative flex flex-col items-center justify-center gap-8">
             <Image
               alt={`${profile.nickname} 프로필 이미지`}
