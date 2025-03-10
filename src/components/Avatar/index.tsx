@@ -2,6 +2,7 @@ import IconUser from "@/assets/svgs/ic_user.svg";
 import useUserStore from "@/src/stores/userStore";
 import { ProfileImageUrl } from "@/src/types/user";
 import clsx from "clsx";
+import Image from "next/image";
 
 const Avatar = () => {
   const { userData, userProvider } = useUserStore();
@@ -39,11 +40,12 @@ const Avatar = () => {
     <article className="flex flex-wrap items-center justify-center gap-8">
       {profileImageUrl ? (
         <div className="relative">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
+            className="size-32 rounded-full object-cover"
             src={profileImageUrl.url}
             alt={profileImageUrl.name}
-            className="relative size-32 rounded-full"
+            width={32}
+            height={32}
           />
           <div
             className={clsx(
