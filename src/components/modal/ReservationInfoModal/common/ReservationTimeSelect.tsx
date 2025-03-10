@@ -35,7 +35,7 @@ const ReservationTimeSelect = ({
             return (
               <Dropdown.Item
                 key={reservation.scheduleId}
-                className="font-16px-regular px-4 py-2 hover:bg-gray-200"
+                className="font-16px-regular border-b px-4 py-10 hover:bg-gray-200"
                 onClick={() =>
                   handleReservationSelect(
                     reservation.scheduleId,
@@ -47,7 +47,7 @@ const ReservationTimeSelect = ({
             );
           })
         ) : (
-          <Dropdown.Item className="font-16px-regular  py-12 text-gray-500">
+          <Dropdown.Item className="font-16px-regular py-12 text-gray-500">
             예약시간이 없습니다
           </Dropdown.Item>
         )}
