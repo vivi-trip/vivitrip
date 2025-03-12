@@ -75,7 +75,7 @@ const Notification = () => {
           </div>
 
           {items && items.length > 0 && (
-            <div className="flex h-main flex-col gap-8 overflow-auto p-24 pt-8 md:h-320 md:!max-h-[50vh] md:p-16 md:pb-24 md:pt-8">
+            <div className="flex h-main flex-col gap-8 overflow-auto p-24 pt-8 md:h-auto md:!max-h-320 md:p-16 md:pb-24 md:pt-8">
               {items.map((item) => {
                 return (
                   <NotificationItem
