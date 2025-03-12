@@ -15,46 +15,15 @@ import type {
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
-/**
- * @description 알림 목데이터
- */
-const MOCK_DATA: MyNotificationsProps[] = [
-  {
-    id: 1001,
-    teamId: "팀 아이디 1",
-    userId: 1002,
-    content: "체험명(2023-01-14 15:00~18:00) 예약이 승인되었어요.",
-    createdAt: "2025-01-13T14:00:00",
-    updatedAt: "2025-01-13T16:30:00",
-    deletedAt: "2025-01-13T18:00:00",
-  },
-  {
-    id: 2001,
-    teamId: "팀 아이디 2",
-    userId: 2002,
-    content: "체험명(2023-01-14 15:00~18:00) 예약이 거절되었어요.",
-    createdAt: "2025-01-14T14:00:00",
-    updatedAt: "2025-01-14T16:30:00",
-    deletedAt: "2025-01-14T18:00:00",
-  },
-  {
-    id: 3001,
-    teamId: "팀 아이디 3",
-    userId: 3002,
-    content: "체험명(2023-01-14 15:00~18:00) 예약이 새로 들어왔어요.",
-    createdAt: "2025-01-15T14:00:00",
-    updatedAt: "2025-01-15T16:30:00",
-    deletedAt: "2025-01-15T18:00:00",
-  },
-];
-
 const Notification = () => {
   const router = useRouter();
-  const size: number = 10;
-  const [cursorId, setCursorId] = useState<number | null>(null);
+
   const [totalCount, setTotalCount] = useState<number>(0);
   const [items, setItems] = useState<MyNotificationsProps[]>([]);
-  const { data, isLoading, isPending, refetch } = useMyNotificationsListQuery({
+  const [cursorId, setCursorId] = useState<number | null>(null);
+
+  const size: number = 5;
+  const { data, isPending, refetch } = useListMyNotifications({
     size,
     cursorId,
   });
@@ -83,24 +52,16 @@ const Notification = () => {
   }, [items]);
 
   const handleIndicator = useCallback(async () => {
-    if (isLoading) return;
-
     if (data) {
+      setTotalCount(data.data.totalCount);
+      setItems(data.data.notifications);
       setCursorId(data.data.cursorId);
-      setTotalCount(MOCK_DATA.length);
-      // setTotalCount(data.data.totalCount);
-      // setItems(data.data.notifications);
-      setItems(MOCK_DATA);
     }
-  }, [data, isLoading]);
+  }, [data]);
 
   useEffect(() => {
     handleIndicator();
   }, [handleIndicator]);
-
-  useEffect(() => {
-    console.log("🚀 ~ Notification ~ router:", router);
-  }, [router]);
 
   return (
     <Dropdown sustain key={router.asPath}>
