@@ -2,10 +2,11 @@
  * @description API 호출 함수 - MyNotifications
  */
 import api from "@/src/services/axios";
-import {
+import type {
   DeleteMyNotificationProps,
   GetMyNotificationsProps,
 } from "@/src/types/my-notifications";
+import convertParamToQueryString from "@/src/utils/convertParamToQueryString";
 
 /**
  * @description 내 알림 리스트 조회
@@ -16,13 +17,14 @@ export const listMyNotifications = async ({
   size,
   cursorId,
 }: GetMyNotificationsProps) => {
-  const context = {
-    query: cursorId || size ? "?" : "",
-    size: cursorId ? `cursorId=${cursorId}` : "",
-    cursorId: size ? `size=${size}` : "",
-  };
+  const params: string[] = [`size=${size}`];
+
+  if (cursorId) {
+    params.push(`cursorId=${cursorId}`);
+  }
+
   const response = await api.get(
-    `/my-notifications${context.query}${context.size}${context.cursorId}`,
+    `/my-notifications${convertParamToQueryString(params)}`,
   );
   return response;
 };

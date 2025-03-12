@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import convertParamToQueryString from "../utils/convertParamToQueryString";
 import api from "@/src/services/axios";
 import {
   OauthActions,
@@ -47,8 +48,13 @@ export const oauthSignout = async () => {
   /**
    * @todo - 카카오 계정 로그아웃 작업 중
    */
+  const params: string[] = [
+    `client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}`,
+    `logout_redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_LOGOUT_REDIRECT_URI}`,
+  ];
+
   const response = await axios.get(
-    `https://kauth.kakao.com/oauth/logout?client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&logout_redirect_uri=http://localhost:3000`,
+    `https://kauth.kakao.com/oauth/logout${convertParamToQueryString(params)}`,
   );
   return response;
 };
@@ -93,8 +99,15 @@ export const deleteKakaoUser = async (user_id: number) => {
  * @param code - 카카오 인가코드
  */
 export const getKakaoToken = async (action: OauthActions, code: string) => {
+  const params: string[] = [
+    `grant_type=authorization_code`,
+    `client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}`,
+    `redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-${action}`,
+    `code=${code}`,
+  ];
+
   const response = await axios.post(
-    `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}/sign-${action}&code=${code}`,
+    `https://kauth.kakao.com/oauth/token${convertParamToQueryString(params)}`,
     null,
     {
       headers: {
