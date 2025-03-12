@@ -34,6 +34,12 @@ export interface MyNotificationsProps {
   deletedAt: string;
 }
 
+export interface MyNotificationsResponse {
+  totalCount: number;
+  notifications: MyNotificationsProps[];
+  cursorId: number | null;
+}
+
 /**
  * @description 내 알림 삭제
  * @param notificationId - 알람 id
