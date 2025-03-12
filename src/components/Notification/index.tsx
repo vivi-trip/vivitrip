@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
+import Button from "../Button/Button";
 import IconClose from "@/assets/svgs/close.svg";
 import IconNotification from "@/assets/svgs/ic_notification.svg";
 import IconRefresh from "@/assets/svgs/ic_refresh.svg";
 import Dropdown from "@/src/components/Dropdown";
 import NotificationItem from "@/src/components/NotificationItem";
-import useListMyNotifications from "@/src/queries/my-notifications";
+import { useInfiniteNotifications } from "@/src/queries/my-notifications";
 import { deleteMyNotification } from "@/src/services/my-notifications";
 import type {
   MyNotificationsProps,
@@ -17,25 +18,18 @@ const Notification = () => {
   const router = useRouter();
 
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [items, setItems] = useState<MyNotificationsProps[]>([]);
-  const [cursorId, setCursorId] = useState<number | null>(null);
 
-  const size: number = 5;
-  const { data, isPending, refetch } = useListMyNotifications({
-    size,
-    cursorId,
-  });
+  const { data, fetchNextPage, hasNextPage, isPending, refetch } =
+    useInfiniteNotifications();
 
-  async function handleDeleteItem(id: NotificationId) {
+  const handleDeleteItem = async (id: NotificationId) => {
     await deleteMyNotification({ notificationId: id });
     await refetch();
-  }
+  };
 
   const handleIndicator = useCallback(async () => {
     if (data) {
-      setTotalCount(data.data.totalCount);
-      setItems(data.data.notifications);
-      setCursorId(data.data.cursorId);
+      setTotalCount(data.pages[0].totalCount);
     }
   }, [data]);
 
@@ -74,19 +68,41 @@ const Notification = () => {
             </Dropdown.Close>
           </div>
 
-          {items && items.length > 0 && (
+          {totalCount > 0 && (
             <div className="flex h-main flex-col gap-8 overflow-auto p-24 pt-8 md:h-auto md:!max-h-320 md:p-16 md:pb-24 md:pt-8">
-              {items.map((item) => {
+              {data?.pages.map((page, index) => {
                 return (
-                  <NotificationItem
-                    key={`MyNotifications_${item.id}`}
-                    item={item}
-                    handleDelete={() => {
-                      handleDeleteItem(item.id);
-                    }}
-                  />
+                  <div
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`notifications_${index}`}
+                    className="flex flex-col gap-8">
+                    {page.notifications.map(
+                      (notification: MyNotificationsProps) => {
+                        return (
+                          <NotificationItem
+                            key={`notification_${notification.id}`}
+                            item={notification}
+                            handleDelete={() => {
+                              handleDeleteItem(notification.id);
+                            }}
+                          />
+                        );
+                      },
+                    )}
+                  </div>
                 );
               })}
+              {hasNextPage && (
+                <Button
+                  type="button"
+                  radius="4"
+                  backgroundColor="green"
+                  fontStyle="l"
+                  className="p-4"
+                  onClick={() => fetchNextPage()}>
+                  더보기
+                </Button>
+              )}
             </div>
           )}
         </div>
