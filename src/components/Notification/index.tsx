@@ -4,10 +4,8 @@ import IconNotification from "@/assets/svgs/ic_notification.svg";
 import IconRefresh from "@/assets/svgs/ic_refresh.svg";
 import Dropdown from "@/src/components/Dropdown";
 import NotificationItem from "@/src/components/NotificationItem";
-import {
-  useDeleteMyNotification,
-  useMyNotificationsListQuery,
-} from "@/src/queries/my-notifications";
+import useListMyNotifications from "@/src/queries/my-notifications";
+import { deleteMyNotification } from "@/src/services/my-notifications";
 import type {
   MyNotificationsProps,
   NotificationId,
@@ -27,29 +25,11 @@ const Notification = () => {
     size,
     cursorId,
   });
-  const { mutate: deleteNotification } = useDeleteMyNotification();
 
-  const handleDeleteItem = async (id: NotificationId) => {
-    console.log("🚀 ~ handleDeleteItem ~ id:", id);
-    /**
-     * @todo
-     * 알림 삭제 함수 실행
-     */
-    const response = await deleteNotification({ notificationId: id });
-    console.log("🚀 ~ handleDeleteItem ~ response:", response);
-
-    setItems((prev) => {
-      return prev.filter((item) => item.id !== id);
-    });
-  };
-
-  /**
-   * @todo
-   * 실제 알림 데이터로 구현 시 수정해야함.
-   */
-  useEffect(() => {
-    setTotalCount(items.length);
-  }, [items]);
+  async function handleDeleteItem(id: NotificationId) {
+    await deleteMyNotification({ notificationId: id });
+    await refetch();
+  }
 
   const handleIndicator = useCallback(async () => {
     if (data) {
