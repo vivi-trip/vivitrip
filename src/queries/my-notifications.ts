@@ -1,17 +1,14 @@
 /* eslint-disable no-console */
-import {
-  deleteMyNotification,
-  listMyNotifications,
-} from "@/src/services/my-notifications";
+import { listMyNotifications } from "@/src/services/my-notifications";
 import type { GetMyNotificationsProps } from "@/src/types/my-notifications";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 /**
  * @description 내 알림 리스트 조회
  * @param size - 알림 갯수
  * @param cursorId - 알림 커서 아이디
  */
-export const useMyNotificationsListQuery = ({
+const useListMyNotifications = ({
   size,
   cursorId,
 }: GetMyNotificationsProps) => {
@@ -23,39 +20,4 @@ export const useMyNotificationsListQuery = ({
   });
 };
 
-/**
- * @description 내 알림 삭제
- * @param notificationId - 알람 id
- */
-export const useDeleteMyNotification = () => {
-  // const response = await api.delete(`/my-notifications/${notificationId}`);
-
-  return useMutation({
-    mutationKey: ["my-notifications"],
-    mutationFn: deleteMyNotification,
-    onSuccess(data, variables, context) {
-      console.log(
-        "🚀 ~ onSuccess ~ data, variables, context:",
-        data,
-        variables,
-        context,
-      );
-      /**
-       * @todo
-       * 알림 삭제 성공 토스트 출력
-       */
-    },
-    onError(error, variables, context) {
-      console.log(
-        "🚀 ~ onError ~ error, variables, context:",
-        error,
-        variables,
-        context,
-      );
-      /**
-       * @todo
-       * 알림 삭제 실패 토스트 출력
-       */
-    },
-  });
-};
+export default useListMyNotifications;
