@@ -62,7 +62,9 @@ const Notification = () => {
               <button
                 type="button"
                 aria-label="새로고침"
-                onClick={() => refetch()}
+                onClick={() => {
+                  refetch();
+                }}
                 disabled={isPending}>
                 <IconRefresh className="size-16" />
               </button>
