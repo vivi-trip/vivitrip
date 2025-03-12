@@ -5,6 +5,7 @@ import api from "@/src/services/axios";
 import type {
   DeleteMyNotificationProps,
   GetMyNotificationsProps,
+  MyNotificationsResponse,
 } from "@/src/types/my-notifications";
 import convertParamToQueryString from "@/src/utils/convertParamToQueryString";
 
@@ -27,6 +28,28 @@ export const listMyNotifications = async ({
     `/my-notifications${convertParamToQueryString(params)}`,
   );
   return response;
+};
+
+/**
+ * @description 무한스크롤용 내 알림 리스트 조회
+ * @param pageParam - 알림 커서 아이디
+ */
+export const getMyNotifications = async ({
+  pageParam,
+}: {
+  pageParam: number | null;
+}) => {
+  const params: string[] = ["size=5"];
+
+  if (pageParam) {
+    params.push(`cursorId=${pageParam}`);
+  }
+
+  const { data } = await api.get(
+    `/my-notifications${convertParamToQueryString(params)}`,
+  );
+
+  return data as MyNotificationsResponse;
 };
 
 /**
