@@ -10,7 +10,7 @@ export type NotificationId = number;
  * @param cursorId - 알림 커서 아이디
  */
 export interface GetMyNotificationsProps {
-  size?: number;
+  size: number;
   cursorId?: number | null;
 }
 
