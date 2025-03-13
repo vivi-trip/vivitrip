@@ -44,8 +44,8 @@ const NotificationItem = ({
 
   return (
     <div className="flex flex-col items-stretch justify-center gap-4 rounded border border-brand-100 bg-white p-12 shadow-md">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex justify-between">
+        <div className="flex flex-wrap items-center gap-4">
           <p className={clsx(statusColor, "size-5 rounded-full")} />
           <p className="font-12px-regular text-gray-700">{dateText}</p>
         </div>
