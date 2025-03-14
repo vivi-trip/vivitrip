@@ -1,17 +1,17 @@
 /**
  * @description API 호출 함수 - Activites
  */
-import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import api from "@/src/services/axios";
 import {
-  ActivityImageUrl,
   ActivitiesResponse,
+  ActivityImageUrl,
   CreateActivityProps,
   CreateActivityReservationProps,
   GetActivityAvailableScheduleProps,
   GetActivityProps,
   GetActivityReviewsProps,
 } from "@/src/types/activities";
+import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 
 /**
  * @description 모든 체험 리스트 조회
@@ -140,9 +140,11 @@ export const getActivityReviews = async ({
   page,
   size,
 }: GetActivityReviewsProps) => {
-  let url = `/activities/${activityId}/reviews`;
+  let url;
 
-  if (page) {
+  if (!page && !size) {
+    url = `/activities/${activityId}/reviews`;
+  } else {
     url = `/activities/${activityId}/reviews?page=${page}&size=${size}`;
   }
 
