@@ -13,6 +13,7 @@ export interface ReviewItem {
 }
 
 export interface ReviewSummary {
+  activityId?: number;
   reviews: ReviewItem[];
   totalCount: number;
   averageRating?: number;
@@ -20,4 +21,10 @@ export interface ReviewSummary {
 
 export interface ReviewListProps {
   fetchedReviews: ReviewItem[];
+}
+
+export interface UseReviewsProps {
+  activityId: number;
+  currentPage: number;
+  size: number;
 }
