@@ -21,7 +21,13 @@ const MyPageKakao = () => {
 
     if (!answer) return;
 
-    const kakaoId = Number(userData.email.split("@")[0]);
+    const emailParts = userData.email.split("@");
+
+    if (emailParts.length !== 2 || Number.isNaN(Number(emailParts[0]))) {
+      throw new Error("유효하지 않은 이메일 형식입니다.");
+    }
+
+    const kakaoId = Number(emailParts[0]);
 
     try {
       await deleteKakaoUser(kakaoId);
