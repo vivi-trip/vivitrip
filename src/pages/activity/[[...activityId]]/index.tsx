@@ -5,6 +5,7 @@ import ActivityReservationBar from "@/src/components/ActivityReservation/Activit
 import ActivityTitleSection from "@/src/components/ActivityTitleSection";
 import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
+import Review from "@/src/components/Review";
 import Custom404 from "@/src/pages/404";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/userStore";
@@ -80,19 +81,8 @@ const ActivitiesPage = () => {
           <ActivityLocation address={address} />
         </ActivityContentSection>
 
-        <ActivityContentSection title="체험 후기">
-          {/* 
-              to. @hayuri1990
-              
-              후기 컴포넌트 렌더링 위치입니다.
-              해당 파일이 아닌 컴포넌트를 따로 생성해주시길 바라며,
-              변수 activityId 를 prop 으로 가져가서 api 요청에 사용하시면 됩니다.
-
-              빈 div 태그 안에 위치한 건 overflow 컨트롤을 위해서 입니다. 작업완료 후 필요에 따라 제거 가능합니다.
-
-              from. @JuhyeokC
-            */}
-          <p>후기 컴포넌트</p>
+        <ActivityContentSection>
+          <Review activityId={Number(activityId)} />
         </ActivityContentSection>
       </div>
 
