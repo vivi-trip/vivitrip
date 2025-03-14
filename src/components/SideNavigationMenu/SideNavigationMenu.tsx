@@ -74,21 +74,19 @@ const SideNavigationMenu = ({ url }: Props) => {
         {url ? (
           <ProfileUpload url={url} profileImageUrl={userData.profileImageUrl} />
         ) : (
-          userData && (
-            <div className="relative size-160 overflow-hidden rounded-160 bg-gray-200 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]">
-              <Image
-                className="object-cover"
-                src={
-                  userData.profileImageUrl
-                    ? userData.profileImageUrl
-                    : "/images/Image_default_profile_image.png"
-                }
-                alt="프로필이미지"
-                fill
-                sizes="160px"
-              />
-            </div>
-          )
+          <div className="relative size-160 overflow-hidden rounded-160 bg-gray-200 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]">
+            <Image
+              className="object-cover"
+              src={
+                userData.profileImageUrl
+                  ? userData.profileImageUrl
+                  : "/images/Image_default_profile_image.png"
+              }
+              alt="프로필이미지"
+              fill
+              sizes="160px"
+            />
+          </div>
         )}
       </div>
       <ul className="flex flex-col gap-8">
