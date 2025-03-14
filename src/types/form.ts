@@ -26,7 +26,7 @@ export interface BaseProps {
 }
 
 export interface FormProps<T extends FieldValues> extends BaseProps {
-  onSubmit: (data: T) => void;
+  onSubmit?: (data: T) => void;
 }
 
 export interface FieldProps extends BaseProps {
