@@ -15,14 +15,13 @@ const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
 
       <Form.Field variant="email">
         <Form.Label>이메일</Form.Label>
-        <Form.Input value={userData.email} readOnly disabled />
+        <Form.Input defaultValue={userData.email} readOnly disabled />
       </Form.Field>
 
       <Form.Field variant="nickname">
         <Form.Label>닉네임</Form.Label>
         <Form.Input
           value={userData.nickname}
-          defaultValue={userData.nickname}
           placeholder="닉네임을 입력해 주세요"
         />
       </Form.Field>
