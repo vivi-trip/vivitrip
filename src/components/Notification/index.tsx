@@ -18,7 +18,7 @@ const Notification = () => {
 
   const [totalCount, setTotalCount] = useState<number>(0);
 
-  const { data, fetchNextPage, hasNextPage, isPending, refetch } =
+  const { data, fetchNextPage, hasNextPage, isFetching, refetch } =
     useInfiniteNotifications({ size: 5 });
 
   const handleDeleteItem = async (id: NotificationId) => {
@@ -63,7 +63,7 @@ const Notification = () => {
                 onClick={() => {
                   refetch();
                 }}
-                disabled={isPending}>
+                disabled={isFetching}>
                 <IconRefresh className="size-16" />
               </button>
             </div>
@@ -100,11 +100,12 @@ const Notification = () => {
                 <Button
                   type="button"
                   radius="4"
-                  backgroundColor="green"
+                  backgroundColor={isFetching ? "gray" : "green"}
                   fontStyle="l"
                   className="p-4"
+                  disabled={isFetching}
                   onClick={() => fetchNextPage()}>
-                  더보기
+                  {isFetching ? "불러오는 중..." : "더보기"}
                 </Button>
               )}
             </div>
