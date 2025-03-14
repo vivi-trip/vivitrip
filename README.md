@@ -38,3 +38,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## 프로젝트 소개
+
+# vivitrip, for your experience.
+
+## 프로젝트 설명
+
+> 당신의 생동감 넘치는 여행을 위해
+
+## 프로젝트 개요
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/vivi-trip/vivitrip?utm_source=oss&utm_medium=github&utm_campaign=vivi-trip%2Fvivitrip&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+
+## 프로젝트 팀원
+
+@hayuri1990
+@JuhyeokC
+@kanghyosung1
+@myong39
+
+## 페이지 별 사용법
