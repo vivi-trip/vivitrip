@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Button from "../Button/Button";
 import IconClose from "@/assets/svgs/close.svg";
 import IconNotification from "@/assets/svgs/ic_notification.svg";
@@ -23,8 +22,13 @@ const Notification = () => {
     useInfiniteNotifications();
 
   const handleDeleteItem = async (id: NotificationId) => {
-    await deleteMyNotification({ notificationId: id });
-    await refetch();
+    try {
+      await deleteMyNotification({ notificationId: id });
+      await refetch();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error("알림 삭제 중 오류가 발생했습니다: ", error);
+    }
   };
 
   const handleIndicator = useCallback(async () => {
