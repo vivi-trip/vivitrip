@@ -2,46 +2,32 @@ import Pagination from "@/src/components/Pagination";
 import ProgressBar from "@/src/components/Review/ProgressBar";
 import RatingSummary from "@/src/components/Review/RatingSummary";
 import ReviewList from "@/src/components/Review/ReviewList";
-import { getActivityReviews } from "@/src/services/activities";
-import { ReviewSummary } from "@/src/types/review";
+import useReviews from "@/src/hooks/review/useReviews";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const Review = ({ reviews, totalCount, averageRating }: ReviewSummary) => {
+const Review = ({ activityId }: { activityId: number }) => {
   const router = useRouter();
-  const searchParams = router.query;
-  const currentPage = Number(searchParams.page) || 1;
-  const [fetchedReviews, setFetchedReviews] = useState([]);
-  const activityId = reviews[0]?.activityId;
+  const { page } = router.query;
+  const currentPage = Number(page) || 1;
   const size = 3;
 
   // 초기 페이지 설정
   useEffect(() => {
-    if (!searchParams.page) {
-      router.replace(`?page=1`);
+    if (!page) {
+      router.replace(`/activity/${activityId}?page=1`);
     }
-  }, [searchParams, router]);
+  }, [activityId, page, router]);
 
-  useEffect(() => {
-    if (totalCount === 0) return;
-
-    const fetchReviews = async () => {
-      try {
-        const page = Number(searchParams.page) || 1;
-
-        const response = await getActivityReviews({ activityId, page, size });
-        setFetchedReviews(response.reviews);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      }
-    };
-
-    fetchReviews();
-  }, [activityId, reviews, searchParams, size, totalCount]);
+  // data fetching
+  const { reviews, reviewList, totalCount, averageRating } = useReviews({
+    activityId,
+    currentPage,
+    size,
+  });
 
   return (
-    <div className="mx-auto flex max-w-1200 flex-col gap-24">
+    <div className="mx-auto flex flex-col gap-24">
       <header className="flex gap-10">
         <h2 className="font-20px-bold">후기</h2>
         <h2 className="font-20px-bold text-brand-500">{totalCount}</h2>
@@ -55,9 +41,9 @@ const Review = ({ reviews, totalCount, averageRating }: ReviewSummary) => {
         <div className="h-full border-r border-gray-200" />
         <ProgressBar reviews={reviews} totalCount={totalCount} />
       </article>
-      <ReviewList fetchedReviews={fetchedReviews} />
+      <ReviewList fetchedReviews={reviewList} />
       {totalCount > 0 ? (
-        <footer className="mb-120 mt-16 flex justify-center md:mt-66 lg:mt-48">
+        <footer className="mt-16 flex justify-center md:mt-66 lg:mt-48">
           <Pagination
             totalItems={totalCount}
             pageCount={5}
