@@ -26,12 +26,13 @@ export const useListMyNotifications = ({
 /**
  * @description 내 알림 리스트 무한스크롤
  */
-export const useInfiniteNotifications = () => {
+export const useInfiniteNotifications = ({ size }: { size: number }) => {
   return useInfiniteQuery({
-    queryKey: ["notifications"],
-    queryFn: getMyNotifications,
+    queryKey: ["notifications", size],
+    queryFn: ({ pageParam }: { pageParam: number | null }) =>
+      getMyNotifications({ size, cursorId: pageParam }),
     initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.cursorId ?? null,
+    getNextPageParam: (nextPageParam) => nextPageParam.cursorId ?? null,
     refetchInterval: 1000 * 60, // 10초마다 API 호출
     refetchOnWindowFocus: false, // 탭이 비활성화일 때 API 호출 비활성화
   });

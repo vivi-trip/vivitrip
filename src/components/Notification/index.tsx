@@ -19,7 +19,7 @@ const Notification = () => {
   const [totalCount, setTotalCount] = useState<number>(0);
 
   const { data, fetchNextPage, hasNextPage, isPending, refetch } =
-    useInfiniteNotifications();
+    useInfiniteNotifications({ size: 5 });
 
   const handleDeleteItem = async (id: NotificationId) => {
     try {
