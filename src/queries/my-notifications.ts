@@ -18,7 +18,7 @@ export const useListMyNotifications = ({
   return useQuery({
     queryKey: ["my-notifications"],
     queryFn: () => listMyNotifications({ size, cursorId }),
-    refetchInterval: 1000 * 10, // 10초마다 API 호출
+    refetchInterval: 1000 * 60, // 10초마다 API 호출
     refetchOnWindowFocus: false, // 탭이 비활성화일 때 API 호출 비활성화
   });
 };
@@ -32,7 +32,7 @@ export const useInfiniteNotifications = () => {
     queryFn: getMyNotifications,
     initialPageParam: null,
     getNextPageParam: (lastPage) => lastPage.cursorId ?? null,
-    refetchInterval: 1000 * 10, // 10초마다 API 호출
+    refetchInterval: 1000 * 60, // 10초마다 API 호출
     refetchOnWindowFocus: false, // 탭이 비활성화일 때 API 호출 비활성화
   });
 };
