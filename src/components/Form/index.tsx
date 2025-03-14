@@ -45,7 +45,10 @@ const Form = <T extends FieldValues>({
   const methods = useForm<T>();
 
   const handleSubmit = async (data: T) => {
+    if (!onSubmit) return;
+
     await onSubmit(data);
+
     if (resetOnSubmit) {
       methods.reset();
     }
