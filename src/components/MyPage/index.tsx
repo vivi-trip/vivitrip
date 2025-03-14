@@ -28,12 +28,12 @@ const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
 
       <Form.Field variant="password">
         <Form.Label>비밀번호</Form.Label>
-        <Form.Input placeholder="비밀번호을 입력해주세요" />
+        <Form.Input placeholder="비밀번호를 입력해주세요" />
       </Form.Field>
 
       <Form.Field variant="confirmPassword">
         <Form.Label>비밀번호 확인</Form.Label>
-        <Form.Input placeholder="비밀번호을 한 번 더 입력해주세요" />
+        <Form.Input placeholder="비밀번호를 한 번 더 입력해주세요" />
       </Form.Field>
 
       <Form.Field variant="authPage" className="mt-20">
