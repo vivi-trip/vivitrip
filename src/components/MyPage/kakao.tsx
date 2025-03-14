@@ -1,8 +1,3 @@
-/* eslint-disable no-alert */
-
-/* eslint-disable no-restricted-globals */
-
-/* eslint-disable no-console */
 import Button from "@/src/components/Button/Button";
 import Form from "@/src/components/Form";
 import PATH_NAMES from "@/src/constants/pathname";
@@ -14,20 +9,32 @@ const MyPageKakao = () => {
   const router = useRouter();
   const { userData, clearUser } = useUserStore();
 
-  const handleClick = async () => {
+  const handleDisconnectKakaoAccount = async () => {
     if (!userData) return;
 
+    /**
+     * @todo
+     * 커스텀 모달로 변경
+     */
+    // eslint-disable-next-line no-restricted-globals, no-alert
     const answer = confirm("카카오 계정 연결을 끊으시겠습니까?");
 
     if (!answer) return;
 
     const kakaoId = Number(userData.email.split("@")[0]);
 
-    await deleteKakaoUser(kakaoId).then(() => {
+    try {
+      await deleteKakaoUser(kakaoId);
       clearUser();
-    });
-
-    router.replace(PATH_NAMES.Root);
+      router.replace(PATH_NAMES.Root);
+    } catch (error) {
+      /**
+       * @todo
+       * 커스텀 모달로 변경
+       */
+      // eslint-disable-next-line no-console
+      console.error("카카오 계정 연결 해제 중 오류가 발생했습니다: ", error);
+    }
   };
 
   if (!userData) return null;
@@ -60,7 +67,7 @@ const MyPageKakao = () => {
         radius="6"
         fontStyle="l"
         className="mt-20 bg-[#fae100]"
-        onClick={handleClick}>
+        onClick={handleDisconnectKakaoAccount}>
         카카오 계정 연결 끊기
       </Button>
     </Form>
