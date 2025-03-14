@@ -13,12 +13,16 @@ interface ActivitiesCardProps {
 const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
   const {
     id: activityId,
-    bannerImageUrl,
-    rating,
-    reviewCount,
-    title,
-    price,
+    bannerImageUrl = "",
+    rating = 0,
+    reviewCount = 0,
+    title = "",
+    price = 0,
   } = activity;
+
+  if (!activityId) {
+    return null;
+  }
 
   return (
     <Link
