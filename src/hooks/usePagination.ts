@@ -33,7 +33,7 @@ const usePagination = ({
   }, [currentPage, totalPages, router]);
 
   // 페이지 이동
-  const navigateToPage = (page: number) => {
+  const navigateToPage = (page: number): void => {
     const newQuery = { ...router.query, page: String(page) };
     router.push({
       pathname: router.pathname,
