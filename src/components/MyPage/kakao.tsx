@@ -46,9 +46,7 @@ const MyPageKakao = () => {
   if (!userData) return null;
 
   return (
-    <Form
-      onSubmit={() => false}
-      className="mx-auto w-full max-w-640 pb-48 md:ml-0">
+    <Form className="mx-auto w-full max-w-640 pb-48 md:ml-0">
       <Form.Title>내정보</Form.Title>
 
       <Form.Field variant="default">
