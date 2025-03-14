@@ -60,13 +60,7 @@ const ReviewList = ({ fetchedReviews }: ReviewListProps) => {
             </div>
             {idx !== fetchedReviews.length - 1 && (
               <div className="relative">
-                <div
-                  className="absolute left-1/2 h-0.5 border-b border-brand-500 opacity-25 lg:max-w-1200"
-                  style={{
-                    width: "calc(100vw - 17px)",
-                    transform: "translateX(-50%)",
-                  }}
-                />
+                <div className="h-0.5 w-full border-b border-brand-500 opacity-25" />
               </div>
             )}
           </section>
