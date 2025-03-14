@@ -1,6 +1,8 @@
 import StarLgIcon from "@/assets/svgs/ic_star_lg.svg";
 import PROGRESS_BAR_ITEM from "@/src/constants/progressBar";
+import useResponsiveTextStyle from "@/src/hooks/Activity/useResponsiveTextStyle";
 import { ReviewItem, ReviewSummary } from "@/src/types/review";
+import clsx from "clsx";
 
 const RatingSummary = ({
   reviews,
@@ -17,7 +19,7 @@ const RatingSummary = ({
 
     const ratingIndex = Math.ceil(rating) - 1;
 
-    return PROGRESS_BAR_ITEM[ratingIndex].title;
+    return PROGRESS_BAR_ITEM[ratingIndex]?.title;
   };
 
   // 만족도 계산
@@ -36,13 +38,34 @@ const RatingSummary = ({
     totalCount,
   );
 
+  // 텍스트스타일
+  const { isMicroScreen, isExtraXsScreen } = useResponsiveTextStyle();
+
   return (
-    <section className="flex h-full w-2/5 flex-col items-center justify-center gap-8 py-10 md:gap-0">
-      <div className="flex flex-row items-center gap-5">
-        <StarLgIcon className="size-39 text-yellow-200 md:size-43" />
+    <section className="flex h-full w-2/5 flex-col items-center justify-center gap-8 overflow-hidden py-10 md:gap-0">
+      <div className="flex items-center gap-5">
+        <StarLgIcon
+          className={clsx(
+            "text-yellow-200 md:size-43",
+            isExtraXsScreen ? "size-27" : "size-39",
+            isMicroScreen && "size-18",
+          )}
+        />
         <div className="flex items-baseline gap-5">
-          <p className="font-44px-bold md:font-50px-bold">{roundedRating}</p>
-          <p className="font-24px-medium md:font-28px-medium text-gray-300">
+          <p
+            className={clsx(
+              "font-44px-bold md:font-50px-bold",
+              isExtraXsScreen && "font-28px-bold",
+              isMicroScreen && "font-20px-bold",
+            )}>
+            {roundedRating}
+          </p>
+          <p
+            className={clsx(
+              "font-24px-medium md:font-28px-medium text-gray-300",
+              isExtraXsScreen && "font-18px-medium",
+              isMicroScreen && "font-16px-medium",
+            )}>
             /5
           </p>
         </div>
@@ -59,7 +82,13 @@ const RatingSummary = ({
         ) : (
           <div />
         )}
-        <p className="font-14px-bold md:font-16px-bold rounded-20 border border-brand-300 bg-brand-200 px-16 py-4 text-brand-500">
+        <p
+          className={clsx(
+            "line-clamp-2 rounded-20 border border-brand-300 bg-brand-200 py-4 text-brand-500",
+            isMicroScreen && isExtraXsScreen
+              ? "font-12px-bold px-8"
+              : "font-14px-bold md:font-16px-bold px-16",
+          )}>
           {satisFactionLevel(roundedRating)}
         </p>
       </div>
