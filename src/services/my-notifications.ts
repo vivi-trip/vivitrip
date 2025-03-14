@@ -35,14 +35,20 @@ export const listMyNotifications = async ({
  * @param pageParam - 알림 커서 아이디
  */
 export const getMyNotifications = async ({
-  pageParam,
+  size = 5,
+  cursorId,
 }: {
-  pageParam: number | null;
+  size: number;
+  cursorId: number | null;
 }) => {
-  const params: string[] = ["size=5"];
+  const params: string[] = [];
 
-  if (pageParam) {
-    params.push(`cursorId=${pageParam}`);
+  if (size) {
+    params.push(`size=${size}`);
+  }
+
+  if (cursorId) {
+    params.push(`cursorId=${cursorId}`);
   }
 
   const { data } = await api.get(
