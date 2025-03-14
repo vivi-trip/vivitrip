@@ -1,39 +1,19 @@
-/* eslint-disable no-console */
-import {
-  getMyNotifications,
-  listMyNotifications,
-} from "@/src/services/my-notifications";
-import type { GetMyNotificationsProps } from "@/src/types/my-notifications";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-
-/**
- * @description 내 알림 리스트 조회
- * @param size - 알림 갯수
- * @param cursorId - 알림 커서 아이디
- */
-export const useListMyNotifications = ({
-  size,
-  cursorId,
-}: GetMyNotificationsProps) => {
-  return useQuery({
-    queryKey: ["my-notifications"],
-    queryFn: () => listMyNotifications({ size, cursorId }),
-    refetchInterval: 1000 * 60, // 10초마다 API 호출
-    refetchOnWindowFocus: false, // 탭이 비활성화일 때 API 호출 비활성화
-  });
-};
+import { getMyNotifications } from "@/src/services/my-notifications";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 /**
  * @description 내 알림 리스트 무한스크롤
  */
-export const useInfiniteNotifications = ({ size }: { size: number }) => {
+const useInfiniteNotifications = ({ size }: { size: number }) => {
   return useInfiniteQuery({
     queryKey: ["notifications", size],
     queryFn: ({ pageParam }: { pageParam: number | null }) =>
       getMyNotifications({ size, cursorId: pageParam }),
     initialPageParam: null,
     getNextPageParam: (nextPageParam) => nextPageParam.cursorId ?? null,
-    refetchInterval: 1000 * 60, // 10초마다 API 호출
+    refetchInterval: 1000 * 60, // 60초마다 API 호출
     refetchOnWindowFocus: false, // 탭이 비활성화일 때 API 호출 비활성화
   });
 };
+
+export default useInfiniteNotifications;
