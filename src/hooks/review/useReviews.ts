@@ -8,6 +8,8 @@ const useReviews = ({ activityId, currentPage, size }: UseReviewsProps) => {
   const [reviews, setReviews] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [averageRating, setAverageRating] = useState(0);
+  const [fetchError, setFetchError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchTotalCount = async () => {
@@ -38,13 +40,15 @@ const useReviews = ({ activityId, currentPage, size }: UseReviewsProps) => {
     };
 
     fetchReviewSummary();
-  }, [activityId, totalCount]);
+  }, [activityId, currentPage, totalCount]);
 
   // ReviewList
   const [reviewList, setReviewList] = useState([]);
 
   useEffect(() => {
     const fetchReviewList = async () => {
+      setIsLoading(true);
+      setFetchError(null);
       try {
         const response = await getActivityReviews({
           activityId,
@@ -55,12 +59,24 @@ const useReviews = ({ activityId, currentPage, size }: UseReviewsProps) => {
         setReviewList(response.reviews);
       } catch (error) {
         console.error(error);
+        setFetchError(
+          error instanceof Error ? error : new Error("오류가 발생했습니다"),
+        );
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchReviewList();
   }, [activityId, currentPage, size]);
 
-  return { reviews, reviewList, totalCount, averageRating };
+  return {
+    reviews,
+    reviewList,
+    totalCount,
+    averageRating,
+    isLoading,
+    fetchError,
+  };
 };
 
 export default useReviews;
