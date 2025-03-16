@@ -38,7 +38,7 @@ const useReviews = ({ activityId, currentPage, size }: UseReviewsProps) => {
     };
 
     fetchReviewSummary();
-  }, [activityId, currentPage, totalCount]);
+  }, [activityId, totalCount]);
 
   // ReviewList
   const [reviewList, setReviewList] = useState([]);
