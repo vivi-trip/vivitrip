@@ -3,7 +3,12 @@ import { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
 import { FieldValues } from "react-hook-form";
 
 export type IconPosition = "left" | "right";
-export type IconKeys = "password" | "confirmPassword" | "calendar" | "search";
+export type IconKeys =
+  | "password"
+  | "confirmPassword"
+  | "newPassword"
+  | "calendar"
+  | "search";
 export type IconType = {
   icon: (isVisible?: boolean) => ReactNode;
   onClick: () => void;
