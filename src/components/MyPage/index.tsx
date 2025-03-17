@@ -1,8 +1,13 @@
 import Form from "@/src/components/Form";
 import useUserStore from "@/src/stores/userStore";
+import { ComponentProps } from "@/src/types/type";
 import { MyPageProps } from "@/src/types/user";
 
-const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
+const MyPage = ({
+  handleSubmit,
+  isPending,
+  children,
+}: MyPageProps & ComponentProps) => {
   const { userData } = useUserStore();
 
   if (!userData) return null;
@@ -12,6 +17,8 @@ const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
       onSubmit={handleSubmit}
       className="mx-auto w-full max-w-640 pb-48 md:ml-0">
       <Form.Title>내정보</Form.Title>
+
+      {children}
 
       <Form.Field variant="email">
         <Form.Label>이메일</Form.Label>
@@ -26,7 +33,7 @@ const MyPage = ({ handleSubmit, isPending }: MyPageProps) => {
         />
       </Form.Field>
 
-      <Form.Field variant="password">
+      <Form.Field variant="newPassword">
         <Form.Label>비밀번호</Form.Label>
         <Form.Input placeholder="비밀번호를 입력해주세요" />
       </Form.Field>
