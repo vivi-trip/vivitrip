@@ -38,10 +38,23 @@ const validationRules = (
       message: "대문자, 특수 문자를 반드시 포함해야 합니다.",
     },
   },
+  newPassword: {
+    required: "비밀번호를 입력해주세요.",
+    minLength: {
+      value: 8,
+      message: "8자 이상 입력해주세요.",
+    },
+    pattern: {
+      value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
+      message: "대문자, 특수 문자를 반드시 포함해야 합니다.",
+    },
+  },
   confirmPassword: {
     required: "비밀번호를 한번 더 입력해주세요.",
     validate: (value: string) =>
-      value === watch("password") || "비밀번호가 일치하지 않습니다.",
+      value === watch("password") ||
+      value === watch("newPassword") ||
+      "비밀번호가 일치하지 않습니다.",
   },
   nickname: {
     required: "닉네임을 입력해주세요.",
