@@ -2,41 +2,56 @@ import Logo from "@/src/components/Logo";
 import MyPage from "@/src/components/MyPage";
 import MyPageKakao from "@/src/components/MyPage/kakao";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
+import PopupModal from "@/src/components/modal/PopupModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import useHydration from "@/src/hooks/useHydration";
 import { useUpdateMyData } from "@/src/queries/auth";
+import useModalStore from "@/src/stores/ModalStore";
+import useProfileImageUrlStore from "@/src/stores/useProfileImageUrlStore";
 import useUserStore from "@/src/stores/userStore";
 import { UserPatchProps } from "@/src/types/user";
 import { useRouter } from "next/router";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const RouteMyPage = () => {
   const router = useRouter();
   const isHydrated = useHydration();
   const { userData, userProvider } = useUserStore.getState();
   const { mutate, isPending } = useUpdateMyData();
+  const { newProfileImageUrl } = useProfileImageUrlStore();
+  const { setModalOpen } = useModalStore();
 
-  const [imageUrl, setImageUrl] = useState("");
+  const handleSubmit = async (data: UserPatchProps) => {
+    if (!userData) return;
 
-  const onChangeImageURL = (newImageUrl: string) => {
-    setImageUrl(newImageUrl); // 이미지 URL 업데이트 함수
-  };
+    const { nickname, newPassword } = data;
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    const param = {
+      nickname,
+      profileImageUrl: (newProfileImageUrl ||
+        userData.profileImageUrl) as string,
+      newPassword,
+    };
 
-    const formData = new FormData(event.currentTarget);
-    const param = Object.fromEntries(formData) as unknown as UserPatchProps;
+    const RESPONSE_MESSAGE = {
+      success: "수정되었습니다.",
+      error: "오류가 발생했습니다.",
+    };
 
-    param.profileImageUrl = imageUrl;
-
-    if (userProvider === "kakao") {
-      param.newPassword = userData?.email
-        ? String(userData?.email.split("@").shift())
-        : "00000000";
-    }
-
-    mutate(param);
+    mutate(param, {
+      onSuccess({ status }) {
+        setModalOpen(
+          <PopupModal
+            title={
+              status === 200 ? RESPONSE_MESSAGE.success : RESPONSE_MESSAGE.error
+            }
+          />,
+        );
+      },
+      onError() {
+        setModalOpen(<PopupModal title={RESPONSE_MESSAGE.error} />);
+      },
+    });
   };
 
   useEffect(() => {

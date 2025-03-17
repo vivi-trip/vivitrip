@@ -1,5 +1,4 @@
 import { AxiosHeaders } from "axios";
-import { FormEvent } from "react";
 
 export interface UserId {
   id: number;
@@ -33,7 +32,7 @@ export interface User extends UserId, UserEmail, UserNickName {
 }
 
 export interface MyPageProps {
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (data: UserPatchProps) => void;
   isPending: boolean;
 }
 
