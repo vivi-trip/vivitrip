@@ -1,21 +1,20 @@
 import PenIcon from "@/assets/svgs/ic_pen.svg";
 import { useUploadProfileImage } from "@/src/queries/useUsers";
+import useProfileImageUrlStore from "@/src/stores/useProfileImageUrlStore";
 import { ProfileImageUrlResponse } from "@/src/types/Users";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 interface Props {
-  url: (url: string) => void;
   profileImageUrl?: string;
 }
 
-const ProfileUpload = ({ url, profileImageUrl }: Props) => {
+const ProfileUpload = ({ profileImageUrl }: Props) => {
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [uploadedImage, setUploadedImage] = useState<string | undefined>(
-    undefined,
-  );
+  const { newProfileImageUrl, setNewProfileImageUrl } =
+    useProfileImageUrlStore();
 
   const { mutate } = useUploadProfileImage();
 
@@ -25,8 +24,7 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
 
     mutate(file, {
       onSuccess: (data: ProfileImageUrlResponse) => {
-        setUploadedImage(data.profileImageUrl);
-        url(data.profileImageUrl);
+        setNewProfileImageUrl(data.profileImageUrl);
         queryClient.invalidateQueries({ queryKey: ["userProfile"] });
 
         // 파일 입력값 초기화
@@ -45,14 +43,14 @@ const ProfileUpload = ({ url, profileImageUrl }: Props) => {
         <Image
           className="object-cover"
           src={
-            uploadedImage ??
+            newProfileImageUrl ??
             profileImageUrl ??
             "/images/Image_default_profile_image.png"
           }
           alt="프로필 사진"
           placeholder="blur"
           blurDataURL={
-            uploadedImage ??
+            newProfileImageUrl ??
             profileImageUrl ??
             "/images/Image_default_profile_image.png"
           }
