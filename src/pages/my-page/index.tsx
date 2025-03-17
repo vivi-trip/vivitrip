@@ -2,6 +2,7 @@ import Logo from "@/src/components/Logo";
 import MyPage from "@/src/components/MyPage";
 import MyPageKakao from "@/src/components/MyPage/kakao";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
+import ProfileUpload from "@/src/components/SideNavigationMenu/common/ProfileUpload";
 import PopupModal from "@/src/components/modal/PopupModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import useHydration from "@/src/hooks/useHydration";
@@ -58,7 +59,7 @@ const RouteMyPage = () => {
     if (!userData) router.replace(PATH_NAMES.Root);
   }, [userData, router]);
 
-  if (!isHydrated) return null;
+  if (!isHydrated || !userData) return null;
 
   if (isPending)
     return (
@@ -90,7 +91,11 @@ const RouteMyPage = () => {
             <SideNavigationMenu canChangeProfile />
           </div>
           <div className="flex-1">
-            <MyPage handleSubmit={handleSubmit} isPending={isPending} />
+            <MyPage handleSubmit={handleSubmit} isPending={isPending}>
+              <div className="flex justify-center md:hidden">
+                <ProfileUpload profileImageUrl={userData.profileImageUrl} />
+              </div>
+            </MyPage>
           </div>
         </div>
       );
