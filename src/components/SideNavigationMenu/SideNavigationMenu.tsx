@@ -11,10 +11,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 interface Props {
-  url?: (url: string) => void | undefined;
+  canChangeProfile?: boolean;
 }
 
-const SideNavigationMenu = ({ url }: Props) => {
+const SideNavigationMenu = ({ canChangeProfile }: Props) => {
   const { userData } = useUserStore();
   const { pathname } = useRouter();
   const [selectedItem, setSelectedItem] = useState<null | number>(null);
@@ -71,8 +71,8 @@ const SideNavigationMenu = ({ url }: Props) => {
         pathname === "/my-page" ? "flex w-344" : "hidden",
       )}>
       <div className="relative flex justify-center">
-        {url ? (
-          <ProfileUpload url={url} profileImageUrl={userData.profileImageUrl} />
+        {canChangeProfile ? (
+          <ProfileUpload profileImageUrl={userData.profileImageUrl} />
         ) : (
           <div className="relative size-160 overflow-hidden rounded-160 bg-gray-200 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]">
             <Image
