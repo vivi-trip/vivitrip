@@ -11,18 +11,25 @@ import {
   IconType,
 } from "@/src/types/form";
 
+const passwordIcon: IconType = {
+  icon: (isVisible?: boolean) =>
+    isVisible ? (
+      <VisibilityOn width={24} height={24} />
+    ) : (
+      <VisibilityOff width={24} height={24} />
+    ),
+  onClick: () => {},
+  position: "right",
+  padding: "pr-64",
+  margin: "ml-20",
+};
+
 export const icons: Record<IconKeys, IconType> = {
   password: {
-    icon: (isVisible?: boolean) =>
-      isVisible ? (
-        <VisibilityOn width={24} height={24} />
-      ) : (
-        <VisibilityOff width={24} height={24} />
-      ),
-    onClick: () => {},
-    position: "right",
-    padding: "pr-64",
-    margin: "ml-20",
+    ...passwordIcon,
+  },
+  newPassword: {
+    ...passwordIcon,
   },
   confirmPassword: {
     icon: (isVisible?: boolean) => icons.password.icon(isVisible),
