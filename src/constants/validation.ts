@@ -17,6 +17,18 @@ interface ValidationRule {
   validate?: (value: string) => boolean | string;
 }
 
+const passwordValidationRules = {
+  required: "비밀번호를 입력해주세요.",
+  minLength: {
+    value: 8,
+    message: "8자 이상 입력해주세요.",
+  },
+  pattern: {
+    value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
+    message: "대문자, 특수 문자를 반드시 포함해야 합니다.",
+  },
+};
+
 const validationRules = (
   watch: (field: string) => string,
 ): Record<InputKeys, ValidationRule> => ({
@@ -27,28 +39,8 @@ const validationRules = (
       message: "이메일 형식으로 입력해 주세요.",
     },
   },
-  password: {
-    required: "비밀번호를 입력해주세요.",
-    minLength: {
-      value: 8,
-      message: "8자 이상 입력해주세요.",
-    },
-    pattern: {
-      value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
-      message: "대문자, 특수 문자를 반드시 포함해야 합니다.",
-    },
-  },
-  newPassword: {
-    required: "비밀번호를 입력해주세요.",
-    minLength: {
-      value: 8,
-      message: "8자 이상 입력해주세요.",
-    },
-    pattern: {
-      value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
-      message: "대문자, 특수 문자를 반드시 포함해야 합니다.",
-    },
-  },
+  password: { ...passwordValidationRules },
+  newPassword: { ...passwordValidationRules },
   confirmPassword: {
     required: "비밀번호를 한번 더 입력해주세요.",
     validate: (value: string) =>
