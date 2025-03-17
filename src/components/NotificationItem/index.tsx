@@ -49,11 +49,11 @@ const NotificationItem = ({
           <p className={clsx(statusColor, "size-5 rounded-full")} />
           <p className="font-12px-regular text-gray-700">{dateText}</p>
         </div>
-        <Dropdown>
+        <Dropdown className="-mr-9">
           <Dropdown.Trigger>
             <IconKebab viewBox="0 0 40 40" width={20} height={20} />
           </Dropdown.Trigger>
-          <Dropdown.Menu className="left-auto right-0 !mt-0 border border-brand-100 bg-white shadow-md">
+          <Dropdown.Menu className="left-auto right-6 !mt-0 border border-brand-100 bg-white shadow-md">
             <Dropdown.Item
               className="border-none bg-white p-2 px-10"
               onClick={handleDelete}>
