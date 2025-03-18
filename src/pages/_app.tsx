@@ -34,10 +34,9 @@ const App = ({
 
   const { userData, checkAndClearUserData } = useUserStore();
 
-  const isHomePage = pathname === "/home" || pathname === "/search";
-
-  // 404 page 여부 확인
+  const isHomeOrSearch = pathname === "/home" || pathname === "/search";
   const is404Page = pageProps?.statusCode === 404;
+  const isActivityPage = pathname.startsWith("/activity");
 
   useEffect(() => {
     if (userData) {
@@ -62,11 +61,11 @@ const App = ({
               ? "bg-brand-50"
               : "h-main bg-gray-50",
           )}>
-          <ScrollToTopHandler />
+          {!(isHomeOrSearch || isActivityPage) && <ScrollToTopHandler />}
           <div
             className={clsx(
               "mx-auto min-h-main",
-              !isHomePage && "max-w-screen-xl",
+              !isHomeOrSearch && "max-w-screen-xl",
             )}>
             {getLayout(<Component {...pageProps} />)}
           </div>
