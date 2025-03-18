@@ -24,7 +24,7 @@ const TwoButtonModal = ({
   const { setModalClose } = useModalStore();
 
   return (
-    <div className="flex h-184 w-298 flex-col rounded-12">
+    <div className="flex h-184 mt-300 md:mt-auto mx-auto w-298 flex-col rounded-12 ">
       <div className="mt-24 flex justify-center">
         <CheckIcon />
       </div>
