@@ -78,8 +78,8 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
   return (
     <div
       className={clsx(
-        "mb-8 h-128 w-full min-w-280 rounded-24 border border-white",
-        "md:mb-16 md:h-156",
+        "mb-8 h-128 w-full min-w-300 rounded-24 border border-white",
+        "md:mb-16 md:h-156 md:min-w-540",
         "lg:mb-24 lg:h-204",
       )}
       style={{ boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.08)" }}>
@@ -117,8 +117,9 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
           <span
             className={clsx(
               "font-14px-bold text-left",
-              "md:font-18px-bold",
-              "lg:font-20px-bold lg:mt-8",
+              "w-full max-w-200 truncate",
+              "md:font-18px-bold md:max-w-300",
+              "lg:font-20px-bold lg:mt-8 lg:max-w-480",
             )}>
             {title}
           </span>
