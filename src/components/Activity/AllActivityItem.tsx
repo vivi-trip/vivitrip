@@ -7,6 +7,7 @@ import { Activity } from "@/src/types/activities";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const AllActivityItem = ({
   id,
@@ -17,7 +18,14 @@ const AllActivityItem = ({
   reviewCount,
 }: Activity) => {
   // loading spinner
-  const { loadingButtons, showLoadingButtons } = useLoadingStore();
+  const { loadingButtons, showLoadingButtons, hideLoadingButtons } =
+    useLoadingStore();
+
+  useEffect(() => {
+    return () => {
+      hideLoadingButtons(id);
+    };
+  }, [hideLoadingButtons, id]);
 
   const { isMicroScreen } = useResponsiveTextStyle();
 
