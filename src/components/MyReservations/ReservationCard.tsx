@@ -67,7 +67,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
           setModalOpen(<PopupModal title="예약이 취소되었습니다." />);
         },
         onError: () => {
-          setModalOpen(<PopupModal title="예약 취소가 실패 했습니다." />);
+          setModalOpen(<PopupModal title="예약취소가 실패했습니다." />);
         },
       },
     );

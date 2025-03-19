@@ -34,9 +34,9 @@ const ReservationModal = () => {
       onSuccess: () => {
         setModalOpen(
           <PopupModal
-            title="예약이 신청 되었습니다."
-            content="예약 관리자가 예약 승인을 하면 
-          예약이 완료 됩니다."
+            title="예약이 신청되었습니다."
+            content="예약관리자가 승인을 하면 
+          예약이 완료됩니다."
           />,
           {
             customClass: "md:p-32",
