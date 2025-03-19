@@ -173,7 +173,9 @@ const Input: React.FC<InputProps> = ({
   };
 
   const isPasswordVariant =
-    variant === "password" || variant === "confirmPassword";
+    variant === "password" ||
+    variant === "newPassword" ||
+    variant === "confirmPassword";
   const selectedIcon =
     icons[variant as IconKeys] || (icon ? icons[icon] : null);
   const inputType = isPasswordVariant && !isPasswordVisible ? "password" : type;
