@@ -1,5 +1,4 @@
-type TimeRange = { startTime: string; endTime: string };
-type AvailableTimes = TimeRange[];
+import type { AvailableTimes, TimeRange } from "@/src/types/reservation";
 
 const formatTime = (time: string): string => {
   const [hour, minute] = time.split(":").map(Number);
