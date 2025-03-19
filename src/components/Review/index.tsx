@@ -4,20 +4,12 @@ import RatingSummary from "@/src/components/Review/RatingSummary";
 import ReviewList from "@/src/components/Review/ReviewList";
 import useReviews from "@/src/hooks/review/useReviews";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const Review = ({ activityId }: { activityId: number }) => {
   const router = useRouter();
   const { page } = router.query;
   const currentPage = Number(page) || 1;
   const size = 3;
-
-  // 초기 페이지 설정
-  useEffect(() => {
-    if (!page) {
-      router.replace(`/activity/${activityId}?page=1`);
-    }
-  }, [activityId, page, router]);
 
   // data fetching
   const { reviews, reviewList, totalCount, averageRating } = useReviews({
