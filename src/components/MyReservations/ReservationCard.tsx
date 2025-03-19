@@ -90,6 +90,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
             "h-128 min-w-128",
             "md:h-156 md:min-w-156",
             "lg:h-204 lg:min-w-204",
+            "lg:font-20px-bold lg:mt-8 lg:max-w-480",
           )}>
           <Image
             src={bannerImageUrl}

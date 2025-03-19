@@ -1,5 +1,5 @@
-import Button from "@/src/components/Button/Button";
 import CheckIcon from "@/assets/svgs/ic_check.svg";
+import Button from "@/src/components/Button/Button";
 import useModalStore from "@/src/stores/ModalStore";
 import React from "react";
 
@@ -24,7 +24,7 @@ const TwoButtonModal = ({
   const { setModalClose } = useModalStore();
 
   return (
-    <div className="flex h-184 mt-300 md:mt-auto mx-auto w-298 flex-col rounded-12 ">
+    <div className="mx-auto mt-300 flex h-184 w-298 flex-col rounded-12 md:mt-auto">
       <div className="mt-24 flex justify-center">
         <CheckIcon />
       </div>

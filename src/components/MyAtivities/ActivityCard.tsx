@@ -61,7 +61,15 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
           <span className="font-14px-regular md:font-16px-regular">{`${rating} (${reviewCount})`}</span>
         </div>
         <div className="flex h-full flex-col items-start justify-between">
-          <p className="font-14px-bold md:font-20px-bold">{title}</p>
+          <p
+            className={clsx(
+              "font-14px-bold text-left",
+              "w-full max-w-200 truncate",
+              "md:font-18px-bold md:max-w-300",
+              "lg:font-20px-bold lg:mt-8 lg:max-w-480",
+            )}>
+            {title}
+          </p>
           <div className="flex w-full items-center justify-between">
             <p className="font-16px-medium md:font-20px-medium lg:font-24px-medium lg:text-gray-700">
               {`₩${price?.toLocaleString("ko-KR")} / 인`}
