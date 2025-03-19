@@ -30,13 +30,16 @@ const App = ({
 
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
 
-  const { pathname } = useRouter();
-
   const { userData, checkAndClearUserData } = useUserStore();
 
+  const { pathname, query } = useRouter();
+
+  const hasQuery = Object.keys(query).length !== 0;
+  const isHome = pathname === "/home" && hasQuery;
+  const isActivityPage = pathname.startsWith("/activity") && hasQuery;
+  const isScrollToTopEnabled = isHome || isActivityPage;
   const isHomeOrSearch = pathname === "/home" || pathname === "/search";
   const is404Page = pageProps?.statusCode === 404;
-  const isActivityPage = pathname.startsWith("/activity");
 
   useEffect(() => {
     if (userData) {
@@ -61,7 +64,7 @@ const App = ({
               ? "bg-brand-50"
               : "h-main bg-gray-50",
           )}>
-          {!(isHomeOrSearch || isActivityPage) && <ScrollToTopHandler />}
+          {!isScrollToTopEnabled && <ScrollToTopHandler />}
           <div
             className={clsx(
               "mx-auto min-h-main",
