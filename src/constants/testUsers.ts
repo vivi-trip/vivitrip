@@ -41,7 +41,7 @@ const TEST_USERS: TestUserProps[] = [
   {
     nickname: "체험테스트",
     email: "123123123@naver.com",
-    password: "123123123z",
+    password: "123123123Z!",
   },
 ];
 
