@@ -10,3 +10,7 @@ export interface ReservationChipProps {
   count: number;
   onclick: () => void;
 }
+
+export type TimeRange = { startTime: string; endTime: string };
+
+export type AvailableTimes = TimeRange[];

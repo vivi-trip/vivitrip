@@ -4,6 +4,7 @@ import Dropdown from "@/src/components/Dropdown";
 import useGetAvailableTimeRanges from "@/src/hooks/useGetAvailableTimeRanges";
 import useGetDropdownTimeRanges from "@/src/hooks/useGetDropdownTimeRanges";
 import useOutsideClick from "@/src/hooks/useOutsideClick";
+import { TimeRange } from "@/src/types/reservation";
 import clsx from "clsx";
 import React, { useMemo, useRef, useState } from "react";
 
@@ -24,8 +25,6 @@ interface TimeDropdownProps {
   selectedDate: string | null;
 }
 
-type TimeRange = { startTime: string; endTime: string };
-
 const TimeDropdown = ({
   value,
   onChange,
@@ -45,8 +44,8 @@ const TimeDropdown = ({
 
   const scheduleList = useMemo<TimeRange[]>(() => {
     return existingSchedules
-      .map(({ date, ...rest }) => date === selectedDate && rest)
-      .filter((item) => item !== false);
+      .filter(({ date }) => date === selectedDate)
+      .map(({ startTime, endTime }) => ({ startTime, endTime }));
   }, [existingSchedules, selectedDate]);
 
   const availableRanges = useGetAvailableTimeRanges(scheduleList);
