@@ -1,6 +1,8 @@
 import IconArrowDown from "@/assets/svgs/ic_arrow_down.svg";
 import IconArrowUp from "@/assets/svgs/ic_arrow_up.svg";
 import Dropdown from "@/src/components/Dropdown";
+import useGetAvailableTimeRanges from "@/src/hooks/useGetAvailableTimeRanges";
+import useGetDropdownTimeRanges from "@/src/hooks/useGetDropdownTimeRanges";
 import useOutsideClick from "@/src/hooks/useOutsideClick";
 import clsx from "clsx";
 import React, { useMemo, useRef, useState } from "react";
@@ -22,54 +24,38 @@ interface TimeDropdownProps {
   selectedDate: string | null;
 }
 
+type TimeRange = { startTime: string; endTime: string };
+
 const TimeDropdown = ({
   value,
   onChange,
-  placeholder = "0:00",
+  placeholder = "00:00",
   minTime,
   disabled = false,
   addedSchedules,
   existingSchedules,
   selectedDate,
 }: TimeDropdownProps) => {
-  const timeOptions = useMemo(() => {
-    if (disabled) return [];
-
-    const isTimeOverlapping = (time: string, schedules: Schedule[]) => {
-      const hour = parseInt(time.split(":")[0], 10);
-      return schedules.some(
-        (schedule) =>
-          schedule.date === selectedDate &&
-          hour >= parseInt(schedule.startTime.split(":")[0], 10) &&
-          hour < parseInt(schedule.endTime.split(":")[0], 10),
-      );
-    };
-
-    const allHours = Array.from({ length: 24 }, (_, i) => ({
-      value: `${i}:00`,
-      label: `${i}:00`,
-    }));
-
-    if (minTime) {
-      const minHour = parseInt(minTime, 10);
-      const nextHour = (minHour + 1) % 24;
-      return [{ value: `${nextHour}:00`, label: `${nextHour}:00` }];
-    }
-
-    return allHours.filter((option) => {
-      return !isTimeOverlapping(option.value, [
-        ...addedSchedules,
-        ...existingSchedules,
-      ]);
-    });
-  }, [minTime, disabled, addedSchedules, existingSchedules, selectedDate]);
-
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const toggleDropdown = () => {
     if (disabled) return;
     setIsOpen(!isOpen);
   };
+
+  const scheduleList = useMemo<TimeRange[]>(() => {
+    return existingSchedules
+      .map(({ date, ...rest }) => date === selectedDate && rest)
+      .filter((item) => item !== false);
+  }, [existingSchedules, selectedDate]);
+
+  const availableRanges = useGetAvailableTimeRanges(scheduleList);
+  const { startOptions, endOptions } = useGetDropdownTimeRanges(
+    availableRanges,
+    minTime,
+  );
+
+  const timeOptions = minTime ? endOptions : startOptions;
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));
 
@@ -92,13 +78,13 @@ const TimeDropdown = ({
           <Dropdown.Menu className="z-20 max-h-164 overflow-y-auto bg-white">
             {timeOptions.map((option) => (
               <Dropdown.Item
-                key={option.value}
+                key={`timeSelectOption_${option}`}
                 onClick={() => {
-                  onChange(option.value);
+                  onChange(option);
                   setIsOpen(false);
                 }}
                 className="px-16 py-15 hover:bg-gray-100">
-                {option.label}
+                {option}
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>
