@@ -1,6 +1,6 @@
-import ShortDropdownList from "./shortDropdownList";
-import ShortDropdownMenu from "./shortDropdownMenu";
-import ShortDropdownTrigger from "./shortDropdownTrigger";
+import ShortDropdownList from "@/src/components/shortDropdown/shortDropdownList";
+import ShortDropdownMenu from "@/src/components/shortDropdown/shortDropdownMenu";
+import ShortDropdownTrigger from "@/src/components/shortDropdown/shortDropdownTrigger";
 import useDetectClose from "@/src/hooks/useDetectClose";
 import clsx from "clsx";
 import { ReactNode } from "react";

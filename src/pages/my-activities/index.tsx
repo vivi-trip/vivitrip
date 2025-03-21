@@ -29,7 +29,7 @@ const MyActivities = () => {
             체험 등록하기
           </Button>
         </div>
-          <ActivityList />
+        <ActivityList />
       </div>
     </div>
   );

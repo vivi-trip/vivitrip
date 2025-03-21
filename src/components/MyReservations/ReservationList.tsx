@@ -1,6 +1,6 @@
-import ReservationCard from "./ReservationCard";
 import IconEmpty from "@/assets/svgs/ic_empty.svg";
 import Loading from "@/src/components/Loading";
+import ReservationCard from "@/src/components/MyReservations/ReservationCard";
 import { useGetMyReservations } from "@/src/queries/useMyReservations";
 import { ReservationStatus } from "@/src/types/my-reservations";
 

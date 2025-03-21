@@ -1,4 +1,4 @@
-import CalendarHeader from "./CalendarHeader";
+import CalendarHeader from "@/src/components/calendar/CalendarHeader";
 import { useCalendar } from "@/src/stores/CalendarStore";
 import { Locale, enUS } from "date-fns/locale";
 import React from "react";

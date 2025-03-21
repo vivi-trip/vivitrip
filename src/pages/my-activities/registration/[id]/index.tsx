@@ -36,7 +36,7 @@ const RegisterModify = () => {
       router.push("/home");
     }
   }, [activitiesDetail, userData, router]);
-  
+
   return (
     <div>
       <div className="flex w-full min-w-343 justify-center gap-24 pt-72">

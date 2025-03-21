@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import convertParamToQueryString from "../utils/convertParamToQueryString";
 import api from "@/src/services/axios";
 import {
   OauthActions,
@@ -7,6 +6,7 @@ import {
   OauthSignUpProps,
 } from "@/src/types/oauth";
 import { SignInProps, SignUpProps, UserPatchProps } from "@/src/types/user";
+import convertParamToQueryString from "@/src/utils/convertParamToQueryString";
 import axios from "axios";
 
 export const signup = async (param: SignUpProps) => {

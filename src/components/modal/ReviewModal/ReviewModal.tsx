@@ -1,6 +1,6 @@
-import ReviewContent from "./common/ReviewContent";
-import ReviewForm from "./common/ReviewForm";
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
+import ReviewContent from "@/src/components/modal/ReviewModal/common/ReviewContent";
+import ReviewForm from "@/src/components/modal/ReviewModal/common/ReviewForm";
 import useModalStore from "@/src/stores/ModalStore";
 import { ReviewData } from "@/src/types/my-reservatios-responses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
