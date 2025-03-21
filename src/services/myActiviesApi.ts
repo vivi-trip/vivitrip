@@ -1,3 +1,4 @@
+import api from "@/src/services/axios";
 import {
   ActivityUpdateRequest,
   GetMyActivities,
@@ -11,7 +12,6 @@ import {
   ReservationScheduleType,
   ReservationsParams,
 } from "@/src/types/activitiesReservationType";
-import api from "./axios";
 
 /**
 내 체험 리스트 조회 

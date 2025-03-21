@@ -1,5 +1,5 @@
-import ActivitiesCard from "./ActivityCard";
 import IconEmpty from "@/assets/svgs/ic_empty.svg";
+import ActivitiesCard from "@/src/components/MyAtivities/ActivityCard";
 import useIntersectionObserver from "@/src/hooks/useIntersectionObserver";
 import { useGetInfiniteMyActivities } from "@/src/hooks/useMyActivities";
 
@@ -19,7 +19,7 @@ const ActivityList = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 my-48 ">
+      <div className="my-48 flex flex-col gap-6">
         {data?.pages.map((page) => {
           if (page.totalCount === 0) {
             return (

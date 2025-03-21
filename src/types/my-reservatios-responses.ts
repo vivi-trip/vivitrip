@@ -1,5 +1,5 @@
-import { CursorId } from "./activitiesReservationType";
-import { ReservationStatus } from "./my-reservations";
+import { CursorId } from "@/src/types/activitiesReservationType";
+import { ReservationStatus } from "@/src/types/my-reservations";
 
 /**
  * @description 내 예약 체험 데이터

@@ -1,6 +1,6 @@
-import { checkAndClearStorage } from "../utils/token";
 import { OauthTypes } from "@/src/types/oauth";
 import { User } from "@/src/types/user";
+import { checkAndClearStorage } from "@/src/utils/token";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
