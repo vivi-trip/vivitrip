@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import Dropdown from "../Dropdown";
 import IconKebab from "@/assets/svgs/ic_kebab.svg";
+import Dropdown from "@/src/components/Dropdown";
 import HighlightText from "@/src/components/HighlightText/HighlightText";
 import STATUS_KEYWORD_HIGHLIGHT from "@/src/constants/my-notifications";
 import PATH_NAMES from "@/src/constants/pathname";

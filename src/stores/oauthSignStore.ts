@@ -1,4 +1,4 @@
-import { OauthKaKaoProfile } from "../types/oauth";
+import { OauthKaKaoProfile } from "@/src/types/oauth";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
