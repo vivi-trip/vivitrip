@@ -1,5 +1,5 @@
-import MyActivityHandler from "./MyActivityHandler";
 import IconStar from "@/assets/svgs/ic_star.svg";
+import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
 import PATH_NAMES from "@/src/constants/pathname";
 import { Activity } from "@/src/types/activitiesReservationType";
 import clsx from "clsx";
