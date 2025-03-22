@@ -4,7 +4,7 @@ import ReservationCancelModal from "@/src/components/Modal/ReservationCancelModa
 import ReservationInfoModal from "@/src/components/Modal/ReservationInfoModal/ReservationInfoModal";
 import ReservationModal from "@/src/components/Modal/ReservationModal/ReservationModal";
 import { useGetActivities } from "@/src/queries/useActivities";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/modalStore";
 
 const OpenModalButton = () => {
   const { setModalOpen } = useModalStore();

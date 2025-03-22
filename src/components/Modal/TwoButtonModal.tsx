@@ -1,6 +1,6 @@
 import CheckIcon from "@/assets/svgs/ic_check.svg";
 import Button from "@/src/components/Button/Button";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/modalStore";
 import React from "react";
 
 interface CancelModalProps {
@@ -24,7 +24,7 @@ const TwoButtonModal = ({
   const { setModalClose } = useModalStore();
 
   return (
-    <div className="flex h-130 mt-300 md:mt-auto mx-auto w-298 flex-col justify-center rounded-12 ">
+    <div className="mx-auto mt-300 flex h-130 w-298 flex-col justify-center rounded-12 md:mt-auto">
       <div className="flex justify-center">
         <CheckIcon />
       </div>

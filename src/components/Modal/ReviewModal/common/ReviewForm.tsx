@@ -2,7 +2,7 @@ import IconStar from "@/assets/svgs/ic_pretty_star.svg";
 import Button from "@/src/components/Button/Button";
 import PopupModal from "@/src/components/Modal/PopupModal";
 import { useCreateReviews } from "@/src/queries/useMyReservations";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/modalStore";
 import { ReservationRating } from "@/src/types/myReservations";
 import { AxiosError } from "axios";
 import clsx from "clsx";

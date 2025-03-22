@@ -1,5 +1,5 @@
 import ModalPotal from "./ModalPortal";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/modalStore";
 
 const Modal = () => {
   const { modal } = useModalStore();
@@ -10,9 +10,6 @@ const Modal = () => {
 // const ModalTitle = () => {
 //   return <h2 className="font-18px-medium">모달 타이틀</h2>;
 // };
-
-
-
 
 // Modal.title = ModalTitle;
 

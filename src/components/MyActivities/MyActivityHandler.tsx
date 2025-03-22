@@ -6,7 +6,7 @@ import PopupModal from "@/src/components/Modal/PopupModal";
 import TwoButtonModal from "@/src/components/Modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import { useDeleteArticle } from "@/src/hooks/useMyActivities";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/modalStore";
 import { ActivityId } from "@/src/types/activitiesReservationType";
 import { AxiosError } from "axios";
 import { useRouter } from "next/router";

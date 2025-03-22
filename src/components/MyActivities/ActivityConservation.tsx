@@ -13,7 +13,7 @@ import {
   useGetActivities,
   usePatchMyActivity,
 } from "@/src/queries/useActivities";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/modalStore";
 import { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
 import { ActivityFormDataType } from "@/src/types/activityFormDataType";
 import { useRouter } from "next/router";

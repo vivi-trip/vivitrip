@@ -5,7 +5,7 @@ import {
   useGetMyReservations,
   useGetMyReservedSchedule,
 } from "@/src/hooks/useMyActivities";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/modalStore";
 import { ReservationStatusType } from "@/src/types/reservation";
 import { formatDateToKorean } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";

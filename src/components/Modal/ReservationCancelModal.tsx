@@ -1,17 +1,17 @@
-import Button from "@/src/components/Button/Button";
 import CheckIcon from "@/assets/svgs/ic_check.svg";
-import useModalStore from "@/src/stores/ModalStore";
+import Button from "@/src/components/Button/Button";
+import useModalStore from "@/src/stores/modalStore";
 import React from "react";
 
 interface CancelModalProps {
-  onCancel: () => void; 
+  onCancel: () => void;
 }
 
 const ReservationCancelModal = ({ onCancel }: CancelModalProps) => {
   const { setModalClose } = useModalStore();
 
   return (
-    <div className="flex h-184 w-298 flex-col ">
+    <div className="flex h-184 w-298 flex-col">
       <div className="mt-24 flex justify-center">
         <CheckIcon />
       </div>
