@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import Button from "@/src/components/Button/Button";
 import categories from "@/src/constants/filterButton";
-import useCategoryState from "@/src/hooks/filterButton/useCategoryState";
-import useDragScroll from "@/src/hooks/filterButton/useDragScroll";
-import useOverflowDetection from "@/src/hooks/filterButton/useOverflowDetection";
-import useResponsiveLayout from "@/src/hooks/filterButton/useResponsiveLayout";
+import useCategoryState from "@/src/hooks/FilterButton/useCategoryState";
+import useDragScroll from "@/src/hooks/FilterButton/useDragScroll";
+import useOverflowDetection from "@/src/hooks/FilterButton/useOverflowDetection";
+import useResponsiveLayout from "@/src/hooks/FilterButton/useResponsiveLayout";
 import clsx from "clsx";
 import { useRef } from "react";
 

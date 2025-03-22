@@ -2,13 +2,13 @@ import {
   UpdateMyReservation,
   createMyReservationReview,
   listMyReservations,
-} from "@/src/services/my-reservations";
+} from "@/src/services/myReservations";
 import {
   CreateMyReservationReviewProps,
   ListMyReservationsProps,
   UpdateMyReservationProps,
-} from "@/src/types/my-reservations";
-import { GetMyReservations } from "@/src/types/my-reservatios-responses";
+} from "@/src/types/myReservations";
+import { GetMyReservations } from "@/src/types/myReservationsResponses";
 import {
   infiniteQueryOptions,
   useInfiniteQuery,

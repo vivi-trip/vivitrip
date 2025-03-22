@@ -1,4 +1,4 @@
-@import "./pretendardvariable.css";
+@import "@/src/styles/pretendardVariable.css";
 
 @tailwind base;
 @tailwind components;

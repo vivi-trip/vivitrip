@@ -1,4 +1,4 @@
-import ActivityConservation from "@/src/components/MyAtivities/ActivityConservation";
+import ActivityConservation from "@/src/components/MyActivities/ActivityConservation";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import useUserStore from "@/src/stores/userStore";
 import { useRouter } from "next/router";

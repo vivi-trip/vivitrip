@@ -1,7 +1,7 @@
 import ReservationList from "@/src/components/MyReservations/ReservationList";
 import ReservationStatusDropdown from "@/src/components/MyReservations/ReservationStatusDropdown";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
-import { ReservationStatus } from "@/src/types/my-reservations";
+import { ReservationStatus } from "@/src/types/myReservations";
 import { useState } from "react";
 
 const MyReservations = () => {

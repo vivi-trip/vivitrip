@@ -1,4 +1,4 @@
-import ActivityConservation from "@/src/components/MyAtivities/ActivityConservation";
+import ActivityConservation from "@/src/components/MyActivities/ActivityConservation";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/userStore";
@@ -36,7 +36,7 @@ const RegisterModify = () => {
       router.push("/home");
     }
   }, [activitiesDetail, userData, router]);
-  
+
   return (
     <div>
       <div className="flex w-full min-w-343 justify-center gap-24 pt-72">

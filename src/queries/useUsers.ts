@@ -2,12 +2,12 @@ import {
   getUserProfile,
   updateUserProfile,
   uploadProfileImage,
-} from "@/src/services/Users";
+} from "@/src/services/users";
 import {
   ProfileImageUrlResponse,
   UpdateUserProfileRequest,
   UserProfileResponse,
-} from "@/src/types/Users";
+} from "@/src/types/users";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 /**
