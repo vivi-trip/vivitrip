@@ -1,6 +1,6 @@
+import "@/src/components/Calendar/calendar.css";
 import Favicon from "@/src/components/Favicon";
 import ScrollToTopHandler from "@/src/components/ScrollHandler/ScrollToTopHandler";
-import "@/src/components/calendar/calendar.css";
 import Modal from "@/src/components/modal/Modal";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";

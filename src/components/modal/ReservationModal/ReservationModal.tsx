@@ -1,6 +1,6 @@
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
 import Button from "@/src/components/Button/Button";
-import Calendar from "@/src/components/calendar/Calendar";
+import Calendar from "@/src/components/Calendar/Calendar";
 import PopupModal from "@/src/components/modal/PopupModal";
 import ParticipantCount from "@/src/components/modal/ReservationModal/common/ParticipantCount";
 import Price from "@/src/components/modal/ReservationModal/common/Price";
