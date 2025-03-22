@@ -1,5 +1,5 @@
 import Button from "@/src/components/Button/Button";
-import { useCalendar } from "@/src/stores/CalendarStore";
+import { useCalendar } from "@/src/stores/calendarStore";
 import { Schedule, Schedules } from "@/src/types/activitiesResponses";
 import clsx from "clsx";
 import React, { useState } from "react";
@@ -67,7 +67,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
     <div>
       <p className="font-18px-bold mt-20">예약 가능한 시간</p>
       <div className="scrollbar-none mx-10 overflow-x-auto">
-        <div className="flex my-16 whitespace-nowrap">{renderSchedules()}</div>
+        <div className="my-16 flex whitespace-nowrap">{renderSchedules()}</div>
       </div>
     </div>
   );
