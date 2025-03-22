@@ -1,11 +1,11 @@
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
 import Button from "@/src/components/Button/Button";
 import Calendar from "@/src/components/Calendar/Calendar";
-import PopupModal from "@/src/components/modal/PopupModal";
-import ParticipantCount from "@/src/components/modal/ReservationModal/common/ParticipantCount";
-import Price from "@/src/components/modal/ReservationModal/common/Price";
-import TimeSelector from "@/src/components/modal/ReservationModal/common/TimeSelector";
-import TotalPrice from "@/src/components/modal/ReservationModal/common/TotalPrice";
+import PopupModal from "@/src/components/Modal/PopupModal";
+import ParticipantCount from "@/src/components/Modal/ReservationModal/common/ParticipantCount";
+import Price from "@/src/components/Modal/ReservationModal/common/Price";
+import TimeSelector from "@/src/components/Modal/ReservationModal/common/TimeSelector";
+import TotalPrice from "@/src/components/Modal/ReservationModal/common/TotalPrice";
 import { usePostActivityReservation } from "@/src/queries/useActivities";
 import { useCalendar } from "@/src/stores/CalendarStore";
 import useModalStore from "@/src/stores/ModalStore";

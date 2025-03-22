@@ -1,6 +1,6 @@
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
-import ReservationInfo from "@/src/components/modal/ReservationInfoModal/common/ReservationInfo";
-import ReservationTimeSelect from "@/src/components/modal/ReservationInfoModal/common/ReservationTimeSelect";
+import ReservationInfo from "@/src/components/Modal/ReservationInfoModal/common/ReservationInfo";
+import ReservationTimeSelect from "@/src/components/Modal/ReservationInfoModal/common/ReservationTimeSelect";
 import {
   useGetMyReservations,
   useGetMyReservedSchedule,

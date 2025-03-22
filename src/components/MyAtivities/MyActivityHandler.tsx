@@ -2,8 +2,8 @@
 import IconKebab from "@/assets/svgs/ic_kebab.svg";
 import IconKebabSmall from "@/assets/svgs/ic_kebab_small.svg";
 import Dropdown from "@/src/components/Dropdown";
-import PopupModal from "@/src/components/modal/PopupModal";
-import TwoButtonModal from "@/src/components/modal/TwoButtonModal";
+import PopupModal from "@/src/components/Modal/PopupModal";
+import TwoButtonModal from "@/src/components/Modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import { useDeleteArticle } from "@/src/hooks/useMyActivities";
 import useModalStore from "@/src/stores/ModalStore";

@@ -1,7 +1,7 @@
 import IconNext from "@/assets/svgs/ic_next.svg";
 import IconPrev from "@/assets/svgs/ic_prev.svg";
+import ReservationInfoModal from "@/src/components/Modal/ReservationInfoModal/ReservationInfoModal";
 import styles from "@/src/components/ReservationHistory/ReservationHistoryCalendar.module.scss";
-import ReservationInfoModal from "@/src/components/modal/ReservationInfoModal/ReservationInfoModal";
 import { useGetMyReservationDashboard } from "@/src/hooks/useMyActivities";
 import useModalStore from "@/src/stores/ModalStore";
 import useReservationStore from "@/src/stores/useReservationStore";

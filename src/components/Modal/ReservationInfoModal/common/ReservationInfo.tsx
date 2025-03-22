@@ -1,5 +1,5 @@
 import Button from "@/src/components/Button/Button";
-import PopupModal from "@/src/components/modal/PopupModal";
+import PopupModal from "@/src/components/Modal/PopupModal";
 import { usePatchReservationState } from "@/src/hooks/useMyActivities";
 import useModalStore from "@/src/stores/ModalStore";
 import { ReservationInfoType } from "@/src/types/activitiesReservationType";

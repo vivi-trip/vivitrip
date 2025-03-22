@@ -6,7 +6,7 @@ import ActivityTextArea from "@/src/components/ActivityInput/ActivityTextArea";
 import ActivityTimeInput from "@/src/components/ActivityInput/ActivityTimeInput";
 import ActivityTitleInput from "@/src/components/ActivityInput/ActivityTitleInput";
 import Button from "@/src/components/Button/Button";
-import TwoButtonModal from "@/src/components/modal/TwoButtonModal";
+import TwoButtonModal from "@/src/components/Modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import {
   useCreateActivity,

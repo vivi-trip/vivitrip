@@ -1,9 +1,9 @@
 import Logo from "@/src/components/Logo";
+import PopupModal from "@/src/components/Modal/PopupModal";
 import MyPage from "@/src/components/MyPage";
 import MyPageKakao from "@/src/components/MyPage/kakao";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import ProfileUpload from "@/src/components/SideNavigationMenu/common/ProfileUpload";
-import PopupModal from "@/src/components/modal/PopupModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import useHydration from "@/src/hooks/useHydration";
 import { useUpdateMyData } from "@/src/queries/auth";

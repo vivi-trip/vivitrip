@@ -1,6 +1,6 @@
 import Button from "@/src/components/Button/Button";
-import PopupModal from "@/src/components/modal/PopupModal";
-import ReviewModal from "@/src/components/modal/ReviewModal/ReviewModal";
+import PopupModal from "@/src/components/Modal/PopupModal";
+import ReviewModal from "@/src/components/Modal/ReviewModal/ReviewModal";
 import RESERVATION_LABEL from "@/src/constants/reserbationStatus";
 import { usePatchMyReservation } from "@/src/queries/useMyReservations";
 import useModalStore from "@/src/stores/ModalStore";

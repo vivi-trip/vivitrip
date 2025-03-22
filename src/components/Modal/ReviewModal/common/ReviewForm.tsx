@@ -1,6 +1,6 @@
 import IconStar from "@/assets/svgs/ic_pretty_star.svg";
 import Button from "@/src/components/Button/Button";
-import PopupModal from "@/src/components/modal/PopupModal";
+import PopupModal from "@/src/components/Modal/PopupModal";
 import { useCreateReviews } from "@/src/queries/useMyReservations";
 import useModalStore from "@/src/stores/ModalStore";
 import { ReservationRating } from "@/src/types/my-reservations";
