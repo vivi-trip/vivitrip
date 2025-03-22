@@ -2,7 +2,7 @@
 import Dropdown from "../Dropdown";
 import IconKebab from "@/assets/svgs/ic_kebab.svg";
 import HighlightText from "@/src/components/HighlightText/HighlightText";
-import STATUS_KEYWORD_HIGHLIGHT from "@/src/constants/my-notifications";
+import STATUS_KEYWORD_HIGHLIGHT from "@/src/constants/myNotifications";
 import PATH_NAMES from "@/src/constants/pathname";
 import type { MyNotificationsProps } from "@/src/types/my-notifications";
 import { formatDateToKorean } from "@/src/utils/calendarFormatDate";

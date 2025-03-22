@@ -1,4 +1,4 @@
-import { getMyNotifications } from "@/src/services/my-notifications";
+import { getMyNotifications } from "@/src/services/myNotifications";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 /**

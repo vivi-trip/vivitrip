@@ -4,8 +4,8 @@ import IconNotification from "@/assets/svgs/ic_notification.svg";
 import IconRefresh from "@/assets/svgs/ic_refresh.svg";
 import Dropdown from "@/src/components/Dropdown";
 import NotificationItem from "@/src/components/NotificationItem";
-import useInfiniteNotifications from "@/src/queries/my-notifications";
-import { deleteMyNotification } from "@/src/services/my-notifications";
+import useInfiniteNotifications from "@/src/queries/myNotifications";
+import { deleteMyNotification } from "@/src/services/myNotifications";
 import type {
   MyNotificationsProps,
   NotificationId,
