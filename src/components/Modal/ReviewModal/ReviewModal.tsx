@@ -2,7 +2,7 @@ import ReviewContent from "./common/ReviewContent";
 import ReviewForm from "./common/ReviewForm";
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
 import useModalStore from "@/src/stores/ModalStore";
-import { ReviewData } from "@/src/types/my-reservatios-responses";
+import { ReviewData } from "@/src/types/myReservationsResponses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";
 

@@ -3,12 +3,12 @@ import {
   createMyReservationReview,
   listMyReservations,
 } from "@/src/services/myReservations";
-import { GetMyReservations } from "@/src/types/my-reservatios-responses";
 import {
   CreateMyReservationReviewProps,
   ListMyReservationsProps,
   UpdateMyReservationProps,
 } from "@/src/types/myReservations";
+import { GetMyReservations } from "@/src/types/myReservationsResponses";
 import {
   infiniteQueryOptions,
   useInfiniteQuery,
