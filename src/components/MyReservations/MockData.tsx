@@ -1,4 +1,4 @@
-import { ReservationStatus } from "@/src/types/my-reservations";
+import { ReservationStatus } from "@/src/types/myReservations";
 
 const mockReservationData = {
   pages: [

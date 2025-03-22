@@ -3,7 +3,7 @@ import Button from "@/src/components/Button/Button";
 import PopupModal from "@/src/components/Modal/PopupModal";
 import { useCreateReviews } from "@/src/queries/useMyReservations";
 import useModalStore from "@/src/stores/ModalStore";
-import { ReservationRating } from "@/src/types/my-reservations";
+import { ReservationRating } from "@/src/types/myReservations";
 import { AxiosError } from "axios";
 import clsx from "clsx";
 import React, { useState } from "react";

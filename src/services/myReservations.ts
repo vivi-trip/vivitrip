@@ -3,15 +3,15 @@
  */
 import api from "@/src/services/axios";
 import {
-  CreateMyReservationReviewProps,
-  ListMyReservationsProps,
-  UpdateMyReservationProps,
-} from "@/src/types/my-reservations";
-import {
   GetMyReservations,
   MyReservationsPatchResponses,
   PostMyReviwsResponses,
 } from "@/src/types/my-reservatios-responses";
+import {
+  CreateMyReservationReviewProps,
+  ListMyReservationsProps,
+  UpdateMyReservationProps,
+} from "@/src/types/myReservations";
 
 /**
  * @description 내 예약 리스트 조회

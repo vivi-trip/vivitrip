@@ -1,7 +1,7 @@
-import Dropdown from "@/src/components/Dropdown";
 import AltArrowDown from "@/assets/svgs/altArrowDown.svg";
+import Dropdown from "@/src/components/Dropdown";
 import useOutsideClick from "@/src/hooks/useOutsideClick";
-import { ReservationStatus } from "@/src/types/my-reservations";
+import { ReservationStatus } from "@/src/types/myReservations";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 

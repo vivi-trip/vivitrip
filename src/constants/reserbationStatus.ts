@@ -1,5 +1,4 @@
-import { ReservationStatus } from "@/src/types/my-reservations";
-
+import { ReservationStatus } from "@/src/types/myReservations";
 
 type ReservationLabels =
   | "체험 완료"
@@ -8,7 +7,7 @@ type ReservationLabels =
   | "예약 승인"
   | "예약 신청";
 
-  const RESERVATION_LABEL: Record<
+const RESERVATION_LABEL: Record<
   ReservationStatus,
   { label?: ReservationLabels; colorClass?: string }
 > = {
@@ -17,7 +16,7 @@ type ReservationLabels =
   declined: { label: "예약 거절", colorClass: "text-red-200" },
   confirmed: { label: "예약 승인", colorClass: "text-orange-100" },
   pending: { label: "예약 신청", colorClass: "text-blue-100" },
-  "": {}, 
+  "": {},
 };
 
 export default RESERVATION_LABEL;
