@@ -5,7 +5,7 @@ import api from "@/src/services/axios";
 import type {
   DeleteMyNotificationProps,
   MyNotificationsResponse,
-} from "@/src/types/my-notifications";
+} from "@/src/types/myNotifications";
 import convertParamToQueryString from "@/src/utils/convertParamToQueryString";
 
 /**

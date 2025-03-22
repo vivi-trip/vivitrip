@@ -9,7 +9,7 @@ import { deleteMyNotification } from "@/src/services/myNotifications";
 import type {
   MyNotificationsProps,
   NotificationId,
-} from "@/src/types/my-notifications";
+} from "@/src/types/myNotifications";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
