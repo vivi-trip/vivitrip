@@ -5,7 +5,7 @@ import SignOptionSection from "@/src/components/SignOptionSection";
 import PATH_NAMES from "@/src/constants/pathname";
 import SignPageWrap from "@/src/containers/SignPageWrap";
 import { useSignUp } from "@/src/queries/auth";
-import useTempEmailStore from "@/src/stores/tempEmailStore";
+import useTempEmailStore from "@/src/stores/useTempEmailStore";
 import useUserStore from "@/src/stores/userStore";
 import { SignUpProps } from "@/src/types/user";
 import { useRouter } from "next/router";
