@@ -52,6 +52,9 @@ const App = ({
       <Head>
         <title>vivitrip | for your experience</title>
         <Favicon />
+        <meta property="og:title" content="Default Open Graph Title" />
+        <meta property="og:description" content="Default Open Graph Description" />
+        <meta property="og:image" content="/images/seoLogo.png" />
       </Head>
       <Modal />
       <div className="min-w-240">
