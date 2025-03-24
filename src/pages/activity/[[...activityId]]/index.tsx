@@ -3,56 +3,128 @@ import ActivityImageList from "@/src/components/ActivityImageList/ActivityImageL
 import ActivityLocation from "@/src/components/ActivityLocation/ActivityLocation";
 import ActivityReservationBar from "@/src/components/ActivityReservation/ActivityReservationBar";
 import ActivityTitleSection from "@/src/components/ActivityTitleSection";
-import Loading from "@/src/components/Loading";
 import MyActivityHandler from "@/src/components/MyActivities/MyActivityHandler";
 import Review from "@/src/components/Review";
-import Custom404 from "@/src/pages/404";
-import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/useUserStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
-import { useRouter } from "next/router";
+import downloadThumbnailImage from "@/src/utils/downloadThumbnailImage";
+import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
+import path from "path";
 
-const ActivitiesPage = () => {
-  const router = useRouter();
-  const { activityId } = router.query;
+interface ActivitiesPageProps {
+  post: ActivityDetailResponse;
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activities?method=offset&page=1&size=100`,
+  );
+
+  const { activities } = await response.json();
+
+  const paths = activities.map((data: ActivityDetailResponse) => {
+    return { params: { activityId: [data.id.toString()] } };
+  });
+
+  return { paths, fallback: "blocking" };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { activityId } = params as { activityId: string[] };
+  const id = activityId?.[0];
+
+  if (!id) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/activities/${id}`;
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const data = await response.json();
+  const { bannerImageUrl } = data;
+
+  const imageFileName = `${id}.jpeg`; // 이미지 파일명 추출
+  const imagePath = path.join(
+    process.cwd(),
+    "public",
+    "images",
+    "thumbnail",
+    imageFileName,
+  ); // 로컬 저장 경로
+
+  try {
+    // 이미지를 로컬 서버에 저장
+    await downloadThumbnailImage({
+      imageUrl: bannerImageUrl,
+      savePath: imagePath,
+    });
+  } catch (error) {
+    console.error("이미지 저장 실패:", error);
+  }
+
+  return {
+    props: {
+      post: data,
+    },
+    revalidate: 60,
+  };
+};
+
+const ActivitiesPage = ({ post }: ActivitiesPageProps) => {
   const { userData } = useUserStore();
-  const {
-    data: activityData,
-    isLoading,
-    error,
-  } = useGetActivities(Number(activityId));
 
-  if (isLoading)
-    return (
-      <Loading
-        isOverlay="window"
-        overlayColor="blue"
-        isAbsolute="static"
-        loadingBoxColor="black"
-        size={{ sm: 50, md: 60, lg: 70 }}
-        loadingText="잠시만 기다려주세요."
-        textStyle="font-18px-medium md:font-20px-regular lg:font-24px-regular"
-        textColor="text-brand-50"
-        className="p-30"
-      />
-    );
-
-  if (error || !activityData) return <Custom404 statusCode={404} />;
+  if (!post) return null;
 
   const {
+    id,
+    userId,
     category,
     title,
+    description,
     address,
+    bannerImageUrl,
     rating,
     reviewCount,
-    description,
-    bannerImageUrl,
     subImages,
-    userId,
-  } = activityData as ActivityDetailResponse;
+  } = post as ActivityDetailResponse;
 
   return (
     <>
+      <Head>
+        <title>{`VIVITRIP | ${title}`}</title>
+        <meta
+          property="og:title"
+          content={`${title.slice(0, 60)} | VIVITRIP`}
+          key="og:title"
+        />
+        <meta
+          property="og:description"
+          content={description.slice(0, 160)}
+          key="og:description"
+        />
+        <meta
+          property="og:url"
+          content={`https://www.vivitrip.net/activity/${id}`}
+          key="og:url"
+        />
+        <meta property="og:type" content="website" key="og:type" />
+        <meta
+          property="og:image"
+          content={`/images/thumbnail/${id}.jpeg`}
+          key="og:image"
+        />
+      </Head>
+
       <div className="my-24 pb-300 md:my-32 lg:my-80">
         <ActivityTitleSection
           category={category}
@@ -62,9 +134,7 @@ const ActivitiesPage = () => {
           reviewCount={reviewCount}
           userMenu={
             userData &&
-            userData.id === userId && (
-              <MyActivityHandler activityId={Number(activityId)} />
-            )
+            userData.id === userId && <MyActivityHandler activityId={id} />
           }
         />
 
@@ -82,11 +152,11 @@ const ActivitiesPage = () => {
         </ActivityContentSection>
 
         <ActivityContentSection>
-          <Review activityId={Number(activityId)} />
+          <Review activityId={id} />
         </ActivityContentSection>
       </div>
 
-      {activityData && <ActivityReservationBar activityData={activityData} />}
+      {post && <ActivityReservationBar activityData={post} />}
     </>
   );
 };
