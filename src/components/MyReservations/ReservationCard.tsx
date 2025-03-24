@@ -73,7 +73,12 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     );
   };
 
-  const { label, colorClass } = RESERVATION_LABEL[status];
+  const label =
+    RESERVATION_LABEL[status as keyof typeof RESERVATION_LABEL]?.label ??
+    "알 수 없는 상태";
+  const colorClass =
+    RESERVATION_LABEL[status as keyof typeof RESERVATION_LABEL]?.colorClass ??
+    "text-gray-500";
 
   return (
     <div
