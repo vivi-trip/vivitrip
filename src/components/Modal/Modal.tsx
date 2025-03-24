@@ -1,10 +1,10 @@
-import ModalPotal from "@/src/components/Modal/ModalPortal";
+import ModalPortal from "@/src/components/Modal/ModalPortal";
 import useModalStore from "@/src/stores/useModalStore";
 
 const Modal = () => {
   const { modal } = useModalStore();
 
-  return <ModalPotal>{modal}</ModalPotal>;
+  return <ModalPortal>{modal}</ModalPortal>;
 };
 
 // const ModalTitle = () => {

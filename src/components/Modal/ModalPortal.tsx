@@ -41,7 +41,7 @@ const ModalContainer = ({ children, customClass }: ModalContainerProps) => {
   return <div className={modalClasses}>{children}</div>;
 };
 
-const ModalPotal = ({ children }: { children: ReactNode }) => {
+const ModalPortal = ({ children }: { children: ReactNode }) => {
   const [mounted, setMounted] = useState<boolean>(false);
   const { isModalOpen, setModalClose, modalOptions } = useModalStore();
   useEscapeClose(setModalClose);
@@ -102,4 +102,4 @@ const ModalPotal = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default ModalPotal;
+export default ModalPortal;

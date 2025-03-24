@@ -5,7 +5,8 @@ type ReservationLabels =
   | "예약 취소"
   | "예약 거절"
   | "예약 승인"
-  | "예약 신청";
+  | "예약 신청"
+  | "";
 
 const RESERVATION_LABEL: Record<
   ReservationStatus,
@@ -16,7 +17,7 @@ const RESERVATION_LABEL: Record<
   declined: { label: "예약 거절", colorClass: "text-red-200" },
   confirmed: { label: "예약 승인", colorClass: "text-orange-100" },
   pending: { label: "예약 신청", colorClass: "text-blue-100" },
-  "": {},
-};
+  "": { label: undefined, colorClass: "" },
+} as const;
 
 export default RESERVATION_LABEL;

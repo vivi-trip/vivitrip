@@ -45,7 +45,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
 
   const { bannerImageUrl, title } = activity;
 
-  const riviewData = {
+  const reviewData = {
     bannerImageUrl,
     title,
     date,
@@ -73,7 +73,12 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     );
   };
 
-  const { label, colorClass } = RESERVATION_LABEL[status];
+  const label =
+    RESERVATION_LABEL[status as keyof typeof RESERVATION_LABEL]?.label ??
+    "알 수 없는 상태";
+  const colorClass =
+    RESERVATION_LABEL[status as keyof typeof RESERVATION_LABEL]?.colorClass ??
+    "text-gray-500";
 
   return (
     <div
@@ -166,7 +171,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
                 gap="8"
                 backgroundColor="black"
                 onClick={() =>
-                  setModalOpen(<ReviewModal riviewData={riviewData} />, {
+                  setModalOpen(<ReviewModal reviewData={reviewData} />, {
                     customClass:
                       "size-full md:w-480 md:h-750 p-24 md:px-24 md:pt-23 min-w-375 rounded-none md:rounded-3xl",
                   })

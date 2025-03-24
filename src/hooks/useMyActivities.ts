@@ -11,8 +11,8 @@ import {
   GetMyActivities,
   MyActivities,
   PatchMyActivityParams,
-  ReservaitionState,
-  ReservatdeScheduleParams,
+  ReservationState,
+  ReservatedScheduleParams,
   ReservationDashboardParams,
   ReservationInfosType,
   ReservationMonthInfosType,
@@ -47,7 +47,7 @@ export const useGetMyReservationDashboard = (
   return { data, isLoading, error };
 };
 
-export const useGetMyReservedSchedule = (params: ReservatdeScheduleParams) => {
+export const useGetMyReservedSchedule = (params: ReservatedScheduleParams) => {
   const { data, isLoading, error } = useQuery<ReservationScheduleType[]>({
     queryKey: ["myReservedSchedule", params],
     queryFn: () => getMyReservedSchedule(params),
@@ -70,7 +70,7 @@ export const useGetMyReservations = (
 export const usePatchReservationState = () => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
-    mutationFn: (params: ReservaitionState) => patchReservaionState(params),
+    mutationFn: (params: ReservationState) => patchReservaionState(params),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myReservationDashboard"] });
     },

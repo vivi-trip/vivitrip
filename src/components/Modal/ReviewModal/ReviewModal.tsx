@@ -7,10 +7,10 @@ import { formatDate3 } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";
 
 interface ReviewModalProps {
-  riviewData: ReviewData;
+  reviewData: ReviewData;
 }
 
-const ReviewModal = ({ riviewData }: ReviewModalProps) => {
+const ReviewModal = ({ reviewData }: ReviewModalProps) => {
   const { setModalClose } = useModalStore();
   const {
     bannerImageUrl,
@@ -21,7 +21,7 @@ const ReviewModal = ({ riviewData }: ReviewModalProps) => {
     headCount,
     totalPrice,
     id: reservationId,
-  } = riviewData;
+  } = reviewData;
 
   return (
     <div className={clsx("mx-auto")}>
