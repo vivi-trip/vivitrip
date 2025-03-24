@@ -45,7 +45,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
 
   const { bannerImageUrl, title } = activity;
 
-  const riviewData = {
+  const reviewData = {
     bannerImageUrl,
     title,
     date,
@@ -166,7 +166,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
                 gap="8"
                 backgroundColor="black"
                 onClick={() =>
-                  setModalOpen(<ReviewModal riviewData={riviewData} />, {
+                  setModalOpen(<ReviewModal reviewData={reviewData} />, {
                     customClass:
                       "size-full md:w-480 md:h-750 p-24 md:px-24 md:pt-23 min-w-375 rounded-none md:rounded-3xl",
                   })
