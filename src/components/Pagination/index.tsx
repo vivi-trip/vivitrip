@@ -4,7 +4,7 @@ import Button from "@/src/components/Button/Button";
 import Loading from "@/src/components/Loading";
 import useResponsiveTextStyle from "@/src/hooks/Activity/useResponsiveTextStyle";
 import usePagination from "@/src/hooks/usePagination";
-import useLoadingStore from "@/src/stores/loadingStore";
+import useLoadingStore from "@/src/stores/useLoadingStore";
 import { ButtonTextSizeType } from "@/src/types/button";
 import { PaginationProps } from "@/src/types/pagination";
 import clsx from "clsx";
