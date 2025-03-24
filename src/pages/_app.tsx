@@ -48,37 +48,58 @@ const App = ({
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Head>
-        <title>vivitrip | for your experience</title>
         <Favicon />
-        <meta property="og:title" content="Default Open Graph Title" />
-        <meta property="og:description" content="Default Open Graph Description" />
-        <meta property="og:image" content="/images/seoLogo.png" />
+        <title>VIVITRIP | for your experience</title>
+        <meta
+          property="og:title"
+          content="VIVITRIP | for your experience"
+          key="og:title"
+        />
+        <meta
+          property="og:description"
+          content="비비트립. 당신의 생동감 넘치는 여행을 위해"
+          key="og:description"
+        />
+        <meta
+          property="og:url"
+          content="https://www.vivitrip.net"
+          key="og:url"
+        />
+        <meta property="og:type" content="website" key="og:type" />
+        <meta
+          property="og:image"
+          content="/images/thumbnail/main.png"
+          key="og:image"
+        />
       </Head>
-      <Modal />
-      <div className="min-w-240">
-        {is404Page || pathname.includes("sign") ? null : <GNB />}
-        <ScrollProvider
-          as="main"
-          className={clsx(
-            "px-24 md:px-32",
-            is404Page || pathname.includes("sign")
-              ? "bg-brand-50"
-              : "h-main bg-gray-50",
-          )}>
-          {!isScrollToTopEnabled && <ScrollToTopHandler />}
-          <div
+
+      <QueryClientProvider client={queryClient}>
+        <Modal />
+        <div className="min-w-240">
+          {is404Page || pathname.includes("sign") ? null : <GNB />}
+          <ScrollProvider
+            as="main"
             className={clsx(
-              "mx-auto min-h-main",
-              !isHomeOrSearch && "max-w-screen-xl",
+              "px-24 md:px-32",
+              is404Page || pathname.includes("sign")
+                ? "bg-brand-50"
+                : "h-main bg-gray-50",
             )}>
-            {getLayout(<Component {...pageProps} />)}
-          </div>
-          {is404Page || pathname.includes("sign") ? null : <Footer />}
-        </ScrollProvider>
-      </div>
-    </QueryClientProvider>
+            {!isScrollToTopEnabled && <ScrollToTopHandler />}
+            <div
+              className={clsx(
+                "mx-auto min-h-main",
+                !isHomeOrSearch && "max-w-screen-xl",
+              )}>
+              {getLayout(<Component {...pageProps} />)}
+            </div>
+            {is404Page || pathname.includes("sign") ? null : <Footer />}
+          </ScrollProvider>
+        </div>
+      </QueryClientProvider>
+    </>
   );
 };
 
