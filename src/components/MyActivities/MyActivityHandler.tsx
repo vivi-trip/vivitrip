@@ -8,6 +8,7 @@ import PATH_NAMES from "@/src/constants/pathname";
 import { useDeleteArticle } from "@/src/hooks/useMyActivities";
 import useModalStore from "@/src/stores/useModalStore";
 import { ActivityId } from "@/src/types/activitiesReservationType";
+import deleteThumbnailImage from "@/src/utils/deleteThumbnailImage";
 import { AxiosError } from "axios";
 import { useRouter } from "next/router";
 
@@ -24,6 +25,7 @@ const MyActivityHandler = ({ activityId }: ActivityId) => {
     mutate(activityId, {
       onSuccess: () => {
         setModalOpen(<PopupModal title="체험이 성공적으로 삭제되었습니다." />);
+        deleteThumbnailImage({ id: activityId });
       },
       onError: (error) => {
         if (error instanceof AxiosError && error.response) {
