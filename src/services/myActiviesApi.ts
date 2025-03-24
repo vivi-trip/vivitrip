@@ -3,9 +3,9 @@ import {
   ActivityUpdateRequest,
   GetMyActivities,
   MyActivities,
-  ReservaitionState,
-  ReservaitionStateUpdateRequest,
-  ReservatdeScheduleParams,
+  ReservationState,
+  ReservationStateUpdateRequest,
+  ReservatedScheduleParams,
   ReservationDashboardParams,
   ReservationInfosType,
   ReservationMonthInfosType,
@@ -45,7 +45,7 @@ export const getMyReservationDashboard = async (
 export const getMyReservedSchedule = async ({
   activityId: { activityId },
   date,
-}: ReservatdeScheduleParams): Promise<ReservationScheduleType[]> => {
+}: ReservatedScheduleParams): Promise<ReservationScheduleType[]> => {
   const response = await api.get(
     `/my-activities/${activityId}/reserved-schedule`,
     { params: { date } },
@@ -72,7 +72,7 @@ export const getMyResrvations = async ({
 export const patchReservaionState = async ({
   activityId: { activityId },
   ...restParams
-}: ReservaitionState): Promise<ReservaitionStateUpdateRequest> => {
+}: ReservationState): Promise<ReservationStateUpdateRequest> => {
   const response = await api.patch(
     `/my-activities/${activityId}/reservations/${restParams.reservationId}`,
     { status: restParams.status },
