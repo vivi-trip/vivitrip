@@ -1,7 +1,7 @@
 import ActivityConservation from "@/src/components/MyActivities/ActivityConservation";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import { useGetActivities } from "@/src/queries/useActivities";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 

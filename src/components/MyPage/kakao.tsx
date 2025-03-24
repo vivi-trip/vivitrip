@@ -2,7 +2,7 @@ import Button from "@/src/components/Button/Button";
 import Form from "@/src/components/Form";
 import PATH_NAMES from "@/src/constants/pathname";
 import { deleteKakaoUser } from "@/src/services/auth";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { useRouter } from "next/router";
 
 const MyPageKakao = () => {

@@ -9,7 +9,7 @@ import useHydration from "@/src/hooks/useHydration";
 import { useUpdateMyData } from "@/src/queries/auth";
 import useModalStore from "@/src/stores/useModalStore";
 import useProfileImageUrlStore from "@/src/stores/useProfileImageUrlStore";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { UserPatchProps } from "@/src/types/user";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

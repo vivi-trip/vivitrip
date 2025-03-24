@@ -21,7 +21,7 @@ import {
 } from "@/src/services/auth";
 import useOauthSignStore from "@/src/stores/useOauthSignStore";
 import useSignupLinkStore from "@/src/stores/useTempEmailStore";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { OauthTypes } from "@/src/types/oauth";
 import {
   SignInErrorResponseProps,

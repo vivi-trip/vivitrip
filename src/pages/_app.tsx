@@ -5,7 +5,7 @@ import ScrollToTopHandler from "@/src/components/ScrollHandler/ScrollToTopHandle
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import ScrollProvider from "@/src/contexts/ScrollContext";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import "@/src/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";
