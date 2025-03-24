@@ -19,7 +19,7 @@ import {
   signin,
   signup,
 } from "@/src/services/auth";
-import useOauthSignStore from "@/src/stores/oauthSignStore";
+import useOauthSignStore from "@/src/stores/useOauthSignStore";
 import useSignupLinkStore from "@/src/stores/useTempEmailStore";
 import useUserStore from "@/src/stores/userStore";
 import { OauthTypes } from "@/src/types/oauth";
