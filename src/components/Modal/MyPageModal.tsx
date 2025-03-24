@@ -1,6 +1,6 @@
 import CloseIcon from "@/assets/svgs/btnXbig.svg";
 import MyPage from "@/src/components/MyPage";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 import { MyPageProps } from "@/src/types/user";
 
 const MyPageModal = ({ handleSubmit, isPending }: MyPageProps) => {

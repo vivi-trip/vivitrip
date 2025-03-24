@@ -1,6 +1,6 @@
 import CheckIcon from "@/assets/svgs/ic_check.svg";
 import Button from "@/src/components/Button/Button";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 import React from "react";
 
 interface CancelModalProps {

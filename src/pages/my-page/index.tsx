@@ -7,7 +7,7 @@ import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigati
 import PATH_NAMES from "@/src/constants/pathname";
 import useHydration from "@/src/hooks/useHydration";
 import { useUpdateMyData } from "@/src/queries/auth";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 import useProfileImageUrlStore from "@/src/stores/useProfileImageUrlStore";
 import useUserStore from "@/src/stores/userStore";
 import { UserPatchProps } from "@/src/types/user";

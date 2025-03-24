@@ -1,5 +1,5 @@
 import Button from "@/src/components/Button/Button";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 import clsx from "clsx";
 import React from "react";
 

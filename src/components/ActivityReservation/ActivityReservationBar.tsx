@@ -1,7 +1,7 @@
 import Button from "@/src/components/Button/Button";
 import ReservationModal from "@/src/components/Modal/ReservationModal/ReservationModal";
-import useModalStore from "@/src/stores/modalStore";
 import { useCalendar } from "@/src/stores/useCalendarStore";
+import useModalStore from "@/src/stores/useModalStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import formatWage from "@/src/utils/wageFormatter";
 import clsx from "clsx";

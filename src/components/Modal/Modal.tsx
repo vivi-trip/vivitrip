@@ -1,5 +1,5 @@
 import ModalPotal from "./ModalPortal";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 
 const Modal = () => {
   const { modal } = useModalStore();

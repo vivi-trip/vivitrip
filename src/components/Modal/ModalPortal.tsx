@@ -1,5 +1,5 @@
 import useEscapeClose from "@/src/hooks/useEscapeClose";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";

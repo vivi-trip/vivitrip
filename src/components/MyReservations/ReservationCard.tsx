@@ -3,7 +3,7 @@ import PopupModal from "@/src/components/Modal/PopupModal";
 import ReviewModal from "@/src/components/Modal/ReviewModal/ReviewModal";
 import RESERVATION_LABEL from "@/src/constants/reservationStatus";
 import { usePatchMyReservation } from "@/src/queries/useMyReservations";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 import { Reservation } from "@/src/types/myReservationsResponses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";

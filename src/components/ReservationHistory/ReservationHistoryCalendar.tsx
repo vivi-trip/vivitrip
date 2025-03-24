@@ -3,7 +3,7 @@ import IconPrev from "@/assets/svgs/ic_prev.svg";
 import ReservationInfoModal from "@/src/components/Modal/ReservationInfoModal/ReservationInfoModal";
 import styles from "@/src/components/ReservationHistory/ReservationHistoryCalendar.module.scss";
 import { useGetMyReservationDashboard } from "@/src/hooks/useMyActivities";
-import useModalStore from "@/src/stores/modalStore";
+import useModalStore from "@/src/stores/useModalStore";
 import useReservationStore from "@/src/stores/useReservationStore";
 import { clsx } from "clsx";
 import { format, getDay, parse, startOfWeek } from "date-fns";
