@@ -74,7 +74,7 @@ export interface ReservationDashboardParams {
  * @param activityId  내체험 id
  * @param date 조회 날짜
  */
-export interface ReservatdeScheduleParams {
+export interface ReservatedScheduleParams {
   activityId: ActivityId;
   date: string;
 }
@@ -101,7 +101,9 @@ export interface ReservationsParams {
  * @param reservationId 예약 id
  * @param status 예약 상태
  */
-export interface ReservaitionState {
+
+
+export interface ReservationState {
   activityId: ActivityId;
   reservationId: number;
   status: string;
@@ -227,7 +229,7 @@ export interface ReservationInfosType {
  * @param createdAt 예약 등록 시간
  * @param updatedAt 예약 업데이트 시간
  */
-export interface ReservaitionStateUpdateRequest {
+export interface ReservationStateUpdateRequest {
   id: number;
   teamId: string;
   userId: number;
@@ -286,7 +288,7 @@ export interface ActivityUpdateRequest {
 }
 
 /**
- * @description 체험 수정 parmas
+ * @description 체험 수정 params
  * @param activityId  체험 id
  * @param updateData 수정 체험 내용
  */
