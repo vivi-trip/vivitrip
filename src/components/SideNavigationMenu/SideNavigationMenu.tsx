@@ -2,7 +2,7 @@ import AccountCheckIcon from "@/assets/svgs/ic_account_check.svg";
 import CalendarCheckIcon from "@/assets/svgs/ic_calendar_check.svg";
 import SettingCheckIcon from "@/assets/svgs/ic_setting_check.svg";
 import TextboxCheckIcon from "@/assets/svgs/ic_textbox_check.svg";
-import ProfileUpload from "@/src/components/SideNavigationMenu/common/ProfileUpload";
+import ProfileUpload from "@/src/components/SideNavigationMenu/Common/ProfileUpload";
 import useUserStore from "@/src/stores/userStore";
 import clsx from "clsx";
 import Image from "next/image";
