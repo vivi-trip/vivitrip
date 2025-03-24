@@ -1,6 +1,6 @@
 import MinusIcon from "@/assets/svgs/ic_minus_btn.svg";
 import PlusIcon from "@/assets/svgs/ic_plus_btn.svg";
-import { useCalendar } from "@/src/stores/calendarStore";
+import { useCalendar } from "@/src/stores/useCalendarStore";
 import React, { useState } from "react";
 
 const ParticipantCount = () => {

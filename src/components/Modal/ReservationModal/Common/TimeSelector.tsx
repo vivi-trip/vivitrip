@@ -1,5 +1,5 @@
 import Button from "@/src/components/Button/Button";
-import { useCalendar } from "@/src/stores/calendarStore";
+import { useCalendar } from "@/src/stores/useCalendarStore";
 import { Schedule, Schedules } from "@/src/types/activitiesResponses";
 import clsx from "clsx";
 import React, { useState } from "react";

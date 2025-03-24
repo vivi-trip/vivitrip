@@ -7,8 +7,8 @@ import Price from "@/src/components/Modal/ReservationModal/Common/Price";
 import TimeSelector from "@/src/components/Modal/ReservationModal/Common/TimeSelector";
 import TotalPrice from "@/src/components/Modal/ReservationModal/Common/TotalPrice";
 import { usePostActivityReservation } from "@/src/queries/useActivities";
-import { useCalendar } from "@/src/stores/calendarStore";
 import useModalStore from "@/src/stores/modalStore";
+import { useCalendar } from "@/src/stores/useCalendarStore";
 import { AxiosError } from "axios";
 import React from "react";
 
