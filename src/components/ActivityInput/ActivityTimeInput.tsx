@@ -105,7 +105,6 @@ const ActivityTimeInput = ({
                   value={startTime}
                   onChange={setStartTime}
                   disabled={!selectedDate}
-                  addedSchedules={addedSchedules}
                   existingSchedules={existingSchedules}
                   selectedDate={selectedDate}
                 />
@@ -124,7 +123,6 @@ const ActivityTimeInput = ({
                   onChange={setEndTime}
                   minTime={startTime}
                   disabled={!selectedDate || !startTime}
-                  addedSchedules={addedSchedules}
                   existingSchedules={existingSchedules}
                   selectedDate={selectedDate}
                 />

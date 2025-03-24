@@ -20,7 +20,6 @@ interface TimeDropdownProps {
   placeholder?: string;
   minTime?: string;
   disabled: boolean;
-  addedSchedules: Schedule[];
   existingSchedules: Schedule[];
   selectedDate: string | null;
 }
@@ -31,7 +30,6 @@ const TimeDropdown = ({
   placeholder = "00:00",
   minTime,
   disabled = false,
-  addedSchedules,
   existingSchedules,
   selectedDate,
 }: TimeDropdownProps) => {
