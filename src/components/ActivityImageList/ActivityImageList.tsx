@@ -1,10 +1,10 @@
-import ActivityImage from "./ActivityImage";
-import Style from "./ActivityImageList.module.css";
 import IconLeftArrow from "@/assets/svgs/btnArrow48pxDefault.svg";
 import IconRightArrow from "@/assets/svgs/btnArrow48pxVariant4.svg";
 import IconMinus from "@/assets/svgs/ic_minus_btn.svg";
 import IconPlus from "@/assets/svgs/ic_plus_btn.svg";
 import IconRefresh from "@/assets/svgs/ic_refresh.svg";
+import ActivityImage from "@/src/components/ActivityImageList/ActivityImage";
+import Style from "@/src/components/ActivityImageList/ActivityImageList.module.css";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import clsx from "clsx";
 import dynamic from "next/dynamic";

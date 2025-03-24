@@ -1,4 +1,4 @@
-import ModalPotal from "./ModalPortal";
+import ModalPotal from "@/src/components/Modal/ModalPortal";
 import useModalStore from "@/src/stores/useModalStore";
 
 const Modal = () => {
