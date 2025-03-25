@@ -129,7 +129,7 @@ const ActivitiesPage = ({ post }: { post: ActivityDetailResponse }) => {
         <meta property="og:type" content="website" key="og:type" />
         <meta
           property="og:image"
-          content={`/images/thumbnail/${id}.jpeg`}
+          content={`https://www.vivitrip.net/images/thumbnail/${id}.jpeg`}
           key="og:image"
         />
       </Head>
