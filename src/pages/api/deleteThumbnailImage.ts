@@ -30,7 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // 저장 경로 내 이미지 확인
   if (!imagePath.startsWith(rootDir)) {
-    return res.status(400).json({ error: "파일이 존재하지 않습니다" });
+    return res.status(404).json({ error: "파일이 존재하지 않습니다" });
   }
 
   try {
