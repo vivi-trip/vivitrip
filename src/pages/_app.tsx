@@ -1,11 +1,11 @@
+import "@/src/components/Calendar/calendar.css";
 import Favicon from "@/src/components/Favicon";
+import Modal from "@/src/components/Modal/Modal";
 import ScrollToTopHandler from "@/src/components/ScrollHandler/ScrollToTopHandler";
-import "@/src/components/calendar/calendar.css";
-import Modal from "@/src/components/modal/Modal";
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import ScrollProvider from "@/src/contexts/ScrollContext";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import "@/src/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";

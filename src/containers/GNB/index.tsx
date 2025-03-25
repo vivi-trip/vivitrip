@@ -2,7 +2,7 @@ import Logo from "@/src/components/Logo";
 import SignMenu from "@/src/components/SignMenu";
 import UserMenu from "@/src/components/UserMenu";
 import useWindowSize from "@/src/hooks/useWindowSize";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 
 const GNB = () => {
   const { userData } = useUserStore();

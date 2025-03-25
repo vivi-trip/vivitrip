@@ -1,7 +1,7 @@
 import Star from "@/assets/svgs/star.svg";
 import Loading from "@/src/components/Loading";
 import Pagination from "@/src/components/Pagination/index";
-import useLoadingStore from "@/src/stores/loadingStore";
+import useLoadingStore from "@/src/stores/useLoadingStore";
 import { Activity } from "@/src/types/activities";
 import Image from "next/image";
 import Link from "next/link";

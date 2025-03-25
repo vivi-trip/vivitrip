@@ -2,7 +2,7 @@ import Star from "@/assets/svgs/star.svg";
 import Loading from "@/src/components/Loading";
 import PATH_NAMES from "@/src/constants/pathname";
 import useResponsiveTextStyle from "@/src/hooks/Activity/useResponsiveTextStyle";
-import useLoadingStore from "@/src/stores/loadingStore";
+import useLoadingStore from "@/src/stores/useLoadingStore";
 import { Activity } from "@/src/types/activities";
 import clsx from "clsx";
 import Image from "next/image";
