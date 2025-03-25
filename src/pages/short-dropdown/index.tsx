@@ -1,5 +1,5 @@
 import AltArrowDown from "@/assets/svgs/altArrowDown.svg";
-import ShortDropdown from "@/src/components/shortDropdown/shortDropdown";
+import ShortDropdown from "@/src/components/ShortDropdown/ShortDropdown";
 import useDropdown from "@/src/hooks/useDropdown";
 
 type ArticleOrder = "like" | "recent";

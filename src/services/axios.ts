@@ -1,4 +1,4 @@
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import {
   deleteTokensFromCookies,
   getTokensFromCookies,

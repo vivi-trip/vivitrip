@@ -1,5 +1,5 @@
 import Button from "@/src/components/Button/Button";
-import ActivityList from "@/src/components/MyAtivities/ActivityList";
+import ActivityList from "@/src/components/MyActivities/ActivityList";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import PATH_NAMES from "@/src/constants/pathname";
 import { useRouter } from "next/router";

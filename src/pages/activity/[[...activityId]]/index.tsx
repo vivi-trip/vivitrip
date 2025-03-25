@@ -4,11 +4,11 @@ import ActivityLocation from "@/src/components/ActivityLocation/ActivityLocation
 import ActivityReservationBar from "@/src/components/ActivityReservation/ActivityReservationBar";
 import ActivityTitleSection from "@/src/components/ActivityTitleSection";
 import Loading from "@/src/components/Loading";
-import MyActivityHandler from "@/src/components/MyAtivities/MyActivityHandler";
+import MyActivityHandler from "@/src/components/MyActivities/MyActivityHandler";
 import Review from "@/src/components/Review";
 import Custom404 from "@/src/pages/404";
 import { useGetActivities } from "@/src/queries/useActivities";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import { useRouter } from "next/router";
 

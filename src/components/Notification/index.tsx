@@ -4,12 +4,12 @@ import IconRefresh from "@/assets/svgs/ic_refresh.svg";
 import Button from "@/src/components/Button/Button";
 import Dropdown from "@/src/components/Dropdown";
 import NotificationItem from "@/src/components/NotificationItem";
-import useInfiniteNotifications from "@/src/queries/my-notifications";
-import { deleteMyNotification } from "@/src/services/my-notifications";
+import useInfiniteNotifications from "@/src/queries/myNotifications";
+import { deleteMyNotification } from "@/src/services/myNotifications";
 import type {
   MyNotificationsProps,
   NotificationId,
-} from "@/src/types/my-notifications";
+} from "@/src/types/myNotifications";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 

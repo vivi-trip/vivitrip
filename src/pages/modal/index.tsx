@@ -1,10 +1,10 @@
 import ActivityReservationBar from "@/src/components/ActivityReservation/ActivityReservationBar";
-import PopupModal from "@/src/components/modal/PopupModal";
-import ReservationCancelModal from "@/src/components/modal/ReservationCancelModal";
-import ReservationInfoModal from "@/src/components/modal/ReservationInfoModal/ReservationInfoModal";
-import ReservationModal from "@/src/components/modal/ReservationModal/ReservationModal";
+import PopupModal from "@/src/components/Modal/PopupModal";
+import ReservationCancelModal from "@/src/components/Modal/ReservationCancelModal";
+import ReservationInfoModal from "@/src/components/Modal/ReservationInfoModal/ReservationInfoModal";
+import ReservationModal from "@/src/components/Modal/ReservationModal/ReservationModal";
 import { useGetActivities } from "@/src/queries/useActivities";
-import useModalStore from "@/src/stores/ModalStore";
+import useModalStore from "@/src/stores/useModalStore";
 
 const OpenModalButton = () => {
   const { setModalOpen } = useModalStore();

@@ -1,5 +1,5 @@
 import Form from "@/src/components/Form";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { ComponentProps } from "@/src/types/type";
 import { MyPageProps } from "@/src/types/user";
 

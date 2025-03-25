@@ -1,6 +1,6 @@
 import Button from "@/src/components/Button/Button";
 import { deleteKakaoUser, listKakaoUsers } from "@/src/services/auth";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { useEffect, useState } from "react";
 
 const MyPageKakao = () => {

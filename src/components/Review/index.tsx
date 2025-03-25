@@ -2,7 +2,7 @@ import Pagination from "@/src/components/Pagination";
 import ProgressBar from "@/src/components/Review/ProgressBar";
 import RatingSummary from "@/src/components/Review/RatingSummary";
 import ReviewList from "@/src/components/Review/ReviewList";
-import useReviews from "@/src/hooks/review/useReviews";
+import useReviews from "@/src/hooks/Review/useReviews";
 import { useRouter } from "next/router";
 
 const Review = ({ activityId }: { activityId: number }) => {

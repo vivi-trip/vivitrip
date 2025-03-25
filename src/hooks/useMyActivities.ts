@@ -6,7 +6,7 @@ import {
   getMyResrvations,
   patchMyActivity,
   patchReservaionState,
-} from "@/src/services/myActiviesApi";
+} from "@/src/services/myActivitiesApi";
 import {
   GetMyActivities,
   MyActivities,

@@ -4,7 +4,7 @@ import {
   createActivityReservation,
   getActivity,
 } from "@/src/services/activities";
-import { patchMyActivity } from "@/src/services/myActiviesApi";
+import { patchMyActivity } from "@/src/services/myActivitiesApi";
 import {
   ActivityImageUrl,
   CreateActivityProps,
@@ -13,7 +13,6 @@ import {
 import { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import { useMutation, useQuery } from "@tanstack/react-query";
-
 
 export const useGetActivities = (activityId: number | undefined) => {
   const { data, isLoading, error } = useQuery<ActivityDetailResponse>({

@@ -1,5 +1,5 @@
 import IconUser from "@/assets/svgs/ic_user.svg";
-import useUserStore from "@/src/stores/userStore";
+import useUserStore from "@/src/stores/useUserStore";
 import { ProfileImageUrl } from "@/src/types/user";
 import clsx from "clsx";
 import Image from "next/image";

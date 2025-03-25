@@ -1,7 +1,7 @@
 import { KAKAO_OAUTH_LINKS } from "@/src/components/OauthSignButton";
 import { useOauthSignIn, useOauthSignUp } from "@/src/queries/auth";
 import { getKakaoToken, getKakaoUserInfo } from "@/src/services/auth";
-import useOauthSignStore from "@/src/stores/oauthSignStore";
+import useOauthSignStore from "@/src/stores/useOauthSignStore";
 import { OauthActions } from "@/src/types/oauth";
 import Image from "next/image";
 import { useRouter } from "next/router";
