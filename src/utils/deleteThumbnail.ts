@@ -1,10 +1,14 @@
 import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 // AWS 환경 변수
-const accessKeyId = process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID!;
-const secretAccessKey = process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY!;
-const bucketName = process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME!;
-const region = process.env.NEXT_PUBLIC_AWS_REGION!;
+const accessKeyId = process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID;
+const secretAccessKey = process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY;
+const bucketName = process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME;
+const region = process.env.NEXT_PUBLIC_AWS_REGION;
+
+if (!accessKeyId || !secretAccessKey || !bucketName || !region) {
+  throw new Error("AWS 환경 변수가 설정되지 않았습니다.");
+}
 
 // AWS S3 설정
 const s3 = new S3Client({

@@ -11,7 +11,7 @@ import downloadThumbnail from "@/src/utils/downloadThumbnail";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // 정적 생성할 파라미터 생성
 export const getStaticPaths: GetStaticPaths = async () => {
