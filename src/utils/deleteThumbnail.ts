@@ -21,7 +21,7 @@ const s3 = new S3Client({
 
 // S3에서 파일 삭제 함수
 const deleteThumbnail = async (
-  fileName: number,
+  fileName: string,
 ): Promise<{ success: boolean; message?: string }> => {
   try {
     // 파일 경로
@@ -39,7 +39,12 @@ const deleteThumbnail = async (
 
     return { success: true, message: "파일이 성공적으로 삭제되었습니다." };
   } catch (error) {
-    return { success: false, message: "파일 삭제 중 오류가 발생했습니다." };
+    // eslint-disable-next-line no-console
+    console.error("파일 삭제 중 오류:", error);
+    return {
+      success: false,
+      message: `파일 삭제 중 오류가 발생했습니다: ${error instanceof Error ? error.message : "알 수 없는 오류"}`,
+    };
   }
 };
 
