@@ -12,8 +12,6 @@ reviews:
     enabled: true # 자동 리뷰 기능 활성화
     drafts: false # 자동 리뷰가 초안(draft) 상태로 제출되지 않도록 설정
   review_status: true # PR 상태에서 코드 리뷰 진행 여부 표시
-  review_comment_mode: inline # 코드 라인별로 리뷰 코멘트를 작성
-  review_scope: diff # 변경된 코드(diff)만 리뷰 (full: 전체 코드 리뷰)
 
 branches:
   - name: "main" # 기본 브랜치(main) 설정
@@ -23,9 +21,3 @@ branches:
 
 chat:
   auto_reply: true # AI 챗봇 자동 응답 활성화
-
-ignore:
-  - "node_modules/**" # node_modules 폴더 내 파일 제외
-  - "dist/**" # 빌드 결과물(dist 폴더) 제외
-  - "build/**" # 빌드 결과물(build 폴더) 제외
-  - "**/*.min.js" # 압축된 JavaScript 파일 제외
