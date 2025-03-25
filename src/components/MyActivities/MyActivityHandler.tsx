@@ -25,7 +25,7 @@ const MyActivityHandler = ({ activityId }: ActivityId) => {
     mutate(activityId, {
       onSuccess: () => {
         setModalOpen(<PopupModal title="체험이 성공적으로 삭제되었습니다." />);
-        deleteThumbnail(activityId)
+        deleteThumbnail(activityId.toString())
           .then((result) => {
             if (!result.success) {
               console.error("썸네일 삭제 실패: ", result.message);
