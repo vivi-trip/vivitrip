@@ -30,7 +30,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // 저장 경로 내 이미지 확인
   if (!imagePath.startsWith(rootDir)) {
-    return res.status(404).json({ error: "파일이 존재하지 않습니다" });
+    return res.status(404).json({ error: "잘못된 파일 경로입니다" });
+  }
+
+  // 파일 존재 여부 확인
+  try {
+    await fs.promises.access(imagePath, fs.constants.F_OK);
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ error: "삭제할 이미지 파일이 존재하지 않습니다" });
   }
 
   try {
