@@ -25,7 +25,15 @@ const MyActivityHandler = ({ activityId }: ActivityId) => {
     mutate(activityId, {
       onSuccess: () => {
         setModalOpen(<PopupModal title="체험이 성공적으로 삭제되었습니다." />);
-        deleteThumbnailImage({ id: activityId });
+        deleteThumbnailImage({ id: activityId })
+          .then((result) => {
+            if (!result.success) {
+              console.error("썸네일 삭제 실패: ", result.message);
+            }
+          })
+          .catch((error) => {
+            console.error("썸네일 삭제 중 오류 발생: ", error);
+          });
       },
       onError: (error) => {
         if (error instanceof AxiosError && error.response) {
