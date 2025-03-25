@@ -1,0 +1,31 @@
+language: "ko-KR" # 코드 리뷰 및 설정에서 사용할 기본 언어 설정
+
+early_access: false # 새로운 기능의 조기 접근 비활성화
+
+reviews:
+  profile: "chill" # 리뷰 스타일을 'chill'로 설정 (부드러운 피드백 제공)
+  request_changes_workflow: false # 코드 변경 요청 워크플로우 비활성화
+  high_level_summary: true # 리뷰 요약 제공 활성화
+  poem: true # 리뷰를 시 형식으로 제공하는 기능 활성화
+  collapse_walkthrough: false # 코드 리뷰 내 상세 설명을 기본적으로 펼쳐진 상태로 유지
+  auto_review:
+    enabled: true # 자동 리뷰 기능 활성화
+    drafts: false # 자동 리뷰가 초안(draft) 상태로 제출되지 않도록 설정
+  review_status: true # PR 상태에서 코드 리뷰 진행 여부 표시
+  review_comment_mode: inline # 코드 라인별로 리뷰 코멘트를 작성
+  review_scope: diff # 변경된 코드(diff)만 리뷰 (full: 전체 코드 리뷰)
+
+branches:
+  - name: "main" # 기본 브랜치(main) 설정
+    auto_review: true # main 브랜치에서 자동 리뷰 활성화
+  - name: "dev" # 개발 브랜치(dev) 설정
+    auto_review: true # dev 브랜치에서 자동 리뷰 활성화
+
+chat:
+  auto_reply: true # AI 챗봇 자동 응답 활성화
+
+ignore:
+  - "node_modules/**" # node_modules 폴더 내 파일 제외
+  - "dist/**" # 빌드 결과물(dist 폴더) 제외
+  - "build/**" # 빌드 결과물(build 폴더) 제외
+  - "**/*.min.js" # 압축된 JavaScript 파일 제외
