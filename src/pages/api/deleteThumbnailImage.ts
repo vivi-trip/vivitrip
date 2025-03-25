@@ -8,8 +8,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const { id } = req.body;
+
+  // id 파라이터 확인
   if (!id) {
     return res.status(400).json({ error: "id 는 필수입니다" });
+  }
+
+  // id 의 타입 확인
+  if (typeof id !== "number") {
+    return res.status(400).json({ error: "id는 숫자로만 구성되어야 합니다" });
   }
 
   // 이미지 파일명
