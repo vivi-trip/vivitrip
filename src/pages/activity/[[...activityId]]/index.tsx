@@ -7,16 +7,17 @@ import MyActivityHandler from "@/src/components/MyActivities/MyActivityHandler";
 import Review from "@/src/components/Review";
 import useUserStore from "@/src/stores/useUserStore";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
-import downloadThumbnailImage from "@/src/utils/downloadThumbnailImage";
+import downloadThumbnail from "@/src/utils/downloadThumbnail";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import path from "path";
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
 // 정적 생성할 파라미터 생성
 export const getStaticPaths: GetStaticPaths = async () => {
   // 체험 데이터 목록 요청
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activities?method=offset&page=1&size=100`,
+    `${BASE_URL}/activities?method=offset&page=1&size=100`,
   );
 
   // 체험 데이터 목록 추출
@@ -45,7 +46,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   // 체험 상세 데이터 요청
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/activities/${id}`;
+  const url = `${BASE_URL}/activities/${id}`;
   const response = await fetch(url);
 
   // 정상 응답 아닐 시 에러페이지 반환
@@ -61,20 +62,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // 저장할 배너 이미지 url 추출
   const { bannerImageUrl } = data;
 
-  // 이미지 파일명
-  const imageFileName = `${id}.jpeg`;
-
-  // 저장 경로
-  const rootDir = path.join(process.cwd(), "public", "images", "thumbnail");
-
-  // 이미지 경로
-  const imagePath = path.resolve(rootDir, imageFileName);
-
   try {
-    // 이미지를 로컬 서버에 저장
-    await downloadThumbnailImage({
+    // 이미지를 AWS S3 버킷에 저장
+    await downloadThumbnail({
       imageUrl: bannerImageUrl,
-      savePath: imagePath,
+      fileName: id,
     });
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -129,7 +121,7 @@ const ActivitiesPage = ({ post }: { post: ActivityDetailResponse }) => {
         <meta property="og:type" content="website" key="og:type" />
         <meta
           property="og:image"
-          content={`https://www.vivitrip.net/images/thumbnail/${id}.jpeg`}
+          content={`https://${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/thumbnails/${id}.jpeg`}
           key="og:image"
         />
       </Head>
