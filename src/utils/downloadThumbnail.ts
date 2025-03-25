@@ -40,8 +40,8 @@ const checkIfFileExists = async (fileName: string) => {
 
     return true; // 파일이 존재하면 참 반환
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    if (error.name === "NotFound") {
+  } catch (error) {
+    if (error instanceof Error && error.name === "NotFound") {
       return false; // 파일이 없으면 거짓 반환
     }
 
