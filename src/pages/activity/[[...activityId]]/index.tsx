@@ -12,55 +12,63 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import path from "path";
 
-interface ActivitiesPageProps {
-  post: ActivityDetailResponse;
-}
-
+// 정적 생성할 파라미터 생성
 export const getStaticPaths: GetStaticPaths = async () => {
+  // 체험 데이터 목록 요청
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/activities?method=offset&page=1&size=100`,
   );
 
+  // 체험 데이터 목록 추출
   const { activities } = await response.json();
 
+  // 체험 데이터 목록에서 아이디만 추출한 배열 생성
   const paths = activities.map((data: ActivityDetailResponse) => {
     return { params: { activityId: [data.id.toString()] } };
   });
 
+  // fallback: "blocking" 옵션으로 정적페이지가 없는 페이지에 접근 시 정적페이지 생성
   return { paths, fallback: "blocking" };
 };
 
+// 정적페이지 생성
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  // 체험 아이디 추출
   const { activityId } = params as { activityId: string[] };
   const id = activityId?.[0];
 
+  // 아이디가 없으면 에러페이지 반환
   if (!id) {
     return {
       notFound: true,
     };
   }
 
+  // 체험 상세 데이터 요청
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/activities/${id}`;
-
   const response = await fetch(url);
 
+  // 정상 응답 아닐 시 에러페이지 반환
   if (!response.ok) {
     return {
       notFound: true,
     };
   }
 
+  // 데이터 json 객체화
   const data = await response.json();
+
+  // 저장할 배너 이미지 url 추출
   const { bannerImageUrl } = data;
 
-  const imageFileName = `${id}.jpeg`; // 이미지 파일명 추출
-  const imagePath = path.join(
-    process.cwd(),
-    "public",
-    "images",
-    "thumbnail",
-    imageFileName,
-  ); // 로컬 저장 경로
+  // 이미지 파일명
+  const imageFileName = `${id}.jpeg`;
+
+  // 저장 경로
+  const rootDir = path.join(process.cwd(), "public", "images", "thumbnail");
+
+  // 이미지 경로
+  const imagePath = path.resolve(rootDir, imageFileName);
 
   try {
     // 이미지를 로컬 서버에 저장
@@ -69,6 +77,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       savePath: imagePath,
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("이미지 저장 실패:", error);
   }
 
@@ -80,7 +89,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-const ActivitiesPage = ({ post }: ActivitiesPageProps) => {
+const ActivitiesPage = ({ post }: { post: ActivityDetailResponse }) => {
   const { userData } = useUserStore();
 
   if (!post) return null;
@@ -96,7 +105,7 @@ const ActivitiesPage = ({ post }: ActivitiesPageProps) => {
     rating,
     reviewCount,
     subImages,
-  } = post as ActivityDetailResponse;
+  } = post;
 
   return (
     <>
