@@ -70,7 +70,7 @@ const App = ({
         <meta property="og:type" content="website" key="og:type" />
         <meta
           property="og:image"
-          content="/images/thumbnail/main.png"
+          content="https://www.vivitrip.net/images/thumbnail/main.png"
           key="og:image"
         />
       </Head>
