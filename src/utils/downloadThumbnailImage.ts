@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 
-const isServer = typeof window === "undefined"; // 서버 환경인지 확인
+// 서버 환경인지 확인
+const isServer = typeof window === "undefined";
 
 const downloadThumbnailImage = async ({
   imageUrl,
@@ -39,7 +39,7 @@ const downloadThumbnailImage = async ({
   const arrayBuffer = await res.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  // 이미지 최적화 1200, 630
+  // 이미지 최적화
   const optimizedImage = await sharp(buffer)
     .resize(400, 210, { fit: "cover" })
     .jpeg({ quality: 8 })
