@@ -60,7 +60,6 @@ const downloadThumbnail = async ({
     // 업로드 전에 파일이 이미 존재하는지 확인
     const existingFileUrl = await checkIfFileExists(fileName);
     if (existingFileUrl) {
-      console.log("파일이 이미 존재합니다.");
       return; // 파일이 존재하면 얼리 리턴
     }
 
