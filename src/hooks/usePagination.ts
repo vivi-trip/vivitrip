@@ -1,4 +1,4 @@
-import { useScroll } from "../contexts/ScrollContext";
+import { useScroll } from "@/src/contexts/ScrollContext";
 import { PaginationProps } from "@/src/types/pagination";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
