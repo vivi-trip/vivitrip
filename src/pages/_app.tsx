@@ -34,7 +34,8 @@ const App = ({
 
   const { pathname, query } = useRouter();
 
-  const hasQuery = Object.keys(query).length !== 0;
+  const hasQuery =
+    Object.keys(query).filter((key) => key !== "activityId").length !== 0;
   const isHome = pathname === "/home" && hasQuery;
   const isActivityPage = pathname.startsWith("/activity") && hasQuery;
   const isScrollToTopEnabled = isHome || isActivityPage;
