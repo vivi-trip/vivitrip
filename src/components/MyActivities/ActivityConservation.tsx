@@ -70,7 +70,17 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
 
     createActivity(requestData, {
       onSuccess: () => {
-        router.push(PATH_NAMES.MyActivities);
+        setModalOpen(
+          <PopupModal
+            title="체험이 등록되었습니다."
+            onConfirm ={() => {
+              router.push(PATH_NAMES.MyActivities);
+            }}
+          />,
+          {
+            customClass: "md:p-32",
+          },
+        );
       },
     });
   };
