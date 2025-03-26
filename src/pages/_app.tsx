@@ -32,13 +32,8 @@ const App = ({
 
   const { userData, checkAndClearUserData } = useUserStore();
 
-  const { pathname, query } = useRouter();
+  const { pathname } = useRouter();
 
-  const hasQuery =
-    Object.keys(query).filter((key) => key !== "activityId").length !== 0;
-  const isHome = pathname === "/home" && hasQuery;
-  const isActivityPage = pathname.startsWith("/activity") && hasQuery;
-  const isScrollToTopEnabled = isHome || isActivityPage;
   const isHomeOrSearch = pathname === "/home" || pathname === "/search";
   const is404Page = pageProps?.statusCode === 404;
 
@@ -88,7 +83,7 @@ const App = ({
                 ? "bg-brand-50"
                 : "h-main bg-gray-50",
             )}>
-            {!isScrollToTopEnabled && <ScrollToTopHandler />}
+            <ScrollToTopHandler />
             <div
               className={clsx(
                 "mx-auto min-h-main",

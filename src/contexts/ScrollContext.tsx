@@ -1,8 +1,19 @@
 import { ComponentProps } from "@/src/types/type";
 import clsx from "clsx";
-import { createContext, useCallback, useContext, useMemo, useRef } from "react";
+import { useRouter } from "next/router";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 interface ScrollContextProps {
+  scrollBlock: Dispatch<SetStateAction<boolean>>;
   handleScrollToTop: () => void;
 }
 
@@ -18,16 +29,27 @@ const ScrollProvider = ({
   as: Component = "div",
 }: ScrollProviderProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const { query } = router;
+  const hasQuery =
+    Object.keys(query).filter((key) => key === "page" || key === "category")
+      .length > 0;
+
+  const [scrollBlock, setScrollBlock] = useState<boolean>(false);
 
   const handleScrollToTop = useCallback(() => {
+    if (hasQuery || scrollBlock) {
+      return;
+    }
+
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ top: 0, behavior: "instant" });
     }
-  }, []);
+  }, [hasQuery, scrollBlock]);
 
   const contextValue = useMemo(
-    () => ({ handleScrollToTop }),
-    [handleScrollToTop],
+    () => ({ scrollBlock: setScrollBlock, handleScrollToTop }),
+    [setScrollBlock, handleScrollToTop],
   );
 
   return (
