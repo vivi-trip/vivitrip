@@ -16,7 +16,7 @@ const ActivityTextArea = ({ control }: TextAreaProps) => {
         rules={{
           required: { value: true, message: "필수 입력 값입니다." },
           pattern: {
-            value: /^[^\n]+$/,
+            value: /^[\s\S]*$/,
             message: "문자열을 포함하여 작성해주세요.",
           },
         }}
