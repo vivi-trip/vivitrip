@@ -7,11 +7,9 @@ const ScrollToTopHandler = () => {
   const { handleScrollToTop } = useScroll();
 
   useEffect(() => {
-    const handleRouteChange = () => handleScrollToTop();
-
-    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeComplete", handleScrollToTop);
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeComplete", handleScrollToTop);
     };
   }, [router, handleScrollToTop]);
 
