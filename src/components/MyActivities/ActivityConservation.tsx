@@ -6,6 +6,7 @@ import ActivityTextArea from "@/src/components/ActivityInput/ActivityTextArea";
 import ActivityTimeInput from "@/src/components/ActivityInput/ActivityTimeInput";
 import ActivityTitleInput from "@/src/components/ActivityInput/ActivityTitleInput";
 import Button from "@/src/components/Button/Button";
+import PopupModal from "@/src/components/Modal/PopupModal";
 import TwoButtonModal from "@/src/components/Modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import {
@@ -171,7 +172,17 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
         },
         {
           onSuccess: () => {
-            router.push(PATH_NAMES.MyActivities);
+            setModalOpen(
+              <PopupModal
+                title="체험이 수정되었습니다."
+                onConfirm ={() => {
+                  router.push(PATH_NAMES.MyActivities);
+                }}
+              />,
+              {
+                customClass: "md:p-32",
+              },
+            );
           },
         },
       );

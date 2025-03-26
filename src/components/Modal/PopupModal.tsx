@@ -6,10 +6,20 @@ import React from "react";
 interface PopupModalProps {
   title: string;
   content?: string;
+  onConfirm?: () => void;
 }
 
-const PopupModal = ({ title, content }: PopupModalProps): JSX.Element => {
+const PopupModal = ({
+  title,
+  content,
+  onConfirm,
+}: PopupModalProps): JSX.Element => {
   const { setModalClose } = useModalStore();
+
+  const handleConfirm = () => {
+    setModalClose();
+    onConfirm?.();
+  };
 
   return (
     <div
@@ -47,7 +57,7 @@ const PopupModal = ({ title, content }: PopupModalProps): JSX.Element => {
         backgroundColor="black"
         radius="8"
         gap="8"
-        onClick={setModalClose}>
+        onClick={handleConfirm }>
         확인
       </Button>
     </div>
