@@ -57,7 +57,7 @@ const PopupModal = ({
         backgroundColor="black"
         radius="8"
         gap="8"
-        onClick={handleConfirm }>
+        onClick={handleConfirm}>
         확인
       </Button>
     </div>
