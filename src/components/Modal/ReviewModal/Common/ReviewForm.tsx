@@ -13,7 +13,7 @@ interface ReviewFromProps {
 }
 
 const ReviewForm = ({ reservationId }: ReviewFromProps) => {
-  const [rating, setRating] = useState<ReservationRating>(0);
+  const [rating, setRating] = useState<ReservationRating>(1);
   const [reviewText, setReviewText] = useState("");
   const { setModalOpen } = useModalStore();
 
@@ -28,8 +28,8 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
   const handleStars = (clicked: ReservationRating) => {
     if (rating === clicked) {
       // 동일한 별점을 다시 클릭하면 하나 줄어든 값으로 설정
-      const newRating = clicked - 1;
-      setRating(newRating as ReservationRating); // 최소값은 0으로 유지
+      const newRating = clicked > 1 ? clicked - 1 : 1; // 최소값은 1으로 유지
+      setRating(newRating as ReservationRating);
     } else {
       // 다른 별점을 클릭하면 해당 값으로 설정
       setRating(clicked);
@@ -45,7 +45,7 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
       onSuccess: () => {
         setModalOpen(<PopupModal title="리뷰가 등록 되었습니다." />);
         setReviewText("");
-        setRating(0);
+        setRating(1);
       },
       onError: (error) => {
         if (error instanceof AxiosError && error.response) {
@@ -71,7 +71,7 @@ const ReviewForm = ({ reservationId }: ReviewFromProps) => {
             role="button"
             className="cursor-pointer">
             {rating !== null && id <= rating ? (
-              <IconStar className="size-60 text-yellow-400" />
+              <IconStar className="size-50 text-yellow-400" />
             ) : (
               <IconStar className="size-50 stroke-gray-400 text-transparent" />
             )}
