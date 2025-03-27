@@ -283,14 +283,16 @@ export const useOauthSignUp = () => {
           <PopupModal
             title={
               <p>
-                `${data.message}
+                {data.message}
                 <br />
-                로그인 페이지로 이동합니다.`
+                잠시후 로그인 페이지로 이동합니다.
               </p>
             }
           />,
         );
-        router.replace(PATH_NAMES.SignIn);
+        setTimeout(() => {
+          router.replace(PATH_NAMES.SignIn);
+        }, 3000);
       } else if (status && status >= 400 && status < 500) {
         setModalOpen(<PopupModal title={data.message} />);
       }
