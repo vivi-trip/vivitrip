@@ -4,15 +4,17 @@ import OauthSign from "@/src/components/OauthSign";
 import SignOptionSection from "@/src/components/SignOptionSection";
 import PATH_NAMES from "@/src/constants/pathname";
 import SignPageWrap from "@/src/containers/SignPageWrap";
+import useHydration from "@/src/hooks/useHydration";
 import { useSignUp } from "@/src/queries/auth";
 import useTempEmailStore from "@/src/stores/useTempEmailStore";
 import useUserStore from "@/src/stores/useUserStore";
-import { SignUpProps } from "@/src/types/user";
+import type { SignUpProps } from "@/src/types/user";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const SignUpRoute = () => {
   const router = useRouter();
+  const isHydrated = useHydration();
   const { userData } = useUserStore();
   const { mutate: signupFn, isPending: isPendingSignup } = useSignUp();
   const { email, clearEmail } = useTempEmailStore();
@@ -21,9 +23,13 @@ const SignUpRoute = () => {
     signupFn(data);
   };
 
-  useEffect(() => {
+  const handleEmailValue = useCallback(() => {
     if (email) clearEmail();
-  });
+  }, [email, clearEmail]);
+
+  useEffect(() => {
+    if (isHydrated) handleEmailValue();
+  }, [isHydrated, handleEmailValue]);
 
   useEffect(() => {
     if (userData) router.replace(PATH_NAMES.Root);
@@ -38,7 +44,7 @@ const SignUpRoute = () => {
 
         <Form.Field variant="email">
           <Form.Label>이메일</Form.Label>
-          <Form.Input placeholder="이메일을 입력해 주세요" />
+          <Form.Input placeholder="이메일을 입력해 주세요" value={email} />
         </Form.Field>
 
         <Form.Field variant="nickname">
