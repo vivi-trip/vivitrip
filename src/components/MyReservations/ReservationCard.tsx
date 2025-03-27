@@ -4,12 +4,15 @@ import ReviewModal from "@/src/components/Modal/ReviewModal/ReviewModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import RESERVATION_LABEL from "@/src/constants/reservationStatus";
 import { usePatchMyReservation } from "@/src/queries/useMyReservations";
+import { getActivity } from "@/src/services/activities";
 import useModalStore from "@/src/stores/useModalStore";
 import { Reservation } from "@/src/types/myReservationsResponses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
+import { AxiosError } from "axios";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import type { MouseEvent } from "react";
 
 /**
  * @description 내 예약 내용
@@ -41,7 +44,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     endTime,
     headCount,
     totalPrice,
-    // reviewSubmitted,     리뷰작성 가능 여부 확인이 안되는 상태 이후 삭제할지 결정 필요
+    reviewSubmitted,
     id,
   } = reservation;
 
@@ -153,6 +156,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
               "lg:font-24px-medium lg:mt-16",
             )}>
             <span>{`₩${totalPrice.toLocaleString("ko-KR")}`}</span>
+
             {status === "pending" && (
               <Button
                 type="button"
@@ -168,24 +172,39 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
                 예약 취소
               </Button>
             )}
+
             {status === "completed" && (
               <Button
                 type="button"
                 radius="6"
                 gap="8"
-                backgroundColor="black"
-                onClick={() =>
-                  setModalOpen(<ReviewModal reviewData={reviewData} />, {
-                    customClass:
-                      "size-full md:w-480 md:h-750 p-24 md:px-24 md:pt-23 min-w-375 rounded-none md:rounded-3xl",
-                  })
-                }
+                backgroundColor={reviewSubmitted ? "gray" : "black"}
+                onClick={(event: MouseEvent<HTMLButtonElement>) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+
+                  getActivity({ activityId })
+                    .then(() => {
+                      setModalOpen(<ReviewModal reviewData={reviewData} />, {
+                        customClass:
+                          "size-full md:w-480 md:h-750 p-24 md:px-24 md:pt-23 min-w-375 rounded-none md:rounded-3xl",
+                      });
+                    })
+                    .catch((error) => {
+                      if (error instanceof AxiosError && error.response) {
+                        setModalOpen(
+                          <PopupModal title={error.response.data.message} />,
+                        );
+                      }
+                    });
+                }}
+                disabled={reviewSubmitted}
                 className={clsx(
-                  "font-14px-bold h-32 min-w-80 max-w-160 px-14 py-6 text-brand-500",
-                  "md:font-16px-bold md:h-40 md:px-26 md:py-7",
-                  "lg:h-43 lg:px-42 lg:py-8",
+                  "font-14px-bold h-32 min-w-80 px-16 text-brand-500",
+                  "md:font-16px-bold md:h-40 md:min-w-120",
+                  "lg:h-43 lg:min-w-160",
                 )}>
-                후기 작성
+                {reviewSubmitted ? "후기 작성 완료" : "후기 작성"}
               </Button>
             )}
           </div>
