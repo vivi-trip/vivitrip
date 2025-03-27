@@ -1,10 +1,14 @@
 import api from "@/src/services/axios";
-import {
+import type {
   OauthActions,
   OauthSignInProps,
   OauthSignUpProps,
 } from "@/src/types/oauth";
-import { SignInProps, SignUpProps, UserPatchProps } from "@/src/types/user";
+import type {
+  SignInProps,
+  SignUpProps,
+  UserPatchProps,
+} from "@/src/types/user";
 import convertParamToQueryString from "@/src/utils/convertParamToQueryString";
 import axios from "axios";
 
