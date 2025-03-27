@@ -83,7 +83,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
   return (
     <div
       className={clsx(
-        "mb-8 h-128 w-full min-w-300 rounded-24 border border-white",
+        "mb-8 h-128 w-full min-w-300 rounded-24 bg-white",
         "md:mb-16 md:h-156 md:min-w-540",
         "lg:mb-24 lg:h-204",
       )}
@@ -95,14 +95,14 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
             "h-128 min-w-128",
             "md:h-156 md:min-w-156",
             "lg:h-204 lg:min-w-204",
-            "lg:font-20px-bold lg:mt-8 lg:max-w-480",
+            "lg:font-20px-bold lg:max-w-480",
           )}>
           <Image
             src={bannerImageUrl}
             alt="체험이미지"
             fill
             style={{ objectFit: "cover" }}
-            className="rounded-l-24 border border-brand-200 bg-brand-400"
+            className="rounded-l-24 bg-brand-400"
           />
         </div>
         <div
