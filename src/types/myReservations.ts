@@ -10,7 +10,7 @@ export type ReservationStatus =
   | "canceled"
   | "completed"
   | "";
-export type ReservationRating = 0 | 1 | 2 | 3 | 4 | 5;
+export type ReservationRating = 1 | 2 | 3 | 4 | 5;
 
 /**
  * @description 내 예약 리스트 조회
