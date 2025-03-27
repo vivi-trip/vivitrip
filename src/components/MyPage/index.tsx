@@ -1,4 +1,6 @@
+import TwoButtonModal from "../Modal/TwoButtonModal";
 import Form from "@/src/components/Form";
+import useModalStore from "@/src/stores/useModalStore";
 import useUserStore from "@/src/stores/useUserStore";
 import type { ComponentProps } from "@/src/types/type";
 import type { MyPageProps, UserPatchProps } from "@/src/types/user";
@@ -9,12 +11,27 @@ const MyPage = ({
   children,
 }: MyPageProps & ComponentProps) => {
   const { userData } = useUserStore();
+  const { setModalOpen, setModalClose } = useModalStore();
+
+  const handleUserUpdateConfirm = async (formData: UserPatchProps) => {
+    setModalOpen(
+      <TwoButtonModal
+        onCancel={() => {
+          handleSubmit(formData);
+          setModalClose();
+        }}
+        title="내정보를 수정하시겠습니까?"
+        negativeContent="취소"
+        interactiveContent="확인"
+      />,
+    );
+  };
 
   if (!userData) return null;
 
   return (
     <Form
-      onSubmit={handleSubmit}
+      onSubmit={handleUserUpdateConfirm}
       className="mx-auto w-full max-w-640 pb-48 md:ml-0">
       <Form.Title>내정보</Form.Title>
 
