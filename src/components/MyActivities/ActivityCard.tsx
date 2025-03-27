@@ -29,7 +29,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
       href={`${PATH_NAMES.Activity}/${activityId}`}
       className={clsx(
         "relative flex",
-        "rounded-24 border border-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]",
+        "rounded-24 bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]",
         "mt-24 h-128 w-full min-w-280",
         "md:h-156",
         "lg:h-204",
@@ -46,7 +46,7 @@ const ActivitiesCard = ({ activity }: ActivitiesCardProps) => {
           src={bannerImageUrl}
           alt="체험 이미지"
           fill
-          className="border border-brand-200 bg-brand-400 object-cover"
+          className="bg-brand-400 object-cover"
         />
       </div>
       <div
