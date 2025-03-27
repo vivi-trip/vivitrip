@@ -43,7 +43,7 @@ const ReservationStatusDropdown = ({
           className={clsx(
             "h-44 min-w-120 px-12 py-10",
             "md:h-56 md:px-16 md:py-15 lg:w-160",
-            "rounded-15 border border-brand-400",
+            "rounded-15 border border-brand-400 bg-white",
             "flex justify-between",
           )}
           onClick={() => setIsOpen((prev) => !prev)}>
