@@ -55,7 +55,7 @@ const SideNavigationMenu = ({ canChangeProfile }: Props) => {
     {
       icon: CalendarCheckIcon,
       alt: "예약현황 아이콘",
-      label: "예약 현황",
+      label: "내 체험 예약 현황",
       path: "/reservation-history",
       id: 4,
     },

@@ -44,7 +44,7 @@ const UserProfile = () => {
     {
       id: "ReservationHistory",
       icon: <CalendarCheckIcon viewBox="0 0 24 24" width={16} height={16} />,
-      name: "예약 현황",
+      name: "내 체험 예약 현황",
       handleClick: () => router.push(PATH_NAMES.ReservationHistory),
     },
     {

@@ -24,7 +24,7 @@ const MyReservationHistory = () => {
     <MyPageWrap>
       <SideNavigationMenu />
       <div className="flex-1">
-        <p className="font-32px-bold">예약 현황</p>
+        <p className="font-32px-bold">내 체험 예약 현황</p>
         {myActivities ? (
           <div className="mt-32">
             <div className="relative mb-24 lg:mb-30">
