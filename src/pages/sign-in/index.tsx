@@ -8,7 +8,7 @@ import TEST_USERS from "@/src/constants/testUsers";
 import SignPageWrap from "@/src/containers/SignPageWrap";
 import { useSignIn } from "@/src/queries/auth";
 import useUserStore from "@/src/stores/useUserStore";
-import { SignInProps } from "@/src/types/user";
+import type { SignInProps } from "@/src/types/user";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
