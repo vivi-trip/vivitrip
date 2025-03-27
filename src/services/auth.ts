@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import api from "@/src/services/axios";
 import {
   OauthActions,
