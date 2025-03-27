@@ -34,6 +34,11 @@ const TEST_USERS: TestUserProps[] = [
     password: "hi@yu.ri",
   },
   {
+    nickname: "LEE",
+    email: "lee@test.com",
+    password: "!ASDF12345",
+  },
+  {
     nickname: "초이주혁",
     email: "choi@ju.hyeok",
     password: "QWER123$",
