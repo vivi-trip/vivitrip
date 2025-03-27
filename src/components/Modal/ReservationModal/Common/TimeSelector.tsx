@@ -30,7 +30,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
           radius="8"
           gap="10"
           fontStyle="xxxl"
-          className={clsx("mr-10 h-46 px-12 py-10", {
+          className={clsx("mr-10 h-46 px-12 py-10 last:mr-0", {
             "bg-brand-500 text-white": isSelected,
             "border border-brand-500 text-brand-500": !isSelected,
           })}
@@ -66,7 +66,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
   return (
     <div>
       <p className="font-18px-bold mt-20">예약 가능한 시간</p>
-      <div className="scrollbar-none mx-10 overflow-x-auto">
+      <div className="scrollbar-none overflow-x-auto">
         <div className="my-16 flex whitespace-nowrap">{renderSchedules()}</div>
       </div>
     </div>
