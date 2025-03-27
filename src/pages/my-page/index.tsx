@@ -5,6 +5,7 @@ import MyPageKakao from "@/src/components/MyPage/kakao";
 import ProfileUpload from "@/src/components/SideNavigationMenu/Common/ProfileUpload";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import PATH_NAMES from "@/src/constants/pathname";
+import MyPageWrap from "@/src/containers/MyPageWrap";
 import useHydration from "@/src/hooks/useHydration";
 import { useUpdateMyData } from "@/src/queries/auth";
 import useModalStore from "@/src/stores/useModalStore";
@@ -74,19 +75,19 @@ const RouteMyPage = () => {
     }
     case "kakao": {
       return (
-        <div className="flex w-full justify-center gap-24 pt-72">
+        <MyPageWrap>
           <div className="hidden md:block">
             <SideNavigationMenu />
           </div>
           <div className="flex-1">
             <MyPageKakao />
           </div>
-        </div>
+        </MyPageWrap>
       );
     }
     default: {
       return (
-        <div className="flex w-full justify-center gap-24 pt-72">
+        <MyPageWrap>
           <div className="hidden md:block">
             <SideNavigationMenu canChangeProfile />
           </div>
@@ -97,7 +98,7 @@ const RouteMyPage = () => {
               </div>
             </MyPage>
           </div>
-        </div>
+        </MyPageWrap>
       );
     }
   }

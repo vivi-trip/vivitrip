@@ -1,6 +1,7 @@
 import ReservationList from "@/src/components/MyReservations/ReservationList";
 import ReservationStatusDropdown from "@/src/components/MyReservations/ReservationStatusDropdown";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
+import MyPageWrap from "@/src/containers/MyPageWrap";
 import { ReservationStatus } from "@/src/types/myReservations";
 import { useState } from "react";
 
@@ -12,22 +13,18 @@ const MyReservations = () => {
   };
 
   return (
-    <div>
-      <div className="mx-auto flex w-full justify-center gap-24 pt-72">
-        <SideNavigationMenu />
-        <div className="flex-1">
-          <div className="flex justify-between">
-            <p className="font-32px-bold">예약 내역</p>
-            <ReservationStatusDropdown
-              handleStatusChange={handleStatusChange}
-            />
-          </div>
-          <div>
-            <ReservationList status={status} />
-          </div>
+    <MyPageWrap>
+      <SideNavigationMenu />
+      <div className="flex-1">
+        <div className="flex justify-between">
+          <p className="font-32px-bold">예약 내역</p>
+          <ReservationStatusDropdown handleStatusChange={handleStatusChange} />
+        </div>
+        <div>
+          <ReservationList status={status} />
         </div>
       </div>
-    </div>
+    </MyPageWrap>
   );
 };
 

@@ -2,6 +2,7 @@ import Button from "@/src/components/Button/Button";
 import ActivityList from "@/src/components/MyActivities/ActivityList";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import PATH_NAMES from "@/src/constants/pathname";
+import MyPageWrap from "@/src/containers/MyPageWrap";
 import { useRouter } from "next/router";
 
 const MyActivities = () => {
@@ -12,7 +13,7 @@ const MyActivities = () => {
   };
 
   return (
-    <div className="flex w-full justify-center gap-24 pt-72">
+    <MyPageWrap>
       <SideNavigationMenu />
       <div className="flex-1">
         <div className="flex justify-between">
@@ -31,7 +32,7 @@ const MyActivities = () => {
         </div>
         <ActivityList />
       </div>
-    </div>
+    </MyPageWrap>
   );
 };
 
