@@ -1,27 +1,21 @@
 import Button from "@/src/components/Button/Button";
 import Form from "@/src/components/Form";
+import PopupModal from "@/src/components/Modal/PopupModal";
+import TwoButtonModal from "@/src/components/Modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import { deleteKakaoUser } from "@/src/services/auth";
+import useModalStore from "@/src/stores/useModalStore";
 import useUserStore from "@/src/stores/useUserStore";
+import type { User } from "@/src/types/user";
 import { useRouter } from "next/router";
 
 const MyPageKakao = () => {
   const router = useRouter();
   const { userData, clearUser } = useUserStore();
+  const { setModalOpen, setModalClose } = useModalStore();
 
-  const handleDisconnectKakaoAccount = async () => {
-    if (!userData) return;
-
-    /**
-     * @todo
-     * 커스텀 모달로 변경
-     */
-    // eslint-disable-next-line no-restricted-globals, no-alert
-    const answer = confirm("카카오 계정 연결을 끊으시겠습니까?");
-
-    if (!answer) return;
-
-    const emailParts = userData.email.split("@");
+  const disconnectKakaoAccount = async (user: User) => {
+    const emailParts = user.email.split("@");
 
     if (emailParts.length !== 2 || Number.isNaN(Number(emailParts[0]))) {
       throw new Error("유효하지 않은 이메일 형식입니다.");
@@ -31,16 +25,29 @@ const MyPageKakao = () => {
 
     try {
       await deleteKakaoUser(kakaoId);
-      clearUser();
       router.replace(PATH_NAMES.Root);
+      clearUser();
     } catch (error) {
-      /**
-       * @todo
-       * 커스텀 모달로 변경
-       */
-      // eslint-disable-next-line no-console
-      console.error("카카오 계정 연결 해제 중 오류가 발생했습니다: ", error);
+      setModalOpen(
+        <PopupModal title="카카오 계정 연결 해제 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요." />,
+      );
     }
+  };
+
+  const handleDisconnectKakaoAccount = async () => {
+    if (!userData) return;
+
+    setModalOpen(
+      <TwoButtonModal
+        onCancel={() => {
+          disconnectKakaoAccount(userData);
+          setModalClose();
+        }}
+        title="카카오 계정 연결을 끊으시겠습니까?"
+        negativeContent="아니오"
+        interactiveContent="네"
+      />,
+    );
   };
 
   if (!userData) return null;
