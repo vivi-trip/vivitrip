@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 
 export type ButtonColorType =
   | "white_black"
@@ -23,7 +23,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   fontStyle?: ButtonTextSizeType;
   className?: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (() => void) | ((event: MouseEvent<HTMLButtonElement>) => void);
   children?: ReactNode;
 }
 
