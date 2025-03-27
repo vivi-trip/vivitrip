@@ -1,14 +1,5 @@
-/**
- * @todo
- * 임시로 사용된 [ confirm, alert ]
- * Modal 컴포넌트로 작성하기
- */
-
-/* eslint-disable no-alert */
-
-/* eslint-disable no-console */
-
-/* eslint-disable no-restricted-globals */
+import PopupModal from "@/src/components/Modal/PopupModal";
+import TwoButtonModal from "@/src/components/Modal/TwoButtonModal";
 import PATH_NAMES from "@/src/constants/pathname";
 import {
   getUserInfo,
@@ -19,11 +10,12 @@ import {
   signin,
   signup,
 } from "@/src/services/auth";
+import useModalStore from "@/src/stores/useModalStore";
 import useOauthSignStore from "@/src/stores/useOauthSignStore";
 import useSignupLinkStore from "@/src/stores/useTempEmailStore";
 import useUserStore from "@/src/stores/useUserStore";
-import { OauthTypes } from "@/src/types/oauth";
-import {
+import type { OauthTypes } from "@/src/types/oauth";
+import type {
   SignInErrorResponseProps,
   SignInProps,
   SignInSuccessResponseProps,
@@ -35,7 +27,7 @@ import {
   setCookiesByTokens,
 } from "@/src/utils/token";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import { useRouter } from "next/router";
 
 /**
@@ -65,6 +57,7 @@ export const useSignIn = () => {
   const router = useRouter();
   const { setUserData } = useUserStore();
   const { setEmail } = useSignupLinkStore();
+  const { setModalOpen, setModalClose } = useModalStore();
 
   return useMutation({
     mutationFn: signin,
@@ -79,16 +72,28 @@ export const useSignIn = () => {
     onError(error, variables) {
       const { response } = error as AxiosError;
       const { data, status } = response as SignInErrorResponseProps;
+
       if (response?.status === 404) {
-        const answer = confirm(
-          "존재하지 않는 유저입니다.\n회원가입 페이지로 이동하시겠습니까?",
+        setModalOpen(
+          <TwoButtonModal
+            onCancel={() => {
+              setEmail(variables.email);
+              router.push(PATH_NAMES.SignUp);
+              setModalClose();
+            }}
+            title={
+              <p>
+                존재하지 않는 유저입니다.
+                <br />
+                회원가입 페이지로 이동하시겠습니까?
+              </p>
+            }
+            negativeContent="아니오"
+            interactiveContent="네"
+          />,
         );
-        if (answer) {
-          setEmail(variables.email);
-          router.push(PATH_NAMES.SignUp);
-        }
       } else if (status && status >= 400 && status < 500) {
-        alert(data.message);
+        setModalOpen(<PopupModal title={data.message} />);
       }
     },
   });
@@ -101,22 +106,37 @@ export const useSignIn = () => {
 export const useSignUp = () => {
   const router = useRouter();
   const { mutate: signinFn } = useSignIn();
+  const { setModalOpen, setModalClose } = useModalStore();
 
   return useMutation({
     mutationFn: signup,
     onSuccess(_, variables) {
-      if (confirm("회원가입 성공!\n로그인 하시겠습니까?")) {
-        signinFn(variables as SignInProps);
-        router.push(PATH_NAMES.SignIn);
-      }
+      setModalOpen(
+        <TwoButtonModal
+          onCancel={() => {
+            signinFn(variables as SignInProps);
+            router.push(PATH_NAMES.SignIn);
+            setModalClose();
+          }}
+          title={
+            <p>
+              회원가입 성공!
+              <br />
+              로그인 하시겠습니까?
+            </p>
+          }
+          negativeContent="아니오"
+          interactiveContent="네"
+        />,
+      );
     },
     onError(error) {
       const { response } = error as AxiosError;
       const { data, status } = response as SignInErrorResponseProps;
       if (status === 409) {
-        alert("중복된 이메일입니다.");
+        setModalOpen(<PopupModal title="중복된 이메일입니다." />);
       } else if (status && status >= 400 && status < 500) {
-        alert(data.message);
+        setModalOpen(<PopupModal title={data.message} />);
       }
     },
   });
@@ -142,13 +162,9 @@ export const useUpdateMyData = () => {
 
   return useMutation({
     mutationFn: patchUserInfo,
-    onSuccess(data, variables) {
-      console.log("🚀 ~ onSuccess ~ data, variables:", data, variables);
+    onSuccess(data) {
       const user = data.data;
       setUserData(user as User);
-    },
-    onError(error) {
-      console.log("🚀 ~ onError ~ error:", error);
     },
   });
 };
@@ -163,13 +179,9 @@ export const useOauthSignOut = () => {
 
   return useMutation({
     mutationFn: oauthSignout,
-    onSuccess(data, variables) {
-      console.log("🚀 ~ onSuccess ~ data, variables:", data, variables);
-      clearUser();
+    onSuccess() {
       router.replace(PATH_NAMES.Root);
-    },
-    onError(error) {
-      console.log("🚀 ~ onError ~ error:", error);
+      clearUser();
     },
   });
 };
@@ -182,6 +194,7 @@ export const useOauthSignIn = () => {
   const router = useRouter();
   const { setUserData, setUserProvider } = useUserStore();
   const { profile, clearProfile } = useOauthSignStore();
+  const { setModalOpen, setModalClose } = useModalStore();
 
   return useMutation({
     mutationFn: oauthSignin,
@@ -204,14 +217,25 @@ export const useOauthSignIn = () => {
       const { response } = error as AxiosError;
       const { data, status } = response as SignInErrorResponseProps;
       if (response?.status === 404) {
-        const answer = confirm(
-          "존재하지 않는 유저입니다.\n회원가입 페이지로 이동하시겠습니까?",
+        setModalOpen(
+          <TwoButtonModal
+            onCancel={() => {
+              router.push(PATH_NAMES.SignUp);
+              setModalClose();
+            }}
+            title={
+              <p>
+                존재하지 않는 유저입니다.
+                <br />
+                회원가입 페이지로 이동하시겠습니까?
+              </p>
+            }
+            negativeContent="아니오"
+            interactiveContent="네"
+          />,
         );
-        if (answer) {
-          router.push(PATH_NAMES.SignUp);
-        }
       } else if (status && status >= 400 && status < 500) {
-        alert(data.message);
+        setModalOpen(<PopupModal title={data.message} />);
       }
     },
     onSettled() {
@@ -227,25 +251,48 @@ export const useOauthSignIn = () => {
 export const useOauthSignUp = () => {
   const router = useRouter();
   const { clearProfile } = useOauthSignStore();
+  const { setModalOpen, setModalClose } = useModalStore();
 
   return useMutation({
     mutationFn: oauthSignup,
-    onSuccess(data, variables) {
-      console.log("🚀 ~ onSuccess ~ data, variables:", data, variables);
-      if (confirm("회원가입 성공!\n로그인 하시겠습니까?")) {
-        // SNS 로그인 함수 실행
-        window.location.href = PATH_NAMES.KakaoSignIn;
-      }
+    onSuccess() {
+      setModalOpen(
+        <TwoButtonModal
+          onCancel={() => {
+            window.location.href = PATH_NAMES.KakaoSignIn;
+            setModalClose();
+          }}
+          title={
+            <p>
+              회원가입 성공!
+              <br />
+              로그인 하시겠습니까?
+            </p>
+          }
+          negativeContent="아니오"
+          interactiveContent="네"
+        />,
+      );
     },
     onError(error) {
       const { response } = error as AxiosError;
       const { data, status } = response as SignInErrorResponseProps;
 
       if (data.message === "이미 등록된 사용자입니다.") {
-        alert(`${data.message}\n로그인 페이지로 이동합니다.`);
+        setModalOpen(
+          <PopupModal
+            title={
+              <p>
+                `${data.message}
+                <br />
+                로그인 페이지로 이동합니다.`
+              </p>
+            }
+          />,
+        );
         router.replace(PATH_NAMES.SignIn);
       } else if (status && status >= 400 && status < 500) {
-        console.log(data.message);
+        setModalOpen(<PopupModal title={data.message} />);
       }
     },
     onSettled() {
