@@ -2,9 +2,10 @@ import Button from "@/src/components/Button/Button";
 import useModalStore from "@/src/stores/useModalStore";
 import clsx from "clsx";
 import React from "react";
+import type { ReactNode } from "react";
 
 interface PopupModalProps {
-  title: string;
+  title: string | ReactNode;
   content?: string;
 }
 

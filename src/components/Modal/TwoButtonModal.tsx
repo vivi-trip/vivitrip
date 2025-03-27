@@ -2,10 +2,11 @@ import CheckIcon from "@/assets/svgs/ic_check.svg";
 import Button from "@/src/components/Button/Button";
 import useModalStore from "@/src/stores/useModalStore";
 import React from "react";
+import type { ReactNode } from "react";
 
 interface CancelModalProps {
   onCancel: () => void;
-  title: string;
+  title: string | ReactNode;
   negativeContent: string;
   interactiveContent: string;
 }
