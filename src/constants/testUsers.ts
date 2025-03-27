@@ -39,6 +39,16 @@ const TEST_USERS: TestUserProps[] = [
     password: "QWER123$",
   },
   {
+    nickname: "jhchoi.net",
+    email: "test@jhchoi.net",
+    password: "!@#$QWER",
+  },
+  {
+    nickname: "choi.net",
+    email: "juhyeok@choi.net",
+    password: "!@#$QWER",
+  },
+  {
     nickname: "체험테스트",
     email: "123123123@naver.com",
     password: "123123123Z!",
