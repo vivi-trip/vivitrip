@@ -1,7 +1,7 @@
 import Form from "@/src/components/Form";
 import useUserStore from "@/src/stores/useUserStore";
-import { ComponentProps } from "@/src/types/type";
-import { MyPageProps } from "@/src/types/user";
+import type { ComponentProps } from "@/src/types/type";
+import type { MyPageProps, UserPatchProps } from "@/src/types/user";
 
 const MyPage = ({
   handleSubmit,
