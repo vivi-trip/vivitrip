@@ -1,6 +1,7 @@
 import Button from "@/src/components/Button/Button";
 import PopupModal from "@/src/components/Modal/PopupModal";
 import ReviewModal from "@/src/components/Modal/ReviewModal/ReviewModal";
+import PATH_NAMES from "@/src/constants/pathname";
 import RESERVATION_LABEL from "@/src/constants/reservationStatus";
 import { usePatchMyReservation } from "@/src/queries/useMyReservations";
 import useModalStore from "@/src/stores/useModalStore";
@@ -8,6 +9,7 @@ import { Reservation } from "@/src/types/myReservationsResponses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * @description 내 예약 내용
@@ -43,7 +45,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     id,
   } = reservation;
 
-  const { bannerImageUrl, title } = activity;
+  const { id: activityId, bannerImageUrl, title } = activity;
 
   const reviewData = {
     bannerImageUrl,
@@ -81,8 +83,10 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     "text-gray-500";
 
   return (
-    <div
+    <Link
+      href={`${PATH_NAMES.Activity}/${activityId}`}
       className={clsx(
+        "block",
         "mb-8 h-128 w-full min-w-300 rounded-24 bg-white",
         "md:mb-16 md:h-156 md:min-w-540",
         "lg:mb-24 lg:h-204",
@@ -187,7 +191,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
