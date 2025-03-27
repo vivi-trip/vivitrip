@@ -14,8 +14,8 @@ import {
   usePatchMyActivity,
 } from "@/src/queries/useActivities";
 import useModalStore from "@/src/stores/useModalStore";
-import { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
-import { ActivityFormDataType } from "@/src/types/activityFormDataType";
+import type { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
+import type { ActivityFormDataType } from "@/src/types/activityFormDataType";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
