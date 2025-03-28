@@ -145,7 +145,9 @@ const ActivitiesPage = ({ post }: { post: ActivityDetailResponse }) => {
         />
 
         <ActivityContentSection title="체험 설명">
-          <p className="font-16px-regular mt-16">{description}</p>
+          <p className="font-16px-regular mt-16 whitespace-pre">
+            {description}
+          </p>
         </ActivityContentSection>
 
         <ActivityContentSection title="체험 장소">
