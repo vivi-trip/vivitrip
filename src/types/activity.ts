@@ -56,6 +56,11 @@ export interface AllActivitiesProps extends BaseActivitiesProps {
   className: string;
 }
 
+export interface AllActivityQueryParams {
+  category: string;
+  sort: string;
+}
+
 export interface SearchableLayoutProps {
   className: string;
   children: React.ReactNode;

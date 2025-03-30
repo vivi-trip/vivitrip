@@ -34,6 +34,7 @@ const MyActivityHandler = ({ activityId }: ActivityId) => {
           .catch((error) => {
             console.error("썸네일 삭제 중 오류 발생: ", error);
           });
+        router.replace("/home");
       },
       onError: (error) => {
         if (error instanceof AxiosError && error.response) {

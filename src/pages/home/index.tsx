@@ -7,51 +7,69 @@ import {
   listAllActivities,
   listPopularActivities,
 } from "@/src/services/activities";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { ActivitiesResponse } from "@/src/types/activities";
+import { AllActivityQueryParams } from "@/src/types/activity";
+import { InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext,
-) => {
+export const getStaticProps = async () => {
   const popularActivitiesInitialData = await listPopularActivities(1);
   const { totalCount } = popularActivitiesInitialData;
 
-  const { category, sort = "latest" } = context.query;
-
-  const allActivitiesInitialData = await listAllActivities(
-    sort as string,
-    category as string,
-  );
-
-  const [popularActivities, allActivities] = await Promise.all([
-    listPopularActivities(totalCount),
-    allActivitiesInitialData,
-  ]);
+  const allActivities = await listAllActivities("latest");
 
   return {
     props: {
-      popularActivities,
+      totalCount,
       allActivities,
     },
   };
 };
 
 const Home = ({
-  popularActivities,
-  allActivities: allActivitiesInitialData,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  totalCount: activityTotalCount,
+  allActivities: initialAllActivities,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
-  const { category } = router.query;
+  const { category, sort = "latest" } =
+    router.query as unknown as AllActivityQueryParams;
 
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(category);
+
+  // 인기 체험
+  const [popularActivities, setPopularActivities] =
+    useState<ActivitiesResponse>({
+      activities: [],
+      totalCount: 0,
+    });
 
   useEffect(() => {
-    setSelectedCategory(category as string);
-  }, [category]);
+    const fetchPopularActivities = async () => {
+      const updatedData = await listPopularActivities(activityTotalCount);
+      setPopularActivities(updatedData);
+    };
 
-  const allActivities = allActivitiesInitialData.activities;
+    fetchPopularActivities();
+  }, [activityTotalCount]);
+
   const { activities, totalCount } = popularActivities;
+
+  // 모든 체험
+  const [allActivities, setAllActivities] = useState(initialAllActivities);
+
+  useEffect(() => {
+    setSelectedCategory(category);
+
+    const fetchActivities = async () => {
+      const data = await listAllActivities(sort, category);
+      setAllActivities(data);
+    };
+
+    fetchActivities();
+  }, [category, sort]);
+
+  const { activities: allActivityList } = allActivities;
 
   return (
     <>
@@ -61,7 +79,7 @@ const Home = ({
         <Dropdown />
       </div>
       <AllActivitiesList
-        activities={allActivities}
+        activities={allActivityList}
         selectedCategory={selectedCategory}
       />
     </>
