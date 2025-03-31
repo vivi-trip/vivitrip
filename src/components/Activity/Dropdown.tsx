@@ -81,12 +81,12 @@ const Dropdown = () => {
         radius="15"
         backgroundColor="white_green"
         className={clsx(
-          "font-14px-medium flex h-41 w-90 flex-row justify-between px-20 py-10 md:py-16",
-          "md:font-18px-medium md:h-53 md:w-120",
-          "lg:font-18px-medium lg:h-53 lg:w-127",
+          "font-14px-medium flex h-41 w-117 flex-row justify-between gap-5 p-10 pl-14",
+          "md:font-18px-medium md:h-53 md:w-135 md:py-16",
+          "lg:font-18px-medium lg:h-53",
         )}
         onClick={toggleDropdown}>
-        <span className="flex-1 truncate">{selected}</span>
+        <span className="flex-1 whitespace-nowrap">{selected}</span>
         <AltArrowDown className={clsx(isOpen && "rotate-180")} />
       </Button>
       {isOpen && (

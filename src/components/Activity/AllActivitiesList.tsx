@@ -1,4 +1,5 @@
 import AllActivities from "@/src/components/Activity/AllActivities";
+import Dropdown from "@/src/components/Activity/Dropdown";
 import { AllActivitiesListProps } from "@/src/types/activity";
 import { useRouter } from "next/router";
 
@@ -16,10 +17,11 @@ const AllActivitiesList = ({
 
   return (
     <>
-      <div className="flex justify-between">
-        <p className="font-18px-bold md:font-36px-bold lg:font-36px-bold">
+      <div className="flex items-center justify-between">
+        <p className="font-18px-bold md:font-36px-bold lg:font-36px-bold !leading-none">
           🛼 {subTitle}
         </p>
+        <Dropdown />
       </div>
       <AllActivities
         activities={activities}
