@@ -1,5 +1,4 @@
 import AllActivitiesList from "@/src/components/Activity/AllActivitiesList";
-import Dropdown from "@/src/components/Activity/Dropdown";
 import PopularActivitiesList from "@/src/components/Activity/PopularActivitiesList";
 import FilterButton from "@/src/components/Button/FilterButton";
 import SearchableLayout from "@/src/components/SearchableLayout";
@@ -76,7 +75,6 @@ const Home = ({
       <PopularActivitiesList activities={activities} totalCount={totalCount} />
       <div className="mb-24 mt-40 flex flex-row items-center justify-between gap-15 md:mb-35 md:mt-60 lg:mb-35 lg:mt-60">
         <FilterButton />
-        <Dropdown />
       </div>
       <AllActivitiesList
         activities={allActivityList}

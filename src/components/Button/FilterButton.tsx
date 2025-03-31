@@ -17,7 +17,8 @@ const FilterButton = () => {
     useCategoryState(categories);
 
   // 반응형 레이아웃
-  const { buttonWidth, slideWidth, buttonGap } = useResponsiveLayout();
+  const { buttonWidth, slideWidth, buttonGap } =
+    useResponsiveLayout(containerRef);
 
   // 오버플로우
   const isOverflowing = useOverflowDetection({
@@ -41,7 +42,7 @@ const FilterButton = () => {
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden whitespace-nowrap active:cursor-grabbing md:gap-14">
+      className="relative overflow-hidden whitespace-nowrap active:cursor-grabbing md:gap-14 lg:w-full">
       {isOverflowing && (
         <div
           className="pointer-events-none absolute right-0 top-0 h-full w-20"
@@ -66,6 +67,7 @@ const FilterButton = () => {
           <Button
             key={category.label}
             type="button"
+            width={`${buttonWidth}`}
             radius="15"
             gap="10"
             backgroundColor={
@@ -73,9 +75,9 @@ const FilterButton = () => {
             }
             fontStyle={selectedCategory === category.value ? "xl" : "l"}
             className={clsx(
-              "font-14px-medium h-41 w-80 shrink-0 focus:ring-transparent",
-              "md:font-18px-medium md:h-58 md:w-120",
-              "lg:font-18px-medium lg:h-58 lg:w-127",
+              "font-14px-medium h-41 shrink-0 focus:ring-transparent",
+              "md:font-18px-medium md:h-58",
+              "lg:font-18px-medium lg:h-58",
               isDrag ? "cursor-grabbing" : "cursor-pointer",
             )}
             onClick={() => {
