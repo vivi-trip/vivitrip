@@ -1,12 +1,14 @@
 import Button from "@/src/components/Button/Button";
+import useDragScroll from "@/src/hooks/FilterButton/useDragScroll";
 import { useCalendar } from "@/src/stores/useCalendarStore";
 import { Schedule, Schedules } from "@/src/types/activitiesResponses";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const TimeSelector = ({ schedules }: Schedules) => {
   const { onChangeSchedule, selectSchedule, formatDate } = useCalendar();
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleButtonClick = (data: Schedule) => {
     if (selectedId === data.id) {
@@ -63,11 +65,49 @@ const TimeSelector = ({ schedules }: Schedules) => {
     return filteredSchedules.map((data) => handleIsDateButtons(data));
   };
 
+  // useDragScroll 훅 사용
+  const { handleMouseDown, handleMouseUp, handleMouseLeave, handleMouseMove } =
+    useDragScroll({
+      scrollRef,
+      slideWidth: 127, // 각 버튼의 너비
+      buttonGap: 10, // 버튼 간격
+      currentIndex: 0, // 초기 선택된 인덱스 (0으로 설정)
+    });
+
   return (
     <div>
       <p className="font-18px-bold mt-20">예약 가능한 시간</p>
-      <div className="scrollbar-none overflow-x-auto">
-        <div className="my-16 flex whitespace-nowrap">{renderSchedules()}</div>
+      <div
+        ref={scrollRef}
+        role="slider"
+        aria-valuenow={
+          scrollRef.current
+            ? Math.round(
+                (scrollRef.current.scrollLeft / scrollRef.current.scrollWidth) *
+                  100,
+              )
+            : 0
+        }
+        aria-valuemin={0}
+        aria-valuemax={100}
+        tabIndex={0}
+        className="scrollbar-none mx-10 overflow-x-auto"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+        onKeyDown={(e) => {
+          // 키보드 입력 처리
+          if (e.key === "ArrowLeft") {
+            // 왼쪽 화살표 키를 눌렀을 때의 동작
+          } else if (e.key === "ArrowRight") {
+            // 오른쪽 화살표 키를 눌렀을 때의 동작
+          }
+        }}>
+        <div className="my-16 flex whitespace-nowrap">
+          {renderSchedules()}
+          <div className="w-5 shrink-0" />
+        </div>
       </div>
     </div>
   );
