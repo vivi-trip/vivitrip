@@ -67,7 +67,9 @@ const AllActivityItem = ({
             <p className="font-16px-medium text-basic-black">{rating}</p>
             <p className="font-16px-medium text-gray-600">({reviewCount})</p>
           </div>
-          <p className="font-18px-semibold md:font-24px-semibold lg:font-24px-semibold line-clamp-1 overflow-hidden text-basic-black md:line-clamp-2 md:min-h-64">
+          <p
+            className="font-18px-semibold md:font-24px-semibold lg:font-24px-semibold line-clamp-1 overflow-hidden text-basic-black md:line-clamp-2 md:min-h-64"
+            title={title}>
             {title}
           </p>
         </div>
@@ -79,7 +81,7 @@ const AllActivityItem = ({
                 ? "font-16px-bold"
                 : "font-20px-bold md:font-28px-bold lg:font-24px-bold",
             )}>
-            ₩ {price.toLocaleString()}
+            ₩{price.toLocaleString()}
           </p>
           <p
             className={clsx(

@@ -57,7 +57,8 @@ const PopularActivityItem = ({
 `}
         onClick={() => {
           showLoadingButtons(id);
-        }}>
+        }}
+        title={title}>
         <div className="relative size-full">
           <Image
             src={bannerImageUrl}
