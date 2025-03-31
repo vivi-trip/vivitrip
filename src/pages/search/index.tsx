@@ -39,11 +39,11 @@ const Search = ({
   return (
     <div className="mt-24 lg:mt-40">
       <h1 className="font-24px-semibold md:font-32px-semibold">
-        &apos;{q}&apos; 검색 결과&nbsp;
+        {`'${q}' 검색 결과 `}
         <span className="font-24px-bold md:font-32px-bold text-brand-500">
           {totalCount}
         </span>
-        건
+        <span>건</span>
       </h1>
       <div>
         <AllActivities

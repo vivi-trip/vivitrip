@@ -97,7 +97,7 @@ const PopularActivityItem = ({
                   "line-clamp-1 text-white",
                   getActivityRatingTextStyle(),
                 )}>
-                {rating} ({reviewCount})
+                {`${rating} (${reviewCount})`}
               </p>
             </div>
             <p
@@ -113,7 +113,7 @@ const PopularActivityItem = ({
                 isSmallerXsScreen && "gap-2",
               )}>
               <p className={clsx("text-white", getActivityPriceTextStyle())}>
-                ₩ {price.toLocaleString()}
+                {`₩${price.toLocaleString()}`}
               </p>
               <p
                 className={clsx(
