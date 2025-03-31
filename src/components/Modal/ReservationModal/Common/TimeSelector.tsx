@@ -99,9 +99,13 @@ const TimeSelector = ({ schedules }: Schedules) => {
         onKeyDown={(e) => {
           // 키보드 입력 처리
           if (e.key === "ArrowLeft") {
-            // 왼쪽 화살표 키를 눌렀을 때의 동작
+            if (scrollRef.current) {
+              scrollRef.current.scrollLeft -= 127 + 10;
+            }
           } else if (e.key === "ArrowRight") {
-            // 오른쪽 화살표 키를 눌렀을 때의 동작
+            if (scrollRef.current) {
+              scrollRef.current.scrollLeft += 127 + 10;
+            }
           }
         }}>
         <div className="my-16 flex whitespace-nowrap">
