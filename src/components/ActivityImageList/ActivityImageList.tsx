@@ -134,19 +134,28 @@ const ActivityImageList = ({
         <ActivityImage
           className={clsx(
             "col-span-full lg:row-span-full",
-            ImageGridClassName.banner[subImages.length],
+            ImageGridClassName.banner[
+              subImages.length > 4 ? 4 : subImages.length
+            ],
             ImageGridClassName.rounded[0][0],
           )}
           imageUrl={bannerImageUrl}
         />
         {subImages.map((item, idx) => {
-          if (subImages.length <= idx) return null;
+          if (subImages.length <= idx || idx > 3) {
+            return null;
+          }
+
           return (
             <ActivityImage
               key={item.id}
               className={clsx(
-                ImageGridClassName.sub[subImages.length],
-                ImageGridClassName.rounded[subImages.length][idx],
+                ImageGridClassName.sub[
+                  subImages.length > 4 ? 4 : subImages.length
+                ],
+                ImageGridClassName.rounded[
+                  subImages.length > 4 ? 4 : subImages.length
+                ][idx],
               )}
               imageUrl={item.imageUrl}
             />
