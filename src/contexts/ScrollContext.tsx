@@ -32,8 +32,9 @@ const ScrollProvider = ({
   const router = useRouter();
   const { query } = router;
   const hasQuery =
-    Object.keys(query).filter((key) => key === "page" || key === "category")
-      .length > 0;
+    Object.keys(query).filter(
+      (key) => key === "page" || key === "category" || key === "sort",
+    ).length > 0;
 
   const [scrollBlock, setScrollBlock] = useState<boolean>(false);
 
