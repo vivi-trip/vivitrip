@@ -2,12 +2,11 @@ import lottieJson from "@/assets/json/404.json";
 import AltArrowLeft from "@/assets/svgs/altArrowLeft.svg";
 import AltArrowRight from "@/assets/svgs/altArrowRight.svg";
 import Button from "@/src/components/Button/Button";
+import PATH_NAMES from "@/src/constants/pathname";
 import ButtonProps from "@/src/types/button";
 import { NextPage } from "next";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-
-// import Lottie from "react-lottie-player";
 
 const Lottie = dynamic(() => import("react-lottie-player"), { ssr: false });
 
@@ -49,7 +48,9 @@ const Custom404: NextPage<{ statusCode: number }> = () => {
             <AltArrowLeft width={21} height={20} className="text-white" />
             이전으로
           </Button>
-          <Button {...commonButtonProps} onClick={() => router.push("/")}>
+          <Button
+            {...commonButtonProps}
+            onClick={() => router.push(PATH_NAMES.Root)}>
             메인으로
             <AltArrowRight width={21} height={20} className="text-white" />
           </Button>
