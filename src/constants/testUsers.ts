@@ -4,59 +4,34 @@ interface TestUserProps extends UserNickName, UserEmail, UserPassword {}
 
 const TEST_USERS: TestUserProps[] = [
   {
-    nickname: "example",
-    email: "example@email.com",
-    password: "password",
-  },
-  {
-    nickname: "codeit",
-    email: "codeit@code.it",
-    password: "qwerqwer",
-  },
-  {
-    nickname: "test",
-    email: "user@code.it",
-    password: "user@code.it",
-  },
-  {
-    nickname: "호성효성",
-    email: "hosung@hyo.sung",
-    password: "hosung@hyo.sung",
-  },
-  {
-    nickname: "미미미영",
-    email: "mimi@mi.yong",
-    password: "mimi@mi.yong",
-  },
-  {
-    nickname: "하이유리",
-    email: "hi@yu.ri",
-    password: "hi@yu.ri",
-  },
-  {
-    nickname: "LEE",
+    nickname: "테스트계정1",
     email: "lee@test.com",
     password: "!ASDF12345",
   },
   {
-    nickname: "초이주혁",
-    email: "choi@ju.hyeok",
-    password: "QWER123$",
-  },
-  {
-    nickname: "jhchoi.net",
-    email: "test@jhchoi.net",
-    password: "!@#$QWER",
-  },
-  {
-    nickname: "choi.net",
-    email: "juhyeok@choi.net",
-    password: "!@#$QWER",
-  },
-  {
-    nickname: "체험테스트",
+    nickname: "테스트계정2",
     email: "123123123@naver.com",
     password: "123123123Z!",
+  },
+  {
+    nickname: "테스트계정3",
+    email: "hosung@hyo.sung",
+    password: "hosung@hyo.sung",
+  },
+  {
+    nickname: "테스트계정4",
+    email: "mimi@mi.yong",
+    password: "mimi@mi.yong",
+  },
+  {
+    nickname: "테스트계정5",
+    email: "hi@yu.ri",
+    password: "hi@yu.ri",
+  },
+  {
+    nickname: "테스트계정6",
+    email: "choi@ju.hyeok",
+    password: "QWER123$",
   },
 ];
 
