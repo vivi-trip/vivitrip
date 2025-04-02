@@ -1,9 +1,5 @@
 import useUserStore from "@/src/stores/useUserStore";
-import {
-  deleteTokensFromCookies,
-  getTokensFromCookies,
-  setCookiesByTokens,
-} from "@/src/utils/token";
+import { getTokensFromCookies, setCookiesByTokens } from "@/src/utils/token";
 import axios, { AxiosInstance } from "axios";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -57,13 +53,11 @@ api.interceptors.response.use(
           return await api(originalRequest);
         } catch (refreshError) {
           // 갱신 실패 시 유저 로그아웃 처리
-          deleteTokensFromCookies();
           useUserStore.getState().clearUser();
           return Promise.reject(refreshError);
         }
       } else {
         // refreshToken 없으면 유저 상태 초기화
-        deleteTokensFromCookies();
         useUserStore.getState().clearUser();
       }
     }
