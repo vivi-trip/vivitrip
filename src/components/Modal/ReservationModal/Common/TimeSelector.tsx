@@ -91,7 +91,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
         aria-valuemin={0}
         aria-valuemax={100}
         tabIndex={0}
-        className="scrollbar-none mx-10 overflow-x-auto"
+        className="scrollbar-none overflow-x-auto"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
