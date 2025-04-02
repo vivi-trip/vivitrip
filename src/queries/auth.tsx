@@ -21,11 +21,7 @@ import type {
   SignInSuccessResponseProps,
   User,
 } from "@/src/types/user";
-import {
-  deleteTokensFromCookies,
-  getTokensFromCookies,
-  setCookiesByTokens,
-} from "@/src/utils/token";
+import { getTokensFromCookies, setCookiesByTokens } from "@/src/utils/token";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import { useRouter } from "next/router";
@@ -40,7 +36,6 @@ export const useSignOut = () => {
   const { clearProfile } = useOauthSignStore();
 
   const handleSignOut = () => {
-    deleteTokensFromCookies();
     clearUser();
     clearProfile();
     router.replace(PATH_NAMES.Root);
