@@ -1,6 +1,9 @@
 import { OauthTypes } from "@/src/types/oauth";
 import { User } from "@/src/types/user";
-import { checkAndClearStorage } from "@/src/utils/token";
+import {
+  checkAndClearStorage,
+  deleteTokensFromCookies,
+} from "@/src/utils/token";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -20,11 +23,13 @@ const useUserStore = create(
       userProvider: null,
       setUserData: (data) => set({ userData: data }),
       setUserProvider: (provider) => set({ userProvider: provider }),
-      clearUser: () =>
+      clearUser: () => {
+        deleteTokensFromCookies();
         set({
           userData: null,
           userProvider: null,
-        }),
+        });
+      },
       checkAndClearUserData: () => {
         if (checkAndClearStorage()) {
           set({
