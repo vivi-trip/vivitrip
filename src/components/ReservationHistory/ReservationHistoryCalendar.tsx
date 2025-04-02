@@ -111,7 +111,7 @@ const MyDateHeader = ({ label, date }: { label: string; date: Date }) => {
       <button
         type="button"
         className={clsx(
-          "font-20px-semibold cursor-pointer border-none bg-transparent pl-12 pt-12 text-left text-gray-500",
+          "font-20px-semibold border-none bg-transparent pl-12 pt-12 text-left text-gray-500",
           // 모바일에서만 이벤트가 있을 때 다른 폰트 크기 적용
           eventsForDate?.length > 0 && "font-16px-semibold pl-8 pt-8",
         )}>
@@ -254,7 +254,7 @@ const ReservationHistoryCalendar = ({
           onSelectEvent={undefined}
           onSelectSlot={handleSelectSlot}
           selectable
-          className="w-full bg-white"
+          className="w-full cursor-pointer bg-white"
         />
       </div>
     </div>
