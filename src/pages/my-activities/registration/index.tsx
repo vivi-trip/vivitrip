@@ -1,19 +1,13 @@
 import ActivityConservation from "@/src/components/MyActivities/ActivityConservation";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import useUserStore from "@/src/stores/useUserStore";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const Registration = () => {
-  const { userData } = useUserStore();
+  const { userData } = useUserStore.getState();
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!userData) {
-      router.push("/sign-in");
-    }
-  }, [userData, router]);
+  if (!userData) {
+    return null;
+  }
 
   return (
     <div>

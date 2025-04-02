@@ -4,7 +4,6 @@ import MyPage from "@/src/components/MyPage";
 import MyPageKakao from "@/src/components/MyPage/kakao";
 import ProfileUpload from "@/src/components/SideNavigationMenu/Common/ProfileUpload";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
-import PATH_NAMES from "@/src/constants/pathname";
 import MyPageWrap from "@/src/containers/MyPageWrap";
 import useHydration from "@/src/hooks/useHydration";
 import { useUpdateMyData } from "@/src/queries/auth";
@@ -12,11 +11,8 @@ import useModalStore from "@/src/stores/useModalStore";
 import useProfileImageUrlStore from "@/src/stores/useProfileImageUrlStore";
 import useUserStore from "@/src/stores/useUserStore";
 import { UserPatchProps } from "@/src/types/user";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const RouteMyPage = () => {
-  const router = useRouter();
   const isHydrated = useHydration();
   const { userData, userProvider } = useUserStore.getState();
   const { mutate, isPending } = useUpdateMyData();
@@ -55,10 +51,6 @@ const RouteMyPage = () => {
       },
     });
   };
-
-  useEffect(() => {
-    if (!userData) router.replace(PATH_NAMES.Root);
-  }, [userData, router]);
 
   if (!isHydrated || !userData) return null;
 

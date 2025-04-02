@@ -6,10 +6,13 @@ import ReservationHistoryCalendar from "@/src/components/ReservationHistory/Rese
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import MyPageWrap from "@/src/containers/MyPageWrap";
 import { useGetMyActivities } from "@/src/hooks/useMyActivities";
+import useUserStore from "@/src/stores/useUserStore";
 import clsx from "clsx";
 import { useState } from "react";
 
 const MyReservationHistory = () => {
+  const { userData } = useUserStore.getState();
+
   const { data } = useGetMyActivities({});
 
   const myActivities = data?.activities;
@@ -19,6 +22,8 @@ const MyReservationHistory = () => {
   >();
   const [isOpen, setIsOpen] = useState(false);
   const [activityTitle, setActivityTitle] = useState("");
+
+  if (!userData) return null;
 
   return (
     <MyPageWrap>
