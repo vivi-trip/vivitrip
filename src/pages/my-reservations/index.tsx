@@ -2,15 +2,19 @@ import ReservationList from "@/src/components/MyReservations/ReservationList";
 import ReservationStatusDropdown from "@/src/components/MyReservations/ReservationStatusDropdown";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
 import MyPageWrap from "@/src/containers/MyPageWrap";
+import useUserStore from "@/src/stores/useUserStore";
 import { ReservationStatus } from "@/src/types/myReservations";
 import { useState } from "react";
 
 const MyReservations = () => {
+  const { userData } = useUserStore.getState();
   const [status, setStatus] = useState<ReservationStatus | "">("");
 
   const handleStatusChange = (newStatus: ReservationStatus) => {
     setStatus(newStatus);
   };
+
+  if (!userData) return null;
 
   return (
     <MyPageWrap>

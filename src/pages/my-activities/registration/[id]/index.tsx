@@ -1,48 +1,39 @@
 import ActivityConservation from "@/src/components/MyActivities/ActivityConservation";
 import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigationMenu";
+import PATH_NAMES from "@/src/constants/pathname";
 import { useGetActivities } from "@/src/queries/useActivities";
 import useUserStore from "@/src/stores/useUserStore";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const RegisterModify = () => {
   const router = useRouter();
-  const [activityId, setActivityId] = useState<number | undefined>(undefined);
-
-  const { userData } = useUserStore();
-
-  useEffect(() => {
-    if (!router.isReady) return;
-
-    const numericId = Number(router.query.id);
-    if (!Number.isNaN(numericId)) {
-      setActivityId(numericId);
-    } else {
-      setActivityId(undefined);
-    }
-  }, [router.isReady, router.query.id]);
-
-  const { data: activitiesDetail } = useGetActivities(activityId);
+  const { id: activityId } = router.query;
+  const { userData } = useUserStore.getState();
+  const { data: activitiesDetail } = useGetActivities(Number(activityId));
 
   useEffect(() => {
-    if (!userData) {
-      // 로그인하지 않은 경우, 로그인 페이지로 리다이렉트
-      router.push("/sign-in");
-      return;
+    if (
+      userData &&
+      activitiesDetail &&
+      userData.id !== activitiesDetail.userId
+    ) {
+      router.replace(PATH_NAMES.Root);
     }
+  }, [router, userData, activitiesDetail]);
 
-    if (activitiesDetail && activitiesDetail.userId !== userData.id) {
-      // 활동의 소유자가 아닌 경우, 메인 페이지나 다른 페이지로 리다이렉트
-      router.push("/home");
-    }
-  }, [activitiesDetail, userData, router]);
+  if (!userData) {
+    return null;
+  }
 
   return (
     <div>
       <div className="flex w-full min-w-343 justify-center gap-24 pt-72">
         <SideNavigationMenu />
         <div className="flex-1">
-          {activityId && <ActivityConservation activityId={activityId} />}
+          {activityId && (
+            <ActivityConservation activityId={Number(activityId)} />
+          )}
         </div>
       </div>
     </div>
