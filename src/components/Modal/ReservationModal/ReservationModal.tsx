@@ -59,6 +59,7 @@ const ReservationModal = () => {
             customClass: "md:p-32",
           });
         }
+        onChangeSchedule(null);
       },
     });
   };
