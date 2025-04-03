@@ -1,5 +1,5 @@
-import PopupModal from "../Modal/PopupModal";
 import Button from "@/src/components/Button/Button";
+import PopupModal from "@/src/components/Modal/PopupModal";
 import ReservationModal from "@/src/components/Modal/ReservationModal/ReservationModal";
 import { useCalendar } from "@/src/stores/useCalendarStore";
 import useModalStore from "@/src/stores/useModalStore";
@@ -31,7 +31,7 @@ const ActivityReservationBar = ({
     if (!userData) {
       setModalOpen(
         <PopupModal
-          title="로그인이 필요 합니다."
+          title="로그인이 필요합니다."
           onConfirm={() => router.push("/sign-in")}
         />,
       );
