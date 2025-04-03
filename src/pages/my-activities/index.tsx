@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 const MyActivities = () => {
   const router = useRouter();
-  const { userData } = useUserStore.getState();
+  const { userData } = useUserStore();
 
   const handleClick = () => {
     router.push(PATH_NAMES.MyActivitiesRegistration);
