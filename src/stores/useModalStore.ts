@@ -3,8 +3,6 @@ import { ReactNode } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { create } from "zustand";
 
-
-
 interface ModalOptions {
   customClass?: string;
 }
