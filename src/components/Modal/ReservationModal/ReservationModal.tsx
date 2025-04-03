@@ -10,7 +10,7 @@ import { usePostActivityReservation } from "@/src/queries/useActivities";
 import { useCalendar } from "@/src/stores/useCalendarStore";
 import useModalStore from "@/src/stores/useModalStore";
 import { AxiosError } from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ReservationModal = () => {
   const { setModalClose, setModalOpen } = useModalStore();
@@ -18,6 +18,13 @@ const ReservationModal = () => {
     useCalendar();
   const { price, schedules, id: activityId } = data;
   const { mutate: postActivityReservation } = usePostActivityReservation();
+
+  useEffect(() => {
+    return () => {
+      onChangeSchedule(null); // unmount 시 초기화
+      onChangeMembers(1);
+    };
+  }, [onChangeSchedule, onChangeMembers]);
 
   const submitReservation = () => {
     if (!selectSchedule || !selectSchedule.id) {
