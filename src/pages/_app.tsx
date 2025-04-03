@@ -1,5 +1,6 @@
 import "@/src/components/Calendar/calendar.css";
 import Favicon from "@/src/components/Favicon";
+import Loading from "@/src/components/Loading";
 import Modal from "@/src/components/Modal/Modal";
 import ScrollToTopHandler from "@/src/components/ScrollHandler/ScrollToTopHandler";
 import Footer from "@/src/containers/Footer";
@@ -33,6 +34,13 @@ const App = ({
   const { userData, checkAndClearUserData } = useUserStore();
 
   const { pathname } = useRouter();
+
+  const isProtectedPage = [
+    "/my-activities",
+    "/my-page",
+    "/my-reservations",
+    "/reservation-history",
+  ].some((route) => pathname.startsWith(route));
 
   const isHomeOrSearch = pathname === "/home" || pathname === "/search";
   const is404Page = pageProps?.statusCode === 404;
@@ -89,7 +97,21 @@ const App = ({
                 "mx-auto min-h-main",
                 !isHomeOrSearch && "max-w-screen-xl",
               )}>
-              {getLayout(<Component {...pageProps} />)}
+              {isProtectedPage && !userData ? (
+                <Loading
+                  isOverlay="window"
+                  overlayColor="translate"
+                  isAbsolute="static"
+                  loadingBoxColor="black"
+                  size={{ sm: 50, md: 60, lg: 70 }}
+                  loadingText="잠시만 기다려주세요."
+                  textStyle="font-18px-medium md:font-20px-regular lg:font-24px-regular"
+                  textColor="text-brand-50"
+                  className="p-30"
+                />
+              ) : (
+                getLayout(<Component {...pageProps} />)
+              )}
             </div>
             {is404Page || pathname.includes("sign") ? null : <Footer />}
           </ScrollProvider>
