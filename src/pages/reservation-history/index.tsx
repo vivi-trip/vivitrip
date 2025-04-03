@@ -11,7 +11,7 @@ import clsx from "clsx";
 import { useState } from "react";
 
 const MyReservationHistory = () => {
-  const { userData } = useUserStore.getState();
+  const { userData } = useUserStore();
 
   const { data } = useGetMyActivities({});
 

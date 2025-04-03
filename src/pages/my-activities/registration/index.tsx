@@ -3,7 +3,7 @@ import SideNavigationMenu from "@/src/components/SideNavigationMenu/SideNavigati
 import useUserStore from "@/src/stores/useUserStore";
 
 const Registration = () => {
-  const { userData } = useUserStore.getState();
+  const { userData } = useUserStore();
 
   if (!userData) {
     return null;

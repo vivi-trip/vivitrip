@@ -7,7 +7,7 @@ import { ReservationStatus } from "@/src/types/myReservations";
 import { useState } from "react";
 
 const MyReservations = () => {
-  const { userData } = useUserStore.getState();
+  const { userData } = useUserStore();
   const [status, setStatus] = useState<ReservationStatus | "">("");
 
   const handleStatusChange = (newStatus: ReservationStatus) => {
