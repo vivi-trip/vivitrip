@@ -14,7 +14,6 @@ import {
 import { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
 import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 
 export const useGetActivities = (activityId: number | undefined) => {
   const { data, isLoading, error } = useQuery<ActivityDetailResponse>({
