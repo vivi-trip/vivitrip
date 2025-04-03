@@ -69,7 +69,7 @@ const TimeSelector = ({ schedules }: Schedules) => {
           })}
           key={data.id}
           onClick={() => handleButtonClick(data)}>
-          {data.startTime}~{data.endTime}
+          {`${data.startTime}~${data.endTime}`}
         </Button>
       );
     }
