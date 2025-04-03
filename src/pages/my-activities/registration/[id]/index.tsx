@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const RegisterModify = () => {
   const router = useRouter();
   const { id: activityId } = router.query;
-  const { userData } = useUserStore.getState();
+  const { userData } = useUserStore();
   const { data: activitiesDetail } = useGetActivities(Number(activityId));
 
   useEffect(() => {

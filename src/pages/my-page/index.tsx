@@ -14,7 +14,7 @@ import { UserPatchProps } from "@/src/types/user";
 
 const RouteMyPage = () => {
   const isHydrated = useHydration();
-  const { userData, userProvider } = useUserStore.getState();
+  const { userData, userProvider } = useUserStore();
   const { mutate, isPending } = useUpdateMyData();
   const { newProfileImageUrl } = useProfileImageUrlStore();
   const { setModalOpen } = useModalStore();
