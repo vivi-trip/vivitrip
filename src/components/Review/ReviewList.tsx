@@ -28,7 +28,7 @@ const ReviewList = ({ fetchedReviews }: ReviewListProps) => {
                 height={45}
                 alt="후기 작성자 프로필 이미지"
                 className={clsx(
-                  "size-45 rounded-full border-brand-500 object-cover object-center",
+                  "aspect-square size-45 rounded-full border-brand-500 object-cover object-center",
                   { "shadow-md": review.user.profileImageUrl },
                 )}
               />
