@@ -52,7 +52,7 @@ const App = ({
   const reAuthUserData = useCallback(async () => {
     const res = await getUserInfo();
     setUserData(res.data);
-  }, []);
+  }, [setUserData]);
 
   useEffect(() => {
     if (userData) {
@@ -62,7 +62,13 @@ const App = ({
     if (!userData && (accessToken || refreshToken)) {
       reAuthUserData();
     }
-  });
+  }, [
+    userData,
+    accessToken,
+    refreshToken,
+    checkAndClearUserData,
+    reAuthUserData,
+  ]);
 
   return (
     <>
