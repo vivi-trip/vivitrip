@@ -1,3 +1,4 @@
+import Loading from "../Loading";
 import Button from "@/src/components/Button/Button";
 import PopupModal from "@/src/components/Modal/PopupModal";
 import ReviewModal from "@/src/components/Modal/ReviewModal/ReviewModal";
@@ -6,8 +7,10 @@ import RESERVATION_LABEL from "@/src/constants/reservationStatus";
 import { usePatchMyReservation } from "@/src/queries/useMyReservations";
 import { getActivity } from "@/src/services/activities";
 import useModalStore from "@/src/stores/useModalStore";
+import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
 import { Reservation } from "@/src/types/myReservationsResponses";
 import { formatDate3 } from "@/src/utils/calendarFormatDate";
+import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import clsx from "clsx";
 import Image from "next/image";
@@ -78,6 +81,29 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     );
   };
 
+  const { data, isLoading } = useQuery<ActivityDetailResponse>({
+    queryKey: ["activity", activityId],
+    queryFn: () => {
+      if (activityId === undefined) {
+        throw new Error("Activity ID is undefined");
+      }
+      return getActivity({ activityId });
+    },
+    retry: 0,
+  });
+
+  const Component = data ? Link : "div";
+  const options = data
+    ? {
+        href: `${PATH_NAMES.Activity}/${activityId}`,
+      }
+    : {
+        href: null as unknown as string,
+        onClick: () => {
+          setModalOpen(<PopupModal title="존재하지 않는 체험입니다." />);
+        },
+      };
+
   const label =
     RESERVATION_LABEL[status as keyof typeof RESERVATION_LABEL]?.label ??
     "알 수 없는 상태";
@@ -85,11 +111,34 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
     RESERVATION_LABEL[status as keyof typeof RESERVATION_LABEL]?.colorClass ??
     "text-gray-500";
 
+  if (isLoading) {
+    return (
+      <div
+        className={clsx(
+          "relative block",
+          "mb-8 h-128 w-full min-w-300 rounded-24 bg-white",
+          "md:mb-16 md:h-156 md:min-w-540",
+          "lg:mb-24 lg:h-204",
+        )}>
+        <Loading
+          isOverlay="node"
+          overlayColor="translate"
+          isAbsolute="absolute"
+          loadingBoxColor="translate"
+          size={{ sm: 50, md: 60, lg: 70 }}
+          textStyle="font-18px-medium md:font-20px-regular lg:font-24px-regular"
+          textColor="text-brand-50"
+          className="p-30"
+        />
+      </div>
+    );
+  }
+
   return (
-    <Link
-      href={`${PATH_NAMES.Activity}/${activityId}`}
+    <Component
+      {...options}
       className={clsx(
-        "block",
+        "block hover:cursor-pointer",
         "mb-8 h-128 w-full min-w-300 rounded-24 bg-white",
         "md:mb-16 md:h-156 md:min-w-540",
         "lg:mb-24 lg:h-204",
@@ -210,7 +259,7 @@ const ReservationCard = ({ reservation }: ReservationCardProps) => {
           </div>
         </div>
       </div>
-    </Link>
+    </Component>
   );
 };
 
