@@ -1,5 +1,5 @@
-import TwoButtonModal from "../Modal/TwoButtonModal";
 import Form from "@/src/components/Form";
+import TwoButtonModal from "@/src/components/Modal/TwoButtonModal";
 import useModalStore from "@/src/stores/useModalStore";
 import useUserStore from "@/src/stores/useUserStore";
 import type { ComponentProps } from "@/src/types/type";
