@@ -6,15 +6,17 @@ import ScrollToTopHandler from "@/src/components/ScrollHandler/ScrollToTopHandle
 import Footer from "@/src/containers/Footer";
 import GNB from "@/src/containers/GNB";
 import ScrollProvider from "@/src/contexts/ScrollContext";
+import { getUserInfo } from "@/src/services/auth";
 import useUserStore from "@/src/stores/useUserStore";
 import "@/src/styles/globals.css";
+import { getTokensFromCookies } from "@/src/utils/token";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import clsx from "clsx";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
 type NextPageWithLayout = NextPage & {
@@ -31,7 +33,9 @@ const App = ({
 
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
 
-  const { userData, checkAndClearUserData } = useUserStore();
+  const { userData, setUserData, checkAndClearUserData } = useUserStore();
+
+  const { accessToken, refreshToken } = getTokensFromCookies();
 
   const { pathname } = useRouter();
 
@@ -45,9 +49,18 @@ const App = ({
   const isHomeOrSearch = pathname === "/home" || pathname === "/search";
   const is404Page = pageProps?.statusCode === 404;
 
+  const reAuthUserData = useCallback(async () => {
+    const res = await getUserInfo();
+    setUserData(res.data);
+  }, []);
+
   useEffect(() => {
     if (userData) {
       checkAndClearUserData();
+    }
+
+    if (!userData && (accessToken || refreshToken)) {
+      reAuthUserData();
     }
   });
 
