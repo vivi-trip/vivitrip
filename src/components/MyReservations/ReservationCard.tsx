@@ -1,5 +1,5 @@
-import Loading from "../Loading";
 import Button from "@/src/components/Button/Button";
+import Loading from "@/src/components/Loading";
 import PopupModal from "@/src/components/Modal/PopupModal";
 import ReviewModal from "@/src/components/Modal/ReviewModal/ReviewModal";
 import PATH_NAMES from "@/src/constants/pathname";
