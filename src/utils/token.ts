@@ -68,6 +68,7 @@ export const checkAndClearStorage = () => {
   const { accessToken, refreshToken } = getTokensFromCookies();
 
   if (!accessToken || !refreshToken) {
+    deleteTokensFromCookies();
     localStorage.removeItem(String(process.env.NEXT_PUBLIC_USER_STORAGE_NAME));
   }
 
