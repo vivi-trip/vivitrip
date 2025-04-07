@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import ActivityAddressInput from "@/src/components/ActivityInput/ActivityAddressInput";
 import ActivityCategoryInput from "@/src/components/ActivityInput/ActivityCategoryInput";
 import ActivityImageInput from "@/src/components/ActivityInput/ActivityImageInput";
@@ -17,6 +18,7 @@ import {
 import useModalStore from "@/src/stores/useModalStore";
 import type { ActivityUpdateRequest } from "@/src/types/activitiesReservationType";
 import type { ActivityFormDataType } from "@/src/types/activityFormDataType";
+import deleteThumbnail from "@/src/utils/deleteThumbnail";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -73,7 +75,7 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
         setModalOpen(
           <PopupModal
             title="체험이 등록되었습니다."
-            onConfirm ={() => {
+            onConfirm={() => {
               router.push(PATH_NAMES.MyActivities);
             }}
           />,
@@ -182,10 +184,19 @@ const ActivityConservation = ({ activityId }: RegisterPageProps) => {
         },
         {
           onSuccess: () => {
+            deleteThumbnail(activityId.toString())
+              .then((result) => {
+                if (!result.success) {
+                  console.error("썸네일 삭제 실패: ", result.message);
+                }
+              })
+              .catch((error) => {
+                console.error("썸네일 삭제 중 오류 발생: ", error);
+              });
             setModalOpen(
               <PopupModal
                 title="체험이 수정되었습니다."
-                onConfirm ={() => {
+                onConfirm={() => {
                   router.push(PATH_NAMES.MyActivities);
                 }}
               />,
