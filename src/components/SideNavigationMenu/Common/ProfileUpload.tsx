@@ -4,7 +4,7 @@ import useProfileImageUrlStore from "@/src/stores/useProfileImageUrlStore";
 import { ProfileImageUrlResponse } from "@/src/types/users";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface Props {
   profileImageUrl?: string;
@@ -13,7 +13,7 @@ interface Props {
 const ProfileUpload = ({ profileImageUrl }: Props) => {
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { newProfileImageUrl, setNewProfileImageUrl } =
+  const { newProfileImageUrl, setNewProfileImageUrl, clearNewProfileImageUrl } =
     useProfileImageUrlStore();
 
   const { mutate } = useUploadProfileImage();
@@ -34,6 +34,12 @@ const ProfileUpload = ({ profileImageUrl }: Props) => {
       },
     });
   };
+
+  useEffect(() => {
+    return () => {
+      clearNewProfileImageUrl();
+    };
+  }, [clearNewProfileImageUrl]);
 
   return (
     <div className="relative size-160 border-0 bg-transparent p-0">
