@@ -126,7 +126,7 @@ const ActivitiesPage = ({ post }: { post: ActivityDetailResponse }) => {
         />
       </Head>
 
-      <div className="my-24 pb-300 md:my-32 lg:my-80">
+      <div className="my-24 pb-100 md:my-32 lg:my-80">
         <ActivityTitleSection
           category={category}
           title={title}
