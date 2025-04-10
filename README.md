@@ -1,25 +1,37 @@
 ## 목차
 
 - [🌟 프로젝트 소개](#-프로젝트-소개)
+- [🎯 기획 배경 및 목적](#-기획-배경-및-목적)
 - [👤 팀원 및 역할](#-팀원-및-역할)
-- [💡 목적 Why I built this?](#-목적-why-i-built-this)
 - [✨ 주요 기능](#-주요-기능)
 - [💻 사용 예시](#-사용-예시)
 - [📂 폴더 구조](#-폴더-구조)
 - [🛠 기술 스택](#-기술-스택)
 
-<br/>
-<br/>
+<br />
+<br />
 
 ## 🌟 프로젝트 소개
 
 ![VIVITRIP Thumbnail](https://vivitrip-thumbnail.s3.ap-northeast-2.amazonaws.com/thumbnails/thumbnail.PNG)
 
-- 전 세계에서 진행되는 다양한 체험을 직접 등록하고, 예약할 수 있는 서비스
-- 배포 주소: [https://www.vivitrip.net](https://www.vivitrip.net)
+**vivitrip**은 전 세계에서 진행되는 다양한 체험을 직접 등록하고, 예약할 수 있는 서비스입니다.
 
-<br/>
-<br/>
+사용자는 다양한 체험을 찾아보고 예약할 수 있으며, 체험 제공자는 자신의 체험을 등록하고 예약을 관리할 수 있습니다.
+
+**[배포 링크 바로가기 → https://www.vivitrip.net](https://www.vivitrip.net)**
+
+<br />
+<br />
+
+## 🎯 기획 배경 및 목적
+
+COVID-19 이후 현지 체험 기반 여행 수요가 증가함에 따라, 사용자들이 로컬 체험을 쉽고 빠르게 예약할 수 있는 플랫폼이 필요했습니다.
+
+vivitrip은 여행자와 현지 호스트를 연결하고, 실시간 예약 및 후기 기반 체험 신뢰도를 확보하는 것을 목표로 기획되었습니다.
+
+<br />
+<br />
 
 ## 👤 팀원 및 역할
 
@@ -32,22 +44,15 @@
 <br/>
 <br/>
 
-## 💡 목적 Why I built this?
-
-- SSR, SSG, ISR의 차이를 이해하고 실제로 적용해보기 위해 Next.js를 선택했습니다.
-- 사용자 UX 향상을 위해 React Query, Zustand 등 실무 라이브러리를 적극 도입했습니다.
-- 디자인 시스템은 Figma 기반으로 직접 설계하여 Tailwind CSS로 구현했습니다.
-
-<br/>
-<br/>
-
 ## ✨ 주요 기능
 
-- 반응형 웹 (Responsive Web Design)
-- 정적 생성(SG) + ISR 기반 렌더링 최적화
-- SEO를 고려한 메타 태그 및 Open Graph 적용
-- 체험 리스트 및 상세 페이지 구현
-- 예약 기능 및 조건 필터링
+- 로그인 / 회원가입 / 유효성 검증
+- 카카오 간편 로그인 & 회원가입
+- 체험 등록 및 예약 기능 (날짜-시간-인원별 조건 처리)
+- 체험 상세 (이미지 갤러리, 구글 맵)
+- 체험 후기 작성 (별점 + 텍스트)
+- 예약 현황 관리 (호스트 입장에서 예약 승인/거절)
+- 사용자 알림 기능 (예약 상태 변경시)
 
 <br/>
 <br/>
@@ -72,14 +77,14 @@
 
 - 체험 수정/삭제
   
-  ![image (1)](https://github.com/user-attachments/assets/036cb1df-fef4-4dff-a2a7-531122666271)
+  ![](https://github.com/user-attachments/assets/036cb1df-fef4-4dff-a2a7-531122666271)
 
 <br/>
 
 
 ### 체험 예약
 
-![image (2)](https://github.com/user-attachments/assets/7fac5e71-a918-4bf0-9e35-91416dda36c6)
+![](https://github.com/user-attachments/assets/7fac5e71-a918-4bf0-9e35-91416dda36c6)
   
 <br/>
 
@@ -143,9 +148,9 @@
 
   <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" />
 
-- **QA**:
+- **QA**
 
-  <img src="https://img.shields.io/coderabbit/prs/github/vivi-trip/vivitrip?utm_source=oss&utm_medium=github&utm_campaign=vivi-trip%2Fvivitrip&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews" />
+  ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/vivi-trip/vivitrip?utm_source=oss&utm_medium=github&utm_campaign=vivi-trip%2Fvivitrip&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 <br/>
 
