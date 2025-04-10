@@ -151,7 +151,3 @@ vivitrip은 여행자와 현지 호스트를 연결하고, 실시간 예약 및 
 - **QA**
 
   ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/vivi-trip/vivitrip?utm_source=oss&utm_medium=github&utm_campaign=vivi-trip%2Fvivitrip&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
-
-<br/>
-
----
