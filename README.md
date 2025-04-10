@@ -37,7 +37,7 @@ vivitrip은 여행자와 현지 호스트를 연결하고, 실시간 예약 및 
 
 | **강효성<br/>[@kanghyosung1](https://github.com/kanghyosung1)** | **최주혁<br/>[@JuhyeokC](https://github.com/JuhyeokC)** | **하유리<br/>[@hayuri1990](https://github.com/hayuri1990)** |
 | :---: | :---: | :---: |
-| <img width='400' src='https://velog.velcdn.com/images/kingdawn/post/4e7479fe-f01e-4798-83f3-589b2d4b2976/image.png'/> | <img src='https://velog.velcdn.com/images/kingdawn/post/e2d7cdff-740e-46f1-8d0d-8ba719bbcbc9/image.jpg' width='400'/> | <img src='https://velog.velcdn.com/images/kingdawn/post/f7cd9bd0-4cfa-4c60-b15d-f920520e21db/image.png' width='400'/> |
+| <img src='https://velog.velcdn.com/images/kingdawn/post/4e7479fe-f01e-4798-83f3-589b2d4b2976/image.png' alt='강효성 프로필 이미지' width='400'/> | <img src='https://velog.velcdn.com/images/kingdawn/post/e2d7cdff-740e-46f1-8d0d-8ba719bbcbc9/image.jpg' alt='최주혁 프로필 이미지' width='400'/> | <img src='https://velog.velcdn.com/images/kingdawn/post/f7cd9bd0-4cfa-4c60-b15d-f920520e21db/image.png' alt='하유리 프로필 이미지' width='400'/> |
 | 모달 | 드롭다운, GNB | 버튼 |
 | 예약 내역, 내 체험 관리<br/>예약 현황, 사이드 네비게이션 | 로그인, 회원가입, 소셜 로그인 <br/>체험 상세 페이지 | 체험 검색,모든 체험 인기 체험, <br/>체험 후기/리뷰 |
 
@@ -63,9 +63,9 @@ vivitrip은 여행자와 현지 호스트를 연결하고, 실시간 예약 및 
 - 방법1. 회원가입 후 로그인 
 - 방법2. 테스트 계정으로 로그인
    
-  http://vivitrip.net/sign-in/admin 접속 후 하단의 테스트 계정 중 선택하여 로그인 가능
+  [http://vivitrip.net/sign-in/admin](http://vivitrip.net/sign-in/admin) 접속 후 하단의 테스트 계정 중 선택하여 로그인 가능
   
-  ![](https://velog.velcdn.com/images/qoswfxin/post/c55bb502-03c3-4228-b743-59a08a4dd6e0/image.gif)
+  ![로그인 예시](https://velog.velcdn.com/images/qoswfxin/post/c55bb502-03c3-4228-b743-59a08a4dd6e0/image.gif)
 
 <br/>
 
@@ -73,18 +73,18 @@ vivitrip은 여행자와 현지 호스트를 연결하고, 실시간 예약 및 
 
 - 체험 등록
   
-  ![](https://github.com/user-attachments/assets/852bc660-8539-4c64-a2b7-7c03108e9ec4)
+  ![체험 등록 예시](https://github.com/user-attachments/assets/852bc660-8539-4c64-a2b7-7c03108e9ec4)
 
 - 체험 수정/삭제
   
-  ![](https://github.com/user-attachments/assets/036cb1df-fef4-4dff-a2a7-531122666271)
+  ![체험 수정/삭제 예시](https://github.com/user-attachments/assets/036cb1df-fef4-4dff-a2a7-531122666271)
 
 <br/>
 
 
 ### 체험 예약
 
-![](https://github.com/user-attachments/assets/7fac5e71-a918-4bf0-9e35-91416dda36c6)
+![체험 예약 예시](https://github.com/user-attachments/assets/7fac5e71-a918-4bf0-9e35-91416dda36c6)
   
 <br/>
 
@@ -93,7 +93,7 @@ vivitrip은 여행자와 현지 호스트를 연결하고, 실시간 예약 및 
 - 체험 등록자만 가능
 - 예약자는 알림을 통해 예약 승인 여부 확인 가능
   
- ![](https://velog.velcdn.com/images/qoswfxin/post/2acfc3d7-9660-44b8-a2fe-e4249652a13b/image.gif)
+ ![예약 승인/거절 예시](https://velog.velcdn.com/images/qoswfxin/post/2acfc3d7-9660-44b8-a2fe-e4249652a13b/image.gif)
   
 <br/>
 
@@ -101,14 +101,14 @@ vivitrip은 여행자와 현지 호스트를 연결하고, 실시간 예약 및 
 
 - 체험 종료 시간 이후 작성 가능
 
-![](https://velog.velcdn.com/images/qoswfxin/post/f052f668-d530-4a5f-9214-3756e778de33/image.gif)
+![후기 작성 예시](https://velog.velcdn.com/images/qoswfxin/post/f052f668-d530-4a5f-9214-3756e778de33/image.gif)
 
 <br/>
 <br/>
 
 ## 📂 폴더 구조
 
-```
+```plaintext
 ├── pages/                # 라우팅 페이지
 ├── components/           # UI 컴포넌트
 ├── containers/           # 페이지 단위의 UI 컴포넌트
