@@ -1,9 +1,15 @@
 import Review from "@/src/components/Review";
-import { listAllActivities } from "@/src/services/activities";
+import {
+  listAllActivities,
+  listPopularActivities,
+} from "@/src/services/activities";
 import { InferGetServerSidePropsType } from "next";
 
 export const getServerSideProps = async () => {
-  const response = await listAllActivities("latest");
+  const popularActivitiesInitialData = await listPopularActivities(1);
+  const { totalCount } = popularActivitiesInitialData;
+
+  const response = await listAllActivities("latest", totalCount);
   const { activities } = response;
 
   if (!activities || activities.length === 0) {
