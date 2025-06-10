@@ -55,6 +55,7 @@ const PopularActivityItem = ({
       <Link
         href={`${PATH_NAMES.Activity}/${id}
 `}
+        rel="nofollow"
         onClick={() => {
           showLoadingButtons(id);
         }}
