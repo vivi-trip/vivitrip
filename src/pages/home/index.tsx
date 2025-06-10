@@ -16,7 +16,7 @@ export const getStaticProps = async () => {
   const popularActivitiesInitialData = await listPopularActivities(1);
   const { totalCount } = popularActivitiesInitialData;
 
-  const allActivities = await listAllActivities("latest");
+  const allActivities = await listAllActivities("latest", totalCount);
 
   return {
     props: {
@@ -58,15 +58,17 @@ const Home = ({
   const [allActivities, setAllActivities] = useState(initialAllActivities);
 
   useEffect(() => {
+    if (!totalCount) return;
+
     setSelectedCategory(category);
 
     const fetchActivities = async () => {
-      const data = await listAllActivities(sort, category);
+      const data = await listAllActivities(sort, totalCount, category);
       setAllActivities(data);
     };
 
     fetchActivities();
-  }, [category, sort]);
+  }, [category, totalCount, sort]);
 
   const { activities: allActivityList } = allActivities;
 

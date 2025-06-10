@@ -13,9 +13,9 @@ const AllActivities = ({
   className,
 }: AllActivitiesProps) => {
   const router = useRouter();
-  const page = parseInt(router.query.page as string, 10) || 1;
   const pathname = router.pathname.replace("/", "");
 
+  const [page, setPage] = useState<number | null>(null);
   const [size, setSize] = useState(8);
   const [imageSize, setImageSize] = useState({ width: 200, height: 200 });
 
@@ -37,33 +37,32 @@ const AllActivities = ({
     updateSize();
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
-  }, [pathname, setSize]);
+  }, [pathname]);
 
   // 데이터를 클라이언트에서 분할
   const paginatedActivities = useMemo(() => {
+    if (page === null) return [];
+
     const start = (page - 1) * size!;
     const end = page * size!;
     return activities?.slice(start, end);
   }, [activities, page, size]);
 
-  // 체험이 없을 때 메시지 표시
-  if (!paginatedActivities || paginatedActivities.length === 0) {
-    return (
-      <div className="mb-120 mt-80 flex flex-col items-center gap-12">
-        <Image
-          src={NotFound}
-          alt="Not Found"
-          width={imageSize.width}
-          height={imageSize.height}
-        />
-        <p className="font-16px-medium md:font-18px-medium text-center">
-          {emptyMessage}
-        </p>
-      </div>
-    );
-  }
+  // router가 준비되면 page 값 설정
+  useEffect(() => {
+    if (!router.isReady) return;
 
-  return (
+    const queryPage = parseInt(router.query.page as string, 10);
+    if (!Number.isNaN(queryPage)) {
+      setPage(queryPage);
+    } else if (router.pathname === "/home" && !router.query.page) {
+      setPage(1);
+    }
+  }, [router.isReady, router.pathname, router.query.page]);
+
+  if (page === null) return null;
+
+  return activities.length > 0 ? (
     <>
       <div
         className={clsx(
@@ -76,13 +75,25 @@ const AllActivities = ({
       </div>
       <div className="mb-120 mt-38 flex justify-center md:mt-72 lg:mt-64">
         <Pagination
-          totalItems={activities?.length || 0}
+          totalItems={activities.length}
           currentPage={page ?? 1}
           pageCount={5}
           itemCountPerPage={size || 4}
         />
       </div>
     </>
+  ) : (
+    <div className="mb-120 mt-80 flex flex-col items-center gap-12">
+      <Image
+        src={NotFound}
+        alt="Not Found"
+        width={imageSize.width}
+        height={imageSize.height}
+      />
+      <p className="font-16px-medium md:font-18px-medium text-center">
+        {emptyMessage}
+      </p>
+    </div>
   );
 };
 
