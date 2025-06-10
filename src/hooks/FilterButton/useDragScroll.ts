@@ -57,27 +57,44 @@ const useDragScroll = ({
     }
   };
 
-  // 새로고침 시 자동 스크롤 및 위치 고정
   const router = useRouter();
   const hasCategoryQuery = Boolean(router.query.category);
-  const prevHasCategoryQuery = useRef(hasCategoryQuery); // 이전 hasCategoryQuery 값 추적
+  const prevHasCategoryQuery = useRef(hasCategoryQuery);
+  const hasScrolledOnInit = useRef(false);
+
+  // 스크롤 이동 로직
   useEffect(() => {
-    // 쿼리스트링이 없을 때만 리렌더링 발생
-    if (prevHasCategoryQuery.current) {
-      const scrollDistance = !hasCategoryQuery
-        ? 0
-        : slideWidth * currentIndex - buttonGap;
-      const container = document.getElementById("button-container");
-      if (container) {
-        container.scrollTo({
-          left: scrollDistance,
-          behavior: "smooth",
-        });
-      }
+    const container = document.getElementById("button-container");
+
+    if (!container || hasScrolledOnInit.current) return;
+
+    const isInitialLoadWithoutCategory =
+      typeof window !== "undefined" && !hasCategoryQuery;
+
+    const isPageReloadWithCategoryChanged =
+      prevHasCategoryQuery.current !== hasCategoryQuery;
+
+    if (
+      (isInitialLoadWithoutCategory && currentIndex === 0) ||
+      isPageReloadWithCategoryChanged
+    ) {
+      const scrollDistance = slideWidth * currentIndex;
+
+      container.scrollTo({
+        left: scrollDistance,
+        behavior: "smooth",
+      });
+
+      hasScrolledOnInit.current = true;
+      prevHasCategoryQuery.current = hasCategoryQuery;
     }
-    prevHasCategoryQuery.current = hasCategoryQuery;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slideWidth, buttonGap, prevHasCategoryQuery, hasCategoryQuery]);
+  }, [slideWidth, buttonGap, currentIndex, hasCategoryQuery]);
+
+  useEffect(() => {
+    if (!hasCategoryQuery && prevHasCategoryQuery.current) {
+      hasScrolledOnInit.current = false;
+    }
+  }, [hasCategoryQuery]);
 
   return {
     isDrag,
