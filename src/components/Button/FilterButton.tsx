@@ -59,7 +59,7 @@ const FilterButton = () => {
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
         onMouseMove={isDrag ? handleMouseMove : undefined}
-        className="scrollbar-none flex overflow-scroll"
+        className="scrollbar-none flex overflow-scroll px-2 py-3"
         style={{
           gap: `${buttonGap}px`,
         }}>
@@ -75,7 +75,7 @@ const FilterButton = () => {
             }
             fontStyle={selectedCategory === category.value ? "xl" : "l"}
             className={clsx(
-              "font-14px-medium h-41 shrink-0 focus:ring-transparent",
+              "font-14px-medium h-41 shrink-0",
               "md:font-18px-medium md:h-58",
               "lg:font-18px-medium lg:h-58",
               isDrag ? "cursor-grabbing" : "cursor-pointer",
