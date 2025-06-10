@@ -20,14 +20,15 @@ import { ActivityDetailResponse } from "@/src/types/activitiesResponses";
  */
 export const listAllActivities = async (
   sort: string,
+  size: number,
   category?: string,
 ): Promise<ActivitiesResponse> => {
   let url;
 
   if (category) {
-    url = `/activities?method=offset&sort=${sort}&category=${category}`;
+    url = `/activities?method=offset&sort=${sort}&size=${size}&category=${category}`;
   } else {
-    url = `/activities?method=offset&sort=${sort}`;
+    url = `/activities?method=offset&sort=${sort}&size=${size}`;
   }
 
   try {
