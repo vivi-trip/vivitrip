@@ -8,17 +8,23 @@ const useResponsiveLayout = (containerRef: React.RefObject<HTMLDivElement>) => {
   useEffect(() => {
     const handleResize = () => {
       const containerWidth = containerRef.current?.offsetWidth || 1152;
+
+      let newGap: number;
+      let newBtnWidth: number;
+
       if (window.innerWidth >= 1024) {
-        setButtonGap(20);
-        setButtonWidth((containerWidth - 6 * buttonGap) / 7);
+        newGap = 20;
+        newBtnWidth = (containerWidth - 6 * newGap) / 7;
       } else if (window.innerWidth >= 768) {
-        setButtonGap(18);
-        setButtonWidth(122);
+        newGap = 18;
+        newBtnWidth = 122;
       } else {
-        setButtonGap(15);
-        setButtonWidth(90);
+        newGap = 15;
+        newBtnWidth = 90;
       }
-      setSlideWidth(buttonWidth + buttonGap);
+      setButtonGap(newGap);
+      setButtonWidth(newBtnWidth);
+      setSlideWidth(newBtnWidth + newGap);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
