@@ -35,7 +35,7 @@ export const useCreateActivity = () => {
     mutationFn: (data: CreateActivityProps) => createActivity(data),
     onSuccess: async () => {
       try {
-        const response = await fetch(`/api/revalidate?path=home`, {
+        const response = await fetch(`/api/revalidate?path=/home`, {
           method: "POST",
         });
         if (!response.ok) {
