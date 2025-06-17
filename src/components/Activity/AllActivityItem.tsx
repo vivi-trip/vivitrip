@@ -37,6 +37,7 @@ const AllActivityItem = ({
         <Link
           href={`${PATH_NAMES.Activity}/${id}
           `}
+          rel="nofollow"
           className="absolute inset-0"
           onClick={() => {
             showLoadingButtons(id);

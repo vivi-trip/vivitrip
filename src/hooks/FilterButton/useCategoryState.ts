@@ -5,10 +5,7 @@ import { useEffect, useState } from "react";
 const useCategoryState = (categories: Category[]) => {
   const router = useRouter();
 
-  const [selectedCategory, setSelectedCategory] = useState(
-    (router.query.category as string) || "",
-  );
-
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [currentIndex, setCurrentIndex] = useState(() => {
     if (typeof window !== "undefined") {
       const storedIndex = localStorage.getItem("currentIndex");
@@ -45,19 +42,24 @@ const useCategoryState = (categories: Category[]) => {
   };
 
   useEffect(() => {
-    // currentIndex 값 변경 시 로컬스토리지에 저장
+    if (!router.isReady) return;
+
+    const queryCategory = router.query.category as string;
+    if (queryCategory) {
+      setSelectedCategory(queryCategory);
+      const index = categories.findIndex((c) => c.value === queryCategory);
+      setCurrentIndex(index !== -1 ? index : 0);
+    } else {
+      setSelectedCategory("");
+      setCurrentIndex(0);
+    }
+  }, [router.isReady, router.query.category, categories]);
+
+  useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("currentIndex", currentIndex.toString());
     }
   }, [currentIndex]);
-
-  // 필터 버튼 선택 안했을 경우, 초기화
-  useEffect(() => {
-    if (!router.query.category) {
-      setSelectedCategory("");
-      setCurrentIndex(0);
-    }
-  }, [router.query.category]);
 
   return { handleCategoryChange, selectedCategory, currentIndex };
 };
